@@ -1,0 +1,19 @@
+@import "./fonts/degular";
+@import "./utilities/resets";
+@import "./utilities/interpolate";
+@import "./utilities/generic-properties";
+@import "./utilities/colors";
+@import "./utilities/space-definitions";
+@import "./utilities/size-definitions";
+@import "./utilities/font-definitions";
+
+html,
+body {
+  scroll-behavior: smooth;
+  a {
+    text-decoration: none;
+  }
+
+  color: var(--foreground-dark);
+  background-color: var(--background-dark);
+}

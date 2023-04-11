@@ -1,0 +1,83 @@
+$interpolate-min: 350px;
+$interpolate-max: 1512px;
+
+:root {
+  @include interpolate(--space, $interpolate-min, $interpolate-max, 25px, 40px);
+
+  @include interpolate(
+    --idealBaseFontSize,
+    $interpolate-min,
+    $interpolate-max,
+    14px,
+    20px
+  );
+
+  @include interpolate(
+    --idealSubFontSize,
+    $interpolate-min,
+    $interpolate-max,
+    12px,
+    18px
+  );
+
+  @include interpolate(
+    --idealListingFontSize,
+    $interpolate-min,
+    $interpolate-max,
+    20px,
+    24px
+  );
+
+  @include interpolate(
+    --idealArticleParagraphSize,
+    $interpolate-min,
+    $interpolate-max,
+    16px,
+    20px
+  );
+
+  @include interpolate(
+    --idealHeadingOne,
+    $interpolate-min,
+    $interpolate-max,
+    40px,
+    50px
+  );
+
+  @include interpolate(
+    --idealHeadingTwo,
+    $interpolate-min,
+    $interpolate-max,
+    25px,
+    30px
+  );
+
+  @include interpolate(
+    --idealHeadingThree,
+    $interpolate-min,
+    $interpolate-max,
+    20px,
+    25px
+  );
+
+  @include interpolate(
+    --idealPoetryLineFontSize,
+    350px,
+    $interpolate-max,
+    12px,
+    20px
+  );
+
+  @include interpolate(
+    --idealPoetryTitleFontSize,
+    350px,
+    $interpolate-max,
+    25px,
+    35px
+  );
+
+  --space-s: calc(var(--space) / 2);
+  --space-xs: calc(var(--space-s) / 2);
+  --space-m: calc(var(--space) * 2);
+  --html-color: hsla(10, 68%, 46%, 100%);
+}
