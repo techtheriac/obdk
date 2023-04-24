@@ -8,17 +8,14 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRefs } from "vue";
-
+import { ref, onMounted } from "vue";
+import logger from "../infrastructure/Spotify";
 export default {
-  setup() {
-    const state = reactive({
-      count: 0,
-    });
+  name: "Spotify",
 
-    return {
-      ...toRefs(state),
-    };
+  setup(props) {
+    onMounted(() => logger());
+    return {};
   },
 };
 </script>
