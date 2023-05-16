@@ -1,7 +1,7 @@
 <template>
   <footer>
     <p>
-      <span> © FRANKLIN JEZREEL </span>
+      <span> © JEZREEL OBIDIKE FRANKLIN </span>
       <span> ALLRIGHTS RESERVED </span>
     </p>
     <Outside />

@@ -1,8 +1,8 @@
 <template>
   <div class="bio">
     <p>
-      THIS IS THE WEBSITE OF FRANKLIN JEZREEL, A SOFTWARE ENGINEER, DESIGNER,
-      TINKERER, AND PROFESSIONAL BAD BOY FROM NIGERIA
+      THIS WEBSITE IS JEZREEL FRANKLIN'S ATTEMPT AT COLLECTING HIS RUMINATIONS,
+      MUSINGS AND WORKS IN A UNFIED SPACE.
     </p>
   </div>
 </template>
@@ -21,6 +21,7 @@ export default {
   p {
     max-width: 48ch;
     @include degularCaps(300, var(--idealBaseFontSize));
+    text-transform: uppercase;
   }
 }
 </style>

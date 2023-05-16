@@ -17,14 +17,6 @@ export default {
           name: "index",
           link: "/home",
         },
-        // {
-        //   name: "index",
-        //   link: "/index",
-        // },
-        // {
-        //   name: "manifesto",
-        //   link: "/Manifesto",
-        // },
       ],
     };
   },
