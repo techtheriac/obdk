@@ -6,12 +6,9 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  setup() {
-    return {};
-  },
-};
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+onMounted(() => {});
 </script>
 
 <style lang="scss" scoped>

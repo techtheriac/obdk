@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <div v-for="navigation in IndexMap">
+  <div class="layout">
+    <Path />
+    <div v-for="navigation in homeMap">
       <NavigationItem :navigation-option="navigation" />
     </div>
   </div>
@@ -8,43 +9,53 @@
 
 <script setup lang="ts">
 import { NavigationItemOption } from "~/types";
-const IndexMap: NavigationItemOption[] = [
+const homeMap: NavigationItemOption[] = [
   {
     name: "musings",
     type: "Folder",
-    path: "/index/musings",
+    path: "/home/musings",
   },
   {
     name: "artx",
     type: "Folder",
-    path: "/index/artx",
+    path: "/home/artx",
   },
   {
     name: "poetry",
     type: "Folder",
-    path: "/index/poetry",
+    path: "/home/poetry",
   },
   {
     name: "drafts",
     type: "Folder",
-    path: "/index/drafts",
+    path: "/home/drafts",
   },
   {
     name: "resume",
     type: "File",
-    path: "/index/resume",
+    path: "/home/resume",
   },
   {
     name: "manifesto",
     type: "File",
-    path: "/index/manifesto",
+    path: "/home/manifesto",
   },
   {
     name: "notes",
     type: "Folder",
-    path: "/index/manifesto",
+    path: "/home/notes",
   },
 ];
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.layout {
+  // min-height: 100vh;
+  padding: 20px 30px;
+  // border-top: 1px solid white;
+  display: grid;
+  margin: 50px;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 40px;
+}
+</style>
