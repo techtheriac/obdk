@@ -1,9 +1,10 @@
 <template>
   <div class="bio">
     <p>
-      THIS WEBSITE IS JEZREEL'S ATTEMPT AT COLLECTING HIS RUMINATIONS, MUSINGS
-      AND WORKS IN A UNFIED SPACE.
+      THIS WEBSITE COLLECTS MY RUMINATIONS, MUSINGS AND WORKS IN A UNFIED SPACE.
+      <br />
     </p>
+    <p>I AM A SOFTWARE ENGINEER WITH A FLARE FOR DESIGN</p>
   </div>
 </template>
 
@@ -18,8 +19,11 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/css/utilities/font-definitions";
 .bio {
+  > * + * {
+    margin-top: 10px;
+  }
   p {
-    max-width: 48ch;
+    max-width: 40ch;
     @include degularCaps(300, var(--idealBaseFontSize));
     text-transform: uppercase;
   }

@@ -2,22 +2,27 @@
   <div class="spotify">
     <Rounded />
     <div class="track-info">
-      <span>NP: FRANK OCEAN - NIKES</span>
+      <span>NP: {{ nowPlaying.artist }} - {{ nowPlaying.songTitle }}</span>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+const { spotify } = useRuntimeConfig();
 import { ref, onMounted } from "vue";
-import logger from "../infrastructure/Spotify";
-export default {
-  name: "Spotify",
+import type { Ref } from "vue";
+import { getNowPlaying, NowPlaying } from "../infrastructure/Spotify";
 
-  setup(props) {
-    onMounted(() => logger());
-    return {};
-  },
-};
+const nowPlaying: Ref<NowPlaying> = ref({
+  songTitle: "",
+  artist: "",
+  url: "",
+});
+
+onMounted(async () => {
+  const res = await getNowPlaying(spotify);
+  nowPlaying.value = res;
+});
 </script>
 
 <style lang="scss" scoped>

@@ -1,6 +1,5 @@
 <template>
   <div class="layout">
-    <Path />
     <div v-for="navigation in homeMap">
       <NavigationItem :navigation-option="navigation" />
     </div>

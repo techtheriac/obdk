@@ -19,7 +19,11 @@
     "vue": "latest"
   },
   "dependencies": {
+    "@nuxtjs/dotenv": "^1.4.1",
     "@pinia/nuxt": "^0.4.10",
-    "pinia": "^2.0.36"
+    "axios": "^1.4.0",
+    "buffer": "^6.0.3",
+    "pinia": "^2.0.36",
+    "query-string": "^8.1.0"
   }
 }
