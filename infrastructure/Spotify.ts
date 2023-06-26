@@ -30,20 +30,6 @@ interface NowPlayingItem {
   name: string;
 }
 
-// interface NowPlaying {
-//   item: NowPlayingItem;
-//   album: Album;
-// }
-// IDEAL STEPS
-// Construct browswer url to get code
-// supply code as a value to code key in `w-xxx-form-urlencoded` for call to get token
-// access token and refresh token is returned
-// keep refresh token
-// it'll be used to get access token for subsequent calls
-// access token is supplied as Authorization header in form   `Beaerer ${token}`
-
-// Create a mechanism to get referesh token
-
 interface NowPlaying {
   artist: string;
   songTitle: string;
@@ -78,20 +64,21 @@ const getAccessToken = async ({
 const getNowPlaying = async (config: SpotifyConfig): Promise<NowPlaying> => {
   const { access_token } = await getAccessToken(config);
 
-  const response = await fetch(`${config.base}/me/player/currently-playing`, {
-    headers: {
-      Authorization: `Bearer ${access_token}`,
-    },
-  });
+  const response = await fetch(
+    `${config.base}/me/player/recently-played?limit=1`,
+    {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    }
+  );
 
-  const { item } = await response.json();
-
-  console.log("Nowplaying item", item);
+  const { items } = await response.json();
 
   return {
-    url: item.href,
-    songTitle: item.name,
-    artist: item.artists[0].name,
+    url: items[0].track.external_urls.spotify,
+    songTitle: items[0].track.name,
+    artist: items[0].track.artists[0].name,
   };
 };
 
