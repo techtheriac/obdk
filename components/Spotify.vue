@@ -2,28 +2,15 @@
   <div class="spotify">
     <Rounded />
     <div class="track-info">
-      <a :href="nowPlaying.url" target="_blank"
-        >NP: {{ nowPlaying.artist }} - {{ nowPlaying.songTitle }}</a
+      <a :href="data?.url" target="_blank"
+        >NP: {{ data?.artist }} - {{ data?.songTitle }}</a
       >
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const { spotify } = useRuntimeConfig();
-import type { Ref } from "vue";
-import { getNowPlaying, NowPlaying } from "../infrastructure/Spotify";
-
-const nowPlaying: Ref<NowPlaying> = ref({
-  songTitle: "",
-  artist: "",
-  url: "",
-});
-
-onMounted(async () => {
-  const res = await getNowPlaying(spotify);
-  nowPlaying.value = res;
-});
+const { data } = await useFetch("/api/get-recently-played");
 </script>
 
 <style lang="scss" scoped>

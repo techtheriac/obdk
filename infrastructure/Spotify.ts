@@ -2,11 +2,11 @@ import { Buffer } from "buffer";
 import queryString from "query-string";
 
 interface SpotifyConfig {
-  authBase: string;
+  authBase: string | undefined;
   base: string | undefined;
-  clientId: string;
-  clientSecret: string;
-  refreshToken: string;
+  clientId: string | undefined;
+  clientSecret: string | undefined;
+  refreshToken: string | undefined;
 }
 
 interface AccessTokenResponse {
