@@ -2,14 +2,15 @@
   <div class="spotify">
     <Rounded />
     <div class="track-info">
-      <span>NP: {{ nowPlaying.artist }} - {{ nowPlaying.songTitle }}</span>
+      <a :href="nowPlaying.url" target="_blank"
+        >NP: {{ nowPlaying.artist }} - {{ nowPlaying.songTitle }}</a
+      >
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 const { spotify } = useRuntimeConfig();
-import { ref, onMounted } from "vue";
 import type { Ref } from "vue";
 import { getNowPlaying, NowPlaying } from "../infrastructure/Spotify";
 
@@ -38,6 +39,10 @@ onMounted(async () => {
 
   &:hover {
     cursor: pointer;
+  }
+
+  a {
+    color: inherit;
   }
 }
 </style>
