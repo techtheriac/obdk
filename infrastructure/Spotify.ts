@@ -34,6 +34,7 @@ interface NowPlaying {
   artist: string;
   songTitle: string;
   url: string;
+  previewUrl: string;
 }
 
 const getAccessToken = async ({
@@ -79,6 +80,7 @@ const getNowPlaying = async (config: SpotifyConfig): Promise<NowPlaying> => {
     url: items[0].track.external_urls.spotify,
     songTitle: items[0].track.name,
     artist: items[0].track.artists[0].name,
+    previewUrl: items[0].track.preview_url,
   };
 };
 

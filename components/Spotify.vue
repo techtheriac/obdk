@@ -5,12 +5,23 @@
       <a :href="data?.url" target="_blank"
         >NP: {{ data?.artist }} - {{ data?.songTitle }}</a
       >
+      <button id="audioTrigger">play</button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import useSpotifyAudio from "../composables/useSpotifyAudio";
 const { data } = await useFetch("/api/get-recently-played");
+
+onMounted(() => {
+  const { context } = useSpotifyAudio(
+    data.value?.previewUrl,
+    document.getElementById("audioTrigger")
+  );
+
+  console.log(context);
+});
 </script>
 
 <style lang="scss" scoped>
