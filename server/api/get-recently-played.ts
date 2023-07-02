@@ -1,4 +1,5 @@
-import { getNowPlaying, SpotifyConfig } from "~/infrastructure/Spotify";
+import { Spotify } from "~/infrastructure/spotify";
+import { SpotifyConfig } from "~/obdk";
 
 const config: SpotifyConfig = {
   authBase: process.env.SPOTIFY_AUTH_BASE,
@@ -9,7 +10,9 @@ const config: SpotifyConfig = {
 };
 
 export default defineEventHandler(async (event) => {
-  const res = await getNowPlaying(config);
+  const SPOTIFY_INSTANCE = new Spotify(config);
+  const res = await SPOTIFY_INSTANCE.getNowPlaying();
+
   return {
     ...res,
   };

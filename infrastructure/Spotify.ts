@@ -1,87 +1,99 @@
 import { Buffer } from "buffer";
 import queryString from "query-string";
+import axios from "axios";
+import { buildPalette, distance, palette, utils } from "image-q";
+import {
+  AccessTokenResponse,
+  SpotifyConfig,
+  SpotifyIntegration,
+  NowPlaying,
+} from "~/obdk";
 
-interface SpotifyConfig {
-  authBase: string | undefined;
-  base: string | undefined;
-  clientId: string | undefined;
-  clientSecret: string | undefined;
-  refreshToken: string | undefined;
-}
+export class Spotify implements SpotifyIntegration {
+  readonly ConfigOptions: SpotifyConfig;
+  constructor(configOptions: SpotifyConfig) {
+    this.ConfigOptions = configOptions;
+  }
 
-interface AccessTokenResponse {
-  access_token: string;
-  token_type: string;
-  expires_in: number;
-  scope: string;
-}
+  async extractColorPaletteFromImage(
+    source: `https://${string}`
+  ): Promise<any> {
+    const response = await axios.get(source, {
+      responseType: "arraybuffer",
+    });
 
-interface Album {
-  images: Image[];
-}
-interface Image {
-  url: string;
-  height: number;
-  width: number;
-}
+    const image = Buffer.from(response.data, "base64");
 
-interface NowPlayingItem {
-  href: string;
-  name: string;
-}
+    const pointContainer = utils.PointContainer.fromBuffer(image, 64, 64);
 
-interface NowPlaying {
-  artist: string;
-  songTitle: string;
-  url: string;
-  previewUrl: string;
-}
+    var targetColors = 256;
 
-const getAccessToken = async ({
-  authBase,
-  clientId,
-  clientSecret,
-  refreshToken,
-}: SpotifyConfig): Promise<AccessTokenResponse> => {
-  const basic = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
+    // create chosen distance calculator (see classes inherited from `iq.distance.AbstractDistanceCalculator`)
+    var distanceCalculator = new distance.Euclidean();
 
-  const payload = queryString.stringify({
-    grant_type: "refresh_token",
-    refresh_token: refreshToken,
-  });
+    // create chosen palette quantizer (see classes implementing `iq.palette.AbstractPaletteQuantizer`)
+    var paletteQuantizer: any = new palette.RGBQuant(
+      distanceCalculator,
+      targetColors
+    );
 
-  const response = await fetch(`${authBase}/token`, {
-    method: "POST",
-    headers: {
-      Authorization: `Basic ${basic}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: payload,
-  });
+    // feed out pointContainer filled with image to paletteQuantizer
+    paletteQuantizer.sample(pointContainer);
 
-  return response.json();
-};
+    // take generated palette
+    var colors = paletteQuantizer.quantizeSync();
 
-const getNowPlaying = async (config: SpotifyConfig): Promise<NowPlaying> => {
-  const { access_token } = await getAccessToken(config);
+    console.log(colors);
 
-  const response = await fetch(
-    `${config.base}/me/player/recently-played?limit=1`,
-    {
+    return colors;
+  }
+
+  async getAccessToken(): Promise<AccessTokenResponse> {
+    const { authBase, clientId, clientSecret, refreshToken } =
+      this.ConfigOptions;
+
+    const basic = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
+
+    const payload = queryString.stringify({
+      grant_type: "refresh_token",
+      refresh_token: refreshToken,
+    });
+
+    const response = await fetch(`${authBase}/token`, {
+      method: "POST",
+      headers: {
+        Authorization: `Basic ${basic}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: payload,
+    });
+
+    return response.json();
+  }
+
+  async getNowPlaying(): Promise<NowPlaying> {
+    const { authBase, clientId, clientSecret, refreshToken, base } =
+      this.ConfigOptions;
+
+    const { access_token } = await this.getAccessToken();
+
+    const response = await fetch(`${base}/me/player/recently-played?limit=1`, {
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
-    }
-  );
+    });
 
-  const { items } = await response.json();
+    const { items } = await response.json();
 
-  return {
-    url: items[0].track.external_urls.spotify,
-    songTitle: items[0].track.name,
-    artist: items[0].track.artists[0].name,
-    previewUrl: items[0].track.preview_url,
-  };
-};
+    const palette = await this.extractColorPaletteFromImage(
+      items[0].track.album.images[0].url
+    );
 
-export { getAccessToken, getNowPlaying, SpotifyConfig, NowPlaying };
+    return {
+      url: items[0].track.external_urls.spotify,
+      songTitle: items[0].track.name,
+      artist: items[0].track.artists[0].name,
+      previewUrl: items[0].track.preview_url,
+    };
+  }
+}
