@@ -1,13 +1,18 @@
 <template>
-  <div>
+  <div class="path">
     <div>←</div>
-    <div>ass</div>
+    <div>{{ path }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
-const { fullPath } = useRoute();
-console.log(fullPath);
+const props = defineProps({
+  path: String,
+});
 </script>
 
-<style scoped></style>
+<style scoped>
+.path {
+  display: flex;
+}
+</style>

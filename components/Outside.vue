@@ -46,9 +46,9 @@ export default {
   gap: 10px;
 
   li {
-    font-family: "Degular Variable";
+    font-family: "Gestalt";
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 12px;
     letter-spacing: -0.09em;
 
     a {

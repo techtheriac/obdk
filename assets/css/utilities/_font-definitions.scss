@@ -5,3 +5,11 @@
   text-transform: uppercase;
   letter-spacing: -0.05em;
 }
+
+@mixin gestaltCaps($weight, $size) {
+  font-family: "Gestalt";
+  font-weight: $weight;
+  font-size: $size;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+}

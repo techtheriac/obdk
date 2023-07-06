@@ -1,10 +1,7 @@
 <template>
   <div class="bio">
-    <p>
-      THIS WEBSITE COLLECTS MY RUMINATIONS, MUSINGS AND WORKS IN A UNFIED SPACE.
-      <br />
-    </p>
-    <p>I AM A SOFTWARE ENGINEER WITH A FLARE FOR DESIGN</p>
+    <p>I am a software engineer with a flair for design</p>
+    <p>This website collects my musings, ruminations and work.</p>
   </div>
 </template>
 
@@ -23,9 +20,8 @@ export default {
     margin-top: 10px;
   }
   p {
-    max-width: 40ch;
-    @include degularCaps(300, var(--idealBaseFontSize));
-    text-transform: uppercase;
+    max-width: 50ch;
+    @include gestaltCaps(300, var(--idealBaseFontSize));
   }
 }
 </style>
