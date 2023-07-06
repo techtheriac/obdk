@@ -2,7 +2,6 @@
   <footer>
     <p>
       <span> © JEZREEL OBIDIKE FRANKLIN </span>
-      <span> ALLRIGHTS RESERVED </span>
     </p>
     <Outside />
   </footer>
@@ -24,7 +23,7 @@ footer {
     gap: 5px;
 
     span {
-      @include degularCaps(250, var(--idealSubFontSize));
+      @include gestaltCaps(250, var(--idealSubFontSize));
       color: var(--foreground-dark-dim);
     }
   }

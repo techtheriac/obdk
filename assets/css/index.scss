@@ -1,4 +1,5 @@
 @import "./fonts/degular";
+@import "./fonts/gestalt";
 @import "./utilities/resets";
 @import "./utilities/interpolate";
 @import "./utilities/generic-properties";
@@ -14,6 +15,16 @@ body {
     text-decoration: none;
   }
 
-  color: var(--foreground-dark);
+  -webkit-font-smoothing: antialiased;
+  font-family: Gestalt;
+  text-rendering: optimizeLegibility;
+  width: 100vw;
+  height: 100vh;
   background-color: var(--background-dark);
+}
+
+// This class is added to html when spotify is playing
+// It redices the opacity of the body color and toggles visibiliy of canvas element with noise
+// reference - https://tobiasfried.com/helenazhang
+.now-playing {
 }

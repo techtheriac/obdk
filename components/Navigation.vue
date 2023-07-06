@@ -14,8 +14,8 @@ export default {
     return {
       links: [
         {
-          name: "index",
-          link: "/home",
+          name: "www",
+          link: "/www",
         },
       ],
     };

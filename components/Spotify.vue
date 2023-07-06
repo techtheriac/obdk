@@ -1,10 +1,10 @@
 <template>
   <div class="spotify">
-    <Rounded />
+    <!-- <Rounded /> -->
     <!-- <PhSpotifyLogo size="26" /> -->
     <div class="track-info">
       <a :href="data?.url" target="_blank"
-        >NP: {{ data?.artist }} - {{ data?.songTitle }}</a
+        >NOW PLAYING: {{ data?.artist }} - {{ data?.songTitle }}</a
       >
     </div>
     <div class="controls">
@@ -78,7 +78,7 @@ let mousePressed = () => {
   }
 }
 .controls {
-  transform: translateY(4px);
+  transform: translateY(3px);
   cursor: pointer;
 }
 </style>

@@ -14,11 +14,13 @@ const blurValues = ref([
 
 <style lang="scss" scoped>
 .wrapper-frosted {
-  width: 200px;
-  height: 100px;
+  width: inherit;
+  height: inherit;
   inset: 0;
-  border-radius: 8px;
-  position: relative;
+  // border-radius: 8px;
+  position: absolute;
+  z-index: 6;
+  overflow: hidden;
   box-shadow: 0 20px 40px 1px rgba(0, 0, 0, 0.12),
     inset 0 -10px 20px -5px rgba(0, 0, 0, 0.3),
     0 150px 100px -80px rgba(0, 0, 0, 0.4),
@@ -28,8 +30,9 @@ const blurValues = ref([
 
 span {
   display: block;
-  z-index: 1;
-  inset: -40px;
+  position: absolute;
+  width: 100%;
+  inset: 0;
   --offset: 50%;
   backdrop-filter: blur(var(--blur));
   --webkit-backdrop-filter: blur(var(--blur));
@@ -57,28 +60,13 @@ span {
   --webkit-mask-composite: destination-in;
 }
 
-span:first-of-type {
-  --x: 11.11%;
-}
-span:nth-of-type(2) {
-  --x: 22.22%;
-}
-span:nth-of-type(3) {
-  --x: 33.33%;
-}
-span:nth-of-type(4) {
-  --x: 44.44%;
-}
-span:nth-of-type(5) {
-  --x: 55.55%;
-}
-span:nth-of-type(6) {
-  --x: 66.66%;
-}
-span:nth-of-type(7) {
-  --x: 77.77%;
-}
-span:nth-of-type(8) {
-  --x: 88.88%;
+$identity: 11.11%;
+$max: 8;
+
+@for $i from 1 through $max {
+  span:nth-of-type(#{$i}) {
+    --x: #{$i * 11.11%};
+    z-index: $i + $max;
+  }
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div class="www-base">
-    <Path :path="fullPath" />
-    <!-- <Frosted /> -->
+    <Frosted />
     <main class="content-view">
+      <Path :path="fullPath" />
       <slot />
     </main>
   </div>
@@ -16,14 +16,12 @@ const { fullPath } = useRoute();
 .www-base {
   display: flex;
   flex-direction: column;
-  z-index: 8;
-  position: fixed;
-  top: 20px;
   height: 100%;
   width: inherit;
-  background-color: black;
 }
 .content-view {
   z-index: 10;
+  position: absolute;
+  inset: 0;
 }
 </style>

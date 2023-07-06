@@ -37,3 +37,11 @@ interface SpotifyIntegration {
   getAccessToken(): Promise<AccessTokenResponse>;
   getNowPlaying(): Promise<NowPlaying>;
 }
+
+export type Message = {
+  canvas: OffscreenCanvas;
+  dimension: {
+    width: number;
+    height: number;
+  };
+};
