@@ -1,4 +1,4 @@
-import { Spotify } from "~/infrastructure/spotify";
+import { Spotify } from "../../infrastructure/spotify";
 import { SpotifyConfig } from "~/obdk";
 
 const config: SpotifyConfig = {

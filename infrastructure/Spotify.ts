@@ -43,8 +43,6 @@ export class Spotify implements SpotifyIntegration {
     // take generated palette
     var colors = paletteQuantizer.quantizeSync();
 
-    console.log(colors);
-
     return colors;
   }
 
