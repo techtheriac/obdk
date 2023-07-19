@@ -1,23 +1,20 @@
 <template>
   <div class="spotify">
-    <!-- <Rounded /> -->
-    <!-- <PhSpotifyLogo size="26" /> -->
     <div class="track-info">
+      <div @click="mousePressed" ref="audioControl">
+        <p class="track-info" v-if="contextState === 'running'">stop</p>
+        <p class="track-info" v-else>play</p>
+      </div>
       <a :href="data?.url" target="_blank"
-        >NOW PLAYING: {{ data?.artist }} - {{ data?.songTitle }}</a
+        >{{ data?.artist }} - {{ data?.songTitle }}</a
       >
     </div>
-    <div class="controls">
-      <div @click="mousePressed" ref="audioControl">
-        <PhPause v-if="contextState === 'running'" size="18" />
-        <PhPlay v-else size="18" />
-      </div>
-    </div>
+    <div class="controls"></div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { PhPlay, PhPause } from "@phosphor-icons/vue";
+import TextScramble from "~/application/animations/textScramble";
 import { AudioContextState } from "~/obdk";
 
 const { data } = await useFetch("/api/get-recently-played");
@@ -25,6 +22,7 @@ const { data } = await useFetch("/api/get-recently-played");
 let audio: HTMLAudioElement | null;
 let audioContext: AudioContext | null;
 let contextState: Ref<AudioContextState> = ref("initial");
+let textScramble: TextScramble | null = null;
 
 let mousePressed = () => {
   if (!audioContext) {
@@ -47,13 +45,31 @@ let mousePressed = () => {
     source.connect(audioContext.destination);
 
     contextState.value = audioContext.state;
+
+    if (textScramble) {
+      textScramble.state = contextState.value;
+      textScramble.animate();
+    }
   } else {
     audio?.pause();
     audioContext.close();
     contextState.value = audioContext.state;
+
+    if (textScramble) {
+      textScramble.state = audioContext.state;
+    }
+
     audioContext = audio = null;
   }
 };
+
+onMounted(() => {
+  const scrambleElement = document.querySelectorAll(".track-info > a");
+  textScramble = new TextScramble({
+    elements: scrambleElement,
+    state: contextState.value,
+  });
+});
 </script>
 
 <style lang="scss" scoped>
@@ -78,7 +94,6 @@ let mousePressed = () => {
   }
 }
 .controls {
-  transform: translateY(3px);
   cursor: pointer;
 }
 </style>

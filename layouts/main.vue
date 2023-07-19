@@ -1,7 +1,7 @@
 <template>
   <div class="layout-base">
     <Home />
-    <Noise />
+    <!-- <Noise /> -->
     <slot />
   </div>
 </template>
@@ -10,9 +10,8 @@
 
 <style scoped>
 .layout-base {
-  min-height: calc(100vh);
-  /* padding: 20px 15px 0px 15px; */
-  width: calc(100vw);
+  min-height: 100vh;
+  width: 100vw;
   color: var(--foreground-dark);
   background-color: var(--background-dark);
 }

@@ -18,8 +18,8 @@ onMounted(() => {
     const message: Message = {
       canvas: offscreen,
       dimension: {
-        width: offsetWidth,
-        height: offsetHeight,
+        width: document.documentElement.clientWidth,
+        height: document.documentElement.clientHeight,
       },
     };
 
@@ -31,8 +31,8 @@ onMounted(() => {
 <style scoped>
 #noise {
   background-color: black;
-  width: 100%;
-  height: 100vh;
+  width: inherit;
+  height: 100%;
   z-index: -1;
 }
 </style>
