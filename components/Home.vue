@@ -17,7 +17,7 @@
   justify-content: space-between;
   overflow: hidden;
   position: fixed;
-  z-index: 0;
+  z-index: 2;
   padding: 20px 15px 20px 15px;
   background-color: var(--background-dark-07);
   // background-color: var(--background-dark);
