@@ -14,9 +14,8 @@
 </template>
 
 <script setup lang="ts">
-import TextScramble from "~/application/animations/textScramble";
 import { AudioContextState } from "~/obdk";
-
+import TextScramble from "~/utils/animations/textScramble";
 const { data } = await useFetch("/api/get-recently-played");
 
 let audio: HTMLAudioElement | null;
