@@ -1,12 +1,12 @@
-import { Buffer } from "buffer";
-import queryString from "query-string";
 import axios from "axios";
-import { buildPalette, distance, palette, utils } from "image-q";
+import { Buffer } from "buffer";
+import { distance, palette, utils } from "image-q";
+import queryString from "query-string";
 import {
   AccessTokenResponse,
+  NowPlaying,
   SpotifyConfig,
   SpotifyIntegration,
-  NowPlaying,
 } from "~/obdk";
 
 export class Spotify implements SpotifyIntegration {
