@@ -1,8 +1,9 @@
 <template>
   <footer>
-    <p>
+    <!-- <p>
       <span> © JEZREEL OBIDIKE FRANKLIN </span>
-    </p>
+    </p> -->
+    <Spotify />
     <Outside />
   </footer>
 </template>

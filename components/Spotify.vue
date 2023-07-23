@@ -82,7 +82,7 @@ onMounted(() => {
 }
 .track-info {
   color: var(--foreground-dark-forest);
-  @include gestaltCaps(400, var(--idealBaseFontSize));
+  @include gestaltCaps(400, var(--idealSubFontSize));
 
   &:hover {
     cursor: pointer;

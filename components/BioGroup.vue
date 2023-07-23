@@ -1,7 +1,7 @@
 <template>
   <div class="bio-group">
     <Bio />
-    <Navigation />
+    <!-- <Navigation /> -->
   </div>
 </template>
 
