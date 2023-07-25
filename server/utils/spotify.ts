@@ -1,15 +1,16 @@
-import { Buffer } from "buffer";
-import queryString from "query-string";
 import axios from "axios";
-import { buildPalette, distance, palette, utils } from "image-q";
+import { Buffer } from "buffer";
+import { buildPaletteSync, utils } from "image-q";
+import queryString from "query-string";
+
 import {
   AccessTokenResponse,
-  SpotifyConfig,
-  SpotifyIntegration,
+  MusicIntegration,
   NowPlaying,
+  SpotifyConfig,
 } from "~/obdk";
 
-export class Spotify implements SpotifyIntegration {
+export class Spotify implements MusicIntegration {
   readonly ConfigOptions: SpotifyConfig;
   constructor(configOptions: SpotifyConfig) {
     this.ConfigOptions = configOptions;
@@ -26,24 +27,13 @@ export class Spotify implements SpotifyIntegration {
 
     const pointContainer = utils.PointContainer.fromBuffer(image, 64, 64);
 
-    var targetColors = 256;
+    const palette = buildPaletteSync([pointContainer], {
+      colorDistanceFormula: "euclidean",
+      paletteQuantization: "wuquant",
+      colors: 128,
+    });
 
-    // create chosen distance calculator (see classes inherited from `iq.distance.AbstractDistanceCalculator`)
-    var distanceCalculator = new distance.Euclidean();
-
-    // create chosen palette quantizer (see classes implementing `iq.palette.AbstractPaletteQuantizer`)
-    var paletteQuantizer: any = new palette.RGBQuant(
-      distanceCalculator,
-      targetColors
-    );
-
-    // feed out pointContainer filled with image to paletteQuantizer
-    paletteQuantizer.sample(pointContainer);
-
-    // take generated palette
-    var colors = paletteQuantizer.quantizeSync();
-
-    return colors;
+    return palette;
   }
 
   async getAccessToken(): Promise<AccessTokenResponse> {
@@ -87,11 +77,21 @@ export class Spotify implements SpotifyIntegration {
       items[0].track.album.images[0].url
     );
 
+    const colorStringValues: string[] = palette._pointArray.map(
+      (color) => `rgb(${color.r},${color.g},${color.b})`
+    );
+
+    console.log(
+      "🚀 ~ file: spotify.ts:89 ~ Spotify ~ getNowPlaying ~ colorStringValues:",
+      colorStringValues
+    );
+
     return {
       url: items[0].track.external_urls.spotify,
       songTitle: items[0].track.name,
       artist: items[0].track.artists[0].name,
       previewUrl: items[0].track.preview_url,
+      palette: colorStringValues,
     };
   }
 }

@@ -1,6 +1,6 @@
 import { AudioContextState } from "~/obdk";
 
-export default class TextSrcamble {
+export default class TextScramble {
   private nodeList?: NodeListOf<Element>;
   public state?: AudioContextState;
 

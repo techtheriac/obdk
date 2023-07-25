@@ -1,6 +1,6 @@
 <template>
   <NuxtLink class="navigation-item" :to="navigationOption.path">
-    <div @mouseenter="blink">
+    <div>
       <Document v-if="navigationOption.type === 'File'" />
       <Folder v-else />
     </div>
@@ -11,9 +11,9 @@
 </template>
 
 <script setup lang="ts">
-import { NavigationItemOption } from "~/obdk";
 import gsap from "gsap";
 import { type PropType } from "vue";
+import { NavigationItemOption } from "~/obdk";
 const props = defineProps({
   navigationOption: {
     type: Object as PropType<NavigationItemOption>,
