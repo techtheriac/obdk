@@ -19,6 +19,7 @@ type NowPlaying = {
   songTitle: string;
   url: string;
   previewUrl: string;
+  palette: string[];
 };
 
 export type Url = `https://${string}`;
@@ -31,7 +32,7 @@ export type SpotifyConfig = {
   refreshToken?: string;
 };
 
-interface SpotifyIntegration {
+interface MusicIntegration {
   ConfigOptions: SpotifyConfig;
   extractColorPaletteFromImage(source: Url): Promise<any>;
   getAccessToken(): Promise<AccessTokenResponse>;

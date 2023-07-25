@@ -5,20 +5,25 @@ export interface Animatable {
   animate(): void;
 }
 
-let instance: Application;
+export let application: Application;
 
 type CustomEvents = "now-playing" | "dim-background";
 
 export class Application extends EventEmitter {
   public animations?: Animatable;
 
-  constructor(animations: Animatable) {
-    super();
-    this.animations = animations;
+  private colors?: string[];
 
-    if (instance) {
-      instance = this;
+  constructor({ colors }) {
+    super();
+
+    if (application) {
+      application = this;
     }
+
+    this.colors = colors;
+
+    this.registerEvent();
   }
 
   getInstance() {
@@ -28,6 +33,14 @@ export class Application extends EventEmitter {
   registerEvent() {
     this.on("now-playing", () => {
       console.log("Now playing");
+    });
+
+    this.on("update-theme", () => {
+      if (this.colors)
+        document.documentElement.style.setProperty(
+          "--background-dark",
+          this.colors[Math.floor(Math.random() * this.colors.length)]
+        );
     });
   }
 }

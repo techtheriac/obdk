@@ -16,7 +16,10 @@
 <script setup lang="ts">
 import { AudioContextState } from "~/obdk";
 import TextScramble from "~/utils/animations/textScramble";
+import { Application } from "~/utils/application";
 const { data } = await useFetch("/api/get-recently-played");
+
+let applicationInstance = new Application({ colors: data.value?.palette });
 
 let audio: HTMLAudioElement | null;
 let audioContext: AudioContext | null;
@@ -49,6 +52,8 @@ let mousePressed = () => {
       textScramble.state = contextState.value;
       textScramble.animate();
     }
+
+    applicationInstance.emit("update-theme");
   } else {
     audio?.pause();
     audioContext.close();

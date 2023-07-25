@@ -19,7 +19,7 @@
   position: fixed;
   z-index: 2;
   padding: 20px 15px 20px 15px;
-  background-color: var(--background-dark-07);
-  // background-color: var(--background-dark);
+  // background-color: var(--background-dark-07);
+  background-color: var(--background-dark);
 }
 </style>
