@@ -17,7 +17,7 @@ export default {};
 footer {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
   p {
     display: flex;
     flex-direction: column;
@@ -28,5 +28,6 @@ footer {
       color: var(--foreground-dark-dim);
     }
   }
+  margin-bottom: 0.5em;
 }
 </style>
