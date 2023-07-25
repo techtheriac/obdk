@@ -1,5 +1,6 @@
 // https://www.freecodecamp.org/news/singleton-design-pattern-with-javascript/
 import EventEmitter from "events";
+import spectral from "spectral.js";
 
 export interface Animatable {
   animate(): void;
@@ -21,7 +22,9 @@ export class Application extends EventEmitter {
       application = this;
     }
 
-    this.colors = colors;
+    this.colors = colors.map((color) =>
+      spectral.mix(color, "rgb(215, 153, 0)", 0.5)
+    );
 
     this.registerEvent();
   }

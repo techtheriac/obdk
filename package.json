@@ -33,6 +33,7 @@
     "image-q": "^4.0.0",
     "pinia": "^2.0.36",
     "query-string": "^8.1.0",
+    "spectral.js": "^2.0.2",
     "xstate": "^4.38.0"
   }
 }

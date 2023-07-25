@@ -1,7 +1,7 @@
 <template>
   <div class="layout-base">
     <Home />
-    <Noise />
+    <!-- <Noise /> -->
     <slot />
   </div>
 </template>

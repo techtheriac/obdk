@@ -21,5 +21,8 @@
   padding: 20px 15px 20px 15px;
   // background-color: var(--background-dark-07);
   background-color: var(--background-dark);
+  transition-duration: 0.9s;
+  transition-property: background-color;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 </style>

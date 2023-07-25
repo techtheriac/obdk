@@ -5,7 +5,7 @@
         <p class="track-info" v-if="contextState === 'running'">stop</p>
         <p class="track-info" v-else>play</p>
       </div>
-      <a :href="data?.url" target="_blank"
+      <a :href="data?.previewUrl" target="_blank"
         >{{ data?.artist }} - {{ data?.songTitle }}</a
       >
     </div>
@@ -18,6 +18,8 @@ import { AudioContextState } from "~/obdk";
 import TextScramble from "~/utils/animations/textScramble";
 import { Application } from "~/utils/application";
 const { data } = await useFetch("/api/get-recently-played");
+
+console.log("🚀 ~ file: Spotify.vue:21 ~ data:", data);
 
 let applicationInstance = new Application({ colors: data.value?.palette });
 

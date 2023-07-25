@@ -2,6 +2,7 @@ import axios from "axios";
 import { Buffer } from "buffer";
 import { buildPaletteSync, utils } from "image-q";
 import queryString from "query-string";
+
 import {
   AccessTokenResponse,
   MusicIntegration,
@@ -27,9 +28,9 @@ export class Spotify implements MusicIntegration {
     const pointContainer = utils.PointContainer.fromBuffer(image, 64, 64);
 
     const palette = buildPaletteSync([pointContainer], {
-      colorDistanceFormula: "cie94-graphic-arts",
+      colorDistanceFormula: "euclidean",
       paletteQuantization: "wuquant",
-      colors: 15,
+      colors: 128,
     });
 
     return palette;
@@ -76,19 +77,14 @@ export class Spotify implements MusicIntegration {
       items[0].track.album.images[0].url
     );
 
-    // console.log(
-    //   "🚀 ~ file: spotify.ts:98 ~ Spotify ~ getNowPlaying ~ palette:",
-    //   palette
-    // );
-
-    const colorStringValues = palette._pointArray.map(
-      (color) => `rgba(${color.r},${color.g},${color.b}, 0.9)`
+    const colorStringValues: string[] = palette._pointArray.map(
+      (color) => `rgb(${color.r},${color.g},${color.b})`
     );
 
-    // console.log(
-    //   "🚀 ~ file: spotify.ts:104 ~ Spotify ~ getNowPlaying ~ colorStringValue:",
-    //   colorStringValues
-    // );
+    console.log(
+      "🚀 ~ file: spotify.ts:89 ~ Spotify ~ getNowPlaying ~ colorStringValues:",
+      colorStringValues
+    );
 
     return {
       url: items[0].track.external_urls.spotify,
