@@ -48,11 +48,10 @@ export default {
   li {
     font-family: "Gestalt";
     text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: -0.09em;
+    font-size: 1rem;
 
     a {
-      color: var(--foreground-dark);
+      color: #000;
     }
   }
 }

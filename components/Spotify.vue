@@ -70,6 +70,7 @@ let mousePressed = () => {
 };
 
 onMounted(() => {
+  applicationInstance.emit("update-theme");
   const scrambleElement = document.querySelectorAll(".track-info > a");
   textScramble = new TextScramble({
     elements: scrambleElement,
@@ -89,7 +90,8 @@ onMounted(() => {
 }
 .track-info {
   color: var(--foreground-dark-forest);
-  @include gestaltCaps(400, var(--idealSubFontSize));
+  @include gestaltCaps(400, 1rem);
+  color: #000;
 
   &:hover {
     cursor: pointer;
