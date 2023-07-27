@@ -34,16 +34,30 @@ export class Application extends EventEmitter {
   }
 
   registerEvent() {
-    this.on("now-playing", () => {
-      console.log("Now playing");
-    });
+    this.on("now-playing", () => {});
 
     this.on("update-theme", () => {
-      if (this.colors)
+      if (this.colors) {
         document.documentElement.style.setProperty(
           "--background-dark",
           this.colors[Math.floor(Math.random() * this.colors.length)]
         );
+
+        document.documentElement.style.setProperty(
+          "--musings-bg",
+          this.colors[Math.floor(Math.random() * this.colors.length)]
+        );
+
+        document.documentElement.style.setProperty(
+          "--essays-bg",
+          this.colors[Math.floor(Math.random() * this.colors.length)]
+        );
+
+        document.documentElement.style.setProperty(
+          "--contact-bg",
+          this.colors[Math.floor(Math.random() * this.colors.length)]
+        );
+      }
     });
   }
 }

@@ -1,9 +1,9 @@
 <template>
-  <div class="home-container">
+  <section class="home-container">
     <Techtheriac />
     <BioGroup />
     <Footer />
-  </div>
+  </section>
 </template>
 
 <script setup></script>
@@ -11,6 +11,7 @@
 <style lang="scss" scoped>
 .home-container {
   display: flex;
+  padding: 0 var(--space-xs);
   min-height: 100vh;
   flex-direction: column;
   justify-content: space-between;

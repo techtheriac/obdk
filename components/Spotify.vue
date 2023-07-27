@@ -19,8 +19,6 @@ import TextScramble from "~/utils/animations/textScramble";
 import { Application } from "~/utils/application";
 const { data } = await useFetch("/api/get-recently-played");
 
-console.log("🚀 ~ file: Spotify.vue:21 ~ data:", data);
-
 let applicationInstance = new Application({ colors: data.value?.palette });
 
 let audio: HTMLAudioElement | null;

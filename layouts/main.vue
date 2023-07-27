@@ -1,16 +1,16 @@
 <template>
-  <div class="layout-base">
+  <main class="layout-base">
     <Home />
-  </div>
+    <Stacked />
+  </main>
 </template>
 
 <script setup lang="ts"></script>
 
 <style scoped>
 .layout-base {
-  width: 100vw;
-  padding: 0 var(--space-xs);
   color: var(--foreground-dark);
   background-color: var(--background-dark);
+  scroll-snap-type: y mandatory;
 }
 </style>

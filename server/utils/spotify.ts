@@ -81,11 +81,6 @@ export class Spotify implements MusicIntegration {
       (color) => `rgb(${color.r},${color.g},${color.b})`
     );
 
-    console.log(
-      "🚀 ~ file: spotify.ts:89 ~ Spotify ~ getNowPlaying ~ colorStringValues:",
-      colorStringValues
-    );
-
     return {
       url: items[0].track.external_urls.spotify,
       songTitle: items[0].track.name,
