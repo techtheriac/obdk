@@ -1,6 +1,5 @@
 <template>
   <div id="obdk">
-    <!-- <Path /> -->
     <svg
       class="obdk opacity"
       viewBox="0 0 11165 1351"
@@ -94,7 +93,7 @@ onMounted(() => {
   gap: 20px;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 10px;
+  margin-top: var(--space-s);
   svg {
     width: 100%;
   }
