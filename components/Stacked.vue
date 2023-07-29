@@ -5,7 +5,7 @@
         <h2>{{ section }}</h2>
       </div>
       <div>
-        <p>
+        <p v-show="false">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis,
           possimus? Iusto dolorum voluptas optio repellat facilis beatae eveniet
           dicta eligendi voluptate, at libero mollitia iste perferendis
