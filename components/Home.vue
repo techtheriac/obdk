@@ -1,9 +1,9 @@
 <template>
-  <div class="home-container">
+  <section class="home-container">
     <Techtheriac />
     <BioGroup />
     <Footer />
-  </div>
+  </section>
 </template>
 
 <script setup></script>
@@ -11,15 +11,11 @@
 <style lang="scss" scoped>
 .home-container {
   display: flex;
-  min-height: calc(100vh - 20px);
-  width: calc(100% - 30px);
+  padding: 0 var(--space-xs);
+  min-height: 100vh;
   flex-direction: column;
   justify-content: space-between;
-  overflow: hidden;
-  position: fixed;
   z-index: 2;
-  padding: 20px 15px 20px 15px;
-  // background-color: var(--background-dark-07);
   background-color: var(--background-dark);
   transition-duration: 1s;
   transition-property: background-color;

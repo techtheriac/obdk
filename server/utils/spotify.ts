@@ -28,7 +28,7 @@ export class Spotify implements MusicIntegration {
     const pointContainer = utils.PointContainer.fromBuffer(image, 64, 64);
 
     const palette = buildPaletteSync([pointContainer], {
-      colorDistanceFormula: "euclidean",
+      colorDistanceFormula: "color-metric",
       paletteQuantization: "wuquant",
       colors: 128,
     });
@@ -79,11 +79,6 @@ export class Spotify implements MusicIntegration {
 
     const colorStringValues: string[] = palette._pointArray.map(
       (color) => `rgb(${color.r},${color.g},${color.b})`
-    );
-
-    console.log(
-      "🚀 ~ file: spotify.ts:89 ~ Spotify ~ getNowPlaying ~ colorStringValues:",
-      colorStringValues
     );
 
     return {

@@ -1,5 +1,5 @@
 $interpolate-min: 350px;
-$interpolate-max: 1512px;
+$interpolate-max: 1445px;
 
 :root {
   @include interpolate(--space, $interpolate-min, $interpolate-max, 25px, 40px);
@@ -76,6 +76,13 @@ $interpolate-max: 1512px;
     35px
   );
 
+  @include interpolate(
+    --idealStackedHeading,
+    $interpolate-min,
+    $interpolate-max,
+    40px,
+    128px
+  );
   --space-s: calc(var(--space) / 2);
   --space-xs: calc(var(--space-s) / 2);
   --space-m: calc(var(--space) * 2);
