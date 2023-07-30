@@ -1,5 +1,5 @@
 <template>
-  <main class="layout-base" id="scrollContainer">
+  <main class="layout-base">
     <Home />
     <Stacked />
   </main>
@@ -7,25 +7,14 @@
 
 <script setup lang="ts">
 import Lenis from "@studio-freight/lenis";
-
+import { onMounted } from "vue";
 onMounted(() => {
-  const scrollContainer = document.getElementById("scrollContainer");
-
-  if (!scrollContainer) {
-    return;
-  }
-
   const lenis = new Lenis();
-
-  lenis.on("scroll", (e) => {
-    console.log(e);
-  });
-
+  lenis.on("scroll", (e) => {});
   function raf(time) {
     lenis.raf(time);
     requestAnimationFrame(raf);
   }
-
   requestAnimationFrame(raf);
 });
 </script>

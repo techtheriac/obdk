@@ -4,7 +4,7 @@
       <span> © JEZREEL OBIDIKE FRANKLIN </span>
     </p> -->
     <Spotify />
-    <Outside />
+    <!-- <Outside /> -->
   </footer>
 </template>
 

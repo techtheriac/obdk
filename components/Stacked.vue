@@ -1,8 +1,12 @@
 <template>
   <section class="stacked">
-    <div v-for="section in sections" :class="section">
+    <div
+      v-for="(section, index) in sections"
+      :class="section"
+      :data-stack-order="index"
+    >
       <div>
-        <h2>{{ section }}</h2>
+        <h2 class="stacked-header">{{ section }}</h2>
       </div>
       <div>
         <p v-show="false">
@@ -17,35 +21,78 @@
 </template>
 
 <script setup lang="ts">
-let sections = ref(["essays", "musings", "contact"]);
+import { onMounted } from "vue";
+let sections = ref(["musings", "essays", "contact"]);
+
+onMounted(() => {
+  const stackedHeader = document.querySelector(".stacked-header");
+
+  if (stackedHeader) {
+    const { height } = stackedHeader.getBoundingClientRect();
+
+    document.documentElement.style.setProperty(
+      "--stacked-header-size",
+      `${height / 2}px`
+    );
+
+    window.addEventListener("resize", () => {
+      const { height } = stackedHeader.getBoundingClientRect();
+      document.documentElement.style.setProperty(
+        "--stacked-header-size",
+        `${height / 2}px`
+      );
+    });
+  }
+
+  const stackedItems = document.querySelectorAll("[data-stack-order]");
+
+  if (!stackedItems) return;
+
+  stackedItems[0].addEventListener("click", () => {
+    stackedItems[0].setAttribute("data-stack-order", "0");
+    stackedItems[1].setAttribute("data-stack-order", "1");
+    stackedItems[2].setAttribute("data-stack-order", "2");
+  });
+  stackedItems[1].addEventListener("click", () => {
+    stackedItems[1].setAttribute("data-stack-order", "0");
+    stackedItems[0].setAttribute("data-stack-order", "1");
+    stackedItems[2].setAttribute("data-stack-order", "2");
+  });
+  stackedItems[2].addEventListener("click", () => {
+    stackedItems[2].setAttribute("data-stack-order", "0");
+    stackedItems[0].setAttribute("data-stack-order", "1");
+    stackedItems[1].setAttribute("data-stack-order", "2");
+  });
+});
 </script>
 
 <style lang="scss" scoped>
 .stacked {
   height: 100vh;
+  max-height: 100vh;
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(24, 1fr);
+  position: relative;
+  overflow: hidden;
 }
 
-.essays {
-  grid-column: 1 / -1;
-  grid-row: 1 / -1;
+.stacked > div {
+  position: absolute;
+  width: 100%;
+}
+
+[data-stack-order="2"] {
   z-index: 1;
   background-color: var(--musings-bg);
 }
 
-.musings {
-  grid-column: 1 / -1;
-  grid-row: 3 / -1;
+[data-stack-order="1"] {
+  top: var(--stacked-header-size);
   background-color: var(--essays-bg);
   z-index: 2;
 }
 
-.contact {
-  grid-column: 1 / -1;
-  grid-row: 5 / -1;
+[data-stack-order="0"] {
+  top: calc(2 * var(--stacked-header-size));
   background-color: var(--contact-bg);
   z-index: 3;
 }
@@ -57,7 +104,7 @@ let sections = ref(["essays", "musings", "contact"]);
 
   h2 {
     color: #000;
-    font-size: 8rem;
+    font-size: var(--idealStackedHeading);
     text-transform: uppercase;
   }
 }
