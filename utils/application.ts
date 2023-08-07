@@ -1,6 +1,6 @@
-// https://www.freecodecamp.org/news/singleton-design-pattern-with-javascript/
 import EventEmitter from "events";
 import spectral from "spectral.js";
+import { randomFromArray } from "~/server/utils";
 
 export interface Animatable {
   animate(): void;
@@ -8,12 +8,17 @@ export interface Animatable {
 
 export let application: Application;
 
-type CustomEvents = "now-playing" | "dim-background";
-
 export class Application extends EventEmitter {
   public animations?: Animatable;
 
-  private colors?: string[];
+  public colors?: string[];
+
+  private colorProps: string[] = [
+    "--background-dark",
+    "--musings-bg",
+    "--essays-bg",
+    "--contact-bg",
+  ];
 
   constructor({ colors }) {
     super();
@@ -23,7 +28,7 @@ export class Application extends EventEmitter {
     }
 
     this.colors = colors.map((color) =>
-      spectral.mix(color, "rgb(215, 153, 0)", 0.5)
+      spectral.mix(color, "rgb(215, 153, 0)", 0.2)
     );
 
     this.registerEvent();
@@ -37,27 +42,13 @@ export class Application extends EventEmitter {
     this.on("now-playing", () => {});
 
     this.on("update-theme", () => {
-      if (this.colors) {
-        document.documentElement.style.setProperty(
-          "--background-dark",
-          this.colors[Math.floor(Math.random() * this.colors.length)]
-        );
-
-        document.documentElement.style.setProperty(
-          "--musings-bg",
-          this.colors[Math.floor(Math.random() * this.colors.length)]
-        );
-
-        document.documentElement.style.setProperty(
-          "--essays-bg",
-          this.colors[Math.floor(Math.random() * this.colors.length)]
-        );
-
-        document.documentElement.style.setProperty(
-          "--contact-bg",
-          this.colors[Math.floor(Math.random() * this.colors.length)]
-        );
-      }
+      this.colorProps.forEach((colorProp) => {
+        if (this.colors)
+          document.documentElement.style.setProperty(
+            colorProp,
+            randomFromArray(this.colors)
+          );
+      });
     });
   }
 }
