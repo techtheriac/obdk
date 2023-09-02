@@ -1,3 +1,5 @@
+import { Application } from "./utils/application";
+
 export type AudioContextState = "running" | "suspended" | "initial" | "closed";
 
 export type NavigationOption = "Folder" | "File";
@@ -14,7 +16,7 @@ export interface AccessTokenResponse {
   scope: string;
 }
 
-type NowPlaying = {
+export type NowPlaying = {
   artist: string;
   songTitle: string;
   url: string;
@@ -32,7 +34,7 @@ export type SpotifyConfig = {
   refreshToken?: string;
 };
 
-interface MusicIntegration {
+export interface MusicIntegration {
   ConfigOptions: SpotifyConfig;
   extractColorPaletteFromImage(source: Url): Promise<any>;
   getAccessToken(): Promise<AccessTokenResponse>;
@@ -46,3 +48,7 @@ export type Message = {
     height: number;
   };
 };
+
+export type Sections = "musings" | "essays" | "contact";
+
+export const applicationKey = Symbol() as InjectionKey<Application>;

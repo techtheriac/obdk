@@ -2,6 +2,7 @@ import axios from "axios";
 import { Buffer } from "buffer";
 import { buildPaletteSync, utils } from "image-q";
 import queryString from "query-string";
+import { ColorMind, ColorProvider } from "./colorProvider";
 
 import {
   AccessTokenResponse,
@@ -28,9 +29,9 @@ export class Spotify implements MusicIntegration {
     const pointContainer = utils.PointContainer.fromBuffer(image, 64, 64);
 
     const palette = buildPaletteSync([pointContainer], {
-      colorDistanceFormula: "color-metric",
+      colorDistanceFormula: "euclidean-bt709-noalpha",
       paletteQuantization: "wuquant",
-      colors: 128,
+      colors: 6,
     });
 
     return palette;
@@ -60,8 +61,7 @@ export class Spotify implements MusicIntegration {
   }
 
   async getNowPlaying(): Promise<NowPlaying> {
-    const { authBase, clientId, clientSecret, refreshToken, base } =
-      this.ConfigOptions;
+    const { base } = this.ConfigOptions;
 
     const { access_token } = await this.getAccessToken();
 
@@ -73,20 +73,23 @@ export class Spotify implements MusicIntegration {
 
     const { items } = await response.json();
 
-    const palette = await this.extractColorPaletteFromImage(
+    const colorProvider: ColorProvider = new ColorMind(
       items[0].track.album.images[0].url
     );
 
-    const colorStringValues: string[] = palette._pointArray.map(
-      (color) => `rgb(${color.r},${color.g},${color.b})`
-    );
+    // const colorProvider2: ColorProvider = new ImageQ(
+    //   items[0].track.album.images[0].url
+    // );
+
+    const palette = await colorProvider.extractColorPaletteFromImage();
+    // const palette2 = await colorProvider2.extractColorPaletteFromImage();
 
     return {
       url: items[0].track.external_urls.spotify,
       songTitle: items[0].track.name,
       artist: items[0].track.artists[0].name,
       previewUrl: items[0].track.preview_url,
-      palette: colorStringValues,
+      palette: palette,
     };
   }
 }

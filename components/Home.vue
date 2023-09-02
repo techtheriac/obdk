@@ -1,12 +1,24 @@
 <template>
   <section class="home-container">
     <Techtheriac />
+    <!-- <Obdk /> -->
     <BioGroup />
     <Footer />
   </section>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+import { inject } from "vue";
+import { applicationKey } from "~/obdk";
+import { Application } from "~/utils/application";
+
+const applicationInstance = inject<Application>(applicationKey);
+
+console.log(
+  "🚀 ~ file: Home.vue:13 ~ applicationInstance:",
+  applicationInstance?.colors
+);
+</script>
 
 <style lang="scss" scoped>
 .home-container {

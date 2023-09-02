@@ -90,6 +90,11 @@ onMounted(() => {
   color: var(--foreground-dark-forest);
   @include gestaltCaps(400, 1rem);
   color: #000;
+  display: flex;
+
+  > * + * {
+    margin-left: 20px;
+  }
 
   &:hover {
     cursor: pointer;

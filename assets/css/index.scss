@@ -10,7 +10,8 @@
 
 html,
 body {
-  scroll-behavior: smooth;
+  scroll-behavior: initial;
+  overflow: hidden;
   a {
     text-decoration: none;
   }
@@ -18,7 +19,6 @@ body {
   -webkit-font-smoothing: antialiased;
   font-family: Gestalt;
   text-rendering: optimizeLegibility;
-  //background-color: var(--background-dark);
 }
 
 // This class is added to html when spotify is playing
