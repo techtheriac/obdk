@@ -1,6 +1,6 @@
 import EventEmitter from "events";
 import spectral from "spectral.js";
-import { randomFromArray } from "~/server/utils";
+import { randomFromArray, isLegible } from "~/server/utils";
 
 export interface Animatable {
   animate(): void;
@@ -27,12 +27,19 @@ export class Application extends EventEmitter {
       application = this;
     }
 
-    this.colors = colors.map((color) =>
+    const mixedColors : string[] = colors.map((color : string) =>
       spectral.mix(color, "rgb(215, 153, 0)", 0.2)
     );
 
+    const filteredColors = mixedColors.filter(x => isLegible(x))
+
+    console.log("filtered colors", filteredColors);
+
+    this.colors = filteredColors;
+
     this.registerEvent();
   }
+
 
   getInstance() {
     return this;

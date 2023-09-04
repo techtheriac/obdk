@@ -73,23 +73,24 @@ export class Spotify implements MusicIntegration {
 
     const { items } = await response.json();
 
-    const colorProvider: ColorProvider = new ColorMind(
-      items[0].track.album.images[0].url
-    );
-
-    // const colorProvider2: ColorProvider = new ImageQ(
+    // const colorProvider: ColorProvider = new ColorMind(
     //   items[0].track.album.images[0].url
     // );
 
-    const palette = await colorProvider.extractColorPaletteFromImage();
-    // const palette2 = await colorProvider2.extractColorPaletteFromImage();
+    const colorProvider2: ColorProvider = new ImageQ(
+      items[0].track.album.images[0].url
+    );
+
+
+    // const palette = await colorProvider.extractColorPaletteFromImage();
+    const palette2 = await colorProvider2.extractColorPaletteFromImage();
 
     return {
       url: items[0].track.external_urls.spotify,
       songTitle: items[0].track.name,
       artist: items[0].track.artists[0].name,
       previewUrl: items[0].track.preview_url,
-      palette: palette,
+      palette: palette2
     };
   }
 }

@@ -62,7 +62,6 @@
         fill-opacity="1"
       />
     </svg>
-    <span> © JEZREEL OBIDIKE FRANKLIN </span>
   </div>
 </template>
 
@@ -98,12 +97,6 @@ onMounted(() => {
   margin-top: var(--space-s);
   svg {
     width: 100%;
-  }
-
-  span {
-    align-self: flex-start;
-    @include gestaltCaps(400, 1rem);
-    color: #000;
   }
 }
 .opacity {

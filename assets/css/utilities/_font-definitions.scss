@@ -13,3 +13,11 @@
   text-transform: uppercase;
   letter-spacing: -0.05em;
 }
+
+@mixin gestaltNormal($weight, $size) {
+  font-family: "Gestalt";
+  font-weight: $weight;
+  font-size: $size;
+  text-transform: none;
+  letter-spacing: -0.05em;
+}

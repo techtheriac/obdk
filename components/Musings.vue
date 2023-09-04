@@ -1,9 +1,15 @@
 <template>
   <div>
-    <h1>Musings</h1>
+    <ul>
+      <li v-for="content in data">
+        <NuxtLink :to="content._path">{{content.title}}</NuxtLink>
+      </li>
+    </ul>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  const {data} = await useAsyncData('musings', () => queryContent('/www/musings').find());
+</script>
 
 <style scoped></style>

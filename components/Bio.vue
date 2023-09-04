@@ -1,7 +1,8 @@
 <template>
   <div class="bio">
-    <p>I am a software engineer with a flair for design</p>
-    <p>This website collects my musings, ruminations and work.</p>
+    <p>I am a software engineer with a flair for design.</p>
+    <p>This website is a haven for my musings, ruminations and interests.</p>
+    <span> © Jezreel Obidike Franklin </span>
   </div>
 </template>
 
@@ -21,8 +22,15 @@ export default {
   }
   p {
     max-width: 50ch;
-    @include gestaltCaps(300, 2rem);
+    @include gestaltNormal(300, 3.5rem);
+    text-decoration: underline;
     color: #000;
+  }
+  span {
+    @include gestaltCaps(400, 1rem);
+    color: #000;
+    margin-top: 20px;
+    display: block;
   }
 }
 </style>

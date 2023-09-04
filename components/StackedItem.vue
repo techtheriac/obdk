@@ -7,7 +7,7 @@
     </div>
     <Musings v-if="section === 'musings'" />
     <Contact v-if="section === 'contact'" />
-    <Musings v-else="section === 'essays'" />
+    <Essays v-if="section === 'essays'" />
   </div>
 </template>
 
