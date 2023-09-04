@@ -42,7 +42,7 @@ let links = ref<{ name: string; link: string }[]>([
   li {
     font-family: "Gestalt";
     text-transform: uppercase;
-    font-size: 2rem;
+    font-size: 16px;
 
     a {
       color: #000;

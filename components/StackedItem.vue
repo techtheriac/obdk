@@ -2,7 +2,7 @@
   <div>
     <div>
       <h2 class="stacked-header">
-        {{ section }}
+        {{ section == 'contact' ? 'get in touch' : section }}
       </h2>
     </div>
     <Musings v-if="section === 'musings'" />
@@ -17,10 +17,11 @@ import { Sections } from "~/obdk";
 defineProps<{ section?: Sections }>();
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../assets/css/utilities/font-definitions";
+
 h2 {
   color: #000;
-  font-size: var(--idealStackedHeading);
-  text-transform: uppercase;
+  @include gestaltCaps(400, var(--idealStackedHeading));
 }
 </style>

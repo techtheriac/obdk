@@ -1,8 +1,9 @@
 <template>
   <section class="home-container">
-    <Techtheriac />
-    <!-- <Obdk /> -->
-    <BioGroup />
+    <div>
+      <Techtheriac />
+      <Bio />
+    </div>
     <Footer />
   </section>
 </template>
