@@ -9,7 +9,20 @@ import {
   MusicIntegration,
   NowPlaying,
   SpotifyConfig,
+  Url
 } from "~/obdk";
+
+let memo = {};
+
+async function extractColorsMemo(source: Url): Promise<string[]> {
+  const colorProvider = new ImageQ(source);
+
+  if(source in memo) return memo[source];
+
+  memo[source] = await colorProvider.extractColorPaletteFromImage();
+
+  return memo[source];
+}
 
 export class Spotify implements MusicIntegration {
   readonly ConfigOptions: SpotifyConfig;
@@ -71,19 +84,9 @@ export class Spotify implements MusicIntegration {
       },
     });
 
-    const { items } = await response.json();
+   const { items } = await response.json();
 
-    // const colorProvider: ColorProvider = new ColorMind(
-    //   items[0].track.album.images[0].url
-    // );
-
-    const colorProvider2: ColorProvider = new ImageQ(
-      items[0].track.album.images[0].url
-    );
-
-
-    // const palette = await colorProvider.extractColorPaletteFromImage();
-    const palette2 = await colorProvider2.extractColorPaletteFromImage();
+   const palette2 = await extractColorsMemo(items[0].track.album.images[0].url);
 
     return {
       url: items[0].track.external_urls.spotify,
