@@ -35,39 +35,41 @@ onMounted(() => {
   }
   requestAnimationFrame(raf);
 
-  const stackedItems = document.querySelectorAll("[data-stack-order]");
-  console.log(
-    "🚀 ~ file: main.vue:29 ~ onMounted ~ stackedItems:",
-    stackedItems
-  );
-
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.registerPlugin(Flip);
-
-  stackedItems.forEach((section) => {
-    gsap.from(section, {
-      yPercent: 30,
-      ease: "none",
-      overwrite: true,
-      stagger: 0.7,
-      opacity: 0,
-      scrollTrigger: {
-        trigger: ".stacked",
-        // toggleActions: "restart pause reverse pause",
-        toggleActions: "restart none none none",
-        start: "top bottom",
-        end: "bottom 95%",
-        scrub: 1,
-        onToggle: (e) => performFlip(e),
-       // pin: true,
-        pinSpacing: false,
-      },
-    });
-  });
+  const firstInStack = document.querySelector("[data-stack-order='0']");
+  const secondInStack = document.querySelector("[data-stack-order='1']");
+  const thirdInStack = document.querySelector("[data-stack-order='2']");
 
   const newContainer = document.querySelector(".stacked");
   const nowPlaying = document.querySelector(".spotify");
   const originalContainer = document.querySelector("footer");
+
+  if (!nowPlaying) return;
+
+  const { height } = nowPlaying.getBoundingClientRect();
+
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(Flip);
+
+  [firstInStack, secondInStack].forEach((section) => {
+    gsap.from(section, {
+      yPercent: 30,
+      ease: "none",
+      overwrite: true,
+      stagger: 0.5,
+      opacity: 0,
+      scrollTrigger: {
+        trigger: "[data-stack-order='2']",
+        toggleActions: "restart pause reverse pause",
+        //toggleActions: "restart none none none",
+        start: "top center",
+        end: `bottom 100%`,
+        scrub: 1,
+        onToggle: (e) => performFlip(e),
+        // pin: true,
+        pinSpacing: false,
+      },
+    });
+  });
 
   function performFlip(e) {
     // console.log(e);

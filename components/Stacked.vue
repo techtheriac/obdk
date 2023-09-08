@@ -1,60 +1,95 @@
 <template>
   <section class="stacked">
-    <div
-      v-for="(section, index) in sections"
-      :class="section"
-      :data-stack-order="index"
-    >
-      <StackedItem :section="section" />
-    </div>
+    <StackedItem
+      v-for="(section, key, index) in stackOrder"
+      :section="key"
+      :class="key"
+      :stackOrder="section"
+    />
   </section>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { gsap } from "gsap";
+import { Flip } from "gsap/Flip";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { onMounted, onUnmounted } from "vue";
 import { Sections } from "~/obdk";
+import { storeToRefs } from "pinia";
 
-let sections = ref<Sections[]>(["musings", "essays", "contact"]);
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(Flip);
+
+const stackStore = useStackStore();
+
+const { stackOrder } = storeToRefs(stackStore);
+
+function updateStackedHeaderSize(): number {
+  const stackedHeader = document.querySelector(".stacked-header");
+  if (!stackedHeader) return 0;
+
+  let stackedHeight = stackedHeader.getBoundingClientRect().height;
+
+  document.documentElement.style.setProperty(
+    "--stacked-header-size",
+    `${stackedHeight / 2}px`
+  );
+
+  return stackedHeight;
+}
 
 onMounted(() => {
-  const stackedHeader = document.querySelector(".stacked-header");
+  const stackedHeaderHeight = updateStackedHeaderSize();
 
-  if (stackedHeader) {
-    const { height } = stackedHeader.getBoundingClientRect();
-
-    document.documentElement.style.setProperty(
-      "--stacked-header-size",
-      `${height / 2}px`
-    );
-
-    window.addEventListener("resize", () => {
-      const { height } = stackedHeader.getBoundingClientRect();
-      document.documentElement.style.setProperty(
-        "--stacked-header-size",
-        `${height / 2}px`
-      );
-    });
-  }
+  window.addEventListener("resize", () => updateStackedHeaderSize());
 
   const stackedItems = document.querySelectorAll("[data-stack-order]");
 
   if (!stackedItems) return;
 
-  stackedItems[0].addEventListener("click", () => {
-    stackedItems[0].setAttribute("data-stack-order", "0");
-    stackedItems[1].setAttribute("data-stack-order", "2");
-    stackedItems[2].setAttribute("data-stack-order", "1");
-  });
-  stackedItems[1].addEventListener("click", () => {
-    stackedItems[1].setAttribute("data-stack-order", "0");
-    stackedItems[0].setAttribute("data-stack-order", "2");
-    stackedItems[2].setAttribute("data-stack-order", "1");
-  });
-  stackedItems[2].addEventListener("click", () => {
-    stackedItems[2].setAttribute("data-stack-order", "0");
-    stackedItems[0].setAttribute("data-stack-order", "2");
-    stackedItems[1].setAttribute("data-stack-order", "1");
-  });
+  const newContainer = document.querySelector(".stacked");
+  const nowPlaying = document.querySelector(".spotify");
+  const originalContainer = document.querySelector("footer");
+
+  const firstInStack = document.querySelector("[data-stack-order='0']");
+  const secondInStack = document.querySelector("[data-stack-order='1']");
+  const thirdInStack = document.querySelector("[data-stack-order='2']");
+
+ // [firstInStack, secondInStack].forEach((section) => {
+ //   gsap.from(section, {
+ //     yPercent: 30,
+ //     ease: "none",
+ //     overwrite: true,
+ //     stagger: 0.5,
+ //     opacity: 0,
+  //    scrollTrigger: {
+  //      trigger: thirdInStack,
+ //       toggleActions: "restart pause reverse pause",
+ //       //toggleActions: "restart none none none",
+ //       start: "top center",
+ //       end: `bottom 100%`,
+ //       scrub: 1,
+ //       onToggle: (e) => performFlip(e),
+ //       // pin: true,
+ //       pinSpacing: false,
+ //     },
+ //   });
+ // });
+
+  function performFlip(e) {
+    const state = Flip.getState(nowPlaying);
+    if (!nowPlaying) return;
+    (nowPlaying?.parentNode === originalContainer
+      ? newContainer
+      : originalContainer
+    )?.appendChild(nowPlaying);
+
+    Flip.from(state, { duration: 0.5, ease: "none", y: "30px" });
+  }
+});
+
+onUnmounted(() => {
+  window.removeEventListener("resize", updateStackedHeaderSize);
 });
 </script>
 

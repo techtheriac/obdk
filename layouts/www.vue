@@ -1,9 +1,9 @@
 <template>
   <div class="www-base">
-    <main class="content-view">
+    <div class="content-view">
       <Path :path="fullPath" />
       <slot />
-    </main>
+    </div>
   </div>
 </template>
 
