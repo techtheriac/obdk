@@ -28,7 +28,8 @@ export class Application extends EventEmitter {
     }
 
     const mixedColors : string[] = colors.map((color : string) =>
-      spectral.mix(color, "rgb(215, 153, 0)", 0.2)
+      //spectral.mix(color, "rgb(215, 153, 0)", 0.2)
+      spectral.mix(color, "rgb(100, 184, 22)", 0.2)
     );
 
     const filteredColors = mixedColors.filter(x => isLegible(x))

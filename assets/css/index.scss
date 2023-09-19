@@ -1,5 +1,7 @@
 @import "./fonts/degular";
+@import "./fonts/mondwest";
 @import "./fonts/gestalt";
+@import "./fonts/lausanne";
 @import "./utilities/resets";
 @import "./utilities/interpolate";
 @import "./utilities/generic-properties";
@@ -17,7 +19,7 @@ body {
   }
 
   -webkit-font-smoothing: antialiased;
-  font-family: Gestalt;
+  font-family: "TWK Lausanne";
   text-rendering: optimizeLegibility;
 }
 

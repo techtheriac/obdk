@@ -2,7 +2,6 @@ import axios from "axios";
 import { Buffer } from "buffer";
 import { buildPaletteSync, utils } from "image-q";
 import queryString from "query-string";
-import { ColorMind, ColorProvider } from "./colorProvider";
 
 import {
   AccessTokenResponse,

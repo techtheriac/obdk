@@ -21,3 +21,19 @@
   text-transform: none;
   letter-spacing: -0.05em;
 }
+
+@mixin lausanneNormal($weight, $size) {
+  font-family: "TWK Lausanne";
+  font-weight: $weight;
+  font-size: $size;
+  text-transform: none;
+  letter-spacing: -0.05em;
+}
+
+@mixin mondwestNormal($weight, $size) {
+  font-family: "Mondwest";
+  font-weight: $weight;
+  font-size: $size;
+  text-transform: none;
+  letter-spacing: -0.05em;
+}

@@ -1,6 +1,9 @@
 <template>
   <div class="contact">
-    <ul>
+    <div>
+      <p>techtheriac@outlook.com</p>
+    </div>
+    <ul >
       <li v-for="link in links">
         <a :href="link.link" target="_blank">{{ link.name }}</a>
       </li>
@@ -31,22 +34,22 @@ let links = ref<{ name: string; link: string }[]>([
 
 <style lang="scss" scoped>
 .contact {
-  align-items: flex-start;
+
+}
+
+ul {
   display: flex;
-  flex-direction: column;
+}
+li + li {
+   margin-left: 10px;
+}
+li {
+  font-family: "Gestalt";
+  text-transform: uppercase;
+  font-size: 16px;
 
-  li + li {
-    margin-top: 10px;
-  }
-
-  li {
-    font-family: "Gestalt";
-    text-transform: uppercase;
-    font-size: 16px;
-
-    a {
-      color: #000;
-    }
-  }
+  a {
+    color: #000;
+   }
 }
 </style>

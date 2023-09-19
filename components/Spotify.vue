@@ -6,7 +6,6 @@
         <path d="M72,110a119,119,0,0,1,112,0" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="10"/>
         <path d="M88,138a85,85,0,0,1,80,0" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="10"/>
       </svg>
-      <span class="stroke">now playing</span>
       <div class="controller" @click="mousePressed" ref="audioControl">
         <p v-if="contextState === 'running'">stop</p>
         <p v-else>play</p>
@@ -85,23 +84,17 @@ onMounted(() => {
 @import "../assets/css/utilities/font-definitions";
 .spotify {
   display: grid;
-  grid-template-columns: 60px 300px;
-  grid-template-rows:  30px 16px;
+  width: 100%;
+  height: 30px;
+  gap: 10px;
+  align-items: center;
+  grid-template-columns: 30px 4ch auto;
 
 svg {
-  width: 100%;
-  height: 100%;
-  margin-left: -5px;
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-  align-self: start;
-  margin-left: -12px;
+  height: 90%;
+  margin-bottom: 3px;
   }
 
-a {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
-}
 }
 
 .stroke {
@@ -110,14 +103,11 @@ a {
   align-self: center;
 }
 
-.controller {
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
-}
 
 .track-info {
   color: var(--foreground-dark-forest);
-  @include gestaltCaps(400, 1rem);
+  @include lausanneNormal(300, 1rem);
+  text-transform: uppercase;
   color: #000;
 
   &:hover {
