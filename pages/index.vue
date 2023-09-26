@@ -2,6 +2,7 @@
   <main class="layout-base">
     <Home />
     <Stacked />
+    <Burger />
   </main>
 </template>
 

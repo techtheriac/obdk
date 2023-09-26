@@ -34,8 +34,6 @@ export class Application extends EventEmitter {
 
     const filteredColors = mixedColors.filter(x => isLegible(x))
 
-    console.log("filtered colors", filteredColors);
-
     this.colors = filteredColors;
 
     this.registerEvent();

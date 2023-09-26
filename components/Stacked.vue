@@ -1,5 +1,5 @@
 <template>
-  <section class="stacked">
+  <section class="stacked hidden">
     <StackedItem
       v-for="(section, key, index) in stackOrder"
       :section="key"
@@ -56,6 +56,10 @@ onMounted(() => {
   position: relative;
   overflow: hidden;
   padding: 0 var(--space-xs);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
 }
 
 [data-stack-order="2"] {
