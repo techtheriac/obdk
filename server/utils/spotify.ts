@@ -8,7 +8,21 @@ import {
   MusicIntegration,
   NowPlaying,
   SpotifyConfig,
+  Url
 } from "~/obdk";
+
+let memo = {};
+
+async function extractColorsMemo(source: Url): Promise<string[]> {
+//  const colorProvider = new ImageQ(source);
+  const colorProvider = new ColorMind(source);
+
+  if(source in memo) return memo[source];
+
+  memo[source] = await colorProvider.extractColorPaletteFromImage();
+
+  return memo[source];
+}
 
 export class Spotify implements MusicIntegration {
   readonly ConfigOptions: SpotifyConfig;
@@ -28,9 +42,9 @@ export class Spotify implements MusicIntegration {
     const pointContainer = utils.PointContainer.fromBuffer(image, 64, 64);
 
     const palette = buildPaletteSync([pointContainer], {
-      colorDistanceFormula: "color-metric",
+      colorDistanceFormula: "euclidean-bt709-noalpha",
       paletteQuantization: "wuquant",
-      colors: 128,
+      colors: 6,
     });
 
     return palette;
@@ -60,8 +74,7 @@ export class Spotify implements MusicIntegration {
   }
 
   async getNowPlaying(): Promise<NowPlaying> {
-    const { authBase, clientId, clientSecret, refreshToken, base } =
-      this.ConfigOptions;
+    const { base } = this.ConfigOptions;
 
     const { access_token } = await this.getAccessToken();
 
@@ -71,22 +84,16 @@ export class Spotify implements MusicIntegration {
       },
     });
 
-    const { items } = await response.json();
+   const { items } = await response.json();
 
-    const palette = await this.extractColorPaletteFromImage(
-      items[0].track.album.images[0].url
-    );
-
-    const colorStringValues: string[] = palette._pointArray.map(
-      (color) => `rgb(${color.r},${color.g},${color.b})`
-    );
+   const palette2 = await extractColorsMemo(items[0].track.album.images[0].url);
 
     return {
       url: items[0].track.external_urls.spotify,
       songTitle: items[0].track.name,
       artist: items[0].track.artists[0].name,
       previewUrl: items[0].track.preview_url,
-      palette: colorStringValues,
+      palette: palette2
     };
   }
 }

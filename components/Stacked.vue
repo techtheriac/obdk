@@ -1,68 +1,47 @@
 <template>
-  <section class="stacked">
-    <div
-      v-for="(section, index) in sections"
-      :class="section"
-      :data-stack-order="index"
-    >
-      <div>
-        <h2 class="stacked-header">{{ section }}</h2>
-      </div>
-      <div>
-        <p v-show="false">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis,
-          possimus? Iusto dolorum voluptas optio repellat facilis beatae eveniet
-          dicta eligendi voluptate, at libero mollitia iste perferendis
-          similique esse, voluptates quia?
-        </p>
-      </div>
-    </div>
+  <section class="stacked hidden">
+    <StackedItem
+      v-for="(section, key, index) in stackOrder"
+      :section="key"
+      :class="key"
+      :stackOrder="section"
+    />
   </section>
 </template>
 
 <script setup lang="ts">
+import { gsap } from "gsap";
+import { Flip } from "gsap/Flip";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
-let sections = ref(["musings", "essays", "contact"]);
+
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(Flip);
+
+const stackStore = useStackStore();
+
+const { stackOrder } = storeToRefs(stackStore);
 
 onMounted(() => {
-  const stackedHeader = document.querySelector(".stacked-header");
-
-  if (stackedHeader) {
-    const { height } = stackedHeader.getBoundingClientRect();
-
-    document.documentElement.style.setProperty(
-      "--stacked-header-size",
-      `${height / 2}px`
-    );
-
-    window.addEventListener("resize", () => {
-      const { height } = stackedHeader.getBoundingClientRect();
-      document.documentElement.style.setProperty(
-        "--stacked-header-size",
-        `${height / 2}px`
-      );
-    });
-  }
-
   const stackedItems = document.querySelectorAll("[data-stack-order]");
 
   if (!stackedItems) return;
 
-  stackedItems[0].addEventListener("click", () => {
-    stackedItems[0].setAttribute("data-stack-order", "0");
-    stackedItems[1].setAttribute("data-stack-order", "1");
-    stackedItems[2].setAttribute("data-stack-order", "2");
-  });
-  stackedItems[1].addEventListener("click", () => {
-    stackedItems[1].setAttribute("data-stack-order", "0");
-    stackedItems[0].setAttribute("data-stack-order", "1");
-    stackedItems[2].setAttribute("data-stack-order", "2");
-  });
-  stackedItems[2].addEventListener("click", () => {
-    stackedItems[2].setAttribute("data-stack-order", "0");
-    stackedItems[0].setAttribute("data-stack-order", "1");
-    stackedItems[1].setAttribute("data-stack-order", "2");
-  });
+  const newContainer = document.querySelector(".stacked");
+  const nowPlaying = document.querySelector(".spotify");
+  const originalContainer = document.querySelector("footer");
+
+  function performFlip(e) {
+    const state = Flip.getState(nowPlaying);
+    if (!nowPlaying) return;
+    (nowPlaying?.parentNode === originalContainer
+      ? newContainer
+      : originalContainer
+    )?.appendChild(nowPlaying);
+
+    Flip.from(state, { duration: 0.5, ease: "none", y: "30px" });
+  }
 });
 </script>
 
@@ -73,39 +52,24 @@ onMounted(() => {
   width: 100%;
   position: relative;
   overflow: hidden;
-}
-
-.stacked > div {
+  padding: 0 var(--space-xs);
   position: absolute;
-  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
 }
 
 [data-stack-order="2"] {
   z-index: 1;
-  background-color: var(--musings-bg);
 }
 
 [data-stack-order="1"] {
-  top: var(--stacked-header-size);
-  background-color: var(--essays-bg);
+  left: var(--stacked-header-size);
   z-index: 2;
 }
 
 [data-stack-order="0"] {
-  top: calc(2 * var(--stacked-header-size));
-  background-color: var(--contact-bg);
+  left: calc(2 * var(--stacked-header-size));
   z-index: 3;
-}
-
-.stacked > div {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-
-  h2 {
-    color: #000;
-    font-size: var(--idealStackedHeading);
-    text-transform: uppercase;
-  }
 }
 </style>

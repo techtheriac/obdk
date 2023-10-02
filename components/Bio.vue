@@ -1,28 +1,29 @@
 <template>
   <div class="bio">
-    <p>I am a software engineer with a flair for design</p>
-    <p>This website collects my musings, ruminations and work.</p>
+    <p>
+      I am a software engineer with a keen interest on building things on the
+      internet. I currently work for ALAT where I help develop and maintain
+      backend infrastructures. Consider this website a haven for my musings, and
+      ruminations.
+    </p>
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  setup() {
-    return {};
-  },
-};
-</script>
+<script lang="ts"></script>
 
 <style lang="scss" scoped>
 @import "../assets/css/utilities/font-definitions";
 .bio {
+  @include lausanneNormal(300, var(--idealBioFontSize));
+  color: #fff;
+  letter-spacing: -0.005em;
+
   > * + * {
-    margin-top: 10px;
+    margin-top: var(--space-xs);
   }
-  p {
-    max-width: 50ch;
-    @include gestaltCaps(300, 2rem);
-    color: #000;
+
+  span {
+    display: block;
   }
 }
 </style>

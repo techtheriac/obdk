@@ -1,10 +1,9 @@
 <template>
   <div class="www-base">
-    <Frosted />
-    <main class="content-view">
+    <div class="content-view">
       <Path :path="fullPath" />
       <slot />
-    </main>
+    </div>
   </div>
 </template>
 

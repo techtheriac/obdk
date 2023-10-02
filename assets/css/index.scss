@@ -1,5 +1,7 @@
 @import "./fonts/degular";
+@import "./fonts/mondwest";
 @import "./fonts/gestalt";
+@import "./fonts/lausanne";
 @import "./utilities/resets";
 @import "./utilities/interpolate";
 @import "./utilities/generic-properties";
@@ -10,15 +12,15 @@
 
 html,
 body {
-  scroll-behavior: smooth;
+  scroll-behavior: initial;
+  overflow: hidden;
   a {
     text-decoration: none;
   }
 
   -webkit-font-smoothing: antialiased;
-  font-family: Gestalt;
+  font-family: "TWK Lausanne";
   text-rendering: optimizeLegibility;
-  //background-color: var(--background-dark);
 }
 
 // This class is added to html when spotify is playing
@@ -42,4 +44,13 @@ html.lenis {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.fill_height {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }

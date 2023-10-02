@@ -1,25 +1,55 @@
 <template>
-  <div class="spotify">
-    <div class="track-info">
-      <div @click="mousePressed" ref="audioControl">
-        <p class="track-info" v-if="contextState === 'running'">stop</p>
-        <p class="track-info" v-else>play</p>
-      </div>
-      <a :href="data?.previewUrl" target="_blank"
-        >{{ data?.artist }} - {{ data?.songTitle }}</a
-      >
+  <div class="spotify track-info">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+      <circle
+        cx="128"
+        cy="128"
+        r="96"
+        fill="none"
+        stroke="#000"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="10"
+      />
+      <path
+        d="M104,166a51,51,0,0,1,48,0"
+        fill="none"
+        stroke="#000"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="10"
+      />
+      <path
+        d="M72,110a119,119,0,0,1,112,0"
+        fill="none"
+        stroke="#000"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="10"
+      />
+      <path
+        d="M88,138a85,85,0,0,1,80,0"
+        fill="none"
+        stroke="#000"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="10"
+      />
+    </svg>
+    <div class="controller" @click="mousePressed" ref="audioControl">
+      <p v-if="contextState === 'running'">stop</p>
+      <p v-else>play</p>
     </div>
-    <div class="controls"></div>
+    <a :href="data?.previewUrl" target="_blank"
+      >{{ data?.artist }} - {{ data?.songTitle }}</a
+    >
   </div>
 </template>
 
 <script setup lang="ts">
 import { AudioContextState } from "~/obdk";
 import TextScramble from "~/utils/animations/textScramble";
-import { Application } from "~/utils/application";
 const { data } = await useFetch("/api/get-recently-played");
-
-let applicationInstance = new Application({ colors: data.value?.palette });
 
 let audio: HTMLAudioElement | null;
 let audioContext: AudioContext | null;
@@ -53,7 +83,6 @@ let mousePressed = () => {
       textScramble.animate();
     }
 
-    applicationInstance.emit("update-theme");
   } else {
     audio?.pause();
     audioContext.close();
@@ -68,7 +97,6 @@ let mousePressed = () => {
 };
 
 onMounted(() => {
-  applicationInstance.emit("update-theme");
   const scrambleElement = document.querySelectorAll(".track-info > a");
   textScramble = new TextScramble({
     elements: scrambleElement,
@@ -80,16 +108,37 @@ onMounted(() => {
 <style lang="scss" scoped>
 @import "../assets/css/utilities/font-definitions";
 .spotify {
-  display: flex;
-  align-items: flex-end;
-  > * + * {
-    margin-left: var(--space-xs);
+  display: grid;
+  width: 100%;
+  height: 30px;
+  gap: 10px;
+  align-items: center;
+  grid-template-columns: 30px 4ch auto;
+
+  svg {
+    height: 90%;
+    margin-bottom: 3px;
+    path {
+      fill: var(--foreground-08);
+      stroke: var(--foreground-08);
+    }
+    circle {
+      stroke: var(--foreground-08);
+    }
   }
 }
+
+.stroke {
+  text-decoration: line-through;
+  grid-column: 2 / 3;
+  align-self: center;
+}
+
 .track-info {
   color: var(--foreground-dark-forest);
-  @include gestaltCaps(400, 1rem);
-  color: #000;
+  @include lausanneNormal(300, var(-idealArticleParagraphSize));
+  text-transform: uppercase;
+  color: #fff;
 
   &:hover {
     cursor: pointer;
@@ -99,6 +148,7 @@ onMounted(() => {
     color: inherit;
   }
 }
+
 .controls {
   cursor: pointer;
 }

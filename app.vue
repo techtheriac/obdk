@@ -1,15 +1,9 @@
 <template>
-  <NuxtLayout name="main">
+  <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
 </template>
 
-<script lang="ts">
-export default {
-  setup() {
-    return {};
-  },
-};
-</script>
+<script lang="ts"></script>
 
 <style lang="scss" scoped></style>

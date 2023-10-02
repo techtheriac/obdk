@@ -1,6 +1,5 @@
 <template>
   <div id="obdk">
-    <Spotify />
     <svg
       class="obdk opacity"
       viewBox="0 0 749 200"
