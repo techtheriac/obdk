@@ -1,11 +1,8 @@
 <template>
-  <div class="contact">
-    <div>
-      <p>techtheriac@outlook.com</p>
-    </div>
-    <ul >
+  <div class="fill-height">
+    <ul>
       <li v-for="link in links">
-        <a :href="link.link" target="_blank">{{ link.name }}</a>
+        <a :href="link.link" target="_blank">{{ link.link }}</a>
       </li>
     </ul>
   </div>
@@ -14,42 +11,52 @@
 <script setup lang="ts">
 let links = ref<{ name: string; link: string }[]>([
   {
-    name: "arena",
-    link: "https://www.are.na/jezreel-franklin",
+    name: "EMAIL",
+    link: "mailto:techtheriac@outlook.com",
   },
   {
-    name: "twitter",
+    name: "ARENA",
+    link: "https://are.na/jezreel-franklin",
+  },
+  {
+    name: "TWITTER",
     link: "https://twitter.com/techtheriac",
   },
   {
-    name: "linkedIn",
-    link: "https://www.linkedin.com/in/franklin-jezreel-101a0a6b/",
+    name: "INSTAGRAM",
+    link: "https://instagram.com/techtheriac",
   },
   {
-    name: "vsco",
-    link: "https://www.are.na/jezreel-franklin",
+    name: "VSCO",
+    link: "https://vsco.com/jaefaux",
   },
 ]);
 </script>
 
 <style lang="scss" scoped>
-.contact {
-
-}
-
+@import "../assets/css/utilities/font-definitions";
 ul {
   display: flex;
+  flex-direction:  column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 li + li {
-   margin-left: 10px;
+   margin-top: var(--space-xs);
 }
+
 li {
-  font-family: "Gestalt";
+  @include lausanneNormal(300, var(--idealBaseFontSize));
   text-transform: uppercase;
-  font-size: 16px;
 
   a {
-    color: #000;
+    color: #fff;
+
+    &:hover {
+      text-decoration: underline;
+    }
    }
 }
 </style>

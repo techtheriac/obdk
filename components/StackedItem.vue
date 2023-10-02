@@ -1,6 +1,6 @@
 <template>
   <div
-    class="stacked_item"
+    class="stacked_item fill-height"
     :data-stack-order="stackOrder"
     @click="updateStackOrder"
   >
@@ -60,7 +60,6 @@ onUnmounted(() => {
   position: absolute;
   display: grid;
   grid-template-columns: minmax(40px, 5%) 1fr;
-  height: 100%;
   transition-property: background-color;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
