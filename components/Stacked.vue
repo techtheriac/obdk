@@ -47,10 +47,8 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .stacked {
-  height: 100vh;
-  max-height: 100vh;
+  height: 100%;
   width: 100%;
-  position: relative;
   overflow: hidden;
   padding: 0 var(--space-xs);
   position: absolute;

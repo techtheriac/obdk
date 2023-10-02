@@ -136,7 +136,7 @@ onMounted(() => {
 
 .track-info {
   color: var(--foreground-dark-forest);
-  @include lausanneNormal(300, var(-idealArticleParagraphSize));
+  @include lausanneNormal(300, var(--idealBaseFontSize));
   text-transform: uppercase;
   color: #fff;
 

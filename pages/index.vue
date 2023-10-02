@@ -1,5 +1,5 @@
 <template>
-  <main class="layout-base fill_height">
+  <main class="layout-base fill-height">
     <Home />
     <Stacked />
     <Burger />
@@ -49,6 +49,6 @@ onMounted(() => {
 }
 
 .layout-base > section {
-  height: 100%;
+  height: inherit;
 }
 </style>
