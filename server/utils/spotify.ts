@@ -14,7 +14,8 @@ import {
 let memo = {};
 
 async function extractColorsMemo(source: Url): Promise<string[]> {
-  const colorProvider = new ImageQ(source);
+//  const colorProvider = new ImageQ(source);
+  const colorProvider = new ColorMind(source);
 
   if(source in memo) return memo[source];
 

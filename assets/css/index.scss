@@ -49,3 +49,8 @@ html.lenis {
 .hidden {
   visibility: hidden;
 }
+
+.fill_height {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}

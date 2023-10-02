@@ -13,8 +13,8 @@
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { onMounted, onUnmounted } from "vue";
 import { storeToRefs } from "pinia";
+import { onMounted } from "vue";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
@@ -22,7 +22,6 @@ gsap.registerPlugin(Flip);
 const stackStore = useStackStore();
 
 const { stackOrder } = storeToRefs(stackStore);
-
 
 onMounted(() => {
   const stackedItems = document.querySelectorAll("[data-stack-order]");
@@ -32,7 +31,6 @@ onMounted(() => {
   const newContainer = document.querySelector(".stacked");
   const nowPlaying = document.querySelector(".spotify");
   const originalContainer = document.querySelector("footer");
-
 
   function performFlip(e) {
     const state = Flip.getState(nowPlaying);
@@ -45,7 +43,6 @@ onMounted(() => {
     Flip.from(state, { duration: 0.5, ease: "none", y: "30px" });
   }
 });
-
 </script>
 
 <style lang="scss" scoped>
@@ -74,17 +71,5 @@ onMounted(() => {
 [data-stack-order="0"] {
   left: calc(2 * var(--stacked-header-size));
   z-index: 3;
-}
-
-.musings {
-  background-color: var(--essays-bg);
-}
-
-.essays {
-  background-color: var(--contact-bg);
-}
-
-.contact {
-  background-color: var(--musings-bg);
 }
 </style>

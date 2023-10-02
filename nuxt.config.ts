@@ -7,6 +7,6 @@ export default defineNuxtConfig({
   // Nuxt content: https://content.nuxtjs.org
   content: {},
   imports: {
-    dirs: ['stores']
-  }
+    dirs: ["stores"],
+  },
 });
