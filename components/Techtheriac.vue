@@ -1,7 +1,7 @@
 <template>
   <div id="obdk">
     <svg
-      class="obdk opacity"
+      class="obdk hidden"
       viewBox="0 0 11165 1351"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -42,21 +42,19 @@
 </template>
 
 <script setup lang="ts">
-import gsap from "gsap";
-
 onMounted(() => {
   const container = document.querySelector(".obdk");
 
   if (container) {
-    container.classList.remove("opacity");
-    const animatables = gsap.utils.toArray(container.querySelectorAll("path"));
-    gsap.from(animatables, {
-      duration: 0.2,
-      stagger: 0.09,
-      autoAlpha: () => 0,
-      y: () => 50,
-      ease: "Power4.out",
-    });
+    //container.classList.remove("opacity");
+    // const animatables = gsap.utils.toArray(container.querySelectorAll("path"));
+    // gsap.from(animatables, {
+    //   duration: 0.2,
+    //   stagger: 0.09,
+    //   autoAlpha: () => 0,
+    //   y: () => 50,
+    //   ease: "Power4.out",
+    // });
   }
 });
 </script>
@@ -75,6 +73,9 @@ onMounted(() => {
       fill: var(--foreground-08);
     }
   }
+}
+
+.obdk {
 }
 .opacity {
   opacity: 0;

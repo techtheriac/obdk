@@ -1,5 +1,5 @@
 <template>
-  <div class="bio">
+  <div class="bio hidden">
     <p>
       I am a software engineer with a keen interest on building things on the
       internet. I currently work for ALAT where I help develop and maintain
@@ -15,6 +15,7 @@
 @import "../assets/css/utilities/font-definitions";
 .bio {
   @include lausanneNormal(300, var(--idealBioFontSize));
+  //text-transform: uppercase;
   color: #fff;
   letter-spacing: -0.005em;
 

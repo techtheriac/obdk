@@ -8,18 +8,12 @@
   </section>
 </template>
 
-<script setup lang="ts">
-import { inject } from "vue";
-import { applicationKey } from "~/obdk";
-import { Application } from "~/utils/application";
-
-const applicationInstance = inject<Application>(applicationKey);
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
 .home-container {
   display: flex;
-  padding: 0 var(--space-xs);
+  padding: 0 var(--space-xs) var(--space-xs);
   flex-direction: column;
   justify-content: space-between;
   z-index: 2;
@@ -28,7 +22,6 @@ const applicationInstance = inject<Application>(applicationKey);
   transition-property: background-color;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
 .wrapper-bio {
   display: flex;
   flex-direction: column;

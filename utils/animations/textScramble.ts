@@ -1,18 +1,18 @@
 import { AudioContextState } from "~/obdk";
 
 export default class TextScramble {
-  private nodeList?: NodeListOf<Element>;
+  private node?: Element | null;
   public state?: AudioContextState;
 
   constructor({
     elements,
     state,
   }: {
-    elements: NodeListOf<Element>;
+    elements: Element | null;
     state: AudioContextState;
   }) {
     if (elements) {
-      this.nodeList = elements;
+      this.node = elements;
     }
 
     state = state;
@@ -32,24 +32,36 @@ export default class TextScramble {
   }
 
   animate(): void {
-    this.nodeList?.forEach((node) => {
-      if (!node.textContent) return;
+    // this.node?.forEach((node) => {
+    if (!this.node?.textContent) return;
 
-      const originalText: string = node.textContent;
+    const originalText: string = this.node.textContent;
 
-      if (this.state === "running") {
-        let iterations: number = 0;
-        const interval = setInterval(() => {
-          if (!node.textContent) return;
-          node.textContent = this.shuffle(node.textContent);
+    if (this.state === "running") {
+      let iterations: number = 0;
+      const interval = setInterval(() => {
+        if (!this.node?.textContent) return;
+        this.node.textContent = this.shuffle(this.node.textContent);
 
-          if (this.state !== "running") {
-            clearInterval(interval);
-            node.textContent = originalText;
-          }
-          iterations += 1;
-        }, 60);
-      }
-    });
+        if (this.state !== "running") {
+          clearInterval(interval);
+          this.node.textContent = originalText;
+        }
+        iterations += 1;
+      }, 60);
+    }
+    // });
+  }
+
+  play(): void {
+    if (!this.node?.textContent) return;
+    const originalText: string = this.node.textContent;
+
+    gsap.from(this.node, {
+        
+    })
+
+
+
   }
 }

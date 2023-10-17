@@ -23,6 +23,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+html {
+  background-color: var(--background-dark-07);
+}
+
 // This class is added to html when spotify is playing
 // It redices the opacity of the body color and toggles visibiliy of canvas element with noise
 // reference - https://tobiasfried.com/helenazhang

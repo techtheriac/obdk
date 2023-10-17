@@ -1,5 +1,5 @@
 <template>
-  <div @click="animateItems" :class="{close: visible}" class="burger">
+  <div @click="animateItems" :class="{ close: visible }" class="burger hidden">
     <span v-for="n in 9" :data-item-index="n"></span>
   </div>
 </template>
@@ -80,14 +80,15 @@ function toggleHidden() {
 
   span {
     background-color: var(--foreground-08);
-    //background-color: #C0BAF2;
   }
 }
 
 .close {
-  :nth-child(2), :nth-child(4), :nth-child(6), :nth-child(8) {
+  :nth-child(2),
+  :nth-child(4),
+  :nth-child(6),
+  :nth-child(8) {
     visibility: hidden;
   }
 }
-
 </style>

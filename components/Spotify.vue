@@ -1,48 +1,15 @@
 <template>
   <div class="spotify track-info">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-      <circle
-        cx="128"
-        cy="128"
-        r="96"
-        fill="none"
-        stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="10"
-      />
-      <path
-        d="M104,166a51,51,0,0,1,48,0"
-        fill="none"
-        stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="10"
-      />
-      <path
-        d="M72,110a119,119,0,0,1,112,0"
-        fill="none"
-        stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="10"
-      />
-      <path
-        d="M88,138a85,85,0,0,1,80,0"
-        fill="none"
-        stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="10"
-      />
-    </svg>
-    <div class="controller" @click="mousePressed" ref="audioControl">
-      <p v-if="contextState === 'running'">stop</p>
-      <p v-else>play</p>
+    <span>LISTENING</span>
+    <div>
+      <div class="controller" @click="mousePressed" ref="audioControl">
+        <p v-if="contextState === 'running'">stop</p>
+        <p v-else>play</p>
+      </div>
+      <a :href="data?.previewUrl" target="_blank"
+        >{{ data?.artist }} - {{ data?.songTitle }}</a
+      >
     </div>
-    <a :href="data?.previewUrl" target="_blank"
-      >{{ data?.artist }} - {{ data?.songTitle }}</a
-    >
   </div>
 </template>
 
@@ -82,7 +49,6 @@ let mousePressed = () => {
       textScramble.state = contextState.value;
       textScramble.animate();
     }
-
   } else {
     audio?.pause();
     audioContext.close();
@@ -97,7 +63,7 @@ let mousePressed = () => {
 };
 
 onMounted(() => {
-  const scrambleElement = document.querySelectorAll(".track-info > a");
+  const scrambleElement = document.querySelector(".track-info  a");
   textScramble = new TextScramble({
     elements: scrambleElement,
     state: contextState.value,
@@ -108,30 +74,19 @@ onMounted(() => {
 <style lang="scss" scoped>
 @import "../assets/css/utilities/font-definitions";
 .spotify {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 30px;
-  gap: 10px;
-  align-items: center;
-  grid-template-columns: 30px 4ch auto;
+  gap: var(--space-xs);
 
-  svg {
-    height: 90%;
-    margin-bottom: 3px;
-    path {
-      fill: var(--foreground-08);
-      stroke: var(--foreground-08);
-    }
-    circle {
-      stroke: var(--foreground-08);
-    }
+  > div {
+    display: flex;
+    gap: var(--space-xs);
   }
-}
 
-.stroke {
-  text-decoration: line-through;
-  grid-column: 2 / 3;
-  align-self: center;
+  span {
+    text-decoration: line-through;
+  }
 }
 
 .track-info {
