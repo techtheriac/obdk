@@ -1,5 +1,5 @@
 <template>
-  <div @click="animateItems" :class="{ close: visible }" class="burger hidden">
+  <div @click="animateItems" :class="{ close: visible }" class="burger">
     <span v-for="n in 9" :data-item-index="n"></span>
   </div>
 </template>
