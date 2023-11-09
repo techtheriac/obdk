@@ -41,23 +41,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-onMounted(() => {
-  const container = document.querySelector(".obdk");
-
-  if (container) {
-    //container.classList.remove("opacity");
-    // const animatables = gsap.utils.toArray(container.querySelectorAll("path"));
-    // gsap.from(animatables, {
-    //   duration: 0.2,
-    //   stagger: 0.09,
-    //   autoAlpha: () => 0,
-    //   y: () => 50,
-    //   ease: "Power4.out",
-    // });
-  }
-});
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
 @import "../assets/css/utilities/font-definitions";

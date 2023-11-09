@@ -1,11 +1,11 @@
-import { LandingAnimation, LandingAnimtable } from "./animations/landing";
+import { LandingAnimatable, LandingAnimation } from "./animations/landing";
 
 export let application: Application;
 
 export class Application {
   private landingAnimation: LandingAnimation;
 
-  constructor(landingAnimatable: LandingAnimtable) {
+  constructor(landingAnimatable: LandingAnimatable) {
     if (application) {
       application = this;
     }

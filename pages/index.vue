@@ -8,15 +8,15 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { LandingAnimtable } from "~/utils/animations/landing";
+import { LandingAnimatable } from "~/utils/animations/landing";
 import { Application } from "~/utils/application";
 
 onMounted(() => {
-  const animatables: LandingAnimtable = {
+  const animatables: LandingAnimatable = {
     techtheriac: document.querySelector(".obdk")!,
     bio: document.querySelector(".bio")!,
-    burger: document.querySelector(".burger"),
-    playing: null,
+    burger: document.querySelector(".burger")!,
+    playing: document.querySelector(".spotify")!,
   };
 
   new Application(animatables);
