@@ -1,5 +1,5 @@
 <template>
-  <section class="home-container">
+  <section class="home-container fill-height">
     <div class="wrapper-bio">
       <Techtheriac />
       <Bio />
