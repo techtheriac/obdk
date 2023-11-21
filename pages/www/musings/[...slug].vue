@@ -41,7 +41,6 @@ definePageMeta({
 
 [data-content-id] {
   color: rgba(255, 255, 255, 0.83);
-  h1,
   h2,
   h3,
   h4,

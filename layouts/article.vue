@@ -4,7 +4,21 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import Lenis from "@studio-freight/lenis";
+import { onMounted } from "vue";
+
+onMounted(() => {
+  const lenis = new Lenis();
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+});
+</script>
 
 <style lang="scss" scoped>
 .content-main {
