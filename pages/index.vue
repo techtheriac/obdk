@@ -1,7 +1,6 @@
 <template>
   <main class="layout-base fill-height">
     <Home />
-    <Stacked />
     <Burger />
   </main>
 </template>

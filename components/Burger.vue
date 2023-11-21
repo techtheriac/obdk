@@ -5,7 +5,6 @@
 </template>
 
 <script setup>
-import gsap from "gsap";
 import { onMounted } from "vue";
 let stackedItems;
 let stackContainer;
@@ -16,28 +15,27 @@ let visible = ref(false);
 let t1;
 
 onMounted(() => {
-  stackedItems = document.querySelectorAll(".stacked_item");
-  stackContainer = document.querySelector(".stacked");
-  stackedHeaders = document.querySelectorAll(".stacked-header");
-
-  t1 = gsap
-    .timeline({ onReverseComplete: () => toggleHidden() })
-    .from(stackContainer, { autoAlpha: 0, duration: 0.2 })
-    .from(stackedItems, {
-      duration: 0.5,
-      stagger: 0.2,
-      autoAlpha: 0,
-      xPercent: 50,
-    })
-    .from([stackedHeaders[0], stackedHeaders[2]], {
-      yPercent: 10,
-      delay: 0.2,
-      stagger: 0.2,
-    })
-    .from(stackedHeaders[1], {
-      y: 30,
-    })
-    .pause();
+  // stackedItems = document.querySelectorAll(".stacked_item");
+  // stackContainer = document.querySelector(".stacked");
+  // stackedHeaders = document.querySelectorAll(".stacked-header");
+  // t1 = gsap
+  //   .timeline({ onReverseComplete: () => toggleHidden() })
+  //   .from(stackContainer, { autoAlpha: 0, duration: 0.2 })
+  //   .from(stackedItems, {
+  //     duration: 0.5,
+  //     stagger: 0.2,
+  //     autoAlpha: 0,
+  //     xPercent: 50,
+  //   })
+  //   .from([stackedHeaders[0], stackedHeaders[2]], {
+  //     yPercent: 10,
+  //     delay: 0.2,
+  //     stagger: 0.2,
+  //   })
+  //   .from(stackedHeaders[1], {
+  //     y: 30,
+  //   })
+  //   .pause();
 });
 
 function animateItems() {

@@ -1,7 +1,7 @@
 <template>
   <div class="bio hidden">
     <p>
-      I am a software engineer with a keen interest on building things on the
+      I am a software engineer with a keen interest on building for the
       internet. I currently work for ALAT where I help develop and maintain
       backend infrastructures. Consider this website a haven for my musings, and
       ruminations.
