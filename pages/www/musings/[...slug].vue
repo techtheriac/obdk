@@ -16,14 +16,14 @@ definePageMeta({
 
 <style lang="scss">
 #content {
-  padding: 0 var(--space-m);
-  max-width: 839px;
+  padding: 0 var(--space-s);
+  max-width: 700px;
   font-family: "TWK Lausanne";
   margin: 0 auto;
 
   .title {
     text-transform: uppercase;
-    font-size: 60px;
+    font-size: var(--idealHeadingOne);
     font-weight: 400;
     margin-bottom: var(--space-s);
     letter-spacing: -1.22px;
