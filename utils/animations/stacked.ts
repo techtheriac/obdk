@@ -23,7 +23,7 @@ export default class StackedAnimation {
   }
 
   public reverse(): void {
-    this.timeline.reverse();
+    this.timeline.reverse(0.7);
   }
 
   private toggleVisibility(element: HTMLElement): void {

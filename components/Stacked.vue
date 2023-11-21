@@ -33,7 +33,7 @@ onBeforeUnmount(() => {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  padding: 0 var(--space-xs);
+  // padding: 0 var(--space-xs);
   position: absolute;
   top: 0;
   left: 0;

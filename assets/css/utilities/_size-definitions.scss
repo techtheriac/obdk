@@ -60,13 +60,7 @@ $interpolate-max: 1445px;
     25px
   );
 
-  @include interpolate(
-    --idealBioFontSize,
-    350px,
-    $interpolate-max,
-    16px,
-    30px
-  );
+  @include interpolate(--idealBioFontSize, 350px, $interpolate-max, 16px, 30px);
 
   @include interpolate(
     --idealPoetryTitleFontSize,
@@ -86,5 +80,6 @@ $interpolate-max: 1445px;
   --space-s: calc(var(--space) / 2);
   --space-xs: calc(var(--space-s) / 2);
   --space-m: calc(var(--space) * 2);
+  --space-l: calc(var(--space-m) * 2);
   --html-color: hsla(10, 68%, 46%, 100%);
 }
