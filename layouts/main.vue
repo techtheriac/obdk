@@ -1,5 +1,6 @@
 <template>
   <div class="layout-base">
+    <Burger />
     <slot />
   </div>
 </template>

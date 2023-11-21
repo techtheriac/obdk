@@ -1,60 +1,26 @@
 <template>
-  <div @click="animateItems" :class="{ close: visible }" class="burger">
+  <NuxtLink
+    :to="route"
+    @click="animateItems"
+    :class="{ close: visible }"
+    class="burger"
+  >
     <span v-for="n in 9" :data-item-index="n"></span>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup>
-import { onMounted } from "vue";
-let stackedItems;
-let stackContainer;
-let stackedHeaders;
-
 let visible = ref(false);
-
-let t1;
-
-onMounted(() => {
-  // stackedItems = document.querySelectorAll(".stacked_item");
-  // stackContainer = document.querySelector(".stacked");
-  // stackedHeaders = document.querySelectorAll(".stacked-header");
-  // t1 = gsap
-  //   .timeline({ onReverseComplete: () => toggleHidden() })
-  //   .from(stackContainer, { autoAlpha: 0, duration: 0.2 })
-  //   .from(stackedItems, {
-  //     duration: 0.5,
-  //     stagger: 0.2,
-  //     autoAlpha: 0,
-  //     xPercent: 50,
-  //   })
-  //   .from([stackedHeaders[0], stackedHeaders[2]], {
-  //     yPercent: 10,
-  //     delay: 0.2,
-  //     stagger: 0.2,
-  //   })
-  //   .from(stackedHeaders[1], {
-  //     y: 30,
-  //   })
-  //   .pause();
-});
+let route = ref("/www");
 
 function animateItems() {
   if (!visible.value) {
-    stackContainer.classList.remove("hidden");
-
-    if (t1.reversed()) {
-      t1.play();
-    }
-    t1.resume();
     visible.value = true;
+    route.value = "/";
   } else {
-    t1.reverse(0.7);
     visible.value = false;
+    route.value = "/www";
   }
-}
-
-function toggleHidden() {
-  stackContainer.classList.add("hidden");
 }
 </script>
 

@@ -1,7 +1,6 @@
 <template>
   <main>
     <Home />
-    <Burger />
   </main>
 </template>
 
