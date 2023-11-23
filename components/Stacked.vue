@@ -33,7 +33,6 @@ onBeforeUnmount(() => {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  // padding: 0 var(--space-xs);
   position: absolute;
   top: 0;
   left: 0;
@@ -45,12 +44,12 @@ onBeforeUnmount(() => {
 }
 
 [data-stack-order="1"] {
-  left: var(--stacked-header-size);
+  top: var(--stacked-header-size);
   z-index: 2;
 }
 
 [data-stack-order="0"] {
-  left: calc(2 * var(--stacked-header-size));
+  top: calc(2 * var(--stacked-header-size));
   z-index: 3;
 }
 </style>

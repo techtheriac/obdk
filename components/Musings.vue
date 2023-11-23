@@ -10,8 +10,12 @@
 
 <script setup lang="ts">
 const { data } = await useAsyncData("musings", () =>
-  queryContent("/www/musings").find()
+  queryContent("/www/musings").find(),
 );
 </script>
 
-<style scoped></style>
+<style scoped>
+a {
+  color: #fff;
+}
+</style>

@@ -1,5 +1,6 @@
 <template>
   <div class="content-main">
+    <ContentMap />
     <slot />
   </div>
 </template>
@@ -9,7 +10,9 @@ import Lenis from "@studio-freight/lenis";
 import { onMounted } from "vue";
 
 onMounted(() => {
-  const lenis = new Lenis();
+  const lenis = new Lenis({
+    smoothTouch: true,
+  });
 
   function raf(time) {
     lenis.raf(time);

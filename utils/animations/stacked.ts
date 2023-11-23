@@ -13,7 +13,7 @@ export default class StackedAnimation {
         duration: 0.5,
         stagger: 0.2,
         autoAlpha: 0,
-        xPercent: 50,
+        yPercent: 50,
       })
       .pause();
   }

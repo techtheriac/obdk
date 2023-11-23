@@ -16,26 +16,29 @@ definePageMeta({
 
 <style lang="scss">
 #content {
-  padding: 0 var(--space-s);
+  padding: 0 var(--space);
   max-width: 700px;
   font-family: "TWK Lausanne";
   margin: 0 auto;
 
   .title {
-    text-transform: uppercase;
+    text-transform: capitalize;
+    text-decoration: underline;
     font-size: var(--idealHeadingOne);
     font-weight: 400;
-    margin-bottom: var(--space-s);
+    margin-bottom: var(--space);
+    margin-top: var(--space-xs);
     letter-spacing: -1.22px;
   }
 
   .published {
     color: rgba(255, 255, 255, 0.63);
     font-family: "TWK Lausanne";
-    font-size: 13px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 200;
     line-height: normal;
+    text-transform: uppercase;
   }
 }
 
@@ -54,7 +57,7 @@ definePageMeta({
   }
 
   > p + p {
-    margin-top: var(--space-s);
+    margin-top: var(--space-xs);
   }
 }
 </style>

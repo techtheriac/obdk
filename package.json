@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
+    "@oakstudios/mechanical-ragger": "^0.5.0",
     "@phosphor-icons/vue": "^2.1.4",
     "@pinia/nuxt": "^0.4.11",
     "@studio-freight/lenis": "^1.0.19",

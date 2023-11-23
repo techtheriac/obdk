@@ -26,13 +26,9 @@ function animateItems() {
 
 <style lang="scss" scoped>
 .burger {
-  position: absolute;
-  top: var(--bio-height);
-  margin-top: var(--space-s);
-  left: var(--space-xs);
   z-index: 4;
-  width: 1.5em;
-  height: 1.5em;
+  width: 1.5rem;
+  height: 1.5rem;
   font-size: var(--idealBaseFontSize);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
