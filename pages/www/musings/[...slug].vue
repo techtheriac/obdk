@@ -10,7 +10,7 @@
 
 <script setup>
 definePageMeta({
-  layout: "article",
+  layout: "main",
 });
 </script>
 
@@ -23,11 +23,11 @@ definePageMeta({
 
   .title {
     text-transform: capitalize;
-    text-decoration: underline;
     font-size: var(--idealHeadingOne);
-    font-weight: 400;
+    font-weight: 750;
     margin-bottom: var(--space);
     margin-top: var(--space-xs);
+    line-height: 0.89;
     letter-spacing: -1.22px;
   }
 
@@ -54,6 +54,8 @@ definePageMeta({
 
   p {
     line-height: 1.3;
+    font-size: var(--idealArticleParagraphSize);
+    font-weight: 300;
   }
 
   > p + p {

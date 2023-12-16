@@ -10,7 +10,7 @@
 .navigation {
   background-color: var(--background-dark-07);
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   padding: var(--space-xs);
 }
 </style>

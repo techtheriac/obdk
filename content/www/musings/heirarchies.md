@@ -1,10 +1,11 @@
 ---
 title: Musings on Heirarchies
 slug: musings-on-heirarchies
-last_edited: 10th September 2023
+last_edited: 10th Sep 2023
+genre: musing
 ---
 
-Throwing away the assumption that absolutes exist brings about an opening to a perspective from which we observe the transitive nature of knowledge and things in general. This notion is perhaps more apparent in the context of culture. 
+Throwing away the assumption that absolutes exist brings about an opening to a perspective from which we observe the transitive nature of knowledge and things in general. This notion is perhaps more apparent in the context of culture.
 
 Generally accepted norms in one’s culture might be deemed insane in another’s. What are norms anyway? Looking at a grid of evenly distributed squares, one would say that boxes lined from left to right are rows, and those lined from top to bottom are columns. Well, if the same grid is turned about an angle of 90 degrees, columns become rows, and rows become columns. Rows and columns are merely labels. Nothing more than labels subject to mutation when the context of observation switches.
 

@@ -1,6 +1,5 @@
 <template>
   <div class="content-main">
-    <ContentMap />
     <slot />
   </div>
 </template>

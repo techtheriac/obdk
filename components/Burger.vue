@@ -27,8 +27,8 @@ function animateItems() {
 <style lang="scss" scoped>
 .burger {
   z-index: 4;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
   font-size: var(--idealBaseFontSize);
   display: grid;
   grid-template-columns: repeat(3, 1fr);

@@ -1,7 +1,8 @@
 ---
-title: Diversity and inclusion are business critical
+title: Diversity & inclusion are business critical
 slug: diversity-and-inclusion
-last_edited: 10th September 2023
+last_edited: 10th Sep 2023
+genre: musing
 ---
 
 A disconnect between products and folks products are being built for does seem to manifest itself more in spaces that do not foster diversity and inclusion. The goal of every product shipped is to meet a target audience in an area of need. Every product that aims to be successful will not fly, let alone reach an audience if it is not molded by a team that transcends the myopia that wrecks inclusivity.

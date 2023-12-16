@@ -38,7 +38,7 @@ function updateStackedHeaderSize(): number {
 
   document.documentElement.style.setProperty(
     "--stacked-header-size",
-    `${stackedHeight / 1.65}px`,
+    `${stackedHeight / 1.5}px`,
   );
 
   return stackedHeight;
