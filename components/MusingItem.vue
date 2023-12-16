@@ -16,7 +16,7 @@
 const props = defineProps<{
   title?: string;
   path?: string;
-  genre?: string;
+  genre: string;
   publised?: string;
 }>();
 </script>
