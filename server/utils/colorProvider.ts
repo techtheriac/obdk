@@ -1,6 +1,6 @@
 import axios from "axios";
 import { distance, palette, utils } from "image-q";
-import { Url } from "~/obdk";
+import { type Url } from "~/obdk";
 import { randomFromArray } from ".";
 const { RGBQuant } = palette;
 export type Color = `rgb${string}`;
@@ -66,7 +66,7 @@ export class ColorMind extends PointProvider implements ColorProvider {
     const colorArray = res.result;
 
     return colorArray.map(
-      (color) => `rgb(${color[0]},${color[1]},${color[2]})`
+      (color) => `rgb(${color[0]},${color[1]},${color[2]})`,
     );
   }
 }
@@ -90,7 +90,7 @@ export class ImageQ extends PointProvider implements ColorProvider {
     const result = JSON.parse(JSON.stringify(palette));
 
     return result._pointContainer._pointArray.map(
-      (x) => `rgb(${x.r},${x.g},${x.b})`
+      (x) => `rgb(${x.r},${x.g},${x.b})`,
     );
   }
 }

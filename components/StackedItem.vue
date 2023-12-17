@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { Sections } from "~/obdk";
+import { type Sections } from "~/obdk";
 
 const stackStore = useStackStore();
 

@@ -1,4 +1,4 @@
-import { LandingAnimatable, LandingAnimation } from "./animations/landing";
+import { LandingAnimation, type LandingAnimatable } from "./animations/landing";
 
 export let application: Application;
 

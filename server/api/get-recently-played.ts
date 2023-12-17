@@ -1,5 +1,5 @@
+import { type SpotifyConfig } from "~/obdk";
 import { Spotify } from "../utils/spotify";
-import { SpotifyConfig } from "~/obdk";
 
 const config: SpotifyConfig = {
   authBase: process.env.SPOTIFY_AUTH_BASE,

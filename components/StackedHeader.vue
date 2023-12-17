@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { Sections } from "~/obdk";
+import { type Sections } from "~/obdk";
 const props = defineProps<{
   section?: Sections;
 }>();

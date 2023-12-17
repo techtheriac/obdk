@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { LandingAnimatable } from "~/utils/animations/landing";
+import { type LandingAnimatable } from "~/utils/animations/landing";
 import { Application } from "~/utils/application";
 
 definePageMeta({

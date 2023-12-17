@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { AudioContextState } from "~/obdk";
+import { type AudioContextState } from "~/obdk";
 import TextScramble from "~/utils/animations/textScramble";
 const { data } = await useFetch("/api/get-recently-played");
 
