@@ -1,10 +1,10 @@
 <template>
-  <div class="musing-item">
-    <div class="meta">
+  <div class="musing__item musing__item__layout">
+    <div class="meta meta__layout">
       <Rounded :genre="genre" />
       <span>{{ publised }}</span>
     </div>
-    <div class="title">
+    <div class="title title__layout">
       <NuxtLink :to="path">
         <h2>{{ title }}</h2>
       </NuxtLink>
@@ -21,21 +21,27 @@ const props = defineProps<{
 }>();
 </script>
 
-<style scoped>
-.musing-item {
+<style scoped lang="scss">
+.musing__item {
   display: grid;
   padding: var(--space-s) 0 var(--space-s) 0;
-  grid-template-columns: repeat(6, 1fr);
   width: 100%;
   border-top: 1px solid #ffffff91;
+
+  &__layout {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
 
 .meta {
-  grid-column: 1 / 2;
   font-weight: 400;
   text-transform: uppercase;
   font-size: 14px;
   display: flex;
+
+  &__layout {
+    grid-column: 1 / 2;
+  }
 
   span:nth-child(1) {
     font-weight: 400;
@@ -48,8 +54,12 @@ const props = defineProps<{
   }
 }
 .title {
-  grid-column: 3 / -1;
-  max-width: 50ch;
+  width: min(100%, 50ch);
+
+  &__layout {
+    grid-column: 3 / -1;
+  }
+
   a {
     font-size: var(--idealHeadingTwo);
     color: #fff;
@@ -57,16 +67,16 @@ const props = defineProps<{
 }
 
 @media screen and (max-width: 800px) {
-  .musing-item {
+  .musing__item__layout {
     grid-template-rows: auto 1fr;
     gap: var(--space-s);
   }
-  .meta {
+  .meta__layout {
     grid-column: 1 / -1;
     grid-row: 1 / 2;
   }
 
-  .title {
+  .title__layout {
     grid-column: 1 / -1;
     grid-row: 2 / -1;
   }
