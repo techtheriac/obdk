@@ -12,8 +12,8 @@
 
 html,
 body {
-  scroll-behavior: initial;
-  overflow: hidden;
+  // scroll-behavior: initial;
+  // overflow: hidden;
   a {
     text-decoration: none;
   }
@@ -27,28 +27,25 @@ html {
   background-color: var(--background-dark);
 }
 
-// This class is added to html when spotify is playing
-// It redices the opacity of the body color and toggles visibiliy of canvas element with noise
-// reference - https://tobiasfried.com/helenazhang
-html.lenis {
-  height: auto;
-}
+// html.lenis {
+//   height: auto;
+// }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto;
-}
+// .lenis.lenis-smooth {
+//   scroll-behavior: auto;
+// }
 
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
+// .lenis.lenis-smooth [data-lenis-prevent] {
+//   overscroll-behavior: contain;
+// }
 
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
+// .lenis.lenis-stopped {
+//   overflow: hidden;
+// }
 
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
+// .lenis.lenis-scrolling iframe {
+//   pointer-events: none;
+// }
 
 .hidden {
   visibility: hidden;
