@@ -51,4 +51,6 @@ export type Message = {
 
 export type Sections = "musings" | "essays" | "contact";
 
+export type Genre = "musing" | "poetry" | "engineering";
+
 export const applicationKey = Symbol() as InjectionKey<Application>;
