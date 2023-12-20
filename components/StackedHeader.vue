@@ -4,10 +4,10 @@
       <h1>lab</h1>
     </div>
     <div v-if="section == 'musings'" class="stacked-header">
-      <h1>writing</h1>
+      <h1>ramblings</h1>
     </div>
     <div v-if="section == 'contact'" class="stacked-header">
-      <h1>contact</h1>
+      <h1>about</h1>
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@ const props = defineProps<{
 }>();
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .stacked-header {
   display: flex;
   justify-content: flex-start;

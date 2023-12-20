@@ -1,12 +1,15 @@
 <template>
-  <NuxtLink
-    :to="route"
-    @click="animateItems"
-    :class="{ close: visible }"
-    class="burger"
-  >
-    <span v-for="n in 9" :data-item-index="n"></span>
-  </NuxtLink>
+  <div class="burger-container">
+    <span>index</span>
+    <NuxtLink
+      :to="route"
+      @click="animateItems"
+      :class="{ close: visible }"
+      class="burger"
+    >
+      <span v-for="n in 9" :data-item-index="n"></span>
+    </NuxtLink>
+  </div>
 </template>
 
 <script setup>
@@ -25,8 +28,18 @@ function animateItems() {
 </script>
 
 <style lang="scss" scoped>
-.burger {
+.burger-container {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: var(--space-xs);
   z-index: 4;
+  align-items: flex-end;
+
+  span {
+    text-transform: uppercase;
+  }
+}
+.burger {
   width: 1.2rem;
   height: 1.2rem;
   font-size: var(--idealBaseFontSize);

@@ -29,7 +29,7 @@ const filter = computed(() => {
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .musing {
   display: flex;
   flex-direction: column;

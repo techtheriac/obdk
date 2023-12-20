@@ -16,6 +16,7 @@
 @import "../assets/css/utilities/font-definitions";
 .bio {
   @include lausanneNormal(300, var(--idealBaseFontSize));
+  margin-top: var(--space-s);
   text-transform: uppercase;
   color: #fff;
   letter-spacing: -0.005em;
