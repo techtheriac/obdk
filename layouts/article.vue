@@ -1,7 +1,7 @@
 <template>
-  <div class="content-main">
-    <div class="layer"></div>
-    <div class="layer-2"></div>
+  <div class="content-main obdk-bg">
+    <div class="obdk-bg__layer-one"></div>
+    <div class="obdk-bg__layer-two"></div>
     <section>
       <slot />
     </section>
@@ -20,37 +20,8 @@
   font-family: "TWK Lausanne";
   min-height: 100vh;
   color: #fff;
-  background-image: url("/static/images/noise.svg");
-  background-size: var(--size-background) var(--size-background);
-  background-attachment: fixed;
-
   section {
     z-index: 2;
   }
-}
-
-.layer {
-  top: 0;
-  position: fixed;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  background-color: var(--background-dark-07);
-}
-
-.layer-2 {
-  --size-background: 1rem;
-  top: 0;
-  position: fixed;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(
-      to right,
-      rgb(203 213 225) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, rgb(203 213 225) 1px, transparent 1px);
-  background-size: var(--size-background) var(--size-background);
 }
 </style>

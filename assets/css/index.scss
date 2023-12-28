@@ -9,15 +9,13 @@
 @import "./utilities/space-definitions";
 @import "./utilities/size-definitions";
 @import "./utilities/font-definitions";
+@import "./utilities/background-definitions";
 
 html,
 body {
-  // scroll-behavior: initial;
-  // overflow: hidden;
   a {
     text-decoration: none;
   }
-
   -webkit-font-smoothing: antialiased;
   font-family: "TWK Lausanne";
   text-rendering: optimizeLegibility;
