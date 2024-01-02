@@ -13,6 +13,8 @@ export default defineEventHandler(async (event) => {
   const SPOTIFY_INSTANCE = new Spotify(config);
   const res = await SPOTIFY_INSTANCE.getNowPlaying();
 
+  console.log("server res", res);
+
   return {
     ...res,
   };

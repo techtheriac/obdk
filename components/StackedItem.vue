@@ -66,6 +66,9 @@ onUnmounted(() => {
   width: 100%;
   background-color: var(--background-dark-07);
 
+  // background-image: radial-gradient(circle, rgb(203 213 225) 2px, #950d0d 2px);
+  // background-size: 2.5rem 2.5rem;
+  // background-position: center center;
   > div {
     padding: var(--space-xs);
   }
