@@ -32,6 +32,7 @@
     "@pinia/nuxt": "^0.4.11",
     "@studio-freight/lenis": "^1.0.19",
     "@xstate/vue": "^2.0.0",
+    "are.na": "^0.1.5",
     "arena-typed": "^1.0.4",
     "axios": "^1.4.0",
     "buffer": "^6.0.3",

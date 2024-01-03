@@ -21,7 +21,7 @@ export type NowPlaying = {
   songTitle: string;
   url: string;
   previewUrl: string;
-  palette: string[];
+  image: string;
 };
 
 export type Url = `https://${string}`;
@@ -53,4 +53,11 @@ export type Sections = "musings" | "essays" | "contact";
 
 export type Genre = "musing" | "poetry" | "engineering";
 
+export type SiteMap = "listening" | "reading" | "blocks" | "writing";
+
 export const applicationKey = Symbol() as InjectionKey<Application>;
+
+export type BlocksConfig = {
+  token: string;
+  baseUrl: string;
+};

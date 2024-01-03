@@ -91,7 +91,7 @@ export class Spotify implements MusicIntegration {
       songTitle: items[0].track.name,
       artist: items[0].track.artists[0].name,
       previewUrl: items[0].track.preview_url,
-      palette: ["ASS"],
+      image: items[0].track.album.images.filter((x) => x.height == 300)[0].url,
     };
   }
 }
