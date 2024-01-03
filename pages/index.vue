@@ -1,6 +1,7 @@
 <template>
   <main class="home-container">
     <Bio />
+    <NowSlider />
     <div class="flow-hr-xs">
       <Spotify />
       <Techtheriac />

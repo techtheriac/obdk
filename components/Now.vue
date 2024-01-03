@@ -1,7 +1,9 @@
 <template>
   <div class="now">
     <div class="title">{{ title }}</div>
-    <slot></slot>
+    <slot name="content">
+      <h1>Content is not added</h1>
+    </slot>
     <div class="description">{{ description }}</div>
     <div class="summary">{{ summary }}</div>
   </div>

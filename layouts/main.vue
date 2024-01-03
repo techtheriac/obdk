@@ -2,7 +2,7 @@
   <div class="layout-base fill-height obdk-bg">
     <div class="obdk-bg__layer-one"></div>
     <div class="obdk-bg__layer-two"></div>
-    <Navigation />
+    <!-- <Navigation /> -->
     <main class="main">
       <slot />
     </main>

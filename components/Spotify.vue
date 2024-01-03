@@ -1,14 +1,15 @@
 <template>
   <div class="spotify track-info">
-    <span>LISTENING</span>
-    <div>
-      <div class="controller" @click="mousePressed" ref="audioControl">
-        <p v-if="contextState === 'running'">stop</p>
-        <p v-else>play</p>
-      </div>
-      <a :href="data?.previewUrl" target="_blank"
-        >{{ data?.artist }} - {{ data?.songTitle }}</a
-      >
+    <div class="album-art">
+      <img :src="data?.images[1].url" width="200" height="200" />
+    </div>
+    <div class="controller-overlay">
+      <div
+        class="controller"
+        :class="{ triangle: contextState != 'running' }"
+        @click="mousePressed"
+        ref="audioControl"
+      ></div>
     </div>
   </div>
 </template>
@@ -72,11 +73,32 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+@use "sass:math";
 @import "../assets/css/utilities/font-definitions";
+
+@mixin triangle($sideLength, $size) {
+  $hypotenuse: $sideLength; // renaming to make calculations more logical
+  $angle: 60deg;
+  $opposite: math.sin($angle) * $hypotenuse;
+  $adjacent: $hypotenuse / 2;
+  $startPos: ($size / 2 - $adjacent);
+  $startPosY: ($size / 2 - $opposite / 2);
+  $endPos: ($size / 2 + $adjacent);
+  $endPosY: ($size / 2 + $opposite / 2);
+  $clip: polygon($startPos $endPosY, 50% $startPosY, $endPos $endPosY);
+  -webkit-clip-path: $clip;
+  clip-path: $clip;
+}
+
+.triangle {
+  @include triangle(100%, 100%);
+}
+
 .spotify {
+  position: relative;
+  width: 200px;
   display: flex;
   flex-direction: column;
-  width: 100%;
   gap: var(--space-xs);
 
   > div {
@@ -104,7 +126,23 @@ onMounted(() => {
   }
 }
 
-.controls {
+.controller-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: var(--foreground-dark-forest);
+}
+
+.controller {
   cursor: pointer;
+  width: 3em;
+  height: 3em;
+  background-color: #fff;
+  transform: rotate(90deg);
 }
 </style>

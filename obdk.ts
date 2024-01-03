@@ -16,12 +16,18 @@ export interface AccessTokenResponse {
   scope: string;
 }
 
+export type SpotifyImage = {
+  height: number;
+  width: number;
+  url: string;
+};
+
 export type NowPlaying = {
   artist: string;
   songTitle: string;
   url: string;
   previewUrl: string;
-  image: string;
+  images: SpotifyImage[];
 };
 
 export type Url = `https://${string}`;
