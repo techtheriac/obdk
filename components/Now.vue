@@ -1,11 +1,11 @@
 <template>
   <div class="now">
     <div class="title">{{ title }}</div>
-    <slot name="content">
-      <h1>Content is not added</h1>
-    </slot>
-    <div class="description">{{ description }}</div>
-    <div class="summary">{{ summary }}</div>
+    <slot></slot>
+    <div class="info">
+      <span class="description">{{ description }}</span>
+      <span class="summary">{{ summary }}</span>
+    </div>
   </div>
 </template>
 
@@ -13,13 +13,29 @@
 import { type SiteMap } from "~/obdk";
 const props = defineProps<{
   title: SiteMap | string;
-  description: string;
-  summary: string;
+  description: string | undefined;
+  summary: string | undefined;
 }>();
 </script>
 
 <style scoped lang="scss">
+@import "../assets/css/utilities/font-definitions";
 .now {
+  @include lausanneNormal(300, var(--idealBaseFontSize));
+  border: 1px solid red;
+  display: flex;
+  gap: var(--space-s);
+  flex-direction: column;
+  padding: var(--space-s) var(--space-xs) var(--space-s) var(--space-xs);
+  padding: var(--space-xs);
+}
+
+.title {
+  align-self: flex-end;
+  text-transform: capitalize;
+}
+
+.info {
   display: flex;
   flex-direction: column;
 }

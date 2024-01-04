@@ -1,11 +1,10 @@
 <template>
   <main class="home-container">
-    <Bio />
-    <NowSlider />
     <div class="flow-hr-xs">
-      <Spotify />
-      <Techtheriac />
+      <Bio />
+      <NowSlider />
     </div>
+    <Techtheriac />
   </main>
 </template>
 

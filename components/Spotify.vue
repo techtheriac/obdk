@@ -1,17 +1,19 @@
 <template>
-  <div class="spotify track-info">
-    <div class="album-art">
-      <img :src="data?.images[1].url" width="200" height="200" />
+  <Now title="listening" :description="data?.artist" :summary="data?.songTitle">
+    <div class="spotify track-info">
+      <div class="album-art">
+        <img :src="data?.images[1].url" width="200" height="200" />
+      </div>
+      <div class="controller-overlay">
+        <div
+          class="controller"
+          :class="{ triangle: contextState != 'running' }"
+          @click="mousePressed"
+          ref="audioControl"
+        ></div>
+      </div>
     </div>
-    <div class="controller-overlay">
-      <div
-        class="controller"
-        :class="{ triangle: contextState != 'running' }"
-        @click="mousePressed"
-        ref="audioControl"
-      ></div>
-    </div>
-  </div>
+  </Now>
 </template>
 
 <script setup lang="ts">
