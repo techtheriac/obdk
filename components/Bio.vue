@@ -43,7 +43,6 @@
 .marquee-line {
   flex-shrink: 0;
   margin: 0;
-  // min-width: 100%;
   white-space: nowrap;
   animation: marqueeLine 30s linear infinite;
 }

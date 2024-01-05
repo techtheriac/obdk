@@ -22,6 +22,7 @@ const props = defineProps<{
 @import "../assets/css/utilities/font-definitions";
 .now {
   @include lausanneNormal(300, var(--idealBaseFontSize));
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

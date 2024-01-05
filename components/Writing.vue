@@ -26,14 +26,13 @@
   </Now>
 </template>
 <script setup lang="ts">
-const { data } = await useAsyncData("musings", () =>
-  queryContent("/www/musings").find(),
-);
-
+const count = await queryContent("www/musings").count();
 var summary = computed(() => {
-  return `${data?.value?.length} items`;
+  return `${count} items`;
 });
-
-console.log("Writing comp", data);
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.writing-wrapper {
+  width: 150px;
+}
+</style>
