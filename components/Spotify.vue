@@ -82,11 +82,11 @@ onMounted(() => {
   $hypotenuse: $sideLength; // renaming to make calculations more logical
   $angle: 60deg;
   $opposite: math.sin($angle) * $hypotenuse;
-  $adjacent: $hypotenuse / 2;
-  $startPos: ($size / 2 - $adjacent);
-  $startPosY: ($size / 2 - $opposite / 2);
-  $endPos: ($size / 2 + $adjacent);
-  $endPosY: ($size / 2 + $opposite / 2);
+  $adjacent: math.div($hypotenuse, 2);
+  $startPos: (math.div($size, 2) - $adjacent);
+  $startPosY: (math.div($size, 2) - math.div($opposite, 2));
+  $endPos: (math.div($size, 2) + $adjacent);
+  $endPosY: (math.div($size, 2) + math.div($opposite, 2));
   $clip: polygon($startPos $endPosY, 50% $startPosY, $endPos $endPosY);
   -webkit-clip-path: $clip;
   clip-path: $clip;

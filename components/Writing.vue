@@ -1,5 +1,5 @@
 <template>
-  <Now title="writing" description="musings & ramblings" summary="20 items">
+  <Now title="writing" description="musings & ramblings" :summary="summary">
     <div class="writing-wrapper">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 379 161">
         <path
@@ -25,8 +25,15 @@
     </div>
   </Now>
 </template>
-<script setup lang="ts"></script>
-<style scoped lang="scss">
-.writing-wrapper {
-}
-</style>
+<script setup lang="ts">
+const { data } = await useAsyncData("musings", () =>
+  queryContent("/www/musings").find(),
+);
+
+var summary = computed(() => {
+  return `${data?.value?.length} items`;
+});
+
+console.log("Writing comp", data);
+</script>
+<style scoped lang="scss"></style>
