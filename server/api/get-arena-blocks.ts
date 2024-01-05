@@ -12,7 +12,5 @@ export default defineEventHandler(async (event) => {
 
   console.log("server res", res);
 
-  return {
-    ...res,
-  };
+  return res;
 });

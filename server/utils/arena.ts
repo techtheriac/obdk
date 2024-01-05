@@ -11,7 +11,7 @@ export class Blocks {
     const { baseUrl, token } = this.config;
 
     const response = await axios.get(
-      `${baseUrl}/users/jezreel-franklin/channels`,
+      `${baseUrl}/channels/readings-to-live-by/thumb`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -21,14 +21,12 @@ export class Blocks {
 
     // return response.data;
 
-    return response.data.channels
-      .filter((x) => x.published)
-      .map((x) => {
-        return {
-          slug: x.slug,
-          title: x.title,
-          preview: x.contents[0]?.image?.square?.url,
-        };
-      });
+    return response.data.contents.map((x) => {
+      return {
+        image: x.image?.square?.url,
+        source: x.source?.url,
+        title: x?.title,
+      };
+    });
   }
 }

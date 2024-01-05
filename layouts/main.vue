@@ -17,7 +17,7 @@
 }
 
 .main {
-  height: calc(100% - 1.5rem);
+  height: 100%;
   z-index: 1;
 }
 </style>

@@ -26,6 +26,7 @@
     "vue": "latest"
   },
   "dependencies": {
+    "@nuxt/image": "^1.1.0",
     "@nuxtjs/dotenv": "^1.4.1",
     "@oakstudios/mechanical-ragger": "^0.5.0",
     "@phosphor-icons/vue": "^2.1.4",

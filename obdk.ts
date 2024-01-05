@@ -57,7 +57,9 @@ export type Message = {
 
 export type Sections = "musings" | "essays" | "contact";
 
-export type Genre = "musing" | "poetry" | "engineering";
+export type Genre = "musings" | "poetry" | "engineering";
+
+export const WRITING_GENRES: Genre[] = ["engineering", "musings", "poetry"];
 
 export type SiteMap = "listening" | "reading" | "blocks" | "writing";
 

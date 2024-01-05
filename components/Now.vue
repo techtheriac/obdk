@@ -22,12 +22,14 @@ const props = defineProps<{
 @import "../assets/css/utilities/font-definitions";
 .now {
   @include lausanneNormal(300, var(--idealBaseFontSize));
-  border: 1px solid red;
   display: flex;
-  gap: var(--space-s);
   flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-s);
   padding: var(--space-s) var(--space-xs) var(--space-s) var(--space-xs);
   padding: var(--space-xs);
+  background-color: #1a1a1a4d;
+  border: 1px solid #2e2e2e;
 }
 
 .title {

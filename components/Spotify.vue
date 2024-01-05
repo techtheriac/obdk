@@ -2,7 +2,7 @@
   <Now title="listening" :description="data?.artist" :summary="data?.songTitle">
     <div class="spotify track-info">
       <div class="album-art">
-        <img :src="data?.images[1].url" width="200" height="200" />
+        <img :src="data?.images[1].url" width="300" height="300" />
       </div>
       <div class="controller-overlay">
         <div
@@ -98,7 +98,7 @@ onMounted(() => {
 
 .spotify {
   position: relative;
-  width: 200px;
+  width: 150px;
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
@@ -125,6 +125,14 @@ onMounted(() => {
 
   a {
     color: inherit;
+  }
+}
+
+.album-art {
+  img {
+    aspect-ratio: 1 / 1;
+    max-inline-size: 100%;
+    block-size: auto;
   }
 }
 
