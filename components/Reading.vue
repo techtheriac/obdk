@@ -28,6 +28,7 @@ const summary = computed(() => {
 }
 .marquee-item {
   width: 150px;
+  width: fit-content;
   flex-shrink: 0;
   margin: 0;
   white-space: nowrap;

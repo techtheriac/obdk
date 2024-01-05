@@ -1,6 +1,6 @@
 <template>
   <Now title="listening" :description="data?.artist" :summary="data?.songTitle">
-    <div class="spotify track-info">
+    <div class="spotify">
       <div class="album-art">
         <img :src="data?.images[1].url" width="300" height="300" />
       </div>
@@ -76,10 +76,8 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 @use "sass:math";
-@import "../assets/css/utilities/font-definitions";
-
 @mixin triangle($sideLength, $size) {
-  $hypotenuse: $sideLength; // renaming to make calculations more logical
+  $hypotenuse: $sideLength;
   $angle: 60deg;
   $opposite: math.sin($angle) * $hypotenuse;
   $adjacent: math.div($hypotenuse, 2);
@@ -98,33 +96,12 @@ onMounted(() => {
 
 .spotify {
   position: relative;
-  width: 150px;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
+  width: var(--ideal-block-size);
+  display: grid;
+  grid-template-areas: "stack";
 
-  > div {
-    display: flex;
-    gap: var(--space-xs);
-  }
-
-  span {
-    text-decoration: line-through;
-  }
-}
-
-.track-info {
-  color: var(--foreground-dark-forest);
-  @include lausanneNormal(300, var(--idealBaseFontSize));
-  text-transform: uppercase;
-  color: #fff;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  a {
-    color: inherit;
+  > * {
+    grid-area: stack;
   }
 }
 
@@ -140,11 +117,8 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
   background-color: var(--foreground-dark-forest);
 }
 

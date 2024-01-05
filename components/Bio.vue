@@ -1,7 +1,7 @@
 <template>
   <div class="bio hidden">
     <div class="marquee-wrapper">
-      <p v-for="n in 3" class="marquee-line">
+      <p v-for="n in 3" class="marquee-line" :aria-hidden="n != 1">
         Tectheriac is the pseudonym of Franklin Jezreel, a software engineer
         with a keen interest on building for the internet. Consider this website
         a haven for his musings, and ruminations.
