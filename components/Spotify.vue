@@ -7,8 +7,8 @@
       <div class="controller-overlay">
         <div
           class="controller"
-          :class="{ triangle: contextState != 'running' }"
-          @click="mousePressed"
+          :class="{ triangle: contextState != 'playing' }"
+          @click="playSound"
           ref="audioControl"
         ></div>
       </div>
@@ -17,60 +17,49 @@
 </template>
 
 <script setup lang="ts">
-import { type AudioContextState } from "~/obdk";
-import TextScramble from "~/utils/animations/textScramble";
+import { type AudioSourceState } from "~/obdk";
 const { data } = await useFetch("/api/get-recently-played");
 
-let audio: HTMLAudioElement | null;
+let audioBuffer: AudioBuffer;
 let audioContext: AudioContext | null;
-let contextState: Ref<AudioContextState> = ref("initial");
-let textScramble: TextScramble | null = null;
+let contextState: Ref<AudioSourceState> = ref("initial");
+let source: AudioBufferSourceNode;
 
-let mousePressed = () => {
+async function loadSound(): Promise<void> {
   if (!audioContext) {
     audioContext = new AudioContext();
-
-    audio = document.createElement("audio");
-
-    audio.loop = true;
-
-    if (!data.value?.previewUrl) return;
-
-    audio.src = data.value?.previewUrl;
-
-    audio.crossOrigin = "Anonymous";
-
-    audio.play();
-
-    const source = audioContext.createMediaElementSource(audio);
-
-    source.connect(audioContext.destination);
-
-    contextState.value = audioContext.state;
-
-    if (textScramble) {
-      textScramble.state = contextState.value;
-      textScramble.animate();
-    }
-  } else {
-    audio?.pause();
-    audioContext.close();
-    contextState.value = audioContext.state;
-
-    if (textScramble) {
-      textScramble.state = audioContext.state;
-    }
-
-    audioContext = audio = null;
   }
-};
 
-onMounted(() => {
-  const scrambleElement = document.querySelector(".track-info  a");
-  textScramble = new TextScramble({
-    elements: scrambleElement,
-    state: contextState.value,
-  });
+  if (!audioBuffer) {
+    const resp = await fetch(data.value?.previewUrl!);
+    const buf = await resp.arrayBuffer();
+    audioBuffer = await audioContext.decodeAudioData(buf);
+  }
+}
+
+async function playSound() {
+  if (!audioContext) return;
+
+  if (audioContext.state == "running") {
+    if (contextState.value == "initial" || contextState.value == "ended") {
+      source = audioContext.createBufferSource();
+      source.connect(audioContext.destination);
+      source.buffer = audioBuffer;
+      source.start(0);
+      contextState.value = "playing";
+    } else {
+      source.stop();
+      contextState.value = "ended";
+    }
+  }
+}
+
+onBeforeMount(async () => {
+  await loadSound();
+});
+
+onBeforeUnmount(() => {
+  audioContext?.close();
 });
 </script>
 

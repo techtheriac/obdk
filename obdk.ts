@@ -1,6 +1,7 @@
 import { Application } from "./utils/application";
 
 export type AudioContextState = "running" | "suspended" | "initial" | "closed";
+export type AudioSourceState = "initial" | "playing" | "ended";
 
 export type NavigationOption = "Folder" | "File";
 export type NavigationItemOption = {
