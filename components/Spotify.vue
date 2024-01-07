@@ -21,7 +21,6 @@ import { type AudioSourceState } from "~/obdk";
 const { data } = await useFetch("/api/get-recently-played");
 
 let audio: HTMLAudioElement | null;
-let audioBuffer: AudioBuffer;
 let audioContext: AudioContext | null;
 let contextState: Ref<AudioSourceState> = ref("initial");
 let source: AudioBufferSourceNode;
@@ -44,19 +43,17 @@ async function loadSound(): Promise<void> {
 }
 
 async function playSound() {
-  if (!audio) return;
-  if (audio.paused) {
-    audio.play();
+  if (!audioContext) {
+    await loadSound();
+  }
+  if (audio!.paused) {
+    audio!.play();
     contextState.value = "playing";
   } else {
     audio?.pause();
     contextState.value = "ended";
   }
 }
-
-onBeforeMount(async () => {
-  await loadSound();
-});
 
 onBeforeUnmount(() => {
   audioContext?.close();
