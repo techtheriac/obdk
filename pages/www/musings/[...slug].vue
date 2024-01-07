@@ -1,52 +1,48 @@
 <template>
-  <main class="content-main">
-     <ContentDoc v-slot="{ doc }">
-        <article class="content">
-          <span>{{ doc.last_edited }}</span>
-          <h1>{{ doc.title }}</h1>
-          <ContentRenderer :value="doc"/>
-        </article>
-     </ContentDoc>
-  </main>
+  <ContentDoc v-slot="{ doc }">
+    <article id="content">
+      <PublishedTitle
+        :title="doc.title"
+        :date="doc.last_edited"
+        :genre="doc.genre"
+      />
+      <ContentRenderer :value="doc" />
+    </article>
+  </ContentDoc>
 </template>
 
 <script setup>
-  definePageMeta({
-    layout: false
-  })
+definePageMeta({
+  layout: "article",
+});
 </script>
 
 <style lang="scss">
-.content-main {
-  display: flex;
-  flex-direction: column;
-  max-width: 840px;
+#content {
+  padding: 0 var(--space);
+  max-width: 700px;
+  font-family: "TWK Lausanne";
   margin: 0 auto;
-  font-family: "Gestalt";
-  min-height: 100vh;
-  background-color: var(--musings-bg);
-}
-
-.content {
-  padding: 0 var(--space-m);
-
-  h1 {
-    text-transform: uppercase;
-    text-decoration: underline;
-    font-size: 60px;
-    margin-bottom: var(--space-s);
-  }
-
 }
 
 [data-content-id] {
-  h1, h2, h3, h4, h5, h6 {
+  color: rgba(255, 255, 255, 0.83);
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     text-decoration: underline;
   }
 
+  p {
+    line-height: 1.3;
+    font-size: var(--idealArticleParagraphSize);
+    font-weight: 200;
+  }
+
   > p + p {
-    margin-top: var(--space-s);
+    margin-top: var(--space-xs);
   }
 }
-
 </style>

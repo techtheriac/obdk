@@ -46,11 +46,7 @@
 <style lang="scss" scoped>
 @import "../assets/css/utilities/font-definitions";
 #obdk {
-  display: flex;
-  gap: 20px;
-  flex-direction: column;
   width: 100%;
-  margin-top: var(--space-s);
   svg {
     width: 100%;
     path {
@@ -59,8 +55,6 @@
   }
 }
 
-.obdk {
-}
 .opacity {
   opacity: 0;
 }

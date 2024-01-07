@@ -1,5 +1,5 @@
+import { type SpotifyConfig } from "~/obdk";
 import { Spotify } from "../utils/spotify";
-import { SpotifyConfig } from "~/obdk";
 
 const config: SpotifyConfig = {
   authBase: process.env.SPOTIFY_AUTH_BASE,
@@ -12,6 +12,8 @@ const config: SpotifyConfig = {
 export default defineEventHandler(async (event) => {
   const SPOTIFY_INSTANCE = new Spotify(config);
   const res = await SPOTIFY_INSTANCE.getNowPlaying();
+
+  console.log("server res", res);
 
   return {
     ...res,

@@ -1,4 +1,4 @@
-import { AudioContextState } from "~/obdk";
+import { type AudioContextState } from "~/obdk";
 
 export default class TextScramble {
   private node?: Element | null;
@@ -57,11 +57,6 @@ export default class TextScramble {
     if (!this.node?.textContent) return;
     const originalText: string = this.node.textContent;
 
-    gsap.from(this.node, {
-        
-    })
-
-
-
+    gsap.from(this.node, {});
   }
 }

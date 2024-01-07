@@ -27,13 +27,7 @@ export class LandingAnimation {
       .from(this.landingAnimatables.bio, {
         opacity: 0,
       })
-      .call(this.toggleVisibility, [this.landingAnimatables.burger])
-      .from(this.landingAnimatables.burger, {
-        opacity: 0,
-      })
       .pause();
-
-    console.log(this.timeline);
   }
 
   public animateLanding(): void {

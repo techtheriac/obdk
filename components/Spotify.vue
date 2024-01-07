@@ -1,110 +1,126 @@
 <template>
-  <div class="spotify track-info">
-    <span>LISTENING</span>
-    <div>
-      <div class="controller" @click="mousePressed" ref="audioControl">
-        <p v-if="contextState === 'running'">stop</p>
-        <p v-else>play</p>
+  <Now title="listening" :description="data?.artist" :summary="data?.songTitle">
+    <div class="spotify">
+      <div class="album-art">
+        <img :src="data?.images[1].url" width="300" height="300" />
       </div>
-      <a :href="data?.previewUrl" target="_blank"
-        >{{ data?.artist }} - {{ data?.songTitle }}</a
-      >
+      <div class="controller-overlay">
+        <button
+          class="controller"
+          :class="{ triangle: contextState != 'playing' }"
+          @click="playSound"
+          ref="audioControl"
+        ></button>
+      </div>
     </div>
-  </div>
+  </Now>
 </template>
 
 <script setup lang="ts">
-import { AudioContextState } from "~/obdk";
-import TextScramble from "~/utils/animations/textScramble";
+import { type AudioSourceState } from "~/obdk";
 const { data } = await useFetch("/api/get-recently-played");
 
 let audio: HTMLAudioElement | null;
+let audioBuffer: AudioBuffer;
 let audioContext: AudioContext | null;
-let contextState: Ref<AudioContextState> = ref("initial");
-let textScramble: TextScramble | null = null;
+let contextState: Ref<AudioSourceState> = ref("initial");
+let source: AudioBufferSourceNode;
 
-let mousePressed = () => {
+async function loadSound(): Promise<void> {
   if (!audioContext) {
     audioContext = new AudioContext();
-
     audio = document.createElement("audio");
-
-    audio.loop = true;
-
+    audio.addEventListener("ended", (e) => {
+      contextState.value = "ended";
+    });
+    audio.loop = false;
     if (!data.value?.previewUrl) return;
-
     audio.src = data.value?.previewUrl;
-
     audio.crossOrigin = "Anonymous";
+    const source = audioContext!.createMediaElementSource(audio);
+    source.connect(audioContext!.destination);
+    audio.pause();
+  }
+}
 
+async function playSound() {
+  if (!audio) return;
+  if (audio.paused) {
     audio.play();
-
-    const source = audioContext.createMediaElementSource(audio);
-
-    source.connect(audioContext.destination);
-
-    contextState.value = audioContext.state;
-
-    if (textScramble) {
-      textScramble.state = contextState.value;
-      textScramble.animate();
-    }
+    contextState.value = "playing";
   } else {
     audio?.pause();
-    audioContext.close();
-    contextState.value = audioContext.state;
-
-    if (textScramble) {
-      textScramble.state = audioContext.state;
-    }
-
-    audioContext = audio = null;
+    contextState.value = "ended";
   }
-};
+}
 
-onMounted(() => {
-  const scrambleElement = document.querySelector(".track-info  a");
-  textScramble = new TextScramble({
-    elements: scrambleElement,
-    state: contextState.value,
-  });
+onBeforeMount(async () => {
+  await loadSound();
+});
+
+onBeforeUnmount(() => {
+  audioContext?.close();
 });
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/css/utilities/font-definitions";
+@use "sass:math";
+@mixin triangle($sideLength, $size) {
+  $hypotenuse: $sideLength;
+  $angle: 60deg;
+  $opposite: math.sin($angle) * $hypotenuse;
+  $adjacent: math.div($hypotenuse, 2);
+  $startPos: (math.div($size, 2) - $adjacent);
+  $startPosY: (math.div($size, 2) - math.div($opposite, 2));
+  $endPos: (math.div($size, 2) + $adjacent);
+  $endPosY: (math.div($size, 2) + math.div($opposite, 2));
+  $clip: polygon($startPos $endPosY, 50% $startPosY, $endPos $endPosY);
+  -webkit-clip-path: $clip;
+  clip-path: $clip;
+}
+
+.triangle {
+  @include triangle(100%, 100%);
+}
+
 .spotify {
+  width: var(--ideal-block-size);
+  display: grid;
+  grid-template-areas: "stack";
+
+  > * {
+    grid-area: stack;
+  }
+}
+
+.album-art {
+  img {
+    aspect-ratio: 1 / 1;
+    max-inline-size: 100%;
+    block-size: auto;
+  }
+}
+
+.controller-overlay {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  gap: var(--space-xs);
-
-  > div {
-    display: flex;
-    gap: var(--space-xs);
-  }
-
-  span {
-    text-decoration: line-through;
-  }
+  height: 100%;
+  background-color: var(--foreground-dark-forest);
 }
 
-.track-info {
-  color: var(--foreground-dark-forest);
-  @include lausanneNormal(300, var(--idealBaseFontSize));
-  text-transform: uppercase;
-  color: #fff;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  a {
-    color: inherit;
-  }
-}
-
-.controls {
+.controller {
   cursor: pointer;
+  width: 3em;
+  height: 3em;
+  background-color: #fff;
+  transform: rotate(90deg);
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-align: inherit;
+  font: inherit;
+  border-radius: 0;
 }
 </style>

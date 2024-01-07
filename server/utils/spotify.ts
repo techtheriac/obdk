@@ -4,20 +4,20 @@ import { buildPaletteSync, utils } from "image-q";
 import queryString from "query-string";
 
 import {
-  AccessTokenResponse,
-  MusicIntegration,
-  NowPlaying,
-  SpotifyConfig,
-  Url
+  type AccessTokenResponse,
+  type MusicIntegration,
+  type NowPlaying,
+  type SpotifyConfig,
+  type Url,
 } from "~/obdk";
 
 let memo = {};
 
 async function extractColorsMemo(source: Url): Promise<string[]> {
-//  const colorProvider = new ImageQ(source);
+  //  const colorProvider = new ImageQ(source);
   const colorProvider = new ColorMind(source);
 
-  if(source in memo) return memo[source];
+  if (source in memo) return memo[source];
 
   memo[source] = await colorProvider.extractColorPaletteFromImage();
 
@@ -31,7 +31,7 @@ export class Spotify implements MusicIntegration {
   }
 
   async extractColorPaletteFromImage(
-    source: `https://${string}`
+    source: `https://${string}`,
   ): Promise<any> {
     const response = await axios.get(source, {
       responseType: "arraybuffer",
@@ -84,16 +84,14 @@ export class Spotify implements MusicIntegration {
       },
     });
 
-   const { items } = await response.json();
-
-   const palette2 = await extractColorsMemo(items[0].track.album.images[0].url);
+    const { items } = await response.json();
 
     return {
       url: items[0].track.external_urls.spotify,
       songTitle: items[0].track.name,
       artist: items[0].track.artists[0].name,
       previewUrl: items[0].track.preview_url,
-      palette: palette2
+      images: items[0].track.album.images,
     };
   }
 }

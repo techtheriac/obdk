@@ -9,46 +9,41 @@
 @import "./utilities/space-definitions";
 @import "./utilities/size-definitions";
 @import "./utilities/font-definitions";
+@import "./utilities/background-definitions";
 
 html,
 body {
-  scroll-behavior: initial;
-  overflow: hidden;
   a {
     text-decoration: none;
   }
-
   -webkit-font-smoothing: antialiased;
   font-family: "TWK Lausanne";
   text-rendering: optimizeLegibility;
 }
 
 html {
-  background-color: var(--background-dark-07);
+  background-color: var(--background-dark);
 }
 
-// This class is added to html when spotify is playing
-// It redices the opacity of the body color and toggles visibiliy of canvas element with noise
-// reference - https://tobiasfried.com/helenazhang
-html.lenis {
-  height: auto;
-}
+// html.lenis {
+//   height: auto;
+// }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto;
-}
+// .lenis.lenis-smooth {
+//   scroll-behavior: auto;
+// }
 
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
+// .lenis.lenis-smooth [data-lenis-prevent] {
+//   overscroll-behavior: contain;
+// }
 
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
+// .lenis.lenis-stopped {
+//   overflow: hidden;
+// }
 
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
+// .lenis.lenis-scrolling iframe {
+//   pointer-events: none;
+// }
 
 .hidden {
   visibility: hidden;

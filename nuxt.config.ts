@@ -2,7 +2,7 @@ export default defineNuxtConfig({
   typescript: {
     typeCheck: true,
   },
-  modules: ["@nuxt/content", "@pinia/nuxt"],
+  modules: ["@nuxt/content", "@pinia/nuxt", "@nuxt/image"],
   css: ["@/assets/css/index.scss"],
   // Nuxt content: https://content.nuxtjs.org
   content: {},

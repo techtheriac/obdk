@@ -1,15 +1,21 @@
 <template>
-  <main class="layout-base fill-height">
-    <Home />
-    <Stacked />
-    <Burger />
+  <main class="home-container">
+    <div class="flow-hr-xs">
+      <Bio />
+      <NowSlider />
+    </div>
+    <Techtheriac />
   </main>
 </template>
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { LandingAnimatable } from "~/utils/animations/landing";
+import { type LandingAnimatable } from "~/utils/animations/landing";
 import { Application } from "~/utils/application";
+
+definePageMeta({
+  layout: "main",
+});
 
 onMounted(() => {
   const animatables: LandingAnimatable = {
@@ -24,19 +30,20 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.layout-base {
-  --size-background: 1rem;
-  color: var(--foreground-dark);
-  background-color: var(--background-dark-07);
-  background-image: linear-gradient(
-      to right,
-      rgb(203 213 225) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, rgb(203 213 225) 1px, transparent 1px);
-  background-size: var(--size-background) var(--size-background);
+.home-container {
+  display: flex;
+  padding: 0 var(--space-xs) var(--space-xs);
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+  transition-duration: 1s;
+  transition-property: background-color;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  height: 100%;
 }
-.layout-base > section {
-  height: inherit;
+.flow-hr-xs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
 }
 </style>

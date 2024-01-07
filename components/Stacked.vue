@@ -10,38 +10,21 @@
 </template>
 
 <script setup lang="ts">
-import { gsap } from "gsap";
-import { Flip } from "gsap/Flip";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
-
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(Flip);
-
+import StackedAnimation from "~/utils/animations/stacked";
 const stackStore = useStackStore();
-
 const { stackOrder } = storeToRefs(stackStore);
 
+let stackedAnimation;
+
 onMounted(() => {
-  const stackedItems = document.querySelectorAll("[data-stack-order]");
+  stackedAnimation = new StackedAnimation(document.querySelector(".stacked")!);
+  stackedAnimation.play();
+});
 
-  if (!stackedItems) return;
-
-  const newContainer = document.querySelector(".stacked");
-  const nowPlaying = document.querySelector(".spotify");
-  const originalContainer = document.querySelector("footer");
-
-  function performFlip(e) {
-    const state = Flip.getState(nowPlaying);
-    if (!nowPlaying) return;
-    (nowPlaying?.parentNode === originalContainer
-      ? newContainer
-      : originalContainer
-    )?.appendChild(nowPlaying);
-
-    Flip.from(state, { duration: 0.5, ease: "none", y: "30px" });
-  }
+onBeforeUnmount(() => {
+  stackedAnimation.reverse();
 });
 </script>
 
@@ -50,7 +33,6 @@ onMounted(() => {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  padding: 0 var(--space-xs);
   position: absolute;
   top: 0;
   left: 0;
@@ -62,12 +44,12 @@ onMounted(() => {
 }
 
 [data-stack-order="1"] {
-  left: var(--stacked-header-size);
+  top: var(--stacked-header-size);
   z-index: 2;
 }
 
 [data-stack-order="0"] {
-  left: calc(2 * var(--stacked-header-size));
+  top: calc(2 * var(--stacked-header-size));
   z-index: 3;
 }
 </style>
