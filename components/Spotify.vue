@@ -5,12 +5,12 @@
         <img :src="data?.images[1].url" width="300" height="300" />
       </div>
       <div class="controller-overlay">
-        <div
+        <button
           class="controller"
           :class="{ triangle: contextState != 'playing' }"
           @click="playSound"
           ref="audioControl"
-        ></div>
+        ></button>
       </div>
     </div>
   </Now>
@@ -20,6 +20,7 @@
 import { type AudioSourceState } from "~/obdk";
 const { data } = await useFetch("/api/get-recently-played");
 
+let audio: HTMLAudioElement | null;
 let audioBuffer: AudioBuffer;
 let audioContext: AudioContext | null;
 let contextState: Ref<AudioSourceState> = ref("initial");
@@ -28,29 +29,28 @@ let source: AudioBufferSourceNode;
 async function loadSound(): Promise<void> {
   if (!audioContext) {
     audioContext = new AudioContext();
-  }
-
-  if (!audioBuffer) {
-    const resp = await fetch(data.value?.previewUrl!);
-    const buf = await resp.arrayBuffer();
-    audioBuffer = await audioContext.decodeAudioData(buf);
+    audio = document.createElement("audio");
+    audio.addEventListener("ended", (e) => {
+      contextState.value = "ended";
+    });
+    audio.loop = false;
+    if (!data.value?.previewUrl) return;
+    audio.src = data.value?.previewUrl;
+    audio.crossOrigin = "Anonymous";
+    const source = audioContext!.createMediaElementSource(audio);
+    source.connect(audioContext!.destination);
+    audio.pause();
   }
 }
 
 async function playSound() {
-  if (!audioContext) return;
-
-  if (audioContext.state == "running") {
-    if (contextState.value == "initial" || contextState.value == "ended") {
-      source = audioContext.createBufferSource();
-      source.connect(audioContext.destination);
-      source.buffer = audioBuffer;
-      source.start(0);
-      contextState.value = "playing";
-    } else {
-      source.stop();
-      contextState.value = "ended";
-    }
+  if (!audio) return;
+  if (audio.paused) {
+    audio.play();
+    contextState.value = "playing";
+  } else {
+    audio?.pause();
+    contextState.value = "ended";
   }
 }
 
@@ -84,7 +84,6 @@ onBeforeUnmount(() => {
 }
 
 .spotify {
-  position: relative;
   width: var(--ideal-block-size);
   display: grid;
   grid-template-areas: "stack";
@@ -117,5 +116,11 @@ onBeforeUnmount(() => {
   height: 3em;
   background-color: #fff;
   transform: rotate(90deg);
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-align: inherit;
+  font: inherit;
+  border-radius: 0;
 }
 </style>
