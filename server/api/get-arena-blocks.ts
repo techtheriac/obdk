@@ -9,8 +9,5 @@ const config: BlocksConfig = {
 export default defineEventHandler(async (event) => {
   const BLOCKS_INSTANCE = new Blocks(config);
   const res = await BLOCKS_INSTANCE.getChannels();
-
-  console.log("server res", res);
-
   return res;
 });

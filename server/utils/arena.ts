@@ -19,8 +19,6 @@ export class Blocks {
       },
     );
 
-    // return response.data;
-
     return response.data.contents.map((x) => {
       return {
         image: x.image?.square?.url,
