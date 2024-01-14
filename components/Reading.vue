@@ -1,12 +1,16 @@
 <template>
   <Now title="reading" description="Recommended readings" :summary="summary">
-    <div class="reading-wrapper">
+    <NuxtLink
+      to="https://www.are.na/jezreel-franklin/readings-to-live-by"
+      target="_blank"
+      class="reading-wrapper"
+    >
       <div class="marquee-wrapper">
         <div class="reading-image marquee-item" v-for="block in data">
           <img :src="block.image" width="300" height="300" />
         </div>
       </div>
-    </div>
+    </NuxtLink>
   </Now>
 </template>
 

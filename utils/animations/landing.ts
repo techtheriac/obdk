@@ -3,8 +3,7 @@ import { gsap } from "gsap";
 export interface LandingAnimatable {
   techtheriac: HTMLElement;
   bio: HTMLElement;
-  burger: HTMLElement;
-  playing: HTMLLIElement;
+  nowSlider: HTMLElement;
 }
 
 export class LandingAnimation {
@@ -26,6 +25,16 @@ export class LandingAnimation {
       .call(this.toggleVisibility, [this.landingAnimatables.bio])
       .from(this.landingAnimatables.bio, {
         opacity: 0,
+      })
+      .call(this.toggleVisibility, [this.landingAnimatables.nowSlider])
+      .from(this.landingAnimatables.nowSlider, {
+        autoAlpha: () => 0,
+      })
+      .from(this.landingAnimatables.nowSlider.querySelectorAll(".now"), {
+        duration: 0.2,
+        stagger: 0.1,
+        yPercent: -90,
+        ease: "power3.in",
       })
       .pause();
   }

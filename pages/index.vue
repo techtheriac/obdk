@@ -21,8 +21,7 @@ onMounted(() => {
   const animatables: LandingAnimatable = {
     techtheriac: document.querySelector(".obdk")!,
     bio: document.querySelector(".bio")!,
-    burger: document.querySelector(".burger")!,
-    playing: document.querySelector(".spotify")!,
+    nowSlider: document.querySelector(".now-slider")!,
   };
 
   new Application(animatables);

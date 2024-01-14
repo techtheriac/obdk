@@ -1,5 +1,5 @@
 <template>
-  <div class="now-slider">
+  <div class="now-slider hidden">
     <Writing />
     <Spotify />
     <Reading />
