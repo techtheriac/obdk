@@ -12,15 +12,12 @@ export interface LandingAnimatable {
 export class LandingAnimation {
   landingAnimatables: LandingAnimatable;
   timeline: GSAPTimeline;
-  techthericState: Flip.FlipState;
 
   constructor(landingAnimatables: LandingAnimatable) {
     this.landingAnimatables = landingAnimatables;
 
-    this.techthericState = Flip.getState(this.landingAnimatables.techtheriac);
-
     this.timeline = gsap
-      .timeline({})
+      .timeline({ duration: 4 })
       .call(this.toggleVisibility, [this.landingAnimatables.techtheriac])
       .to(".loader", {
         "--size-background": "1rem",
@@ -28,11 +25,9 @@ export class LandingAnimation {
         ease: "power2.in",
       })
       .from(this.landingAnimatables.techtheriac.querySelectorAll("path"), {
-        duration: 0.3,
+        duration: 0.4,
         stagger: 0.1,
         autoAlpha: () => 0,
-        // xPercent: () => -20,
-        // ease: "power4.out",
         ease: "expo.inOut",
       })
       .call(this.flipTectheriac, [
@@ -52,8 +47,8 @@ export class LandingAnimation {
       .from(
         this.landingAnimatables.nowSlider.querySelectorAll(".now"),
         {
-          duration: 0.5,
-          stagger: 0.2,
+          duration: 0.4,
+          stagger: 0.1,
           opacity: 0,
           xPercent: -20,
           ease: "power3.in",
@@ -64,14 +59,6 @@ export class LandingAnimation {
       .from(this.landingAnimatables.bio, {
         opacity: 0,
       })
-
-      //   {
-      //     autoAlpha: () => 0,
-      //     duration: 0.5,
-      //     xPercent: -20
-      //   },
-      //   "<",
-      // )
       .pause();
   }
 
