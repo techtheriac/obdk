@@ -5,9 +5,7 @@
       <li>titles</li>
     </ul>
   </div>
-  <div>
-    <Ruminations />
-  </div>
+  <div></div>
 </template>
 
 <script setup lang="ts">

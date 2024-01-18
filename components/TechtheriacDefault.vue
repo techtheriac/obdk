@@ -7,7 +7,7 @@
 <style lang="scss" scoped>
 .obdk {
   width: 100%;
-  fill: var(--foreground-08);
+  fill: var(--foreground-dark-dim);
 }
 .opacity {
   opacity: 0;

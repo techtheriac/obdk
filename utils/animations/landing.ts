@@ -22,17 +22,17 @@ export class LandingAnimation {
     this.timeline = gsap
       .timeline({})
       .call(this.toggleVisibility, [this.landingAnimatables.techtheriac])
-      .from(".loader", {
-        "--size-background": "10rem",
+      .to(".loader", {
+        "--size-background": "1rem",
         duration: 1,
         ease: "power2.in",
       })
       .from(this.landingAnimatables.techtheriac.querySelectorAll("path"), {
-        duration: 0.2,
-        stagger: 0.09,
+        duration: 0.5,
+        stagger: 0.2,
         autoAlpha: () => 0,
-        x: () => -20,
-        ease: "Power4.out",
+        // x: () => -20,
+        ease: "power4.out",
       })
       .call(this.flipTectheriac, [
         this.landingAnimatables.flipContainer,
@@ -51,15 +51,20 @@ export class LandingAnimation {
         opacity: 0,
       })
       .call(this.toggleVisibility, [this.landingAnimatables.nowSlider])
-      .from(this.landingAnimatables.nowSlider, {
-        autoAlpha: () => 0,
-      })
-      .from(this.landingAnimatables.nowSlider.querySelectorAll(".now"), {
-        duration: 0.2,
-        stagger: 0.1,
-        yPercent: -90,
-        ease: "power3.in",
-      })
+      .from(
+        this.landingAnimatables.nowSlider,
+        {
+          autoAlpha: () => 0,
+          duration: 0.5,
+        },
+        "<",
+      )
+      // .from(this.landingAnimatables.nowSlider.querySelectorAll(".now"), {
+      //   duration: 0.5,
+      //   stagger: 0.2,
+      //   opacity: 0,
+      //   ease: "power3.in",
+      // })
       .pause();
   }
 
@@ -77,8 +82,9 @@ export class LandingAnimation {
     Flip.from(initial, {
       absolute: true,
       nested: true,
-      stagger: 0.09,
+      stagger: 0.1,
       duration: 0.5,
+      ease: "sine.inOut",
     });
   }
 
