@@ -31,17 +31,21 @@ export class LandingAnimation {
         duration: 0.2,
         stagger: 0.09,
         autoAlpha: () => 0,
-        y: () => 50,
+        x: () => -20,
         ease: "Power4.out",
-      })
-      .to(".loader", {
-        height: 0,
-        duration: 1,
       })
       .call(this.flipTectheriac, [
         this.landingAnimatables.flipContainer,
         this.landingAnimatables.techtheriac.querySelectorAll("path"),
       ])
+      .to(
+        ".loader",
+        {
+          height: 0,
+          duration: 1,
+        },
+        "<",
+      )
       .call(this.toggleVisibility, [this.landingAnimatables.bio])
       .from(this.landingAnimatables.bio, {
         opacity: 0,
@@ -73,8 +77,8 @@ export class LandingAnimation {
     Flip.from(initial, {
       absolute: true,
       nested: true,
-      stagger: 0.5,
-      duration: 2,
+      stagger: 0.09,
+      duration: 0.5,
     });
   }
 
