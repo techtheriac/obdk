@@ -3,6 +3,7 @@
     <div class="obdk-bg__layer-one"></div>
     <div class="obdk-bg__layer-two"></div>
     <!-- <Navigation /> -->
+    <Loader />
     <main class="main">
       <slot />
     </main>

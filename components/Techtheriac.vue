@@ -1,5 +1,10 @@
 <template>
-  <PageHeading viewBox="0 0 11165 1351">
+  <svg
+    class="obdk hidden"
+    :class="{ flipDestination: isFlipDestination }"
+    id="obdk"
+    viewBox="0 0 11165 1351"
+  >
     <path
       d="M1003.55 0.652298V151.455H591.599V1345H412.292V151.455H0.34375V0.652298H1003.55Z"
     />
@@ -31,5 +36,21 @@
     <path
       d="M10987.6 2.4021V179.422H10279.5V2.4021H10987.6ZM10987.6 356.442V179.422H11164.6V356.442H10987.6ZM11164.6 1169.98H10987.6V992.96H11164.6V1169.98ZM10279.5 1347V1169.98H10987.6V1347H10279.5ZM10102.5 179.422H10279.5V1169.98H10102.5V179.422Z"
     />
-  </PageHeading>
+  </svg>
 </template>
+
+<script setup lang="ts">
+const props = defineProps<{
+  isFlipDestination: Boolean;
+}>();
+</script>
+
+<style lang="scss" scoped>
+.obdk {
+  width: 100%;
+  fill: var(--foreground-08);
+}
+.opacity {
+  opacity: 0;
+}
+</style>

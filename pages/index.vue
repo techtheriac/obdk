@@ -4,7 +4,7 @@
       <Bio />
       <NowSlider />
     </div>
-    <Techtheriac />
+    <TechtheriacDefault />
   </main>
 </template>
 
@@ -22,6 +22,7 @@ onMounted(() => {
     techtheriac: document.querySelector(".obdk")!,
     bio: document.querySelector(".bio")!,
     nowSlider: document.querySelector(".now-slider")!,
+    flipContainer: document.querySelector(".flip-container")!,
   };
 
   new Application(animatables);
