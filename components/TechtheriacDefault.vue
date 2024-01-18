@@ -1,5 +1,6 @@
 <template>
   <svg class="flip-container obdk" id="obdk" viewBox="0 0 11165 1351"></svg>
+  <!-- <svg class="flip-container obdk" id="obdk" viewBox="0 0 11165 1351"></svg> -->
 </template>
 
 <script setup lang="ts"></script>

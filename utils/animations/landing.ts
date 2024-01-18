@@ -28,11 +28,12 @@ export class LandingAnimation {
         ease: "power2.in",
       })
       .from(this.landingAnimatables.techtheriac.querySelectorAll("path"), {
-        duration: 0.5,
-        stagger: 0.2,
+        duration: 0.3,
+        stagger: 0.1,
         autoAlpha: () => 0,
-        // x: () => -20,
-        ease: "power4.out",
+        // xPercent: () => -20,
+        // ease: "power4.out",
+        ease: "expo.inOut",
       })
       .call(this.flipTectheriac, [
         this.landingAnimatables.flipContainer,
@@ -43,6 +44,19 @@ export class LandingAnimation {
         {
           height: 0,
           duration: 1,
+          opacity: 0,
+        },
+        "<",
+      )
+      .call(this.toggleVisibility, [this.landingAnimatables.nowSlider])
+      .from(
+        this.landingAnimatables.nowSlider.querySelectorAll(".now"),
+        {
+          duration: 0.5,
+          stagger: 0.2,
+          opacity: 0,
+          xPercent: -20,
+          ease: "power3.in",
         },
         "<",
       )
@@ -50,21 +64,14 @@ export class LandingAnimation {
       .from(this.landingAnimatables.bio, {
         opacity: 0,
       })
-      .call(this.toggleVisibility, [this.landingAnimatables.nowSlider])
-      .from(
-        this.landingAnimatables.nowSlider,
-        {
-          autoAlpha: () => 0,
-          duration: 0.5,
-        },
-        "<",
-      )
-      // .from(this.landingAnimatables.nowSlider.querySelectorAll(".now"), {
-      //   duration: 0.5,
-      //   stagger: 0.2,
-      //   opacity: 0,
-      //   ease: "power3.in",
-      // })
+
+      //   {
+      //     autoAlpha: () => 0,
+      //     duration: 0.5,
+      //     xPercent: -20
+      //   },
+      //   "<",
+      // )
       .pause();
   }
 
