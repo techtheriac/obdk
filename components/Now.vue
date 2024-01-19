@@ -1,5 +1,5 @@
 <template>
-  <div class="now">
+  <div data-augmented-ui="tl-clip-x br-rect border" class="now">
     <div class="title">{{ title }}</div>
     <slot></slot>
     <div class="info">
@@ -27,10 +27,13 @@ const props = defineProps<{
   flex-direction: column;
   justify-content: space-between;
   gap: var(--space-s);
-  padding: var(--space-s) var(--space-xs) var(--space-s) var(--space-xs);
   padding: var(--space-xs);
-  background-color: #1a1a1a4d;
-  border: 1px solid #2e2e2e;
+  --aug-border-all: 1px;
+  --aug-border-bg: #2e2e2e;
+
+  &:hover {
+    background-color: #1a1a1a93;
+  }
 }
 
 .title {

@@ -10,6 +10,8 @@ export class Application {
       application = this;
     }
 
+    this.setBackgroundBaseSize();
+
     this.landingAnimation = new LandingAnimation(landingAnimatable);
 
     this.init();
@@ -23,6 +25,13 @@ export class Application {
     this.onResize();
     this.addEventListeners();
     this.landingAnimation.animateLanding();
+  }
+
+  public setBackgroundBaseSize(): void {
+    document.documentElement.style.setProperty(
+      "--size-background-base",
+      `${window.innerWidth / 10}`,
+    );
   }
 
   public setViewportHeight(): void {

@@ -4,7 +4,7 @@
       <Bio />
       <NowSlider />
     </div>
-    <Techtheriac />
+    <TechtheriacDefault />
   </main>
 </template>
 
@@ -21,8 +21,8 @@ onMounted(() => {
   const animatables: LandingAnimatable = {
     techtheriac: document.querySelector(".obdk")!,
     bio: document.querySelector(".bio")!,
-    burger: document.querySelector(".burger")!,
-    playing: document.querySelector(".spotify")!,
+    nowSlider: document.querySelector(".now-slider")!,
+    flipContainer: document.querySelector(".flip-container")!,
   };
 
   new Application(animatables);
