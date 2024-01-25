@@ -1,9 +1,9 @@
 <template>
   <div class="now-slider hidden">
-    <Writing />
+    <Garden />
     <Spotify />
     <Reading />
-    <Arena />
+    <Links />
   </div>
 </template>
 

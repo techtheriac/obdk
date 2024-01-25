@@ -1,5 +1,5 @@
 <template>
-  <Now title="blocks" description="arena blocks" summary="10 channels">
+  <Now title="links" description="arena blocks" summary="10 channels">
     <div>Arena Content goes here</div>
   </Now>
 </template>
