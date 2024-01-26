@@ -23,6 +23,7 @@ onMounted(() => {
     bio: document.querySelector(".bio")!,
     nowSlider: document.querySelector(".now-slider")!,
     flipContainer: document.querySelector(".flip-container")!,
+    preloader: document.querySelector(".loader")!,
   };
 
   new Application(animatables);

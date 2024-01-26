@@ -13,15 +13,13 @@ const Map = R.addIndex(R.map);
 
 const isExternal = (url) => {
   try {
-    var u = new URL(url);
-    return true;
+    return Boolean(new URL(url));
   } catch (error) {
     return false;
   }
 };
 
 const GARDEN_BASE_PATH = "musings";
-
 const ELEMENT_TYPE_PATH = R.lensPath(["type"]);
 
 const PARAGRAPH_CONTENT_PATH = R.lensPath([
@@ -56,13 +54,13 @@ const getParagraphArray = getContent(PARAGRAPH_PATH);
 const getElementType = getContent(ELEMENT_TYPE_PATH);
 const paragraphHasChildren = elementHasChildren(PARAGRAPH_PATH);
 
-const parsePregnantParagraph = (contentObject: any, index: number) => {
+export const parsePregnantParagraph = (contentObject: any, index: number) => {
   const link = contentObject?.href;
 
   if (link) {
     return isExternal(link)
       ? h("a", { href: link })
-      : h("a", { herf: `/${GARDEN_BASE_PATH}${link}` });
+      : h("a", { href: `/${GARDEN_BASE_PATH}${link}` });
   }
 };
 

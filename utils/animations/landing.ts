@@ -8,6 +8,7 @@ export interface LandingAnimatable {
   bio: HTMLElement;
   nowSlider: HTMLElement;
   flipContainer: HTMLElement;
+  preloader: HTMLElement;
 }
 export class LandingAnimation {
   landingAnimatables: LandingAnimatable;
@@ -35,11 +36,11 @@ export class LandingAnimation {
         this.landingAnimatables.techtheriac.querySelectorAll("path"),
       ])
       .to(
-        ".loader",
+        this.landingAnimatables.preloader,
         {
-          height: 0,
           duration: 1,
           opacity: 0,
+          transformOrigin: "0 0",
         },
         "<",
       )
@@ -59,11 +60,16 @@ export class LandingAnimation {
       .from(this.landingAnimatables.bio, {
         opacity: 0,
       })
+      .call(this.destroyElement, [this.landingAnimatables.preloader])
       .pause();
   }
 
   public animateLanding(): void {
     this.timeline.play();
+  }
+
+  private destroyElement(preloader: HTMLElement) {
+    preloader.parentNode?.removeChild(preloader);
   }
 
   private flipTectheriac(homeContainer, techtheriac) {
