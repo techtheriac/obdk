@@ -23,6 +23,24 @@ export const getPosts = async () => {
   });
 };
 
+export const getPostBySlug = async (slug: string) => {
+  return await notion.databases.query({
+    database_id: process.env.NOTION_BLOG_ID!,
+    filter: {
+      property: "slug",
+      text: {
+        equals: slug,
+      },
+    },
+    sorts: [
+      {
+        property: "published",
+        direction: "descending",
+      },
+    ],
+  });
+};
+
 export const getPost = async (id: string) => {
   const properties = await notion.pages.properties.retrieve({
     page_id: id,

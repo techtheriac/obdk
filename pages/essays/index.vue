@@ -1,24 +1,37 @@
 <template>
-  <div>
-    <ul class="filter">
-      <li
-        role="button"
-        v-for="(attribute, title) in aumentedAttributeMap"
-        :data-augmented-ui="attribute"
-      >
-        <span>{{ title }}</span>
-        <div class="container__btn_filter">
-          <button class="btn_filter"></button>
-          <button class="btn_filter"></button>
-          <button class="btn_filter"></button>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div></div>
+  <ul class="filter">
+    <li
+      role="button"
+      v-for="(attribute, title) in aumentedAttributeMap"
+      :data-augmented-ui="attribute"
+    >
+      <span>{{ title }}</span>
+      <div class="container__btn_filter">
+        <button class="btn_filter"></button>
+        <button class="btn_filter"></button>
+        <button class="btn_filter"></button>
+      </div>
+    </li>
+  </ul>
+
+  <ul>
+    <li v-for="content in contents">
+      <MusingItem
+        :title="content.title"
+        :path="content.slug"
+        :publised="content.date"
+        :stage="content.stage"
+        genre="default"
+      />
+    </li>
+  </ul>
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  layout: "article",
+});
+
 import { WRITING_GENRES } from "~/obdk";
 import { getPosts } from "~/server/utils/notion";
 import { useHarmoziedContent } from "~/server/utils/blogInfrastructure";
@@ -31,16 +44,9 @@ const aumentedAttributeMap: AugmentedAttributedMap = {
   engineering: "tl-clip-x br-rect border",
 };
 
-definePageMeta({
-  layout: "article",
-});
-
-const musings = await queryContent("www/musings").find();
-const notionsPosts = await getPosts();
-
-const content = useHarmoziedContent(musings, notionsPosts);
-
-console.log(content);
+const musings = await queryContent("essays").find();
+const { data } = await useAsyncData("notion", async () => await getPosts());
+const contents = useHarmoziedContent(musings, data.value);
 </script>
 
 <style scoped>

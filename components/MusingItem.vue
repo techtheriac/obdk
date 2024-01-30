@@ -18,6 +18,7 @@ const props = defineProps<{
   path?: string;
   genre: string;
   publised?: string;
+  stage?: string;
 }>();
 </script>
 

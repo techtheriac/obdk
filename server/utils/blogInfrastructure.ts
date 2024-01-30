@@ -14,11 +14,12 @@ export function useHarmoziedContent(
   localPosts: any,
   notionPosts: any,
 ): HarmonizedArticle[] {
+  console.log("LOCAL", localPosts);
   const local: HarmonizedArticle[] = localPosts.map((post) => {
     return {
       date: post.last_edited,
       title: post.title,
-      slug: post.slug,
+      slug: post._path,
       source: "local",
       stage: post.stage,
     };
@@ -28,7 +29,7 @@ export function useHarmoziedContent(
     return {
       date: post.last_edited_time,
       title: post.properties.name.title[0].plain_text,
-      slug: post.properties.slug.rich_text[0].plain_text,
+      slug: `notes/${post.properties.slug.rich_text[0].plain_text}`,
       source: "notion",
       stage: post.properties.stage.status.name,
     };
