@@ -20,6 +20,8 @@
 
 <script setup lang="ts">
 import { WRITING_GENRES } from "~/obdk";
+import { getPosts } from "~/server/utils/notion";
+import { useHarmoziedContent } from "~/server/utils/blogInfrastructure";
 type Filter = (typeof WRITING_GENRES)[number];
 type AugmentedAttributedMap = Record<Filter, string>;
 
@@ -33,7 +35,12 @@ definePageMeta({
   layout: "article",
 });
 
-const musings = await queryContent("www/musings");
+const musings = await queryContent("www/musings").find();
+const notionsPosts = await getPosts();
+
+const content = useHarmoziedContent(musings, notionsPosts);
+
+console.log(content);
 </script>
 
 <style scoped>

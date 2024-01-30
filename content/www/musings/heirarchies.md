@@ -3,6 +3,7 @@ title: Musings on Heirarchies
 slug: musings-on-heirarchies
 last_edited: 10th Sep 2023
 genre: musing
+stage: bud
 ---
 
 Throwing away the assumption that absolutes exist brings about an opening to a perspective from which we observe the transitive nature of knowledge and things in general. This notion is perhaps more apparent in the context of culture.

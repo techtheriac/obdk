@@ -2,6 +2,7 @@
 title: Just a little while
 slug: just-a-little-while
 last_edited: 10th Sep 2023
+stage: fruit
 genre: poetry
 ---
 

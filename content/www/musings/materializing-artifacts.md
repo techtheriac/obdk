@@ -2,6 +2,7 @@
 title: Materialzing Artifacts
 slug: materializing-artifacts
 last_edited: 16th Dec 2023
+stage: seed
 genre: engineering
 ---
 
