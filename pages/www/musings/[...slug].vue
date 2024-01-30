@@ -16,7 +16,6 @@ definePageMeta({
   layout: "article",
 });
 </script>
-
 <style lang="scss">
 #content {
   padding: 0 var(--space);

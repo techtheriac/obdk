@@ -20,6 +20,7 @@ body {
   -webkit-font-smoothing: antialiased;
   font-family: "TWK Lausanne";
   text-rendering: optimizeLegibility;
+  overscroll-behavior: none;
 }
 
 html {

@@ -40,7 +40,8 @@ export class LandingAnimation {
         {
           duration: 1,
           opacity: 0,
-          transformOrigin: "0 0",
+          height: 0,
+          // transformOrigin: "0 0",
         },
         "<",
       )

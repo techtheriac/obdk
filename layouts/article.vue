@@ -13,7 +13,7 @@
 <style lang="scss" scoped>
 .content-main {
   --size-background: 200px;
-  padding-top: var(--space-m);
+  padding-top: var(--space-s);
   display: flex;
   flex-direction: column;
   width: 100%;
