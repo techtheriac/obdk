@@ -5,7 +5,9 @@
       :date="postData.created_time"
       genre="essay"
     />
-    <NotionRenderer :postContent="postContent" />
+    <ClientOnly>
+      <NotionRenderer :postContent="postContent" />
+    </ClientOnly>
   </div>
 </template>
 
@@ -16,12 +18,8 @@ definePageMeta({
 });
 
 const slug = useRoute().params?.slug[0];
-
 const { data } = await useFetch(`/api/get-notion-post/${slug}`);
-
 const { postContent, postData } = data.value;
-
-console.log(postData);
 </script>
 
 <style scoped></style>

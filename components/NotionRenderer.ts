@@ -75,11 +75,7 @@ const parseParagraph = (elementObject: Content, index: number) => {
     return h("p", getParagraphContent(elementObject));
   } else {
     const paragraphArray = getParagraphArray(elementObject);
-
-    console.log("PARAGRAPH ARRAY", paragraphArray);
-
     const paragraphDescendants = Map(renderProcedure, paragraphArray);
-
     return h("p", paragraphDescendants);
   }
 };
