@@ -1,14 +1,12 @@
 <template>
-  <div>
+  <article id="content">
     <PublishedTitle
       :title="postData.properties.name.title[0].plain_text"
       :date="postData.created_time"
       genre="essay"
     />
-    <ClientOnly>
-      <NotionRenderer :postContent="postContent" />
-    </ClientOnly>
-  </div>
+    <NotionRenderer data-content-id :postContent="postContent" />
+  </article>
 </template>
 
 <script setup lang="ts">
@@ -21,5 +19,3 @@ const slug = useRoute().params?.slug[0];
 const { data } = await useFetch(`/api/get-notion-post/${slug}`);
 const { postContent, postData } = data.value;
 </script>
-
-<style scoped></style>

@@ -115,3 +115,15 @@ export type Modified = {
   object: string;
   id: string;
 };
+
+export const STAGES = ["seed", "bud", "fruit"] as const;
+export type Stage = (typeof STAGES)[number];
+export type Source = "notion" | "local";
+
+export interface HarmonizedArticle {
+  date: string;
+  title: string;
+  slug: string;
+  source: Source;
+  stage: Stage | string;
+}

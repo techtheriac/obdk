@@ -19,7 +19,7 @@ const isExternal = (url) => {
   }
 };
 
-const GARDEN_BASE_PATH = "musings";
+const GARDEN_BASE_PATH = "notes";
 const ELEMENT_TYPE_PATH = R.lensPath(["type"]);
 
 const PARAGRAPH_CONTENT_PATH = R.lensPath([
@@ -54,37 +54,60 @@ const getParagraphArray = getContent(PARAGRAPH_PATH);
 const getElementType = getContent(ELEMENT_TYPE_PATH);
 const paragraphHasChildren = elementHasChildren(PARAGRAPH_PATH);
 
-const handleTextNode = (contentObject: any, index: number) => {
+async function handleTextNode(contentObject: any, index: number) {
   const link = contentObject?.href;
 
-  if (link) {
-    return isExternal(link)
-      ? h("a", { href: link }, contentObject?.plain_text)
-      : h(
-          "a",
-          { href: `/${GARDEN_BASE_PATH}${link}` },
-          contentObject?.plain_text,
-        );
+  if (!link) {
+    return contentObject?.plain_text;
   }
 
-  return contentObject?.plain_text;
-};
+  if (isExternal(link)) {
+    return h("a", { href: link }, contentObject?.plain_text);
+  }
 
-const parseParagraph = (elementObject: Content, index: number) => {
+  const slug = await getSlugFromPageId(link);
+
+  console.log("SLUG", slug);
+
+  return h(
+    "a",
+    { href: `/${GARDEN_BASE_PATH}/${slug}` },
+    contentObject?.plain_text,
+  );
+}
+
+async function getSlugFromPageId(pageId: string): Promise<string | undefined> {
+  const { data } = await useFetch(`/api/get-notion-slug-by-id${pageId}`);
+
+  console.log("SLUG DATA RES", data);
+  if (data) {
+    // @ts-ignore
+    return data.value.slug as string;
+  }
+}
+
+const parseParagraph = async (elementObject: Content, index: number) => {
   if (!paragraphHasChildren(elementObject)) {
     return h("p", getParagraphContent(elementObject));
   } else {
     const paragraphArray = getParagraphArray(elementObject);
-    const paragraphDescendants = Map(renderProcedure, paragraphArray);
+
+    const paragraphDescendants = await Promise.all(
+      paragraphArray.map(renderProcedure),
+    );
+    // const _paragraphDescendants = Map(renderProcedure, paragraphArray);
     return h("p", paragraphDescendants);
   }
 };
 
-function renderProcedure(elementObject: Content | any, index: number): any {
+async function renderProcedure(
+  elementObject: Content | any,
+  index: number,
+): Promise<any> {
   const elementType: ContentType = getElementType(elementObject);
   switch (elementType) {
     case "paragraph":
-      return parseParagraph(elementObject, index);
+      return await parseParagraph(elementObject, index);
     case "heading_1":
       return h("h1", getContent(HEADING_CONTENT_PATH(1))(elementObject));
     case "heading_2":
@@ -106,7 +129,7 @@ function renderProcedure(elementObject: Content | any, index: number): any {
         h("p", getContent(QUOTE_CONTENT_PATH)(elementObject)),
       ]);
     case "text":
-      return handleTextNode(elementObject, index);
+      return await handleTextNode(elementObject, index);
     default:
       return "";
   }
@@ -114,7 +137,9 @@ function renderProcedure(elementObject: Content | any, index: number): any {
 
 export default {
   props: ["postContent"],
-  setup(props) {
-    return () => h("div", Map(renderProcedure, props.postContent));
+  async setup(props) {
+    const content = await Promise.all(props.postContent.map(renderProcedure));
+    // return () => h("div", Map(renderProcedure, props.postContent));
+    return () => h("div", content);
   },
 };

@@ -19,29 +19,68 @@ definePageMeta({
 <style lang="scss">
 #content {
   padding: 0 var(--space);
-  max-width: 700px;
+  max-width: 750px;
   font-family: "TWK Lausanne";
   margin: 0 auto;
 }
 
 [data-content-id] {
   color: rgba(255, 255, 255, 0.83);
+  color: #ededed;
+
   h2,
   h3,
   h4,
   h5,
   h6 {
-    text-decoration: underline;
+    // text-decoration: underline;
+    // color: #a0a0a0;
+    border-bottom: 1px dotted var(--foreground-dark-forest);
+    display: inline-block;
+  }
+
+  h2 {
+    font-size: var(--idealArticleParagraphSize);
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: var(--idealHeadingThree);
   }
 
   p {
     line-height: 1.3;
     font-size: var(--idealArticleParagraphSize);
-    font-weight: 200;
+    font-weight: 300;
+  }
+
+  > p + h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: var(--space-s);
+    margin-bottom: var(--space-xs);
+  }
+
+  * + blockquote {
+    padding: var(--space-xs);
+    background-color: #353e32a3;
+    margin: var(--space-xs) 0;
+    border-radius: 5px;
   }
 
   > p + p {
-    margin-top: var(--space-xs);
+    margin-top: var(--space-s);
+  }
+
+  a {
+    color: inherit;
+    background-color: #63865669;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 </style>
