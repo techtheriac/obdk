@@ -67,8 +67,6 @@ async function handleTextNode(contentObject: any, index: number) {
 
   const slug = await getSlugFromPageId(link);
 
-  console.log("SLUG", slug);
-
   return h(
     "a",
     { href: `/${GARDEN_BASE_PATH}/${slug}` },
@@ -79,7 +77,6 @@ async function handleTextNode(contentObject: any, index: number) {
 async function getSlugFromPageId(pageId: string): Promise<string | undefined> {
   const { data } = await useFetch(`/api/get-notion-slug-by-id${pageId}`);
 
-  console.log("SLUG DATA RES", data);
   if (data) {
     // @ts-ignore
     return data.value.slug as string;

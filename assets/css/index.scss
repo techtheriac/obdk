@@ -6,11 +6,11 @@
 @import "./utilities/interpolate";
 @import "./utilities/generic-properties";
 @import "./utilities/colors";
-@import "./utilities/space-definitions";
 @import "./utilities/size-definitions";
 @import "./utilities/font-definitions";
 @import "./utilities/background-definitions";
 @import "./utilities/augmented-ui";
+@import "./utilities/article";
 
 html,
 body {
@@ -26,7 +26,6 @@ body {
 html {
   background-color: var(--background-dark);
 }
-
 
 .hidden {
   visibility: hidden;

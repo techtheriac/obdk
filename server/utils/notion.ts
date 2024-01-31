@@ -47,8 +47,6 @@ export const getPost = async (id: string) => {
     property_id: "aBAN",
   });
 
-  // console.log("PROPERTIES", properties.results[0]);
-
   return await notion.pages.retrieve({ page_id: id });
 };
 
