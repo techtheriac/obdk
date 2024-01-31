@@ -54,14 +54,20 @@ const getParagraphArray = getContent(PARAGRAPH_PATH);
 const getElementType = getContent(ELEMENT_TYPE_PATH);
 const paragraphHasChildren = elementHasChildren(PARAGRAPH_PATH);
 
-export const parsePregnantParagraph = (contentObject: any, index: number) => {
+const handleTextNode = (contentObject: any, index: number) => {
   const link = contentObject?.href;
 
   if (link) {
     return isExternal(link)
-      ? h("a", { href: link })
-      : h("a", { href: `/${GARDEN_BASE_PATH}${link}` });
+      ? h("a", { href: link }, contentObject?.plain_text)
+      : h(
+          "a",
+          { href: `/${GARDEN_BASE_PATH}${link}` },
+          contentObject?.plain_text,
+        );
   }
+
+  return contentObject?.plain_text;
 };
 
 const parseParagraph = (elementObject: Content, index: number) => {
@@ -69,7 +75,11 @@ const parseParagraph = (elementObject: Content, index: number) => {
     return h("p", getParagraphContent(elementObject));
   } else {
     const paragraphArray = getParagraphArray(elementObject);
-    const paragraphDescendants = Map(parsePregnantParagraph, paragraphArray);
+
+    console.log("PARAGRAPH ARRAY", paragraphArray);
+
+    const paragraphDescendants = Map(renderProcedure, paragraphArray);
+
     return h("p", paragraphDescendants);
   }
 };
@@ -99,6 +109,8 @@ function renderProcedure(elementObject: Content | any, index: number): any {
       return h("blockquote", [
         h("p", getContent(QUOTE_CONTENT_PATH)(elementObject)),
       ]);
+    case "text":
+      return handleTextNode(elementObject, index);
     default:
       return "";
   }
@@ -107,6 +119,6 @@ function renderProcedure(elementObject: Content | any, index: number): any {
 export default {
   props: ["postContent"],
   setup(props) {
-    return h("div", Map(renderProcedure, props.postContent));
+    return () => h("div", Map(renderProcedure, props.postContent));
   },
 };

@@ -45,7 +45,7 @@ const aumentedAttributeMap: AugmentedAttributedMap = {
 };
 
 const musings = await queryContent("essays").find();
-const { data } = await useAsyncData("notion", async () => await getPosts());
+const { data } = await useFetch("/api/get-notion-posts");
 const contents = useHarmoziedContent(musings, data.value);
 </script>
 

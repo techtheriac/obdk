@@ -81,6 +81,7 @@ export type ContentType =
   | "heading_6"
   | "bulleted_list_item"
   | "quote"
+  | "text"
   | "code";
 
 export type Content = {
