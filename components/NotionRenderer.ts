@@ -136,7 +136,6 @@ export default {
   props: ["postContent"],
   async setup(props) {
     const content = await Promise.all(props.postContent.map(renderProcedure));
-    // return () => h("div", Map(renderProcedure, props.postContent));
     return () => h("div", content);
   },
 };

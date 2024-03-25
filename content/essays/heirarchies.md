@@ -1,7 +1,7 @@
 ---
 title: Musings on Heirarchies
 slug: musings-on-heirarchies
-last_edited: 10th Sep 2023
+last_edited: 2023-09-10T15:37:00.000Z
 genre: musing
 stage: bud
 ---

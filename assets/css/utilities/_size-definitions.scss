@@ -40,8 +40,8 @@ $interpolate-max: 1445px;
     --idealHeadingOne,
     $interpolate-min,
     $interpolate-max,
-    35px,
-    60px
+    25px,
+    35px
   );
 
   @include interpolate(
@@ -82,4 +82,5 @@ $interpolate-max: 1445px;
   --space-m: calc(var(--space) * 2);
   --space-l: calc(var(--space-m) * 2);
   --ideal-block-size: 150px;
+  --size-background-base: 20em;
 }

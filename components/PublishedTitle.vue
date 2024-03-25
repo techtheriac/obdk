@@ -26,23 +26,24 @@ const props = defineProps<{
   font-family: "TWK Lausanne";
   font-size: 14px;
   font-style: normal;
-  font-weight: 200;
+  font-weight: 300;
   line-height: normal;
   text-transform: uppercase;
-  padding: calc(var(--space-xs) / 2);
+  /* padding: calc(var(--space-xs) / 2); */
 }
 .title {
   /* --accent-color: rgba(255, 0, 0, 0.228); */
   text-transform: capitalize;
   font-size: var(--idealHeadingOne);
-  font-weight: 600;
-  margin-bottom: var(--space);
+  font-weight: 700;
+  margin-bottom: var(--space-s);
   margin-top: var(--space-xs);
   line-height: 0.89;
   letter-spacing: -1.22px;
   z-index: 2;
   position: relative;
   color: #ededed;
+  text-wrap: balance;
 
   &::before {
     content: "";

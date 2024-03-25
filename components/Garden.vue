@@ -26,9 +26,14 @@
   </Now>
 </template>
 <script setup lang="ts">
-const count = await queryContent("www/musings").count();
+const count = await queryContent("essays").count();
+const { data: notion } = await useFetch("/api/get-notion-posts");
+
+console.log();
 var summary = computed(() => {
-  return `${count} items`;
+  if (notion.value) {
+    return `${count + notion.value?.results.length} items`;
+  }
 });
 </script>
 <style scoped lang="scss">
