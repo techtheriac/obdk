@@ -126,4 +126,5 @@ export interface HarmonizedArticle {
   slug: string;
   source: Source;
   stage: Stage | string;
+  genre: string | undefined;
 }
