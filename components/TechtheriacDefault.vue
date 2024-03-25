@@ -6,11 +6,6 @@
     id="obdk"
     viewBox="0 0 11165 1351"
   ></svg>
-  <title id="title" lang="en">
-    This represents a the official Jezreel Franklin's logo <!--
-    preserveAspectRatio="xMidYMax meet" style="height: 100vh" -->
-  </title>
-  <!-- <svg class="flip-container obdk" id="obdk" viewBox="0 0 11165 1351"></svg> -->
 </template>
 
 <script setup lang="ts"></script>

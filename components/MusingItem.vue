@@ -26,12 +26,7 @@ const props = defineProps<{
 
 const publishedText = computed(() => {
   if (!props.published) return;
-
-  const parsedDate = parseISO(props.published);
-  const date = format(parsedDate, "do MMM yyyy");
-  const time = format(parsedDate, "h:mm a");
-
-  return `last updated on ${date} at ${time}`;
+  return useDateTime(props.published);
 });
 </script>
 
@@ -50,7 +45,6 @@ const publishedText = computed(() => {
 
 .meta {
   font-weight: 400;
-  text-transform: uppercase;
   font-size: 14px;
   display: flex;
 
@@ -79,10 +73,5 @@ const publishedText = computed(() => {
     font-size: var(--idealHeadingOne);
     color: #fff;
   }
-}
-
-.published {
-  font-family: "Space Mono";
-  font-weight: 400;
 }
 </style>

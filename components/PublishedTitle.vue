@@ -1,6 +1,6 @@
 <template>
   <div class="published-title">
-    <span class="published">{{ date }}</span>
+    <span class="published published__article">{{ dateTime }}</span>
     <h1 class="title" :style="{ '--accent-color': getColorFromGenre(genre) }">
       {{ title }}
     </h1>
@@ -9,11 +9,17 @@
 <script setup lang="ts">
 import { type Genre } from "~/obdk";
 import { getColorFromGenre } from "~/utils/color";
+
 const props = defineProps<{
   title: string;
   date: string;
   genre: string | Genre;
 }>();
+
+const dateTime = computed(() => {
+  if (!props.date) return;
+  return useDateTime(props.date);
+});
 </script>
 
 <style scoped>
@@ -21,18 +27,16 @@ const props = defineProps<{
   position: relative;
   height: auto;
 }
-.published {
+
+.published__article {
   color: rgba(255, 255, 255, 0.63);
-  font-family: "TWK Lausanne";
   font-size: 14px;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
-  text-transform: uppercase;
-  /* padding: calc(var(--space-xs) / 2); */
 }
+
 .title {
-  /* --accent-color: rgba(255, 0, 0, 0.228); */
   text-transform: capitalize;
   font-size: var(--idealHeadingOne);
   font-weight: 700;

@@ -35,3 +35,8 @@ html {
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
 }
+
+.published {
+  font-family: "Space Mono";
+  font-weight: 400;
+}
