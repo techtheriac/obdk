@@ -92,7 +92,7 @@ const parseParagraph = async (elementObject: Content, index: number) => {
     const paragraphDescendants = await Promise.all(
       paragraphArray.map(renderProcedure),
     );
-    // const _paragraphDescendants = Map(renderProcedure, paragraphArray);
+
     return h("p", paragraphDescendants);
   }
 };
