@@ -38,4 +38,3 @@ const contents = computed(() => {
   return essays;
 });
 </script>
-<style lang="scss"></style>

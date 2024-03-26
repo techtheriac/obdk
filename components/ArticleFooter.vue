@@ -22,7 +22,7 @@ const props = defineProps<{
 const { next, previous } = usePreviousNext(props.currentSlug, props.contents);
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 footer {
   display: flex;
   justify-content: space-between;
