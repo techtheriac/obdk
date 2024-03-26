@@ -7,7 +7,7 @@
         :date="doc.last_edited"
         :genre="doc.genre"
       />
-      <ContentRenderer :value="doc" />
+      <ContentRenderer data-content :value="doc" />
       <ArticleFooter :current-slug="slug" :contents="contents" />
     </article>
   </ContentDoc>

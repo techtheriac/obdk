@@ -5,7 +5,7 @@
   margin: 0 auto;
 }
 
-[data-content-id] {
+[data-content] {
   color: rgba(255, 255, 255, 0.83);
   color: #ededed;
 
@@ -14,8 +14,6 @@
   h4,
   h5,
   h6 {
-    // text-decoration: underline;
-    // color: #a0a0a0;
     border-bottom: 1px dotted var(--foreground-dark-forest);
     display: inline-block;
   }

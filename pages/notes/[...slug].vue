@@ -6,7 +6,7 @@
       :date="postData.created_time"
       genre="essay"
     />
-    <NotionRenderer data-content-id :postContent="postContent" />
+    <NotionRenderer data-content :postContent="postContent" />
     <ArticleFooter :current-slug="slug" :contents="contents" />
   </article>
 </template>
