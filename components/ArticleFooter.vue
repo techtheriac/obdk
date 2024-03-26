@@ -21,4 +21,32 @@ const props = defineProps<{
 
 const { next, previous } = usePreviousNext(props.currentSlug, props.contents);
 </script>
-<style scoped></style>
+
+<style scoped>
+footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid hsl(0 0% 20.5%);
+  padding-top: var(--space-s);
+  padding-bottom: var(--space-s);
+  margin-top: var(--space-s);
+}
+span {
+  display: flex;
+  flex-direction: column;
+  font-family: "TWK Lausanne";
+  text-transform: capitalize;
+  gap: var(--space-xs);
+  font-weight: 200;
+  a {
+    color: rgba(255, 255, 255, 0.63);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+span:nth-child(2) {
+  align-items: flex-end;
+}
+</style>

@@ -40,7 +40,7 @@ const contents = computed(() => {
     return {
       date: post.last_edited_time,
       title: post.properties.name.title[0].plain_text,
-      slug: `notes/${post.properties.slug.rich_text[0].plain_text}`,
+      slug: `/notes/${post.properties.slug.rich_text[0].plain_text}`,
       source: "notion",
       stage: post.properties.stage.status.name,
       genre: post.properties.tags.multi_select[0].name,
