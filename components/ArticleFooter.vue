@@ -30,6 +30,7 @@ footer {
   padding-top: var(--space-s);
   padding-bottom: var(--space-s);
   margin-top: var(--space-s);
+  font-size: var(--idealSubFontSize);
 }
 span {
   display: flex;
@@ -48,5 +49,6 @@ span {
 
 span:nth-child(2) {
   align-items: flex-end;
+  text-align: right;
 }
 </style>

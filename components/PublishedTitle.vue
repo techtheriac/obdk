@@ -30,8 +30,8 @@ const dateTime = computed(() => {
 
 .published__article {
   color: rgba(255, 255, 255, 0.63);
-  font-size: 14px;
-  font-style: normal;
+  font-size: var(--idealSubFontSize);
+  font-style: italic;
   font-weight: 300;
   line-height: normal;
 }

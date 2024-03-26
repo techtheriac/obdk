@@ -16,8 +16,8 @@ $interpolate-max: 1445px;
     --idealSubFontSize,
     $interpolate-min,
     $interpolate-max,
-    10px,
-    12px
+    12px,
+    14px
   );
 
   @include interpolate(
