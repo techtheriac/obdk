@@ -27,7 +27,7 @@ const dateTime = computed(() => {
   position: relative;
   height: auto;
   border-bottom: 1px solid hsl(0 0% 20.5%);
-  padding: var(--space-s) 0 var(--space-xs);
+  padding: var(--space-xs) 0 var(--space-xs);
   margin-bottom: var(--space-s);
 }
 
