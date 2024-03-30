@@ -1,9 +1,9 @@
 <template>
   <div class="published-title">
-    <span class="published published__article">{{ dateTime }}</span>
     <h1 class="title" :style="{ '--accent-color': getColorFromGenre(genre) }">
       {{ title }}
     </h1>
+    <span class="published published__article">{{ dateTime }}</span>
   </div>
 </template>
 <script setup lang="ts">
@@ -26,22 +26,24 @@ const dateTime = computed(() => {
 .published-title {
   position: relative;
   height: auto;
+  border-bottom: 1px solid hsl(0 0% 20.5%);
+  padding: var(--space-s) 0 var(--space-xs);
+  margin-bottom: var(--space-s);
 }
 
 .published__article {
   color: rgba(255, 255, 255, 0.63);
   font-size: var(--idealSubFontSize);
-  font-style: italic;
   font-weight: 300;
   line-height: normal;
+  display: block;
+  margin-top: var(--space-xs);
 }
 
 .title {
   text-transform: capitalize;
   font-size: var(--idealHeadingOne);
   font-weight: 700;
-  margin-bottom: var(--space-s);
-  margin-top: var(--space-xs);
   line-height: 0.89;
   letter-spacing: -1.22px;
   z-index: 2;

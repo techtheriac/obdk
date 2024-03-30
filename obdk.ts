@@ -128,3 +128,8 @@ export interface HarmonizedArticle {
   stage: Stage | string;
   genre: string | undefined;
 }
+
+export interface Backlink {
+  title: string;
+  slug: string;
+}

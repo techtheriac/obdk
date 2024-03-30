@@ -7,6 +7,7 @@
       genre="essay"
     />
     <NotionRenderer data-content :postContent="postContent" />
+    <BackLink :backlinks="postData?.properties?.related?.relation" />
     <ArticleFooter :current-slug="slug" :contents="contents" />
   </article>
 </template>
@@ -21,8 +22,8 @@ const slug = useRoute().params?.slug[0];
 const { data } = await useFetch(`/api/get-notion-post/${slug}`);
 const { postContent, postData } = data.value;
 
+// footer content
 const { data: notion } = await useFetch("/api/get-notion-posts");
-
 const contents = computed(() => {
   const notes: HarmonizedArticle[] = notion.value!.results.map((post) => {
     return {
