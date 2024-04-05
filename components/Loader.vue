@@ -10,7 +10,7 @@
 
 <style lang="scss" scoped>
 .loader {
-  --size-background: var(--size-background-base);
+  --size-background: 1em;
   width: 100%;
   display: flex;
   align-items: center;
