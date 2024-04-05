@@ -1,5 +1,5 @@
 import * as R from "ramda";
-import type { Content, ContentType } from "~/obdk";
+import { Content, ContentType } from "~/obdk";
 import { h } from "vue";
 
 function viewPathContent(
@@ -74,6 +74,10 @@ async function handleTextNode(contentObject: any, index: number) {
   );
 }
 
+function handleImageNode(contentObject: any, index: number) {
+  return h("img", { src: contentObject?.image?.file?.url });
+}
+
 async function getSlugFromPageId(pageId: string): Promise<string | undefined> {
   const { data } = await useFetch(`/api/get-notion-slug-by-id${pageId}`);
 
@@ -127,6 +131,8 @@ async function renderProcedure(
       ]);
     case "text":
       return await handleTextNode(elementObject, index);
+    case "image":
+      return handleImageNode(elementObject, index);
     default:
       return "";
   }
