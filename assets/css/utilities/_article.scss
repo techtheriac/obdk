@@ -43,15 +43,28 @@
     margin-bottom: var(--space-xs);
   }
 
-  * + blockquote {
+  * + blockquote,
+  * + img {
+    margin: var(--space-xs) 0;
+  }
+
+  blockquote {
     padding: var(--space-xs);
     background-color: #353e32a3;
-    margin: var(--space-xs) 0;
     border-radius: 5px;
   }
 
   > p + p {
     margin-top: var(--space-s);
+  }
+
+  > h2 + li,
+  p + li {
+    margin-top: var(--space-xs);
+  }
+
+  li + li {
+    margin-top: calc(var(--space-xs) - 0.2em);
   }
 
   a {
@@ -61,5 +74,9 @@
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  img {
+    max-width: 100%;
   }
 }
