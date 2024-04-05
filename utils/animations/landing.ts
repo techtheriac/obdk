@@ -20,11 +20,11 @@ export class LandingAnimation {
     this.timeline = gsap
       .timeline({ duration: 4 })
       .call(this.toggleVisibility, [this.landingAnimatables.techtheriac])
-      .to(".loader", {
-        "--size-background": "1rem",
-        duration: 1,
-        ease: "power2.in",
-      })
+      // .to(".loader", {
+      //   "--size-background": "1rem",
+      //   duration: 1,
+      //   ease: "power2.in",
+      // })
       .from(this.landingAnimatables.techtheriac.querySelectorAll("path"), {
         duration: 0.4,
         stagger: 0.1,

@@ -9,9 +9,6 @@ export class Application {
     if (application) {
       application = this;
     }
-
-    // this.setBackgroundBaseSize();
-
     this.landingAnimation = new LandingAnimation(landingAnimatable);
 
     this.init();
