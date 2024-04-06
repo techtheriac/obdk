@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <section>
     <span>
       <small>previous</small>
       <NuxtLink :to="previous.slug">{{ previous.title }}</NuxtLink>
@@ -8,7 +8,7 @@
       <small>next</small>
       <NuxtLink :to="next.slug">{{ next.title }}</NuxtLink>
     </span>
-  </footer>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -23,7 +23,7 @@ const { next, previous } = usePreviousNext(props.currentSlug, props.contents);
 </script>
 
 <style scoped lang="scss">
-footer {
+section {
   display: flex;
   justify-content: space-between;
   border-top: 1px solid hsl(0 0% 20.5%);

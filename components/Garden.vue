@@ -1,5 +1,5 @@
 <template>
-  <Now title="ruminations" description="notes & essays" :summary="summary">
+  <Now title="ruminations" description="Notes & essays" :summary="summary">
     <NuxtLink to="/essays" class="writing-wrapper">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 379 161">
         <path

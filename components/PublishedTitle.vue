@@ -41,15 +41,14 @@ const dateTime = computed(() => {
 }
 
 .title {
-  text-transform: capitalize;
   font-size: var(--idealHeadingOne);
-  font-weight: 700;
-  line-height: 0.89;
+  font-weight: 600;
+  /* line-height: 0.89; */
   letter-spacing: -1.22px;
   z-index: 2;
   position: relative;
   color: #ededed;
-  text-wrap: balance;
+  text-wrap: pretty;
 
   &::before {
     content: "";

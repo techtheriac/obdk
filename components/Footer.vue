@@ -1,11 +1,31 @@
 <template>
   <footer>
-    <Spotify />
+    <div>
+      <small> © Franklin Jezreel </small>
+    </div>
+    <ul>
+      <li v-for="link in links">
+        <NuxtLink :to="link.link">{{ link.name }}</NuxtLink>
+      </li>
+    </ul>
   </footer>
 </template>
 
-<script>
-export default {};
+<script setup lang="ts">
+const links = [
+  {
+    name: "about",
+    link: "/about",
+  },
+  {
+    name: "tw",
+    link: "https://twitter.com/techtheric",
+  },
+  {
+    name: "ln",
+    link: "https://www.linkedin.com/in/franklin-jezreel/",
+  },
+];
 </script>
 
 <style lang="scss" scoped>
@@ -13,17 +33,23 @@ export default {};
 footer {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  p {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.63);
+  font-family: "TWK Lausanne";
+  text-transform: uppercase;
+  font-weight: 200;
+  z-index: 1;
+  padding: 0 var(--space-xs) var(--space-xs);
+  font-size: var(--idealSubFontSize);
 
-    span {
-      @include gestaltCaps(250, var(--idealSubFontSize));
-      color: var(--foreground-dark-dim);
+  ul {
+    display: inherit;
+  }
+  a {
+    color: inherit;
+    &:hover {
+      text-decoration: underline;
     }
   }
-  margin-bottom: 0.5em;
 }
 </style>

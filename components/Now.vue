@@ -44,5 +44,14 @@ const props = defineProps<{
 .info {
   display: flex;
   flex-direction: column;
+  font-weight: 200;
+  gap: 0.3em;
+}
+
+.summary {
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
