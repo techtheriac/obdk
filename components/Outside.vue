@@ -17,6 +17,10 @@ export default {
     return {
       externalLinks: [
         {
+          name: "vsco",
+          link: "https://www.are.na/jezreel-franklin",
+        },
+        {
           name: "arena",
           link: "https://www.are.na/jezreel-franklin",
         },
@@ -36,18 +40,18 @@ export default {
 
 <style lang="scss" scoped>
 .outside {
+  align-items: flex-end;
   display: flex;
   flex-direction: column;
   gap: 10px;
 
   li {
-    font-family: "Degular Variable";
+    font-family: "Gestalt";
     text-transform: uppercase;
-    font-size: 14px;
-    letter-spacing: -0.09em;
+    font-size: 1rem;
 
     a {
-      color: var(--foreground-dark);
+      color: #000;
     }
   }
 }

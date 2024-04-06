@@ -1,5 +1,5 @@
 $interpolate-min: 350px;
-$interpolate-max: 1512px;
+$interpolate-max: 1445px;
 
 :root {
   @include interpolate(--space, $interpolate-min, $interpolate-max, 25px, 40px);
@@ -8,8 +8,8 @@ $interpolate-max: 1512px;
     --idealBaseFontSize,
     $interpolate-min,
     $interpolate-max,
-    14px,
-    20px
+    12px,
+    16px
   );
 
   @include interpolate(
@@ -17,7 +17,7 @@ $interpolate-max: 1512px;
     $interpolate-min,
     $interpolate-max,
     12px,
-    18px
+    14px
   );
 
   @include interpolate(
@@ -32,24 +32,24 @@ $interpolate-max: 1512px;
     --idealArticleParagraphSize,
     $interpolate-min,
     $interpolate-max,
-    16px,
-    20px
+    14px,
+    16px
   );
 
   @include interpolate(
     --idealHeadingOne,
     $interpolate-min,
     $interpolate-max,
-    40px,
-    50px
+    25px,
+    32px
   );
 
   @include interpolate(
     --idealHeadingTwo,
     $interpolate-min,
     $interpolate-max,
-    25px,
-    30px
+    20px,
+    25px
   );
 
   @include interpolate(
@@ -60,13 +60,7 @@ $interpolate-max: 1512px;
     25px
   );
 
-  @include interpolate(
-    --idealPoetryLineFontSize,
-    350px,
-    $interpolate-max,
-    12px,
-    20px
-  );
+  @include interpolate(--idealBioFontSize, 350px, $interpolate-max, 16px, 30px);
 
   @include interpolate(
     --idealPoetryTitleFontSize,
@@ -76,8 +70,17 @@ $interpolate-max: 1512px;
     35px
   );
 
+  @include interpolate(
+    --idealStackedHeading,
+    $interpolate-min,
+    $interpolate-max,
+    40px,
+    128px
+  );
   --space-s: calc(var(--space) / 2);
   --space-xs: calc(var(--space-s) / 2);
   --space-m: calc(var(--space) * 2);
-  --html-color: hsla(10, 68%, 46%, 100%);
+  --space-l: calc(var(--space-m) * 2);
+  --ideal-block-size: 150px;
+  --size-background-base: 20em;
 }

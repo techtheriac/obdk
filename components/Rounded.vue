@@ -1,20 +1,22 @@
 <template>
-  <div class="rounded"></div>
+  <div class="rounded" :style="{ 'background-color': colorMap[genre] }"></div>
 </template>
 
-<script lang="ts">
-export default {
-  setup() {
-    return {};
-  },
-};
+<script setup lang="ts">
+const props = defineProps<{
+  genre: string;
+}>();
+const colorMap = ref({
+  musing: "#FF6600",
+  engineering: "#FF9200",
+  poetry: "#87A19E",
+});
 </script>
 
 <style lang="scss" scoped>
 .rounded {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  background-color: var(--tomato);
 }
 </style>

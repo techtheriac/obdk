@@ -1,19 +1,42 @@
 @import "./fonts/degular";
+@import "./fonts/spacemono";
+@import "./fonts/gestalt";
+@import "./fonts/lausanne";
 @import "./utilities/resets";
 @import "./utilities/interpolate";
 @import "./utilities/generic-properties";
 @import "./utilities/colors";
-@import "./utilities/space-definitions";
 @import "./utilities/size-definitions";
 @import "./utilities/font-definitions";
+@import "./utilities/background-definitions";
+@import "./utilities/augmented-ui";
+@import "./utilities/article";
 
 html,
 body {
-  scroll-behavior: smooth;
   a {
     text-decoration: none;
   }
+  -webkit-font-smoothing: antialiased;
+  font-family: "TWK Lausanne";
+  text-rendering: optimizeLegibility;
+  overscroll-behavior: none;
+}
 
-  color: var(--foreground-dark);
+html {
   background-color: var(--background-dark);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.fill-height {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+.published {
+  font-family: "Space Mono";
+  font-weight: 400;
 }

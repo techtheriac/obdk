@@ -1,51 +1,31 @@
 <template>
-  <nav class="navigation">
-    <ul>
-      <li v-for="(link, index) in links">
-        <NuxtLink :to="link.link" :key="index">{{ link.name }}</NuxtLink>
-      </li>
-    </ul>
-  </nav>
+  <NuxtLink class="navigation" :to="route">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="72"
+      height="23"
+      fill="none"
+      viewBox="0 0 72 23"
+    >
+      <path
+        stroke="#fff"
+        d="M1 12c6.012.536 10.105 1.364 12.282 2.484 2.177 1.12 4.557 3.626 7.142 7.516M72 12H1h71ZM1 12c6.012-.536 10.105-1.364 12.282-2.484C15.459 8.396 17.839 5.89 20.424 2L1 12Z"
+      />
+    </svg>
+  </NuxtLink>
 </template>
 
-<script lang="ts">
-export default {
-  setup() {
-    return {
-      links: [
-        {
-          name: "index",
-          link: "/home",
-        },
-        // {
-        //   name: "index",
-        //   link: "/index",
-        // },
-        // {
-        //   name: "manifesto",
-        //   link: "/Manifesto",
-        // },
-      ],
-    };
-  },
-};
+<script setup lang="ts">
+const props = defineProps<{
+  route: string;
+  text: string;
+}>();
 </script>
-
 <style lang="scss" scoped>
 .navigation {
-  ul {
-    display: flex;
-    gap: 5px;
-    li {
-      font-family: "Degular Variable";
-      text-transform: uppercase;
-      font-size: 16px;
-      letter-spacing: -0.09em;
-      a {
-        color: var(--foreground-dark);
-        text-decoration: underline;
-      }
-    }
-  }
+  height: 40px;
+  width: 40px;
+  position: relative;
+  padding: var(--space) 0;
 }
 </style>

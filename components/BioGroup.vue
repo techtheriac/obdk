@@ -1,7 +1,6 @@
 <template>
   <div class="bio-group">
     <Bio />
-    <Navigation />
   </div>
 </template>
 
@@ -10,5 +9,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  align-items: flex-start;
+  justify-content: center;
 }
 </style>
