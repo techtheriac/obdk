@@ -1,5 +1,6 @@
 <template>
-  <div data-augmented-ui="tl-clip-x br-rect border" class="now">
+  <!-- <div data-augmented-ui="tl-clip-x br-rect border" class="now"> -->
+  <div data-augmented-ui="tl-clip-x border" class="now now__border-aug">
     <div class="title">{{ title }}</div>
     <slot></slot>
     <div class="info">
@@ -10,17 +11,25 @@
 </template>
 
 <script setup lang="ts">
+import Now from "~/utils/animations/now";
 import { type SiteMap } from "~/obdk";
 const props = defineProps<{
   title: SiteMap | string;
   description: string | undefined;
   summary: string | undefined;
 }>();
+
+onMounted(() => {
+  const nowElements = document.querySelectorAll(".now");
+  if (!nowElements) return;
+  new Now(nowElements);
+});
 </script>
 
 <style scoped lang="scss">
 @import "../assets/css/utilities/font-definitions";
 .now {
+  --border-bg: #373737;
   @include lausanneNormal(300, var(--idealBaseFontSize));
   scroll-snap-align: start;
   display: flex;
@@ -28,11 +37,11 @@ const props = defineProps<{
   justify-content: space-between;
   gap: var(--space-s);
   padding: var(--space-xs);
-  --aug-border-all: 1px;
-  --aug-border-bg: #2e2e2e;
 
-  &:hover {
-    background-color: #1a1a1a93;
+  &__border-aug {
+    --aug-border-all: 1px;
+    --aug-border-bg: var(--border-bg);
+    --aug-tl: 0px;
   }
 }
 
