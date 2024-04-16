@@ -37,7 +37,7 @@ const summary = computed(() => {
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 ul {
   width: 100%;
   min-width: 150px;
