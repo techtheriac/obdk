@@ -10,7 +10,7 @@ export default class Now {
   onMouseEnter(e) {
     gsap.to(e.target, {
       "--aug-tl": "10px",
-      duration: 0.6,
+      duration: 0.4,
       ease: "sine.out",
     });
   }
@@ -18,7 +18,7 @@ export default class Now {
   onMouseLeave(e) {
     gsap.to(e.target, {
       "--aug-tl": "0px",
-      duration: 0.4,
+      duration: 0.2,
       ease: "sine.in",
     });
   }

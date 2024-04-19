@@ -1,6 +1,6 @@
 <template>
   <Now
-    title="WT•Footer!"
+    title="WT°Footer!"
     description="Stuff you put in the footer"
     :summary="summary"
   >
