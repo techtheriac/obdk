@@ -1,6 +1,6 @@
 <template>
   <Now
-    title="WT•Footer!"
+    title="WT°Footer!"
     description="Stuff you put in the footer"
     :summary="summary"
   >
@@ -37,7 +37,7 @@ const summary = computed(() => {
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 ul {
   width: 100%;
   min-width: 150px;

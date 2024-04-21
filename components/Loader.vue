@@ -20,18 +20,6 @@
   top: 0;
   left: 0;
   background-color: var(--background-dark-07);
-  background-image: linear-gradient(
-      to right,
-      var(--foreground-dark-forest) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      var(--foreground-dark-forest) 1px,
-      transparent 1px
-    );
-  background-size: var(--size-background) var(--size-background);
-
   div {
     position: absolute;
     padding-right: var(--space-xs);

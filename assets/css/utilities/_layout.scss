@@ -1,0 +1,9 @@
+%content-align {
+  padding: 0 var(--space);
+  max-width: 750px;
+  margin-inline: auto;
+}
+
+.content-align {
+  @extend %content-align;
+}

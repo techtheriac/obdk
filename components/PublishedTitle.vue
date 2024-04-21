@@ -26,13 +26,13 @@ const dateTime = computed(() => {
 .published-title {
   position: relative;
   height: auto;
-  border-bottom: 1px solid hsl(0 0% 20.5%);
+  border-bottom: 1px dotted hsl(0 0% 20.5%);
   padding: var(--space-xs) 0 var(--space-xs);
   margin-bottom: var(--space-s);
 }
 
 .published__article {
-  color: rgba(255, 255, 255, 0.63);
+  color: var(--foreground-dark-dim);
   font-size: var(--idealSubFontSize);
   font-weight: 300;
   line-height: normal;
@@ -41,13 +41,12 @@ const dateTime = computed(() => {
 }
 
 .title {
+  font-family: Mondwest;
   font-size: var(--idealHeadingOne);
-  font-weight: 600;
-  /* line-height: 0.89; */
-  letter-spacing: -1.22px;
+  font-weight: normal;
   z-index: 2;
   position: relative;
-  color: #ededed;
+  color: var(--foreground-dark-dim-01);
   text-wrap: pretty;
 
   &::before {

@@ -29,25 +29,25 @@ const links = [
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/css/utilities/font-definitions";
 footer {
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  color: rgba(255, 255, 255, 0.63);
+  padding: 0 var(--space-xs) var(--space-xs);
+  color: var(--foreground-09);
+  color: var(--foreground-dark-dim);
   font-family: "TWK Lausanne";
   text-transform: uppercase;
   font-weight: 200;
-  z-index: 1;
-  padding: 0 var(--space-xs) var(--space-xs);
   font-size: var(--idealSubFontSize);
+  z-index: 1;
 
   ul {
     display: inherit;
   }
   a {
-    color: inherit;
     &:hover {
+      color: inherit;
       text-decoration: underline;
     }
   }
