@@ -32,7 +32,7 @@ const dateTime = computed(() => {
 }
 
 .published__article {
-  color: rgba(255, 255, 255, 0.63);
+  color: var(--foreground-dark-dim);
   font-size: var(--idealSubFontSize);
   font-weight: 300;
   line-height: normal;
@@ -44,11 +44,9 @@ const dateTime = computed(() => {
   font-family: Mondwest;
   font-size: var(--idealHeadingOne);
   font-weight: normal;
-  /* line-height: 0.89; */
-  /* letter-spacing: -1.22px; */
   z-index: 2;
   position: relative;
-  color: #ededed;
+  color: var(--foreground-dark-dim-01);
   text-wrap: pretty;
 
   &::before {

@@ -40,7 +40,7 @@ span {
   gap: var(--space-xs);
   font-weight: 200;
   a {
-    color: rgba(255, 255, 255, 0.63);
+    color: var(--foreground-dark-dim);
     &:hover {
       text-decoration: underline;
     }

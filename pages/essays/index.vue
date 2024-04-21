@@ -1,5 +1,5 @@
 <template>
-  <div class="container_essays">
+  <div class="content-align">
     <h1>Musings & Ruminations</h1>
     <ul>
       <li class="musing__item" v-for="content in contents">
@@ -50,11 +50,6 @@ const contents = computed(() => {
 </script>
 
 <style scoped lang="scss">
-.container_essays {
-  max-width: 750px;
-  margin: 0 auto;
-  padding: 0 var(--space);
-}
 .musing__item {
   --border-bg: #373737;
   padding: var(--space-s) 0;
@@ -86,7 +81,9 @@ ul {
   }
 
   a {
-    font-size: var(--idealHeadingOne);
+    font-family: "Mondwest";
+    font-size: var(--idealListingFontSize);
+    font-weight: 400;
     color: #fff;
   }
 }

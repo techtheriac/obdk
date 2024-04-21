@@ -1,13 +1,13 @@
+@import "./layout";
+@import "./background-definitions";
+
 #content {
-  padding: 0 var(--space);
-  max-width: 750px;
   font-family: "TWK Lausanne";
-  margin: 0 auto;
+  @extend %content-align;
 }
 
 [data-content] {
-  color: rgba(255, 255, 255, 0.83);
-  color: #ededed;
+  color: var(--foreground-dark-dim-01);
 
   h2,
   h3,
@@ -28,7 +28,6 @@
   }
 
   p {
-    line-height: 1.3;
     line-height: 1.5em;
     font-size: var(--idealArticleParagraphSize);
     font-weight: 300;
@@ -50,8 +49,9 @@
 
   blockquote {
     padding: var(--space-xs);
-    background-color: #353e32a3;
+    background-color: hsla(148, 35%, 10%, 0.969);
     border-radius: 5px;
+    @extend %bg-grain;
   }
 
   > p + p {
