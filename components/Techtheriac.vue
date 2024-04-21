@@ -1,10 +1,5 @@
 <template>
-  <svg
-    class="obdk hidden"
-    :class="{ flipDestination: isFlipDestination }"
-    id="obdk"
-    viewBox="0 0 11165 1351"
-  >
+  <svg class="obdk" id="obdk" viewBox="0 0 11165 1351">
     <path
       d="M1003.55 0.652298V151.455H591.599V1345H412.292V151.455H0.34375V0.652298H1003.55Z"
     />
@@ -39,11 +34,7 @@
   </svg>
 </template>
 
-<script setup lang="ts">
-const props = defineProps<{
-  isFlipDestination: Boolean;
-}>();
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
 .obdk {

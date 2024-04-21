@@ -19,27 +19,27 @@ export class LandingAnimation {
 
     this.timeline = gsap
       .timeline({ duration: 4 })
-      .call(this.toggleVisibility, [this.landingAnimatables.techtheriac])
-      .from(this.landingAnimatables.techtheriac.querySelectorAll("path"), {
-        duration: 0.3,
-        stagger: 0.2,
-        autoAlpha: () => 0,
-        // ease: "expo.inOut",
-        ease: "steps(11)",
-      })
-      .call(this.flipTectheriac, [
-        this.landingAnimatables.flipContainer,
-        this.landingAnimatables.techtheriac.querySelectorAll("path"),
-      ])
-      .to(
-        this.landingAnimatables.preloader,
-        {
-          duration: 1,
-          opacity: 0,
-          height: 0,
-        },
-        "<",
-      )
+      // .call(this.toggleVisibility, [this.landingAnimatables.techtheriac])
+      // .from(this.landingAnimatables.techtheriac.querySelectorAll("path"), {
+      //   duration: 0.3,
+      //   stagger: 0.2,
+      //   autoAlpha: () => 0,
+      //   // ease: "expo.inOut",
+      //   ease: "steps(11)",
+      // })
+      // .call(this.flipTectheriac, [
+      //   this.landingAnimatables.flipContainer,
+      //   this.landingAnimatables.techtheriac.querySelectorAll("path"),
+      // ])
+      // .to(
+      //   this.landingAnimatables.preloader,
+      //   {
+      //     duration: 1,
+      //     opacity: 0,
+      //     height: 0,
+      //   },
+      //   "<",
+      // )
       .call(this.toggleVisibility, [this.landingAnimatables.nowSlider])
       .from(
         this.landingAnimatables.nowSlider.querySelectorAll(".now"),
@@ -56,7 +56,6 @@ export class LandingAnimation {
       .from(this.landingAnimatables.bio, {
         opacity: 0,
       })
-      .call(this.destroyElement, [this.landingAnimatables.preloader])
       .pause();
   }
 
