@@ -1,5 +1,5 @@
 <template>
-  <svg class="obdk" id="obdk" viewBox="0 0 11165 1351">
+  <svg class="obdk blinking" id="obdk" viewBox="0 0 11165 1351">
     <path
       d="M1003.55 0.652298V151.455H591.599V1345H412.292V151.455H0.34375V0.652298H1003.55Z"
     />
@@ -38,10 +38,35 @@
 
 <style lang="scss" scoped>
 .obdk {
+  padding-top: var(--space-xs);
   width: 100%;
   fill: var(--foreground-dark-dim);
 }
 .opacity {
   opacity: 0;
+}
+
+@keyframes blinker {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.blinking {
+  > :nth-child(4) {
+    animation: blinker 1000ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  > :nth-child(6) {
+    animation: blinker 500ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-delay: 500ms;
+  }
 }
 </style>

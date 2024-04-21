@@ -33,7 +33,7 @@ onMounted(() => {
 <style scoped>
 .home-container {
   display: flex;
-  padding: var(--space-xs) var(--space-xs) 0 var(--space-xs);
+  padding: 0 var(--space-xs);
   flex-direction: column;
   justify-content: space-between;
   z-index: 2;
