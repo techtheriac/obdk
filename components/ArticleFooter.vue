@@ -26,7 +26,7 @@ const { next, previous } = usePreviousNext(props.currentSlug, props.contents);
 section {
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid hsl(0 0% 20.5%);
+  border-top: 1px dotted hsl(0 0% 20.5%);
   padding-top: var(--space-s);
   padding-bottom: var(--space-s);
   margin-top: var(--space-s);

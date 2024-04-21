@@ -1,15 +1,13 @@
 <template>
-  <div>
+  <div class="container_essays">
     <h1>Musings & Ruminations</h1>
     <ul>
-      <li v-for="content in contents">
-        <MusingItem
-          :title="content.title"
-          :path="content.slug"
-          :published="content.date"
-          :stage="content.stage"
-          :genre="content.genre"
-        />
+      <li class="musing__item" v-for="content in contents">
+        <span>{{ content.genre }}</span>
+        <span class="published">{{ useDateTime(content.date) }}</span>
+        <h3 class="title">
+          <NuxtLink :to="content?.slug">{{ content?.title }}</NuxtLink>
+        </h3>
       </li>
     </ul>
   </div>
@@ -51,4 +49,45 @@ const contents = computed(() => {
 });
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.container_essays {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 0 var(--space);
+}
+.musing__item {
+  --border-bg: #373737;
+  padding: var(--space-s) 0;
+  width: 100%;
+  border-bottom: 1px dotted var(--border-bg);
+
+  &__border-aug {
+    --aug-border-all: 1px;
+    --aug-border-bg: var(--border-bg);
+    --aug-tl: 0px;
+  }
+
+  &__layout {
+    grid-template-columns: repeat(6, 1fr);
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+}
+
+.title {
+  &__layout {
+    grid-column: 3 / -1;
+  }
+
+  a {
+    font-size: var(--idealHeadingOne);
+    color: #fff;
+  }
+}
+</style>

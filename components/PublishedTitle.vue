@@ -26,7 +26,7 @@ const dateTime = computed(() => {
 .published-title {
   position: relative;
   height: auto;
-  border-bottom: 1px solid hsl(0 0% 20.5%);
+  border-bottom: 1px dotted hsl(0 0% 20.5%);
   padding: var(--space-xs) 0 var(--space-xs);
   margin-bottom: var(--space-s);
 }
@@ -41,10 +41,11 @@ const dateTime = computed(() => {
 }
 
 .title {
+  font-family: Mondwest;
   font-size: var(--idealHeadingOne);
-  font-weight: 600;
+  font-weight: normal;
   /* line-height: 0.89; */
-  letter-spacing: -1.22px;
+  /* letter-spacing: -1.22px; */
   z-index: 2;
   position: relative;
   color: #ededed;

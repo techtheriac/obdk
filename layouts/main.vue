@@ -1,7 +1,6 @@
 <template>
   <div class="layout-base fill-height obdk-bg">
     <div class="obdk-bg__layer-one"></div>
-    <div class="obdk-bg__layer-two"></div>
     <Loader />
     <main class="main">
       <slot />

@@ -1,7 +1,7 @@
 .obdk-bg {
   --size-background: 100px;
-  background-image: url("/static/images/noise.svg");
-  background-size: var(--size-background) var(--size-background);
+  // background-image: url("/static/images/noise.svg");
+  // background-size: var(--size-background) var(--size-background);
   // background-attachment: fixed;
 
   &__layer-one {
@@ -15,23 +15,5 @@
     background-size: 200px 200px;
     background-repeat: repeat;
     background-attachment: inherit;
-  }
-
-  &__layer-two {
-    --size-background: calc(1rem / 3);
-    --background-color: rgba(203, 213, 225, 0.45);
-    top: 0;
-    position: fixed;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    background-attachment: inherit;
-    background-image: linear-gradient(
-        to right,
-        var(--background-color) 1px,
-        transparent 1px
-      ),
-      linear-gradient(to bottom, transparent 1px, transparent 1px);
-    background-size: var(--size-background) var(--size-background);
   }
 }
