@@ -1,6 +1,6 @@
 <template>
   <article id="content">
-    <Navigation route="/essays" text="essays" />
+    <!-- <Navigation route="/essays" text="essays" /> -->
     <PublishedTitle
       :title="postData.properties.name.title[0].plain_text"
       :date="postData.created_time"
