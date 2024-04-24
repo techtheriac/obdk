@@ -41,6 +41,8 @@ const dateTime = computed(() => {
 
 .page-meta {
   border-top: 1px dotted hsl(0 0% 20.5%);
+  border-bottom: 1px dotted hsl(0 0% 20.5%);
+  padding: var(--space-xs) 0;
 }
 
 .published-date {
@@ -49,7 +51,6 @@ const dateTime = computed(() => {
   font-weight: 200;
   line-height: normal;
   display: block;
-  margin-top: var(--space-xs);
 }
 
 .title {
