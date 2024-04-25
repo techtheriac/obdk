@@ -2,11 +2,23 @@
 @import "./background-definitions";
 
 #content {
+  color: hsl(0 0% 93%);
   font-family: "TWK Lausanne";
   @extend %content-align;
 }
 
+.article-block-flow {
+  > * + * {
+    margin-block-start: var(--space-s);
+  }
+
+  &:last-child {
+    margin-bottom: var(--space);
+  }
+}
+
 [data-content] {
+  --line-height: 1.65em;
   color: var(--foreground-dark-dim-01);
 
   h2,
@@ -14,7 +26,6 @@
   h4,
   h5,
   h6 {
-    border-bottom: 1px dotted var(--foreground-dark-forest);
     display: inline-block;
   }
 
@@ -28,43 +39,48 @@
   }
 
   p {
-    line-height: 1.5em;
+    line-height: var(--line-height);
     font-size: var(--idealArticleParagraphSize);
     font-weight: 300;
+    text-wrap: pretty;
   }
 
-  > p + h2,
+  > * + h2,
   h3,
   h4,
   h5,
   h6 {
-    margin-top: var(--space-s);
-    margin-bottom: var(--space-xs);
+    margin-block-start: var(--space-s);
+    margin-block-end: var(--space-xs);
   }
 
   * + blockquote,
   * + img {
-    margin: var(--space-xs) 0;
+    margin-block: var(--space-s);
   }
 
   blockquote {
-    padding: var(--space-xs);
+    padding: var(--space-s);
     background-color: hsla(148, 35%, 10%, 0.969);
     border-radius: 5px;
     @extend %bg-grain;
   }
 
   > p + p {
-    margin-top: var(--space-s);
+    margin-block-start: calc(var(--space-xs) + 0.5em);
   }
 
-  > h2 + li,
-  p + li {
-    margin-top: var(--space-xs);
+  > * + li {
+    margin-block: var(--space-xs);
   }
 
   li + li {
-    margin-top: calc(var(--space-xs) - 0.2em);
+    margin-block-start: var(--space-xs);
+  }
+
+  ol + hr {
+    border-block: none;
+    margin-block: var(--space-s);
   }
 
   a {

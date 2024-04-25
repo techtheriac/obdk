@@ -28,15 +28,12 @@ const dateTime = computed(() => {
 
 <style scoped>
 .page-info {
-  margin-top: 30vh;
+  margin-top: 35vh;
   min-height: 20vh;
-  margin-bottom: var(--space);
 }
 .page-info-wrapper {
   position: relative;
   height: auto;
-  padding: var(--space-xs) 0 var(--space-xs);
-  margin-bottom: var(--space-s);
 }
 
 .page-meta {
@@ -54,13 +51,12 @@ const dateTime = computed(() => {
 }
 
 .title {
-  font-size: var(--idealHeadingOne);
   font-size: var(--idealHeadingTwo);
   font-weight: 500;
   z-index: 2;
   position: relative;
   color: var(--foreground-dark-dim-01);
-  text-wrap: pretty;
+  text-wrap: balance;
 
   &::before {
     content: "";

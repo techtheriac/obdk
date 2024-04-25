@@ -2,7 +2,7 @@
 title: Diversity & inclusion are business critical
 slug: diversity-and-inclusion
 last_edited: 2023-09-10T15:37:00.000Z
-genre: musing
+genre: musings
 stage: fruit
 ---
 

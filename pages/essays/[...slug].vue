@@ -1,6 +1,6 @@
 <template>
   <ContentDoc v-slot="{ doc }">
-    <article id="content" class="content-align">
+    <article id="content" class="article-block-flow">
       <PublishedTitle
         :title="doc.title!"
         :date="doc.last_edited"

@@ -27,9 +27,7 @@ section {
   display: flex;
   justify-content: space-between;
   border-top: 1px dotted hsl(0 0% 20.5%);
-  padding-top: var(--space-s);
-  padding-bottom: var(--space-s);
-  margin-top: var(--space-s);
+  padding-top: var(--space-xs);
   font-size: var(--idealSubFontSize);
 }
 span {
