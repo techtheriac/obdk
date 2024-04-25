@@ -1,10 +1,9 @@
 <template>
   <article id="content">
-    <!-- <Navigation route="/essays" text="essays" /> -->
     <PublishedTitle
       :title="postData.properties.name.title[0].plain_text"
       :date="postData.created_time"
-      genre="essay"
+      :genre="postData.properties.tags.multi_select[0]?.name"
     />
     <NotionRenderer data-content :postContent="postContent" />
     <BackLink :backlinks="postData?.properties?.related?.relation" />
@@ -21,6 +20,8 @@ definePageMeta({
 const slug = useRoute().params?.slug[0];
 const { data } = await useFetch(`/api/get-notion-post/${slug}`);
 const { postContent, postData } = data.value;
+
+console.log(postData);
 
 // footer content
 const { data: notion } = await useFetch("/api/get-notion-posts");

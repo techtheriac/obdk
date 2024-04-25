@@ -28,7 +28,7 @@ const dateTime = computed(() => {
 
 <style scoped>
 .page-info {
-  margin-top: 25vh;
+  margin-top: 30vh;
   min-height: 20vh;
   margin-bottom: var(--space);
 }
@@ -54,10 +54,9 @@ const dateTime = computed(() => {
 }
 
 .title {
-  font-family: Mondwest;
   font-size: var(--idealHeadingOne);
   font-size: var(--idealHeadingTwo);
-  font-weight: normal;
+  font-weight: 500;
   z-index: 2;
   position: relative;
   color: var(--foreground-dark-dim-01);

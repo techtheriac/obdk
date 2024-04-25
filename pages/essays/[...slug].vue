@@ -1,7 +1,6 @@
 <template>
   <ContentDoc v-slot="{ doc }">
     <article id="content" class="content-align">
-      <Navigation route="/essays" text="essays" />
       <PublishedTitle
         :title="doc.title!"
         :date="doc.last_edited"
