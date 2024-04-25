@@ -1,10 +1,9 @@
 <template>
   <div class="content-align">
-    <h1>Musings & Ruminations</h1>
     <ul>
       <li class="musing__item" v-for="content in contents">
-        <span>{{ content.genre }}</span>
-        <span class="published">{{ useDateTime(content.date) }}</span>
+        <!-- <span>{{ content.genre }}</span>
+        <span class="published">{{ useDateTime(content.date) }}</span> -->
         <h3 class="title">
           <NuxtLink :to="content?.slug">{{ content?.title }}</NuxtLink>
         </h3>
@@ -52,7 +51,7 @@ const contents = computed(() => {
 <style scoped lang="scss">
 .musing__item {
   --border-bg: #373737;
-  padding: var(--space-s) 0;
+  padding: var(--space) 0;
   width: 100%;
   border-bottom: 1px dotted var(--border-bg);
 
@@ -72,18 +71,17 @@ const contents = computed(() => {
 ul {
   display: flex;
   flex-direction: column;
-  gap: var(--space-s);
 }
 
 .title {
-  &__layout {
-    grid-column: 3 / -1;
-  }
+  font-size: var(--idealHeadingTwo);
+  font-weight: 500;
+  z-index: 2;
+  position: relative;
+  color: var(--foreground-dark-dim-01);
+  text-wrap: balance;
 
   a {
-    font-family: "Mondwest";
-    font-size: var(--idealListingFontSize);
-    font-weight: 400;
     color: #fff;
   }
 }

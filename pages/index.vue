@@ -1,10 +1,10 @@
 <template>
   <main class="home-container">
     <div class="flow-hr-xs">
+      <Techtheriac />
       <Bio />
-      <NowSlider />
     </div>
-    <TechtheriacDefault />
+    <NowSlider />
   </main>
 </template>
 
@@ -33,7 +33,7 @@ onMounted(() => {
 <style scoped>
 .home-container {
   display: flex;
-  padding: 0 var(--space-xs) var(--space-xs);
+  padding: 0 var(--space-xs);
   flex-direction: column;
   justify-content: space-between;
   z-index: 2;
