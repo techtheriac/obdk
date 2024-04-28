@@ -46,7 +46,7 @@ function animateOut(e) {
 @import "../assets/css/utilities/font-definitions";
 .now {
   --border-bg: #373737;
-  @include lausanneNormal(300, var(--idealBaseFontSize));
+  // @include lausanneNormal(300, var(--idealBaseFontSize));
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;

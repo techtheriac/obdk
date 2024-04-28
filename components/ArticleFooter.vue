@@ -33,7 +33,7 @@ section {
 span {
   display: flex;
   flex-direction: column;
-  font-family: "TWK Lausanne";
+  // font-family: "TWK Lausanne";
   text-transform: capitalize;
   gap: var(--space-xs);
   font-weight: 200;

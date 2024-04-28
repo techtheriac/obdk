@@ -75,6 +75,7 @@ ul {
 
 .title {
   font-size: var(--idealHeadingTwo);
+  text-transform: uppercase;
   font-weight: 500;
   z-index: 2;
   position: relative;

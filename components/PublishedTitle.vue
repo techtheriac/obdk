@@ -57,6 +57,7 @@ const dateTime = computed(() => {
   position: relative;
   color: var(--foreground-dark-dim-01);
   text-wrap: balance;
+  text-transform: uppercase;
 
   &::before {
     content: "";

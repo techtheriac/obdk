@@ -17,7 +17,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  font-family: "TWK Lausanne";
+  // font-family: "TWK Lausanne";
   min-height: 100vh;
   color: #fff;
   section {
