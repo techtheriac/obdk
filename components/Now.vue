@@ -1,6 +1,11 @@
 <template>
-  <!-- <div data-augmented-ui="tl-clip-x br-rect border" class="now"> -->
-  <div data-augmented-ui="tl-clip-x border" class="now now__border-aug">
+  <div
+    ref="nowContainer"
+    v-on:mouseenter="animateIn"
+    v-on:mouseleave="animateOut"
+    data-augmented-ui="tl-clip-x border"
+    class="now now__border-aug"
+  >
     <div class="title">{{ title }}</div>
     <slot></slot>
     <div class="info">
@@ -11,19 +16,30 @@
 </template>
 
 <script setup lang="ts">
-import Now from "~/utils/animations/now";
+import { gsap } from "gsap";
 import { type SiteMap } from "~/obdk";
+
 const props = defineProps<{
   title: SiteMap | string;
   description: string | undefined;
   summary: string | undefined;
 }>();
 
-onMounted(() => {
-  const nowElements = document.querySelectorAll(".now");
-  if (!nowElements) return;
-  new Now(nowElements);
-});
+function animateIn(e) {
+  gsap.to(e.target, {
+    "--aug-tl": "10px",
+    duration: 0.2,
+    ease: "sine.out",
+  });
+}
+
+function animateOut(e) {
+  gsap.to(e.target, {
+    "--aug-tl": "0px",
+    duration: 0.2,
+    ease: "sine.in",
+  });
+}
 </script>
 
 <style scoped lang="scss">

@@ -56,7 +56,6 @@ ul {
     a {
       color: var(--foreground-dark-dim);
       font-weight: 300;
-      font-style: italic;
       font-size: var(--idealArticleParagraphSize);
       &:hover {
         text-decoration: underline;
