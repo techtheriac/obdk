@@ -15,4 +15,12 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["stores", "server"],
   },
+  routeRules: {
+    "/": { isr: 60 },
+    "/essays": { swr: true },
+    "/essays/**": {
+      swr: 3600,
+    },
+    "/notes/**": { swr: 3600 },
+  },
 });

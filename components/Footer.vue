@@ -34,8 +34,7 @@ footer {
   display: flex;
   justify-content: space-between;
   padding: 0 var(--space-xs) var(--space-xs);
-  color: var(--foreground-09);
-  color: var(--foreground-dark-dim);
+  color: var(--foreground-100);
   font-family: "TWK Lausanne";
   text-transform: uppercase;
   font-weight: 200;

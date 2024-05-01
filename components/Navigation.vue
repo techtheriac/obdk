@@ -1,37 +1,83 @@
 <template>
-  <NuxtLink class="navigation" :to="route">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="72"
-      height="23"
-      fill="none"
-      viewBox="0 0 72 23"
-    >
-      <path
-        stroke="#fff"
-        d="M1 12c6.012.536 10.105 1.364 12.282 2.484 2.177 1.12 4.557 3.626 7.142 7.516M72 12H1h71ZM1 12c6.012-.536 10.105-1.364 12.282-2.484C15.459 8.396 17.839 5.89 20.424 2L1 12Z"
-      />
-    </svg>
-
-    <span>{{ text }}</span>
-  </NuxtLink>
+  <nav class="nav">
+    <div class="nav-container">
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure nulla
+        consequatur quos praesentium accusantium similique autem dolorum quasi
+        voluptas! Porro molestias repellat rerum, laudantium dicta unde sit
+        fugiat voluptatum nulla!
+      </p>
+    </div>
+  </nav>
 </template>
 
-<script setup lang="ts">
-const props = defineProps<{
-  route: string;
-  text: string;
-}>();
-</script>
+<script setup lang="ts"></script>
 <style lang="scss" scoped>
-.navigation {
-  position: relative;
-  padding: var(--space-s) 0;
-  color: rgba(255, 255, 255, 0.63);
-  font-weight: normal;
-  display: inline-flex;
+.nav {
+  z-index: 100000;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  text-transform: uppercase;
-  font-size: var(--idealSubFontSize);
+  justify-content: center;
+  padding: 25px 0;
+  min-width: 50px;
+  max-height: 50px;
+  width: 0;
+  border: 1px dotted rgba(var(--ob-color-laurel), 0.3);
+  border-radius: 50px;
+  background-color: var(--accent);
+  color: rgba(var(--ob-color-seaweed));
+  transition:
+    width 0.4s ease-in-out,
+    border-radius 0.4s ease-in-out,
+    max-height 0.4s ease-in-out 0.4s;
+  transform: translateX(-50%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+nav:hover,
+nav.opened {
+  max-height: 300px;
+  width: 33.3%;
+  border-radius: 10px;
+  transform: translateX(-50%);
+}
+.nav-container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+nav:hover .nav-container,
+nav.opened .nav-container {
+  display: flex;
+  animation: fadeIn 0.4s 0.6s ease both;
+}
+
+@media (max-width: 950px) {
+  nav:hover {
+    width: calc(100% - 20px);
+    border-radius: 10px;
+  }
+
+  nav.opened {
+    width: calc(100% - 20px);
+  }
+
+  .nav-container {
+    padding: 20px;
+  }
 }
 </style>

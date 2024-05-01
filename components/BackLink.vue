@@ -12,7 +12,6 @@
         >
           <path
             d="M26.0103 0.499994L26.0103 9.36302L2.11919 9.32774M2.11919 9.32774C5.45861 9.74908 7.73224 10.3957 8.94007 11.2676C10.1483 12.1394 10.568 11.4759 12 14.5L2.11919 9.32774ZM2.11919 9.32774C5.45984 8.91628 7.73537 8.27639 8.94577 7.40808C10.1565 6.53977 12.059 5.5199 13.5 2.5"
-            stroke="#fff"
           />
         </svg>
         <NuxtLink :to="backlink.slug">{{ backlink.title }}</NuxtLink>
@@ -52,11 +51,15 @@ ul {
     svg {
       margin-right: 0.5em;
       transform: scale(0.7);
+      path {
+        stroke: var(--foreground-200);
+      }
     }
     a {
-      color: var(--foreground-dark-dim);
-      font-weight: 300;
+      font-family: LeituraNews;
       font-style: italic;
+      color: var(--foreground-100);
+      font-weight: 300;
       font-size: var(--idealArticleParagraphSize);
       &:hover {
         text-decoration: underline;

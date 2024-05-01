@@ -45,6 +45,7 @@ ul {
   flex-direction: column;
   align-items: center;
   gap: 0.3em;
+  color: var(--foreground-100);
 
   a {
     font-family: "Space Mono";

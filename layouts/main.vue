@@ -1,7 +1,6 @@
 <template>
-  <div class="layout-base fill-height obdk-bg">
-    <div class="obdk-bg__layer-one"></div>
-    <!-- <Loader /> -->
+  <div class="layout-base fill-height obdk-bg" data-nav="home">
+    <Navigation />
     <main class="main">
       <slot />
     </main>

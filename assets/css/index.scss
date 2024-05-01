@@ -1,8 +1,6 @@
-@import "./fonts/degular";
 @import "./fonts/spacemono";
-@import "./fonts/gestalt";
+@import "./fonts/leitura";
 @import "./fonts/lausanne";
-@import "./fonts/mondwest";
 @import "./utilities/resets";
 @import "./utilities/interpolate";
 @import "./utilities/colors";
@@ -25,7 +23,7 @@ body {
 }
 
 html {
-  background-color: var(--background-dark);
+  background-color: var(--background-100);
 }
 
 .hidden {

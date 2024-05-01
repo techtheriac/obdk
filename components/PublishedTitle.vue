@@ -37,13 +37,13 @@ const dateTime = computed(() => {
 }
 
 .page-meta {
-  border-top: 1px dotted hsl(0 0% 20.5%);
-  border-bottom: 1px dotted hsl(0 0% 20.5%);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   padding: var(--space-xs) 0;
+  color: var(--foreground-200);
 }
 
 .published-date {
-  color: var(--foreground-dark-dim);
   font-size: var(--idealSubFontSize);
   font-weight: 200;
   line-height: normal;
@@ -55,7 +55,7 @@ const dateTime = computed(() => {
   font-weight: 500;
   z-index: 2;
   position: relative;
-  color: var(--foreground-dark-dim-01);
+  color: var(--foreground-100);
   text-wrap: balance;
 
   &::before {

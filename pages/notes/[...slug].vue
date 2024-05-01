@@ -21,8 +21,6 @@ const slug = useRoute().params?.slug[0];
 const { data } = await useFetch(`/api/get-notion-post/${slug}`);
 const { postContent, postData } = data.value;
 
-console.log(postData);
-
 // footer content
 const { data: notion } = await useFetch("/api/get-notion-posts");
 const contents = computed(() => {
