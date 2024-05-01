@@ -7,3 +7,15 @@
 .content-align {
   @extend %content-align;
 }
+
+[data-nav="home"] .nav {
+  position: fixed;
+  bottom: calc(50% - var(--space-s));
+  left: 50%;
+}
+
+[data-nav="article"] .nav {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+}

@@ -15,10 +15,9 @@
 <style lang="scss" scoped>
 @import "../assets/css/utilities/font-definitions";
 .bio {
-  // @include lausanneNormal(300, var(--idealBaseFontSize));
-  margin-top: var(--space-xs);
+  @include lausanneNormal(300, var(--idealBaseFontSize));
   text-transform: uppercase;
-  color: #fff;
+  color: var(--foreground-100);
   letter-spacing: -0.005em;
   overflow: hidden;
   mask-image: linear-gradient(

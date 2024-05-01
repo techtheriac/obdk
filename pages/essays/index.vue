@@ -2,8 +2,14 @@
   <div class="content-align">
     <ul>
       <li class="musing__item" v-for="content in contents">
-        <!-- <span>{{ content.genre }}</span>
-        <span class="published">{{ useDateTime(content.date) }}</span> -->
+        <div class="published-date">
+          <span>
+            {{ content.day }}
+          </span>
+          <span>
+            {{ content.month }}
+          </span>
+        </div>
         <h3 class="title">
           <NuxtLink :to="content?.slug">{{ content?.title }}</NuxtLink>
         </h3>
@@ -23,8 +29,10 @@ const { data: notion } = await useFetch("/api/get-notion-posts");
 
 const contents = computed(() => {
   const essays: HarmonizedArticle[] = musings.map((post) => {
+    let { day, month } = useDateTimeComponent(post.last_edited);
     return {
-      date: post.last_edited,
+      day,
+      month,
       title: post.title,
       slug: post._path,
       source: "local",
@@ -34,8 +42,10 @@ const contents = computed(() => {
   });
 
   const notes: HarmonizedArticle[] = notion.value!.results.map((post) => {
+    let { day, month } = useDateTimeComponent(post.last_edited_time);
     return {
-      date: post.last_edited_time,
+      day,
+      month,
       title: post.properties.name.title[0].plain_text,
       slug: `/notes/${post.properties.slug.rich_text[0].plain_text}`,
       source: "notion",
@@ -49,41 +59,55 @@ const contents = computed(() => {
 </script>
 
 <style scoped lang="scss">
+ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
+  grid-row-gap: var(--space-xs);
+  grid-column-gap: var(--space-s);
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+  }
+}
+
 .musing__item {
-  --border-bg: #373737;
-  padding: var(--space) 0;
+  color: var(--foreground-100);
+  padding: var(--space-s) 0;
   width: 100%;
-  border-bottom: 1px dotted var(--border-bg);
+  border-bottom: 1px solid var(--border-color);
 
   &__border-aug {
     --aug-border-all: 1px;
     --aug-border-bg: var(--border-bg);
     --aug-tl: 0px;
   }
-
-  &__layout {
-    grid-template-columns: repeat(6, 1fr);
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-ul {
-  display: flex;
-  flex-direction: column;
 }
 
 .title {
   font-size: var(--idealHeadingTwo);
-  text-transform: uppercase;
   font-weight: 500;
   z-index: 2;
   position: relative;
-  color: var(--foreground-dark-dim-01);
   text-wrap: balance;
 
   a {
-    color: #fff;
+    color: var(--foreground-100);
+    &:hover {
+      color: var(--foreground-200);
+    }
   }
+}
+
+.published-date {
+  font-size: var(--idealSubFontSize);
+  color: var(--foreground-200);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-200);
+  gap: min(var(--space-xs), 0.3em);
+  padding: var(--space-xs);
+  border-radius: 0.3em;
 }
 </style>

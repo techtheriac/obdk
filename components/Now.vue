@@ -45,9 +45,10 @@ function animateOut(e) {
 <style scoped lang="scss">
 @import "../assets/css/utilities/font-definitions";
 .now {
-  --border-bg: #373737;
-  // @include lausanneNormal(300, var(--idealBaseFontSize));
+  --border-bg: var(--border-color);
+  @include lausanneNormal(300, var(--idealBaseFontSize));
   scroll-snap-align: start;
+  color: var(--foreground-100);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -69,8 +70,9 @@ function animateOut(e) {
 .info {
   display: flex;
   flex-direction: column;
-  font-weight: 200;
+  font-weight: 300;
   gap: 0.3em;
+  font-size: var(--idealSubFontSize);
 }
 
 .summary {
@@ -78,5 +80,6 @@ function animateOut(e) {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--foreground-200);
 }
 </style>

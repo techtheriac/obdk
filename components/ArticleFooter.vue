@@ -26,19 +26,18 @@ const { next, previous } = usePreviousNext(props.currentSlug, props.contents);
 section {
   display: flex;
   justify-content: space-between;
-  border-top: 1px dotted hsl(0 0% 20.5%);
+  border-top: 1px dotted var(--border-color);
   padding-top: var(--space-xs);
   font-size: var(--idealSubFontSize);
 }
 span {
   display: flex;
   flex-direction: column;
-  // font-family: "TWK Lausanne";
   text-transform: capitalize;
   gap: var(--space-xs);
   font-weight: 200;
   a {
-    color: var(--foreground-dark-dim);
+    color: var(--foreground-200);
     &:hover {
       text-decoration: underline;
     }

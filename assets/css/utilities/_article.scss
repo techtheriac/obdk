@@ -2,8 +2,9 @@
 @import "./background-definitions";
 
 #content {
-  color: hsl(0 0% 93%);
-  // font-family: "TWK Lausanne";
+  --paragraph-color: var(--foreground-100);
+  color: var(--paragraph-color);
+  font-family: "TWK Lausanne";
   @extend %content-align;
 }
 
@@ -19,7 +20,7 @@
 
 [data-content] {
   --line-height: 1.65em;
-  color: var(--foreground-dark-dim-01);
+  color: var(--paragraph-color);
 
   h2,
   h3,
@@ -41,7 +42,7 @@
   p {
     line-height: var(--line-height);
     font-size: var(--idealArticleParagraphSize);
-    font-weight: 300;
+    font-weight: 400;
     text-wrap: pretty;
   }
 
@@ -60,10 +61,10 @@
   }
 
   blockquote {
-    padding: var(--space-s);
-    background-color: hsla(148, 35%, 10%, 0.969);
-    border-radius: 5px;
-    @extend %bg-grain;
+    padding-left: var(--space-s);
+    border-left: 0.6em solid #87a19e80;
+    font-family: LeituraNews;
+    font-style: italic;
   }
 
   > p + p {
@@ -85,6 +86,7 @@
 
   a {
     color: inherit;
+    font-family: LeituraNews;
     background-color: #63865669;
 
     &:hover {

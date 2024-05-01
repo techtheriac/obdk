@@ -19,6 +19,12 @@ export class LandingAnimation {
 
     this.timeline = gsap
       .timeline({ duration: 3 })
+      .call(this.toggleVisibility, [this.landingAnimatables.bio])
+      .call(this.unblink, [this.landingAnimatables.techtheriac])
+      .from(this.landingAnimatables.bio, {
+        opacity: 0,
+        ease: "power3.in",
+      })
       .call(this.toggleVisibility, [this.landingAnimatables.nowSlider])
       .from(
         this.landingAnimatables.nowSlider.querySelectorAll(".now"),
@@ -31,11 +37,6 @@ export class LandingAnimation {
         },
         "<",
       )
-      .call(this.toggleVisibility, [this.landingAnimatables.bio])
-      .call(this.unblink, [this.landingAnimatables.techtheriac])
-      .from(this.landingAnimatables.bio, {
-        opacity: 0,
-      })
       .pause();
   }
 
