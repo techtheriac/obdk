@@ -18,7 +18,7 @@ export class LandingAnimation {
     this.landingAnimatables = landingAnimatables;
 
     this.timeline = gsap
-      .timeline({ duration: 3 })
+      .timeline({ duration: 1.2 })
       .call(this.toggleVisibility, [this.landingAnimatables.bio])
       .call(this.unblink, [this.landingAnimatables.techtheriac])
       .from(this.landingAnimatables.bio, {
