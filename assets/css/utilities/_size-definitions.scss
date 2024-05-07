@@ -24,8 +24,16 @@ $interpolate-max: 1445px;
     --idealListingFontSize,
     $interpolate-min,
     $interpolate-max,
-    20px,
-    24px
+    16px,
+    20px
+  );
+
+  @include interpolate(
+    --idealArticleListingFontSize,
+    $interpolate-min,
+    $interpolate-max,
+    16px,
+    20px
   );
 
   @include interpolate(

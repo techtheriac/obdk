@@ -2,11 +2,7 @@
   <div class="article-main">
     <header>
       <h1>Ruminations</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci quia
-        nesciunt autem vero itaque tenetur distinctio unde qui! Molestias id
-        repudiandae earum quisquam corrupti vel nihil ducimus iusto quae? Neque.
-      </p>
+      <p>a timeline of the ceasless iteration my thoughts & ideas undergo.</p>
     </header>
     <form ref="tagSelect">
       <fieldset v-on:change="handleTag" class="tag-list">
@@ -16,7 +12,6 @@
         </div>
       </fieldset>
     </form>
-
     <ul class="article_listing">
       <li
         class="musing__item"
@@ -54,8 +49,6 @@ let tagSelect = ref(null);
 function handleTag(e) {
   let selected = new FormData(tagSelect.value).getAll("article-filter");
   let elements = document.querySelectorAll("[data-tags]");
-
-  console.log("seleted", selected);
 
   if (selected.length >= 1) {
     elements.forEach((element) => {
@@ -132,6 +125,30 @@ let tags = new Set([...notesTags, ...essaysTags]);
 </script>
 
 <style scoped lang="scss">
+header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: var(--space-s);
+  > * + * {
+    margin-block-start: var(--space-s);
+  }
+
+  h1 {
+    font-weight: 600;
+    font-size: var(--idealHeadingOne);
+  }
+  p {
+    font-size: var(--idealBaseFontSize);
+    max-width: 70ch;
+  }
+}
+form {
+  margin-block-start: var(--space-s);
+}
+.article-main {
+  padding-top: 4vw;
+  max-width: 960px;
+  margin-inline: auto;
+}
 .tag-list {
   padding: 0;
   border: none;
@@ -153,6 +170,7 @@ let tags = new Set([...notesTags, ...essaysTags]);
       background: var(--background-200);
       border-radius: 2px;
       cursor: pointer;
+      font-size: var(--idealSubFontSize);
     }
 
     > input {
@@ -201,14 +219,14 @@ let tags = new Set([...notesTags, ...essaysTags]);
 }
 
 .title {
-  font-size: var(--idealHeadingTwo);
+  font-size: var(--idealArticleListingFontSize);
   font-weight: 500;
   z-index: 2;
   position: relative;
   text-wrap: balance;
 
   a {
-    transition: color 0.7s var(--easing);
+    transition: color 0.45s var(--easing);
     color: var(--foreground-100);
     &:hover {
       color: var(--foreground-200);
