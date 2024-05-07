@@ -28,6 +28,7 @@
   --accent-light: hsl(173.08deg 12.15% 58.04% / 50%);
   --bg-image-dark: url("/static/images/bg-grain-dark.png");
   --bg-image-light: url("/static/images/bg-grain.png");
+  --inactive: hsla(0, 0%, 20%, 0.5);
 }
 
 // the higher the number the lower the saturation
@@ -41,6 +42,7 @@
     --foreground-100: var(--white);
     --foreground-200: var(--grey-30);
     --foreground-300: var(--grey-50);
+    --article-inactive: var(--inactive);
   }
 }
 
@@ -53,5 +55,6 @@
     --background-200: var(--grey-5);
     --foreground-100: var(--grey-80);
     --foreground-200: var(--grey-40);
+    --article-inactive: var(--inactive);
   }
 }

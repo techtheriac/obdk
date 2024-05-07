@@ -8,13 +8,14 @@
         repudiandae earum quisquam corrupti vel nihil ducimus iusto quae? Neque.
       </p>
     </header>
-    <ul class="tags_listing">
-      <li @click="handleShowTag(tag)" v-for="tag in tags" :key="tag">
-        <button>
-          {{ tag }}
-        </button>
-      </li>
-    </ul>
+    <form ref="tagSelect">
+      <fieldset v-on:change="handleTag" class="tag-list">
+        <div class="tag-toggle" v-for="tag in tags">
+          <input type="checkbox" name="article-filter" :value="tag" :id="tag" />
+          <label :for="tag">{{ tag }}</label>
+        </div>
+      </fieldset>
+    </form>
 
     <ul class="article_listing">
       <li
@@ -48,19 +49,26 @@ definePageMeta({
 const musings = await queryContent("essays").find();
 const { data: notion } = await useFetch("/api/get-notion-posts");
 
-function handleShowTag(tag: string) {
+let tagSelect = ref(null);
+
+function handleTag(e) {
+  let selected = new FormData(tagSelect.value).getAll("article-filter").join();
   let elements = document.querySelectorAll("[data-tags]");
-  if (!elements) return;
 
-  elements.forEach((element) => {
-    let attrs = element.getAttribute("data-tags");
-
-    if (attrs?.includes(tag)) {
+  if (selected) {
+    elements.forEach((element) => {
+      let attrs = element.getAttribute("data-tags");
+      if (selected?.includes(attrs)) {
+        element.setAttribute("data-tag-show", true);
+      } else {
+        element.setAttribute("data-tag-show", false);
+      }
+    });
+  } else {
+    elements.forEach((element) => {
       element.setAttribute("data-tag-show", true);
-    } else {
-      element.setAttribute("data-tag-show", false);
-    }
-  });
+    });
+  }
 }
 
 function extractTagsFromNotion(document: any) {
@@ -118,9 +126,48 @@ let tags = new Set([...notesTags, ...essaysTags]);
 </script>
 
 <style scoped lang="scss">
-.tags_listing {
+.tag-list {
+  padding: 0;
+  border: none;
   display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+
+  > .tag-toggle {
+    display: grid;
+    box-shadow: var(--border-bg);
+
+    > * {
+      grid-area: 1/1;
+    }
+
+    > label {
+      padding-inline: var(--space-s);
+      padding-block: var(--space-xs);
+      background: var(--background-200);
+      border-radius: 2px;
+      cursor: pointer;
+    }
+
+    > input {
+      appearance: none;
+      background: none;
+      border: none;
+      inline-size: 100%;
+      block-size: 100%;
+
+      &:checked ~ label {
+        background-color: red;
+        color: var(--foreground-100);
+      }
+
+      &:not(:checked):is(:focus-within, :hover) ~ label {
+        color: var(--foreground-100);
+      }
+    }
+  }
 }
+
 .article_listing {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
@@ -155,6 +202,7 @@ let tags = new Set([...notesTags, ...essaysTags]);
   text-wrap: balance;
 
   a {
+    transition: color 0.7s var(--easing);
     color: var(--foreground-100);
     &:hover {
       color: var(--foreground-200);
@@ -180,7 +228,7 @@ let tags = new Set([...notesTags, ...essaysTags]);
 }
 [data-tag-show="false"] .title {
   a {
-    color: var(--foreground-200);
+    color: var(--article-inactive);
   }
 }
 </style>

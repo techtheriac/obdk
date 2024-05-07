@@ -4,7 +4,7 @@ slug: diversity-and-inclusion
 last_edited: 2023-09-10T15:37:00.000Z
 genre: musings
 stage: fruit
-tags: ass,engineering,jokes
+tags: engineering,culture
 ---
 
 A disconnect between products and folks products are being built for does seem to manifest itself more in spaces that do not foster diversity and inclusion. The goal of every product shipped is to meet a target audience in an area of need. Every product that aims to be successful will not fly, let alone reach an audience if it is not molded by a team that transcends the myopia that wrecks inclusivity.

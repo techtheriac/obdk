@@ -4,7 +4,7 @@ slug: just-a-little-while
 last_edited: 2023-09-10T15:37:00.000Z
 stage: fruit
 genre: poetry
-tags: ass,engineering,jokes
+tags: poetry
 ---
 
 1. Drenched with the
