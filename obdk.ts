@@ -128,6 +128,7 @@ export interface HarmonizedArticle {
   source: Source;
   stage: Stage | string;
   genre: string | undefined;
+  tags?: string[];
 }
 
 export interface Backlink {

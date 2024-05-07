@@ -11,7 +11,7 @@
 
 <style lang="scss" scoped>
 .content-main {
-  padding-top: var(--space-s);
+  padding: var(--space-s) var(--space-s);
   display: flex;
   flex-direction: column;
   width: 100%;

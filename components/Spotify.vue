@@ -2,7 +2,12 @@
   <Now title="listening" :description="data?.artist" :summary="data?.songTitle">
     <div class="spotify">
       <div class="album-art">
-        <img :src="data?.images[1].url" width="300" height="300" />
+        <img
+          alt="spotify album art"
+          :src="data?.images[1].url"
+          width="300"
+          height="300"
+        />
       </div>
       <div class="controller-overlay">
         <button

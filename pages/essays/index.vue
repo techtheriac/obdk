@@ -1,17 +1,37 @@
 <template>
-  <div class="content-align">
-    <ul>
-      <li class="musing__item" v-for="content in contents">
+  <div class="article-main">
+    <header>
+      <h1>Ruminations</h1>
+      <p>
+        a timeline of the ceasless iterations my thoughts, findings & ideas
+        undergo.
+      </p>
+    </header>
+    <form ref="tagSelect">
+      <fieldset v-on:change="handleTag" class="tag-list">
+        <div class="tag-toggle" v-for="tag in tags">
+          <input type="checkbox" name="article-filter" :value="tag" :id="tag" />
+          <label :for="tag">{{ tag }}</label>
+        </div>
+      </fieldset>
+    </form>
+    <ul class="article_listing">
+      <li
+        class="musing__item"
+        v-for="article in articles"
+        :data-tags="article.tagsString"
+        data-tag-show="true"
+      >
         <div class="published-date">
           <span>
-            {{ content.day }}
+            {{ article.day }}
           </span>
           <span>
-            {{ content.month }}
+            {{ article.month }}
           </span>
         </div>
         <h3 class="title">
-          <NuxtLink :to="content?.slug">{{ content?.title }}</NuxtLink>
+          <NuxtLink :to="article?.slug">{{ article?.title }}</NuxtLink>
         </h3>
       </li>
     </ul>
@@ -27,39 +47,158 @@ definePageMeta({
 const musings = await queryContent("essays").find();
 const { data: notion } = await useFetch("/api/get-notion-posts");
 
-const contents = computed(() => {
-  const essays: HarmonizedArticle[] = musings.map((post) => {
-    let { day, month } = useDateTimeComponent(post.last_edited);
-    return {
-      day,
-      month,
-      title: post.title,
-      slug: post._path,
-      source: "local",
-      stage: post.stage,
-      genre: post.genre,
-    };
-  });
+let tagSelect = ref(null);
 
-  const notes: HarmonizedArticle[] = notion.value!.results.map((post) => {
-    let { day, month } = useDateTimeComponent(post.last_edited_time);
-    return {
-      day,
-      month,
-      title: post.properties.name.title[0].plain_text,
-      slug: `/notes/${post.properties.slug.rich_text[0].plain_text}`,
-      source: "notion",
-      stage: post.properties.stage.status.name,
-      genre: post.properties.tags.multi_select[0].name,
-    };
-  });
+function handleTag(e) {
+  let selected = new FormData(tagSelect.value).getAll("article-filter");
+  let elements = document.querySelectorAll("[data-tags]");
 
-  return [...essays, ...notes];
+  if (selected.length >= 1) {
+    elements.forEach((element) => {
+      let attrs = element.getAttribute("data-tags")?.split(",");
+      if (thereExistCommonItems(attrs, selected)) {
+        element.setAttribute("data-tag-show", true);
+      } else {
+        element.setAttribute("data-tag-show", false);
+      }
+    });
+  } else {
+    elements.forEach((element) => {
+      element.setAttribute("data-tag-show", true);
+    });
+  }
+}
+
+function thereExistCommonItems(arr1, arr2) {
+  return arr1.some((item) => arr2.includes(item));
+}
+
+function extractTagsFromNotion(document: any) {
+  if (!document) return;
+  const tagsArray = document?.properties?.tags?.multi_select.map((x) => x.name);
+  const tagsString = tagsArray.join();
+  return { tagsArray, tagsString };
+}
+
+function extractTagsFromMarkdown(document: string) {
+  if (!document) return;
+  const tagsArray = document.split(",");
+  const tagsString = document;
+  return { tagsArray, tagsString };
+}
+
+const essays = musings.map((post) => {
+  let { day, month } = useDateTimeComponent(post.last_edited);
+  const { tagsArray, tagsString } = extractTagsFromMarkdown(post.tags);
+  return {
+    day,
+    month,
+    title: post.title,
+    slug: post._path,
+    source: "local",
+    stage: post.stage,
+    genre: post.genre,
+    tags: tagsArray,
+    tagsString,
+  };
 });
+
+const notes = notion.value!.results.map((post) => {
+  let { day, month } = useDateTimeComponent(post.last_edited_time);
+  const { tagsArray, tagsString } = extractTagsFromNotion(post);
+  return {
+    day,
+    month,
+    title: post.properties.name.title[0].plain_text,
+    slug: `/notes/${post.properties.slug.rich_text[0].plain_text}`,
+    source: "notion",
+    stage: post.properties.stage.status.name,
+    genre: post.properties.tags.multi_select[0].name,
+    tags: tagsArray,
+    tagsString,
+  };
+});
+
+let articles = [...notes, ...essays];
+
+const notesTags = notes.flatMap((x) => x.tags);
+const essaysTags = essays.flatMap((x) => x.tags);
+
+let tags = new Set([...notesTags, ...essaysTags]);
 </script>
 
 <style scoped lang="scss">
-ul {
+header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: var(--space-s);
+  > * + * {
+    margin-block-start: var(--space-s);
+  }
+
+  h1 {
+    font-weight: 600;
+    font-size: var(--idealHeadingOne);
+  }
+  p {
+    font-size: var(--idealBaseFontSize);
+    max-width: 70ch;
+  }
+}
+form {
+  margin-block-start: var(--space-s);
+  position: sticky;
+  top: var(--space-s);
+  z-index: 3;
+}
+.article-main {
+  padding-top: 4vw;
+  max-width: 960px;
+  margin-inline: auto;
+}
+.tag-list {
+  padding: 0;
+  border: none;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+
+  > .tag-toggle {
+    display: grid;
+    box-shadow: var(--border-bg);
+
+    > * {
+      grid-area: 1/1;
+    }
+
+    > label {
+      padding-inline: var(--space-s);
+      padding-block: var(--space-xs);
+      background: var(--background-200);
+      border-radius: 2px;
+      cursor: pointer;
+      font-size: var(--idealSubFontSize);
+    }
+
+    > input {
+      appearance: none;
+      background: none;
+      border: none;
+      inline-size: 100%;
+      block-size: 100%;
+
+      &:checked ~ label {
+        background-color: red;
+        color: var(--foreground-100);
+      }
+
+      &:not(:checked):is(:focus-within, :hover) ~ label {
+        color: var(--foreground-100);
+      }
+    }
+  }
+}
+
+.article_listing {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
   grid-row-gap: var(--space-xs);
@@ -86,13 +225,14 @@ ul {
 }
 
 .title {
-  font-size: var(--idealHeadingTwo);
+  font-size: var(--idealArticleListingFontSize);
   font-weight: 500;
   z-index: 2;
   position: relative;
   text-wrap: balance;
 
   a {
+    transition: color 0.45s var(--easing);
     color: var(--foreground-100);
     &:hover {
       color: var(--foreground-200);
@@ -109,5 +249,16 @@ ul {
   gap: min(var(--space-xs), 0.3em);
   padding: var(--space-xs);
   border-radius: 0.3em;
+}
+
+[data-tag-show="true"] .title {
+  a {
+    color: var(--foreground-100);
+  }
+}
+[data-tag-show="false"] .title {
+  a {
+    color: var(--article-inactive);
+  }
 }
 </style>
