@@ -52,13 +52,15 @@ const { data: notion } = await useFetch("/api/get-notion-posts");
 let tagSelect = ref(null);
 
 function handleTag(e) {
-  let selected = new FormData(tagSelect.value).getAll("article-filter").join();
+  let selected = new FormData(tagSelect.value).getAll("article-filter");
   let elements = document.querySelectorAll("[data-tags]");
 
-  if (selected) {
+  console.log("seleted", selected);
+
+  if (selected.length >= 1) {
     elements.forEach((element) => {
-      let attrs = element.getAttribute("data-tags");
-      if (selected?.includes(attrs)) {
+      let attrs = element.getAttribute("data-tags")?.split(",");
+      if (thereExistCommonItems(attrs, selected)) {
         element.setAttribute("data-tag-show", true);
       } else {
         element.setAttribute("data-tag-show", false);
@@ -69,6 +71,10 @@ function handleTag(e) {
       element.setAttribute("data-tag-show", true);
     });
   }
+}
+
+function thereExistCommonItems(arr1, arr2) {
+  return arr1.some((item) => arr2.includes(item));
 }
 
 function extractTagsFromNotion(document: any) {
