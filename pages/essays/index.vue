@@ -2,7 +2,10 @@
   <div class="article-main">
     <header>
       <h1>Ruminations</h1>
-      <p>a timeline of the ceasless iteration my thoughts & ideas undergo.</p>
+      <p>
+        a timeline of the ceasless iterations my thoughts, findings & ideas
+        undergo.
+      </p>
     </header>
     <form ref="tagSelect">
       <fieldset v-on:change="handleTag" class="tag-list">
@@ -143,6 +146,9 @@ header {
 }
 form {
   margin-block-start: var(--space-s);
+  position: sticky;
+  top: var(--space-s);
+  z-index: 3;
 }
 .article-main {
   padding-top: 4vw;
