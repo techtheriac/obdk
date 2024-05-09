@@ -1,6 +1,6 @@
 <template>
   <Now
-    title="WT°Footer!"
+    title="Elsewhere"
     description="Stuff you put in the footer"
     :summary="summary"
   >
@@ -52,8 +52,9 @@ ul {
     color: inherit;
     text-transform: uppercase;
     font-size: var(--idealSubFontSize);
+    text-decoration: line-through;
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
     }
   }
 }

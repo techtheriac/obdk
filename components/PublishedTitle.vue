@@ -51,21 +51,22 @@ const dateTime = computed(() => {
 }
 
 .title {
-  font-size: var(--idealHeadingTwo);
-  font-weight: 500;
+  font-family: Galgo;
+  font-size: calc(var(--idealHeadingOne) + 2vw);
   z-index: 2;
   position: relative;
+  font-weight: var(--artilce-heading-weight);
   color: var(--foreground-100);
   text-wrap: balance;
 
-  &::before {
+  /* &::before {
     content: "";
-    width: 2em;
+    width: 2ch;
     height: 1em;
     position: absolute;
     top: 0;
     background-color: var(--accent-color);
     z-index: 1;
-  }
+  } */
 }
 </style>
