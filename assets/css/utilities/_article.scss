@@ -61,9 +61,8 @@
   }
 
   blockquote {
-    padding-left: var(--space-xs);
+    padding-left: var(--space-s);
     border-left: 0.4em solid #87a19e80;
-    font-style: italic;
   }
 
   > p + p {
@@ -85,7 +84,6 @@
 
   a {
     color: inherit;
-    font-family: LeituraNews;
     background-color: #63865669;
 
     &:hover {
