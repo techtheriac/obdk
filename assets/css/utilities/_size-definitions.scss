@@ -48,8 +48,8 @@ $interpolate-max: 1445px;
     --idealHeadingOne,
     $interpolate-min,
     $interpolate-max,
-    25px,
-    32px
+    32px,
+    35px
   );
 
   @include interpolate(
