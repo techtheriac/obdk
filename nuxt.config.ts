@@ -24,7 +24,8 @@ export default defineNuxtConfig({
     "/essays": { swr: true },
     "/essays/**": {
       swr: 3600,
+      prerender: true,
     },
-    "/notes/**": { swr: 3600 },
+    "/notes/**": { swr: 3600, prerender: true },
   },
 });
