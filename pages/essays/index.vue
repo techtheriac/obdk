@@ -1,40 +1,60 @@
 <template>
-  <div class="article-main">
-    <header>
-      <h1>Ruminations</h1>
-      <p>
-        a timeline of the ceasless iterations my thoughts, findings & ideas
-        undergo.
-      </p>
-    </header>
+  <div>
     <form ref="tagSelect">
       <fieldset v-on:change="handleTag" class="tag-list">
         <div class="tag-toggle" v-for="tag in tags">
           <input type="checkbox" name="article-filter" :value="tag" :id="tag" />
-          <label :for="tag">{{ tag }}</label>
+          <label :style="galgoStyles" :for="tag">{{ tag }}</label>
         </div>
       </fieldset>
     </form>
-    <ul class="article_listing">
-      <li
-        class="musing__item"
-        v-for="article in articles"
-        :data-tags="article.tagsString"
-        data-tag-show="true"
+    <div class="article-main flow">
+      <EssaySegment
+        name="Essays"
+        summary="a timeline of the ceasless iterations my thoughts, findings & ideas undergo"
       >
-        <div class="published-date">
-          <span>
-            {{ article.day }}
-          </span>
-          <span>
-            {{ article.month }}
-          </span>
-        </div>
-        <h3 class="title">
-          <NuxtLink :to="article?.slug">{{ article?.title }}</NuxtLink>
-        </h3>
-      </li>
-    </ul>
+        <ul class="essay_listing">
+          <li
+            class="musing__item"
+            v-for="article in essays"
+            :data-tags="article.tagsString"
+            data-tag-show="true"
+          >
+            <h3 class="title">
+              <NuxtLink :to="article?.slug">{{ article?.title }}</NuxtLink>
+            </h3>
+            <p class="summary">
+              {{ article.summary }}
+            </p>
+          </li>
+        </ul>
+      </EssaySegment>
+      <EssaySegment
+        name="Notes"
+        summary="A timelines of notes, anecdotes and brain farts–some of which are poised for becoming fully fledged essays."
+      >
+        <ul class="notes_listing">
+          <li
+            class="musing__item"
+            v-for="article in notes"
+            :data-tags="article.tagsString"
+            data-tag-show="true"
+          >
+            <div class="published-date">
+              <span>
+                {{ article.day }}
+              </span>
+              <span>
+                {{ article.month }}
+              </span>
+            </div>
+            <h3 class="title">
+              <NuxtLink :to="article?.slug">{{ article?.title }}</NuxtLink>
+            </h3>
+          </li>
+        </ul>
+      </EssaySegment>
+    </div>
   </div>
 </template>
 
@@ -42,6 +62,52 @@
 // @ts-nocheck
 definePageMeta({
   layout: "article",
+});
+import { createStyleObject } from "@capsizecss/core";
+import { Essay } from "~/obdk";
+
+const galgoBase = reactive({
+  capHeight: 43,
+  lineGap: 24,
+  fontMetrics: {
+    familyName: "Galgo Light",
+    fullName: "Galgo Medium",
+    postscriptName: "Galgo-Medium",
+    capHeight: 613,
+    ascent: 750,
+    descent: -250,
+    lineGap: 0,
+    unitsPerEm: 1000,
+    xHeight: 495,
+    xWidthAvg: 178,
+    subsets: {
+      latin: {
+        xWidthAvg: 178,
+      },
+      thai: {
+        xWidthAvg: 120,
+      },
+    },
+  },
+});
+
+let init = createStyleObject(galgoBase);
+let galgoStyles = ref(init);
+
+onMounted(() => {
+  window.addEventListener("resize", (event) => {
+    let upperLimit = 100;
+    let lowerLimit = 50;
+    let idealWidth = event.target.innerWidth / 10;
+    if (idealWidth < lowerLimit || idealWidth > upperLimit) return;
+    galgoBase.capHeight = idealWidth;
+  });
+});
+
+watch(galgoBase, () => {
+  console.log("watching galgobase", galgoBase);
+  galgoStyles.value = createStyleObject(galgoBase);
+  console.log("watching galgoStyle", galgoStyles.value);
 });
 
 const musings = await queryContent("essays").find();
@@ -73,23 +139,23 @@ function thereExistCommonItems(arr1, arr2) {
   return arr1.some((item) => arr2.includes(item));
 }
 
-function extractTagsFromNotion(document: any) {
+function galgoBasectTagsFromNotion(document: any) {
   if (!document) return;
   const tagsArray = document?.properties?.tags?.multi_select.map((x) => x.name);
   const tagsString = tagsArray.join();
   return { tagsArray, tagsString };
 }
 
-function extractTagsFromMarkdown(document: string) {
+function galgoBasectTagsFromMarkdown(document: string) {
   if (!document) return;
   const tagsArray = document.split(",");
   const tagsString = document;
   return { tagsArray, tagsString };
 }
 
-const essays = musings.map((post) => {
+const essays: Essay[] = musings.map((post) => {
   let { day, month } = useDateTimeComponent(post.last_edited);
-  const { tagsArray, tagsString } = extractTagsFromMarkdown(post.tags);
+  const { tagsArray, tagsString } = galgoBasectTagsFromMarkdown(post.tags);
   return {
     day,
     month,
@@ -100,12 +166,14 @@ const essays = musings.map((post) => {
     genre: post.genre,
     tags: tagsArray,
     tagsString,
+    segment: "ESSAYS",
+    summary: post.summary,
   };
 });
 
-const notes = notion.value!.results.map((post) => {
+const notes: Essay[] = notion.value!.results.map((post) => {
   let { day, month } = useDateTimeComponent(post.last_edited_time);
-  const { tagsArray, tagsString } = extractTagsFromNotion(post);
+  const { tagsArray, tagsString } = galgoBasectTagsFromNotion(post);
   return {
     day,
     month,
@@ -116,6 +184,7 @@ const notes = notion.value!.results.map((post) => {
     genre: post.properties.tags.multi_select[0].name,
     tags: tagsArray,
     tagsString,
+    segment: "NOTES",
   };
 });
 
@@ -128,77 +197,90 @@ let tags = new Set([...notesTags, ...essaysTags]);
 </script>
 
 <style scoped lang="scss">
-header {
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: var(--space-s);
-  > * + * {
-    margin-block-start: var(--space-s);
-  }
-
-  h1 {
-    font-weight: 600;
-    font-size: var(--idealHeadingOne);
-  }
-  p {
-    font-size: var(--idealBaseFontSize);
-    max-width: 70ch;
-  }
-}
 form {
   margin-block-start: var(--space-s);
   position: sticky;
-  top: var(--space-s);
+  top: var(--space-xs);
   z-index: 3;
-}
-.article-main {
-  padding-top: 4vw;
-  max-width: 960px;
-  margin-inline: auto;
-}
-.tag-list {
-  padding: 0;
-  border: none;
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-xs);
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -ms-scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
-  > .tag-toggle {
-    display: grid;
-    box-shadow: var(--border-bg);
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .tag-list {
+    padding: 0;
+    border: none;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    white-space: nowrap;
+    gap: var(--space-xs);
 
-    > * {
-      grid-area: 1/1;
-    }
+    > .tag-toggle {
+      display: grid;
+      box-shadow: var(--border-bg);
 
-    > label {
-      padding-inline: var(--space-s);
-      padding-block: var(--space-xs);
-      background: var(--background-200);
-      border-radius: 2px;
-      cursor: pointer;
-      font-size: var(--idealSubFontSize);
-    }
-
-    > input {
-      appearance: none;
-      background: none;
-      border: none;
-      inline-size: 100%;
-      block-size: 100%;
-
-      &:checked ~ label {
-        background-color: red;
-        color: var(--foreground-100);
+      > * {
+        grid-area: 1/1;
       }
 
-      &:not(:checked):is(:focus-within, :hover) ~ label {
-        color: var(--foreground-100);
+      > label {
+        padding: 0.2em 0.1em;
+        background: var(--background-200);
+        border-radius: 2px;
+        cursor: pointer;
+        font-family: Galgo;
+        text-transform: uppercase;
+        font-size: 10vw;
+
+        &::before {
+          content: "";
+          margin-bottom: -0.0968em;
+          display: table;
+        }
+
+        &:after {
+          content: "";
+          margin-top: -0.2097em;
+          display: table;
+        }
+      }
+
+      > input {
+        appearance: none;
+        background: none;
+        border: none;
+        inline-size: 100%;
+        block-size: 100%;
+
+        &:checked ~ label {
+          background-color: var(--accent-blue);
+          color: var(--foreground-100);
+        }
+
+        &:not(:checked):is(:focus-within, :hover) ~ label {
+          color: var(--foreground-100);
+        }
       }
     }
   }
 }
+.article-main {
+  padding-top: 4vw;
+  max-width: 1100px;
+  margin-inline: auto;
+  > * + * {
+    margin-top: var(--space);
+  }
+}
 
-.article_listing {
+.notes_listing {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
   grid-row-gap: var(--space-xs);
@@ -251,13 +333,26 @@ form {
   border-radius: 0.3em;
 }
 
+.essay_listing {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  .summary {
+    font-weight: 200;
+    color: var(--foreground-200);
+    margin-block-start: 0.5em;
+  }
+}
+
 [data-tag-show="true"] .title {
-  a {
+  a,
+  .summary {
     color: var(--foreground-100);
   }
 }
 [data-tag-show="false"] .title {
-  a {
+  a,
+  .summary {
     color: var(--article-inactive);
   }
 }

@@ -5,6 +5,7 @@ last_edited: 2023-12-16T15:37:00.000Z
 stage: seed
 genre: engineering
 tags: engineering
+summary: observing the beauty of algorithms
 ---
 
 Algorithms become fairly simple when your domain and the relationships between the structures representing the domain in question is well thought out.

@@ -19,6 +19,7 @@ definePageMeta({
   layout: "article",
 });
 
+// fetch data for article footer
 const slug = useRoute().params?.slug[0];
 const musings = await queryContent("essays").find()!;
 

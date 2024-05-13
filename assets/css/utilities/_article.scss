@@ -3,8 +3,7 @@
 
 #content {
   @extend %content-align;
-  --paragraph-color: var(--foreground-100);
-  color: var(--paragraph-color);
+  color: var(--paragraph-100);
   font-family: "TWK Lausanne";
   font-weight: var(--artilce-body-weight);
 }

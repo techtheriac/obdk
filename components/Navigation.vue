@@ -23,10 +23,9 @@
   min-width: 50px;
   max-height: 50px;
   width: 0;
-  border: 1px dotted rgba(var(--ob-color-laurel), 0.3);
   border-radius: 50px;
-  background-color: var(--accent);
-  color: rgba(var(--ob-color-seaweed));
+  background-color: var(--accent-blue);
+  color: var(--black);
   transition:
     width 0.4s ease-in-out,
     border-radius 0.4s ease-in-out,
