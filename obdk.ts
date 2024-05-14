@@ -135,3 +135,18 @@ export interface Backlink {
   title: string;
   slug: string;
 }
+
+export type Segment = "ESSAYS" | "NOTES";
+
+export interface Essay {
+  day: string;
+  month: string;
+  title: string;
+  slug: string;
+  source: "local" | "notion";
+  genre: string;
+  tags: string[];
+  tagsString: string;
+  segment: Segment;
+  summary?: string;
+}

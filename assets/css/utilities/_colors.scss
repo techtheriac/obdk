@@ -14,6 +14,10 @@
   --easingOut: cubic-bezier(0.16, 1, 0.3, 1);
   --easing: cubic-bezier(0.83, 0, 0.17, 1);
   --black: hsla(0, 0%, 11%, 1);
+  --accent-yellow: hsla(53, 73%, 58%, 1);
+  --accent-orange: hsla(2, 49%, 69%, 1);
+  --accent-blue: hsla(169, 28%, 68%, 1);
+  --accent-purple: hsla(264, 22%, 66%, 1);
   --grey-80: hsla(0, 0%, 16%, 1);
   --grey-70: hsla(0, 0%, 20%, 1);
   --grey-60: hsla(0, 0%, 27%, 1);
@@ -44,7 +48,8 @@
     --foreground-300: var(--grey-50);
     --article-inactive: var(--inactive);
     --artilce-heading-weight: 200;
-    --artilce-body-weight: 300;
+    --artilce-body-weight: 200;
+    --paragraph-100: var(--white);
   }
 }
 
@@ -59,6 +64,7 @@
     --foreground-200: var(--grey-40);
     --article-inactive: var(--inactive);
     --artilce-heading-weight: 300;
-    --artilce-body-weight: 400;
+    --artilce-body-weight: 300;
+    --paragraph-100: var(--grey-80);
   }
 }

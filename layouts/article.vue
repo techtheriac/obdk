@@ -1,9 +1,9 @@
 <template>
   <div class="content-main obdk-bg" data-nav="article">
     <Navigation />
-    <section>
+    <main>
       <slot />
-    </section>
+    </main>
   </div>
 </template>
 
@@ -11,13 +11,8 @@
 
 <style lang="scss" scoped>
 .content-main {
-  padding: var(--space-s) var(--space-s);
-  display: flex;
-  flex-direction: column;
+  padding-inline: var(--space-s);
   width: 100%;
   min-height: 100vh;
-  section {
-    z-index: 2;
-  }
 }
 </style>

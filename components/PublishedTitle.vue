@@ -58,15 +58,5 @@ const dateTime = computed(() => {
   font-weight: var(--artilce-heading-weight);
   color: var(--foreground-100);
   text-wrap: balance;
-
-  /* &::before {
-    content: "";
-    width: 2ch;
-    height: 1em;
-    position: absolute;
-    top: 0;
-    background-color: var(--accent-color);
-    z-index: 1;
-  } */
 }
 </style>
