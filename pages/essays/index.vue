@@ -66,49 +66,85 @@ definePageMeta({
 import { createStyleObject } from "@capsizecss/core";
 import { Essay } from "~/obdk";
 
-const galgoBase = reactive({
-  capHeight: 43,
-  lineGap: 24,
-  fontMetrics: {
-    familyName: "Galgo Light",
-    fullName: "Galgo Medium",
-    postscriptName: "Galgo-Medium",
-    capHeight: 613,
-    ascent: 750,
-    descent: -250,
-    lineGap: 0,
-    unitsPerEm: 1000,
-    xHeight: 495,
-    xWidthAvg: 178,
-    subsets: {
-      latin: {
-        xWidthAvg: 178,
-      },
-      thai: {
-        xWidthAvg: 120,
+function scale(
+  value: number,
+  min1: number,
+  max1: number,
+  min2: number,
+  max2: number,
+) {
+  return min2 + ((value - min1) * (max2 - min2)) / (max1 - min1);
+}
+
+let galgoBase = ref({});
+let galgoStyles = ref({});
+
+function setIdealSizing(): number {
+  if (!window) return;
+
+  const idealUpperLimit = 100;
+  const idealLowerLimit = 43;
+  const winMinSize = 350;
+  const winMaxSize = 1445;
+
+  let winAbsWidth = window.innerWidth;
+
+  let idealCapSize = Math.ceil(
+    scale(
+      winAbsWidth,
+      winMinSize,
+      winMaxSize,
+      idealLowerLimit,
+      idealUpperLimit,
+    ),
+  );
+
+  galgoBase.value.capHeight = idealCapSize;
+
+  return idealCapSize;
+}
+
+onBeforeMount(() => {
+  let initialCapHeight = setIdealSizing();
+
+  galgoBase.value = {
+    capHeight: initialCapHeight,
+    lineGap: 24,
+    fontMetrics: {
+      familyName: "Galgo Light",
+      fullName: "Galgo Medium",
+      postscriptName: "Galgo-Medium",
+      capHeight: 613,
+      ascent: 750,
+      descent: -250,
+      lineGap: 0,
+      unitsPerEm: 1000,
+      xHeight: 495,
+      xWidthAvg: 178,
+      subsets: {
+        latin: {
+          xWidthAvg: 178,
+        },
+        thai: {
+          xWidthAvg: 120,
+        },
       },
     },
-  },
-});
+  };
 
-let init = createStyleObject(galgoBase);
-let galgoStyles = ref(init);
+  galgoStyles.value = createStyleObject(galgoBase.value);
+});
 
 onMounted(() => {
-  window.addEventListener("resize", (event) => {
-    let upperLimit = 100;
-    let lowerLimit = 50;
-    let idealWidth = event.target.innerWidth / 10;
-    if (idealWidth < lowerLimit || idealWidth > upperLimit) return;
-    galgoBase.capHeight = idealWidth;
-  });
+  window.addEventListener("resize", setIdealSizing);
 });
 
-watch(galgoBase, () => {
-  console.log("watching galgobase", galgoBase);
-  galgoStyles.value = createStyleObject(galgoBase);
-  console.log("watching galgoStyle", galgoStyles.value);
-});
+watch(
+  () => galgoBase.value.capHeight,
+  () => {
+    galgoStyles.value = createStyleObject(galgoBase.value);
+  },
+);
 
 const musings = await queryContent("essays").find();
 const { data: notion } = await useFetch("/api/get-notion-posts");
@@ -237,7 +273,7 @@ form {
         cursor: pointer;
         font-family: Galgo;
         text-transform: uppercase;
-        font-size: 10vw;
+        font-size: 4vw;
 
         &::before {
           content: "";
@@ -258,6 +294,7 @@ form {
         border: none;
         inline-size: 100%;
         block-size: 100%;
+        outline: none;
 
         &:checked ~ label {
           background-color: var(--accent-blue);
