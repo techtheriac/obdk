@@ -140,6 +140,7 @@ export type Segment = "ESSAYS" | "NOTES";
 
 export interface Essay {
   day: string;
+  year: string;
   month: string;
   title: string;
   slug: string;

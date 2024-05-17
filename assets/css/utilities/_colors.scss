@@ -33,6 +33,8 @@
   --bg-image-dark: url("/static/images/bg-grain-dark.png");
   --bg-image-light: url("/static/images/bg-grain.png");
   --inactive: hsla(0, 0%, 20%, 0.5);
+  --elevated-dark: var(--grey-70);
+  --elevated-light: var(--grey-5);
 }
 
 // the higher the number the lower the saturation
@@ -47,9 +49,10 @@
     --foreground-200: var(--grey-30);
     --foreground-300: var(--grey-50);
     --article-inactive: var(--inactive);
-    --artilce-heading-weight: 200;
+    --artilce-heading-weight: 500;
     --artilce-body-weight: 200;
     --paragraph-100: var(--white);
+    --elevated: var(--elevated-dark);
   }
 }
 
@@ -63,8 +66,9 @@
     --foreground-100: var(--grey-80);
     --foreground-200: var(--grey-40);
     --article-inactive: var(--inactive);
-    --artilce-heading-weight: 300;
+    --artilce-heading-weight: 550;
     --artilce-body-weight: 300;
     --paragraph-100: var(--grey-80);
+    --elevated: var(--elevated-light);
   }
 }

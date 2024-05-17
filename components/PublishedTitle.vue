@@ -51,8 +51,7 @@ const dateTime = computed(() => {
 }
 
 .title {
-  font-family: Galgo;
-  font-size: calc(var(--idealHeadingOne) + 2vw);
+  font-size: var(--idealHeadingOne);
   z-index: 2;
   position: relative;
   font-weight: var(--artilce-heading-weight);

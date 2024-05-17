@@ -8,52 +8,35 @@
         </div>
       </fieldset>
     </form>
+    <div class="pills__intro">
+      <h1>ETHOS</h1>
+      <p>
+        I’m an Irish/Canadian designer living in Vancouver. I specialize in
+        where design and frontend code meet. I use bold typography, novel
+        layouts, and delight-filled interactions to tell engrossing stories. I’m
+        currently a designer at Square working on websites, interactions, and
+        marketing. A timelines of notes, anecdotes and brain farts–some of which
+        are poised for becoming fully fledged essays and elaborations.
+      </p>
+    </div>
     <div class="article-main flow">
-      <EssaySegment
-        name="Essays"
-        summary="a timeline of the ceasless iterations my thoughts, findings & ideas undergo"
-      >
-        <ul class="essay_listing">
-          <li
-            class="musing__item"
-            v-for="article in essays"
-            :data-tags="article.tagsString"
-            data-tag-show="true"
-          >
-            <h3 class="title">
-              <NuxtLink :to="article?.slug">{{ article?.title }}</NuxtLink>
-            </h3>
-            <p class="summary">
-              {{ article.summary }}
-            </p>
-          </li>
-        </ul>
-      </EssaySegment>
-      <EssaySegment
-        name="Notes"
-        summary="A timelines of notes, anecdotes and brain farts–some of which are poised for becoming fully fledged essays."
-      >
-        <ul class="notes_listing">
-          <li
-            class="musing__item"
-            v-for="article in notes"
-            :data-tags="article.tagsString"
-            data-tag-show="true"
-          >
-            <div class="published-date">
-              <span>
-                {{ article.day }}
-              </span>
-              <span>
-                {{ article.month }}
-              </span>
-            </div>
-            <h3 class="title">
-              <NuxtLink :to="article?.slug">{{ article?.title }}</NuxtLink>
-            </h3>
-          </li>
-        </ul>
-      </EssaySegment>
+      <ol class="year">
+        <li class="year-segment" v-for="(list, year) in groupedByYear">
+          <h2>{{ year }}</h2>
+          <ol class="article-listing">
+            <li
+              class="title"
+              v-for="articleItem in list"
+              :data-tags="articleItem.tagsString"
+              data-tag-show="true"
+            >
+              <NuxtLink :to="articleItem?.slug">{{
+                articleItem.title
+              }}</NuxtLink>
+            </li>
+          </ol>
+        </li>
+      </ol>
     </div>
   </div>
 </template>
@@ -147,7 +130,7 @@ watch(
 );
 
 const musings = await queryContent("essays").find();
-const { data: notion } = await useFetch("/api/get-notion-posts");
+// const { data: notion } = await useFetch("/api/get-notion-posts");
 
 let tagSelect = ref(null);
 
@@ -189,12 +172,33 @@ function galgoBasectTagsFromMarkdown(document: string) {
   return { tagsArray, tagsString };
 }
 
+function getDistinctYear(essays: Essay[]): string[] {
+  const years = essays.map((essay) => {
+    return essay.year;
+  });
+
+  return new Set(years);
+}
+
+function groupListingByYear(essays: Essay[]): Record<string, Essay[]> {
+  const distinctYears = getDistinctYear(essays);
+
+  let yearMap: Record<string, Essay[]> | {} = {};
+
+  distinctYears.forEach((year) => {
+    yearMap[year] = essays.filter((post) => post.year === year);
+  });
+
+  return yearMap;
+}
+
 const essays: Essay[] = musings.map((post) => {
-  let { day, month } = useDateTimeComponent(post.last_edited);
+  let { day, month, year } = useDateTimeComponent(post.last_edited);
   const { tagsArray, tagsString } = galgoBasectTagsFromMarkdown(post.tags);
   return {
     day,
     month,
+    year,
     title: post.title,
     slug: post._path,
     source: "local",
@@ -207,32 +211,56 @@ const essays: Essay[] = musings.map((post) => {
   };
 });
 
-const notes: Essay[] = notion.value!.results.map((post) => {
-  let { day, month } = useDateTimeComponent(post.last_edited_time);
-  const { tagsArray, tagsString } = galgoBasectTagsFromNotion(post);
-  return {
-    day,
-    month,
-    title: post.properties.name.title[0].plain_text,
-    slug: `/notes/${post.properties.slug.rich_text[0].plain_text}`,
-    source: "notion",
-    stage: post.properties.stage.status.name,
-    genre: post.properties.tags.multi_select[0].name,
-    tags: tagsArray,
-    tagsString,
-    segment: "NOTES",
-  };
-});
+// const notes: Essay[] = notion.value!.results.map((post) => {
+//   let { day, month, year } = useDateTimeComponent(post.last_edited_time);
+//   const { tagsArray, tagsString } = galgoBasectTagsFromNotion(post);
+//   return {
+//     day,
+//     month,
+//     year,
+//     title: post.properties.name.title[0].plain_text,
+//     slug: `/notes/${post.properties.slug.rich_text[0].plain_text}`,
+//     source: "notion",
+//     stage: post.properties.stage.status.name,
+//     genre: post.properties.tags.multi_select[0].name,
+//     tags: tagsArray,
+//     tagsString,
+//     segment: "NOTES",
+//   };
+// });
 
-let articles = [...notes, ...essays];
+let articles = [...essays];
 
-const notesTags = notes.flatMap((x) => x.tags);
+const groupedByYear = groupListingByYear(articles);
+
+console.log("YEAR GROUPING:", groupedByYear);
+
+// const notesTags = notes.flatMap((x) => x.tags);
 const essaysTags = essays.flatMap((x) => x.tags);
 
-let tags = new Set([...notesTags, ...essaysTags]);
+// let tags = new Set([...notesTags, ...essaysTags]);
+let tags = new Set([...essaysTags]);
 </script>
 
 <style scoped lang="scss">
+.pills__intro {
+  max-width: 760px;
+  margin-block-start: 4vmax;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    font-family: "Galgo";
+    font-size: calc(var(--idealHeadingOne) + 6vw);
+  }
+
+  p {
+    max-width: 50ch;
+    line-height: 1.5em;
+  }
+}
 form {
   margin-block-start: var(--space-s);
   position: sticky;
@@ -268,7 +296,7 @@ form {
 
       > label {
         padding: 0.2em 0.1em;
-        background: var(--background-200);
+        border: 1px solid var(--border-color);
         border-radius: 2px;
         cursor: pointer;
         font-family: Galgo;
@@ -310,7 +338,6 @@ form {
 }
 .article-main {
   padding-top: 4vw;
-  max-width: 1100px;
   margin-inline: auto;
   > * + * {
     margin-top: var(--space);
@@ -320,38 +347,67 @@ form {
 .notes_listing {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
-  grid-row-gap: var(--space-xs);
+  grid-row-gap: var(--space-s);
   grid-column-gap: var(--space-s);
 
   li {
     display: flex;
     align-items: center;
     gap: var(--space-s);
+    position: relative;
+    padding: var(--space-xs);
+
+    --border: transparent;
+
+    .title {
+      font-size: var(--idealHeadingTwo);
+      font-weight: 300;
+    }
+
+    &:hover {
+      --border: var(--foreground-100);
+      cursor: pointer;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: calc(var(--space-s) * -1);
+      width: calc(var(--space-s));
+      height: 1px;
+      background-color: var(--border);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: calc(var(--space-s) * -1);
+      width: calc(var(--space-s) * 2);
+      height: 1px;
+      background-color: var(--border);
+      z-index: 3;
+      transform: rotate(90deg);
+    }
   }
 }
 
-.musing__item {
-  color: var(--foreground-100);
-  padding: var(--space-s) 0;
-  width: 100%;
-  border-bottom: 1px solid var(--border-color);
-
-  &__border-aug {
-    --aug-border-all: 1px;
-    --aug-border-bg: var(--border-bg);
-    --aug-tl: 0px;
-  }
+.year-segment {
+  display: flex;
 }
 
 .title {
-  font-size: var(--idealArticleListingFontSize);
-  font-weight: 500;
+  font-size: var(--idealHeadingOne);
+  font-weight: 400;
   z-index: 2;
   position: relative;
   text-wrap: balance;
 
   a {
-    transition: color 0.45s var(--easing);
+    transition:
+      color 0.45s var(--easingOut),
+      text-shadow 1s var(--easingOut);
     color: var(--foreground-100);
     &:hover {
       color: var(--foreground-200);
@@ -359,38 +415,15 @@ form {
   }
 }
 
-.published-date {
-  font-size: var(--idealSubFontSize);
-  color: var(--foreground-200);
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background-200);
-  gap: min(var(--space-xs), 0.3em);
-  padding: var(--space-xs);
-  border-radius: 0.3em;
-}
-
-.essay_listing {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-
-  .summary {
-    font-weight: 200;
-    color: var(--foreground-200);
-    margin-block-start: 0.5em;
-  }
-}
-
-[data-tag-show="true"] .title {
-  a,
-  .summary {
+[data-tag-show="true"] {
+  a {
     color: var(--foreground-100);
   }
 }
-[data-tag-show="false"] .title {
-  a,
-  .summary {
-    color: var(--article-inactive);
+[data-tag-show="false"] {
+  a {
+    color: transparent;
+    text-shadow: 0 0 4px var(--foreground-100);
   }
 }
 </style>

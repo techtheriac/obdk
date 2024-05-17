@@ -25,7 +25,7 @@ function getAccentFromSegment(name: Segment) {}
 .essay-segment {
   width: 100%;
   .meta {
-    border-bottom: 1px solid var(--border-color);
+    // border-bottom: 1px solid var(--border-color);
     padding-bottom: var(--space-s);
     > * + * {
       margin-block-start: var(--space-s);
@@ -33,8 +33,9 @@ function getAccentFromSegment(name: Segment) {}
 
     h2 {
       position: relative;
-      font-weight: 600;
-      font-size: var(--idealHeadingOne);
+      font-weight: 300;
+      text-transform: uppercase;
+      font-size: calc(var(--idealHeadingOne) + 1vw);
 
       &[data-accent="Essays"] {
         --accent-color: var(--accent-yellow);

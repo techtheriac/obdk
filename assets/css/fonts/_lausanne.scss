@@ -35,6 +35,13 @@
 
 @font-face {
   font-family: "TWK Lausanne";
+  src: url("/static/fonts/TWKLausanne-550.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 550;
+}
+
+@font-face {
+  font-family: "TWK Lausanne";
   src: url("/static/fonts/TWKLausanne-600.woff2") format("woff2");
   font-style: normal;
   font-weight: 600;
