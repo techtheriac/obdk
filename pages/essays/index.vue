@@ -21,12 +21,12 @@
     </div> -->
     <section class="article-section">
       <ol class="article-main">
-        <li class="year-segment" v-for="(list, year) in groupedByYear">
-          <h2>{{ year }}</h2>
+        <li class="year-segment" v-for="(item, index) in groupedByYear">
+          <h2>{{ item[0] }}</h2>
           <ol class="article-listing">
             <li
               class="title"
-              v-for="articleItem in list"
+              v-for="articleItem in item[1]"
               :data-tags="articleItem.tagsString"
               data-tag-show="true"
             >
@@ -180,17 +180,16 @@ function getDistinctYear(essays: Essay[]): string[] {
   const years = essays.map((essay) => {
     return essay.year;
   });
-
-  return new Set(years);
+  return years;
 }
 
 function groupListingByYear(essays: Essay[]): Record<string, Essay[]> {
   const distinctYears = getDistinctYear(essays);
 
-  let yearMap: Record<string, Essay[]> | {} = {};
+  let yearMap: Record<Number, Essay[]> | {} = {};
 
   distinctYears.forEach((year) => {
-    yearMap[year] = essays.filter((post) => post.year === year);
+    yearMap[parseInt(year)] = essays.filter((post) => post.year === year);
   });
 
   return yearMap;
@@ -236,7 +235,14 @@ const notes: Essay[] = notion.value!.results.map((post) => {
 let articles = [...essays, ...notes];
 const articlesTags = articles.flatMap((x) => x.tags);
 let tags = new Set(articlesTags);
-const groupedByYear = groupListingByYear(articles);
+
+const _groupedByYear = groupListingByYear(articles);
+
+function compareValues(a, b) {
+  return b[0] - a[0];
+}
+
+const groupedByYear = Object.entries(_groupedByYear).sort(compareValues);
 </script>
 
 <style scoped lang="scss">
@@ -426,6 +432,10 @@ form {
   text-wrap: balance;
 
   a {
+    text-decoration: underline;
+    text-decoration-color: var(--border-color);
+    text-underline-offset: 0.09em;
+    text-decoration-thickness: 0.5px;
     transition:
       color 0.45s var(--easingOut),
       text-shadow 1s var(--easingOut);
@@ -436,10 +446,13 @@ form {
   }
 
   .summary {
-    font-weight: 300;
+    transition:
+      color 0.45s var(--easingOut),
+      text-shadow 1s var(--easingOut);
+    font-weight: 200;
     font-size: var(--idealArticleParagraphSize);
-    color: var(--foreground-200);
     padding-top: 0.4em;
+    line-height: 1.3em;
   }
 }
 
