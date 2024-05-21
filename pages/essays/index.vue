@@ -8,7 +8,7 @@
         </div>
       </fieldset>
     </form>
-    <div class="pills__intro">
+    <!-- <div class="pills__intro">
       <h1>ETHOS</h1>
       <p>
         I’m an Irish/Canadian designer living in Vancouver. I specialize in
@@ -18,9 +18,9 @@
         marketing. A timelines of notes, anecdotes and brain farts–some of which
         are poised for becoming fully fledged essays and elaborations.
       </p>
-    </div>
-    <div class="article-main flow">
-      <ol class="year">
+    </div> -->
+    <section class="article-section">
+      <ol class="article-main">
         <li class="year-segment" v-for="(list, year) in groupedByYear">
           <h2>{{ year }}</h2>
           <ol class="article-listing">
@@ -37,7 +37,7 @@
           </ol>
         </li>
       </ol>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -116,11 +116,11 @@ onBeforeMount(() => {
   };
 
   galgoStyles.value = createStyleObject(galgoBase.value);
-});
-
-onMounted(() => {
   window.addEventListener("resize", setIdealSizing);
 });
+
+// onMounted(() => {
+// });
 
 watch(
   () => galgoBase.value.capHeight,
@@ -130,7 +130,7 @@ watch(
 );
 
 const musings = await queryContent("essays").find();
-// const { data: notion } = await useFetch("/api/get-notion-posts");
+const { data: notion } = await useFetch("/api/get-notion-posts");
 
 let tagSelect = ref(null);
 
@@ -211,40 +211,33 @@ const essays: Essay[] = musings.map((post) => {
   };
 });
 
-// const notes: Essay[] = notion.value!.results.map((post) => {
-//   let { day, month, year } = useDateTimeComponent(post.last_edited_time);
-//   const { tagsArray, tagsString } = galgoBasectTagsFromNotion(post);
-//   return {
-//     day,
-//     month,
-//     year,
-//     title: post.properties.name.title[0].plain_text,
-//     slug: `/notes/${post.properties.slug.rich_text[0].plain_text}`,
-//     source: "notion",
-//     stage: post.properties.stage.status.name,
-//     genre: post.properties.tags.multi_select[0].name,
-//     tags: tagsArray,
-//     tagsString,
-//     segment: "NOTES",
-//   };
-// });
+const notes: Essay[] = notion.value!.results.map((post) => {
+  let { day, month, year } = useDateTimeComponent(post.last_edited_time);
+  const { tagsArray, tagsString } = galgoBasectTagsFromNotion(post);
+  return {
+    day,
+    month,
+    year,
+    title: post.properties.name.title[0].plain_text,
+    slug: `/notes/${post.properties.slug.rich_text[0].plain_text}`,
+    source: "notion",
+    stage: post.properties.stage.status.name,
+    genre: post.properties.tags.multi_select[0].name,
+    tags: tagsArray,
+    tagsString,
+    segment: "NOTES",
+  };
+});
 
-let articles = [...essays];
-
+let articles = [...essays, ...notes];
+const articlesTags = articles.flatMap((x) => x.tags);
+let tags = new Set(articlesTags);
 const groupedByYear = groupListingByYear(articles);
-
-console.log("YEAR GROUPING:", groupedByYear);
-
-// const notesTags = notes.flatMap((x) => x.tags);
-const essaysTags = essays.flatMap((x) => x.tags);
-
-// let tags = new Set([...notesTags, ...essaysTags]);
-let tags = new Set([...essaysTags]);
 </script>
 
 <style scoped lang="scss">
 .pills__intro {
-  max-width: 760px;
+  max-width: 500px;
   margin-block-start: 4vmax;
   margin-inline: auto;
   display: flex;
@@ -336,11 +329,38 @@ form {
     }
   }
 }
+
+.article-section {
+  padding-top: 6vmax;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
 .article-main {
-  padding-top: 4vw;
-  margin-inline: auto;
+  --h2: var(--idealArticleListingFontSize);
   > * + * {
     margin-top: var(--space);
+  }
+
+  .year-segment {
+    display: flex;
+    gap: var(--space-s);
+  }
+
+  .article-listing {
+    > * + * {
+      margin-top: var(--space-s);
+    }
+  }
+
+  h2 {
+    grid-area: title;
+    text-transform: uppercase;
+    font-size: var(--h2);
+  }
+
+  ol {
+    grid-area: listing;
   }
 }
 
@@ -393,12 +413,8 @@ form {
   }
 }
 
-.year-segment {
-  display: flex;
-}
-
 .title {
-  font-size: var(--idealHeadingOne);
+  font-size: var(--h2);
   font-weight: 400;
   z-index: 2;
   position: relative;
