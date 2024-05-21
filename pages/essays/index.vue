@@ -33,6 +33,10 @@
               <NuxtLink :to="articleItem?.slug">{{
                 articleItem.title
               }}</NuxtLink>
+
+              <p class="summary" v-if="articleItem.summary">
+                {{ articleItem.summary }}
+              </p>
             </li>
           </ol>
         </li>
@@ -331,13 +335,14 @@ form {
 }
 
 .article-section {
-  padding-top: 6vmax;
+  margin-top: 3vmax;
+  padding-block: 3vmax;
   width: 100%;
   display: grid;
   place-items: center;
 }
 .article-main {
-  --h2: var(--idealArticleListingFontSize);
+  --h2: var(--idealListingFontSize);
   > * + * {
     margin-top: var(--space);
   }
@@ -380,7 +385,7 @@ form {
     --border: transparent;
 
     .title {
-      font-size: var(--idealHeadingTwo);
+      font-size: var(--idealArticleParagraphSize);
       font-weight: 300;
     }
 
@@ -429,15 +434,30 @@ form {
       color: var(--foreground-200);
     }
   }
+
+  .summary {
+    font-weight: 300;
+    font-size: var(--idealArticleParagraphSize);
+    color: var(--foreground-200);
+    padding-top: 0.4em;
+  }
 }
 
 [data-tag-show="true"] {
   a {
     color: var(--foreground-100);
   }
+
+  .summary {
+    color: var(--foreground-200);
+  }
 }
 [data-tag-show="false"] {
   a {
+    color: transparent;
+    text-shadow: 0 0 4px var(--foreground-100);
+  }
+  .summary {
     color: transparent;
     text-shadow: 0 0 4px var(--foreground-100);
   }
