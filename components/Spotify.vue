@@ -86,6 +86,7 @@ onBeforeUnmount(() => {
 }
 
 .spotify {
+  align-self: center;
   width: var(--ideal-block-size);
   display: grid;
   grid-template-areas: "stack";

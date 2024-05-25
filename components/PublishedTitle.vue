@@ -51,6 +51,7 @@ const dateTime = computed(() => {
 }
 
 .title {
+  font-family: "Grosteque";
   font-size: var(--idealHeadingOne);
   z-index: 2;
   position: relative;

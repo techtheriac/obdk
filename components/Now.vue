@@ -1,8 +1,6 @@
 <template>
   <div
     ref="nowContainer"
-    v-on:mouseenter="animateIn"
-    v-on:mouseleave="animateOut"
     data-augmented-ui="tl-clip-x border"
     class="now now__border-aug"
   >
@@ -16,7 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import { gsap } from "gsap";
 import { type SiteMap } from "~/obdk";
 
 const props = defineProps<{
@@ -24,30 +21,14 @@ const props = defineProps<{
   description: string | undefined;
   summary: string | undefined;
 }>();
-
-function animateIn(e) {
-  gsap.to(e.target, {
-    "--aug-tl": "10px",
-    duration: 0.2,
-    ease: "sine.out",
-  });
-}
-
-function animateOut(e) {
-  gsap.to(e.target, {
-    "--aug-tl": "0px",
-    duration: 0.2,
-    ease: "sine.in",
-  });
-}
 </script>
 
 <style scoped lang="scss">
 @import "../assets/css/utilities/font-definitions";
 .now {
   --border-bg: var(--border-color);
+  --scalar: 5;
   @include lausanneNormal(300, var(--idealBaseFontSize));
-  scroll-snap-align: start;
   color: var(--foreground-100);
   display: flex;
   flex-direction: column;
@@ -55,10 +36,20 @@ function animateOut(e) {
   gap: var(--space-s);
   padding: var(--space-xs);
 
+  aspect-ratio: 3 / 4;
+  grid-area: gui / challenges;
+  transform-origin: bottom left;
+  transform: rotate(var(--r, 0deg)) translateY(var(--t, 0px));
+
+  &:hover {
+    --t: -50px;
+    z-index: 3;
+  }
+
   &__border-aug {
     --aug-border-all: 1px;
-    --aug-border-bg: var(--border-bg);
-    --aug-tl: 0px;
+    --aug-border-bg: transparent;
+    --aug-tl: 10px;
   }
 }
 

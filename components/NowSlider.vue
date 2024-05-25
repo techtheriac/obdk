@@ -3,7 +3,6 @@
     <Garden />
     <Spotify />
     <Reading />
-    <Links />
   </div>
 </template>
 
@@ -11,19 +10,22 @@
 
 <style scoped lang="scss">
 .now-slider {
-  display: flex;
-  gap: var(--space-xs);
+  display: grid;
+  grid: [gui] 1fr / [challenges] min(25vmin, 40ch);
   width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -ms-scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  margin-top: var(--space);
 
-  &::-webkit-scrollbar {
-    display: none;
+  > div:nth-child(1) {
+    background-color: var(--accent-yellow);
+    --r: calc(var(--scalar, 5) * 4 * 1deg);
+  }
+  > div:nth-child(2) {
+    background-color: var(--accent-purple);
+    --r: calc(var(--scalar, 5) * 6 * 1deg);
+  }
+  > div:nth-child(3) {
+    background-color: var(--accent-blue);
+    --r: calc(var(--scalar, 5) * 1deg);
   }
 }
 </style>

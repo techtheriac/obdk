@@ -1,6 +1,11 @@
 <template>
   <header>
-    <svg class="obdk blinking" id="obdk" viewBox="0 0 11165 1351">
+    <svg
+      class="obdk blinking"
+      id="obdk"
+      preserveAspectRatio="xMinYMid"
+      viewBox="0 0 11165 1351"
+    >
       <path
         d="M1003.55 0.652298V151.455H591.599V1345H412.292V151.455H0.34375V0.652298H1003.55Z"
       />

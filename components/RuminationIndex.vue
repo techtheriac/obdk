@@ -59,9 +59,7 @@
 
 <script setup lang="ts">
 // @ts-nocheck
-definePageMeta({
-  layout: "article",
-});
+
 import { createStyleObject } from "@capsizecss/core";
 import { Essay } from "~/obdk";
 

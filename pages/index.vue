@@ -1,10 +1,11 @@
 <template>
   <main class="home-container">
-    <div class="flow-hr-xs">
+    <div class="flow-hr-xs fill-height">
       <Techtheriac />
       <Bio />
+      <NowSlider />
     </div>
-    <NowSlider />
+    <RuminationIndex />
   </main>
 </template>
 
@@ -41,22 +42,6 @@ onMounted(() => {
   transition-property: background-color;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   height: 100%;
-}
-
-.line {
-  border-left: 1px solid green;
-  position: absolute;
-  z-index: 9;
-}
-
-.line-x {
-  width: 100vw;
-  height: 0;
-}
-
-.line-y {
-  width: 0;
-  height: 100vh;
 }
 
 .flow-hr-xs {

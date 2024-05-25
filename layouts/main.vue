@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-base fill-height obdk-bg" data-nav="home">
+  <div class="layout-base obdk-bg">
     <main class="main">
       <slot />
     </main>
