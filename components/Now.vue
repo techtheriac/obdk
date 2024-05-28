@@ -1,9 +1,5 @@
 <template>
-  <div
-    ref="nowContainer"
-    data-augmented-ui="tl-clip-x border"
-    class="now now__border-aug"
-  >
+  <div ref="nowContainer" data-augmented-ui="tl-clip-x border" class="now">
     <div class="title">{{ title }}</div>
     <slot></slot>
     <div class="info">
@@ -24,33 +20,18 @@ const props = defineProps<{
 </script>
 
 <style scoped lang="scss">
-@import "../assets/css/utilities/font-definitions";
 .now {
   --border-bg: var(--border-color);
-  --scalar: 5;
-  @include lausanneNormal(300, var(--idealBaseFontSize));
+  --aug-border-all: 1px;
+  --aug-border-bg: transparent;
+  --aug-tl: 10px;
+
   color: var(--foreground-100);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: var(--space-s);
   padding: var(--space-xs);
-
-  aspect-ratio: 3 / 4;
-  grid-area: gui / challenges;
-  transform-origin: bottom left;
-  transform: rotate(var(--r, 0deg)) translateY(var(--t, 0px));
-
-  &:hover {
-    --t: -50px;
-    z-index: 3;
-  }
-
-  &__border-aug {
-    --aug-border-all: 1px;
-    --aug-border-bg: transparent;
-    --aug-tl: 10px;
-  }
 }
 
 .title {
@@ -61,7 +42,7 @@ const props = defineProps<{
 .info {
   display: flex;
   flex-direction: column;
-  font-weight: 300;
+  font-weight: 400;
   gap: 0.3em;
   font-size: var(--idealSubFontSize);
 }
@@ -71,6 +52,5 @@ const props = defineProps<{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: var(--foreground-200);
 }
 </style>

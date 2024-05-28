@@ -11,9 +11,22 @@
 <style scoped lang="scss">
 .now-slider {
   display: grid;
-  grid: [gui] 1fr / [challenges] min(25vmin, 40ch);
+  grid: [gui] 1fr / [challenges] max(25vmin, 200px);
   width: 100%;
   margin-top: var(--space);
+
+  > div {
+    --scalar: 5;
+    aspect-ratio: 3 / 4;
+    grid-area: gui / challenges;
+    transform-origin: bottom left;
+    transform: rotate(var(--r, 0deg)) translateY(var(--t, 0px));
+
+    &:hover {
+      --t: -50px;
+      z-index: 3;
+    }
+  }
 
   > div:nth-child(1) {
     background-color: var(--accent-yellow);
