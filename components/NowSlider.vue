@@ -13,7 +13,7 @@
   display: grid;
   grid: [gui] 1fr / [challenges] max(25vmin, 200px);
   width: 100%;
-  margin-top: var(--space);
+  margin-top: 25vh;
 
   > div {
     --scalar: 5;
@@ -39,6 +39,12 @@
   > div:nth-child(3) {
     background-color: var(--accent-blue);
     --r: calc(var(--scalar, 5) * 1deg);
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .now-slider {
+    margin-top: 10vmin;
   }
 }
 </style>

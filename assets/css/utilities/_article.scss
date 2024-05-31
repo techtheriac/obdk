@@ -4,8 +4,9 @@
 #content {
   @extend %content-align;
   color: var(--paragraph-100);
-  font-family: "TWK Lausanne";
+  font-family: Blanco;
   font-weight: var(--artilce-body-weight);
+  font-weight: 400;
 }
 
 .article-block-flow {
@@ -33,7 +34,6 @@
 
   h2 {
     font-size: var(--idealArticleParagraphSize);
-    font-weight: 600;
   }
 
   h3 {
@@ -52,6 +52,7 @@
   h6 {
     margin-block-start: var(--space-s);
     margin-block-end: var(--space-xs);
+    font-weight: 700;
   }
 
   * + blockquote,
@@ -62,6 +63,7 @@
   blockquote {
     padding-left: var(--space-s);
     border-left: 0.4em solid #87a19e80;
+    font-style: italic;
   }
 
   > p + p {
@@ -83,7 +85,11 @@
 
   a {
     color: inherit;
-    background-color: #63865669;
+    font-style: italic;
+    text-decoration: underline;
+    text-decoration-color: var(--border-color);
+    text-underline-offset: 0.09em;
+    text-decoration-thickness: 0.5px;
 
     &:hover {
       text-decoration: underline;

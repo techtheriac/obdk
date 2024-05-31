@@ -123,7 +123,6 @@ watch(
 form {
   position: sticky;
   padding-block: var(--space-xs);
-  top: var(--space-xs);
   z-index: 3;
   overflow-y: hidden;
   scroll-behavior: smooth;

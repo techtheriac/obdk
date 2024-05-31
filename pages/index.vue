@@ -26,5 +26,3 @@ onMounted(() => {
   new Application(animatables);
 });
 </script>
-
-<style scoped lang="scss"></style>

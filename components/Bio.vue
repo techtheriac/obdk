@@ -1,6 +1,6 @@
 <template>
   <div class="bio">
-    <p>Software Designer</p>
+    <p>Website Of Franklin Jezreel</p>
   </div>
 </template>
 

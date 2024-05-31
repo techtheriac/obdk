@@ -26,7 +26,9 @@
           </li>
         </ol>
 
-        <div class="section">
+        <hr class="divide" />
+
+        <div class="section lab">
           <h2>Lab</h2>
           <ol>
             <li>One of the notes</li>
@@ -35,16 +37,6 @@
             <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
           </ol>
         </div>
-      </div>
-
-      <div class="section">
-        <h2>gallery</h2>
-        <ol>
-          <li>One of the notes</li>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing</li>
-          <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
-          <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
-        </ol>
       </div>
     </section>
   </div>
@@ -144,15 +136,19 @@ const groupedByYear = Object.entries(_groupedByYear).sort(compareValues);
 .flow-hr {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 
-  > * + * {
-    margin-top: var(--space-s);
-  }
+  // > * + * {
+  //   margin-top: var(--space-s);
+  // }
 }
 
 .article-container {
   width: 100%;
   border-radius: 5px;
+  background-color: var(--elevated);
+  position: sticky;
+  top: var(--space-xs);
 }
 
 .article-section {
@@ -160,10 +156,31 @@ const groupedByYear = Object.entries(_groupedByYear).sort(compareValues);
   margin: 0 auto;
   display: grid;
   grid-template-areas:
-    "essays lab"
-    "gallery .";
-  grid-template-columns: repeat(2, 1fr);
+    "essays"
+    "divide"
+    "lab";
+  grid-template-columns: 1fr;
+  gap: var(--space-s);
 }
+
+.divide {
+  grid-area: divide;
+  width: 100%;
+  border-top: 1px solid var(--border-color);
+}
+
+@media screen and (min-width: 600px) {
+  .article-section {
+    grid-template-areas: "essays divide lab";
+    grid-template-columns: 1fr 0.5px 1fr;
+  }
+
+  .divide {
+    grid-area: divide;
+    border-left: 1px solid var(--border-color);
+  }
+}
+
 .section {
   --h2: var(--idealListingFontSize);
   h2 {
@@ -177,12 +194,16 @@ const groupedByYear = Object.entries(_groupedByYear).sort(compareValues);
   grid-area: essays;
 }
 
+.lab {
+  display: flex;
+  flex-direction: column;
+}
+
 .section:nth-child(2) {
   grid-area: lab;
 }
 
 .section:nth-child(3) {
-  grid-area: gallery;
   display: flex;
 }
 
