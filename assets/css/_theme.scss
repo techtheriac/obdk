@@ -49,9 +49,9 @@
     --foreground-200: var(--grey-30);
     --foreground-300: var(--grey-50);
     --article-inactive: var(--inactive);
-    --artilce-heading-weight: 500;
     --artilce-body-weight: 200;
     --paragraph-100: var(--white);
+    --paragraph-100: #e2e3e2;
     --elevated: var(--elevated-dark);
   }
 }
@@ -66,9 +66,14 @@
     --foreground-100: var(--grey-80);
     --foreground-200: var(--grey-40);
     --article-inactive: var(--inactive);
-    --artilce-heading-weight: 550;
     --artilce-body-weight: 300;
     --paragraph-100: var(--grey-80);
     --elevated: var(--elevated-light);
   }
+}
+
+.obdk-bg {
+  background-color: var(--background-100);
+  background-repeat: repeat;
+  background-attachment: inherit;
 }

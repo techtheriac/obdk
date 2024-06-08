@@ -1,6 +1,6 @@
 <template>
   <div class="bio">
-    <p>Website Of Franklin Jezreel</p>
+    <p>Jezreel Franklin's web incarnation</p>
   </div>
 </template>
 
@@ -9,5 +9,7 @@
 <style scoped lang="scss">
 .bio {
   display: flex;
+  padding-block-start: var(--space-xs);
+  font-size: var(--step-0);
 }
 </style>

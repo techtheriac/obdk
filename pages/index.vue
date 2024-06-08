@@ -6,7 +6,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
 import { type LandingAnimatable } from "~/utils/animations/landing";
 import { Application } from "~/utils/application";
 
@@ -26,3 +25,4 @@ onMounted(() => {
   new Application(animatables);
 });
 </script>
+<style></style>

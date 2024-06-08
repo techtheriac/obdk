@@ -1,43 +1,30 @@
 <template>
   <div class="flow-hr">
     <TagsFilter :tags="tags" />
-    <section class="article-container">
-      <div class="article-section">
-        <ol class="article-main section">
-          <h2>Writing</h2>
-          <li class="year-segment" v-for="(item, index) in groupedByYear">
-            <h3>{{ item[0] }}</h3>
-            <ol class="article-listing">
-              <li
-                class="title"
-                v-for="articleItem in item[1]"
-                :data-tags="articleItem.tagsString"
-                data-tag-show="true"
-              >
-                <NuxtLink :to="articleItem?.slug">{{
-                  articleItem.title
-                }}</NuxtLink>
 
-                <p class="summary" v-if="articleItem.summary">
-                  {{ articleItem.summary }}
-                </p>
-              </li>
-            </ol>
-          </li>
-        </ol>
-
-        <hr class="divide" />
-
-        <div class="section lab">
-          <h2>Lab</h2>
-          <ol>
-            <li>One of the notes</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing</li>
-            <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
-            <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
-          </ol>
-        </div>
-      </div>
+    <section>
+      <ol class="section article-list">
+        <li
+          class="title"
+          v-for="articleItem in yearSorting"
+          :data-tags="articleItem.tagsString"
+          data-tag-show="true"
+        >
+          <div class="date">
+            <span>{{ articleItem.day }}</span>
+            <span>
+              {{ articleItem.month }}
+            </span>
+            <span>
+              {{ articleItem.year }}
+            </span>
+          </div>
+          <NuxtLink :to="articleItem?.slug">{{ articleItem.title }}</NuxtLink>
+          <p class="summary" v-if="articleItem.summary">
+            {{ articleItem.summary }}
+          </p>
+        </li>
+      </ol>
     </section>
   </div>
 </template>
@@ -82,6 +69,10 @@ function groupListingByYear(essays: Essay[]): Record<string, Essay[]> {
   return yearMap;
 }
 
+function sortByYear(essays: Essay[]): Essay[] {
+  return essays.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+}
+
 const essays: Essay[] = musings.map((post) => {
   let { day, month, year } = useDateTimeComponent(post.last_edited);
   const { tagsArray, tagsString } = getTagsArrayFromMarkdown(post.tags);
@@ -122,14 +113,8 @@ const notes: Essay[] = notion.value!.results.map((post) => {
 let articles = [...essays, ...notes];
 const articlesTags = articles.flatMap((x) => x.tags);
 let tags = new Set(articlesTags);
-
-const _groupedByYear = groupListingByYear(articles);
-
-function compareValues(a, b) {
-  return b[0] - a[0];
-}
-
-const groupedByYear = Object.entries(_groupedByYear).sort(compareValues);
+const yearSorting = sortByYear(articles);
+console.log("Year", yearSorting);
 </script>
 
 <style scoped lang="scss">
@@ -137,47 +122,22 @@ const groupedByYear = Object.entries(_groupedByYear).sort(compareValues);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
-  // > * + * {
-  //   margin-top: var(--space-s);
-  // }
 }
 
 .article-container {
+  padding-inline: 5vw;
   width: 100%;
   border-radius: 5px;
-  background-color: var(--elevated);
   position: sticky;
   top: var(--space-xs);
+  display: flex;
+  justify-content: space-between;
 }
 
-.article-section {
-  max-width: 900px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-areas:
-    "essays"
-    "divide"
-    "lab";
-  grid-template-columns: 1fr;
-  gap: var(--space-s);
-}
-
-.divide {
-  grid-area: divide;
-  width: 100%;
-  border-top: 1px solid var(--border-color);
-}
-
-@media screen and (min-width: 600px) {
-  .article-section {
-    grid-template-areas: "essays divide lab";
-    grid-template-columns: 1fr 0.5px 1fr;
-  }
-
-  .divide {
-    grid-area: divide;
-    border-left: 1px solid var(--border-color);
+.article-description {
+  display: h1 {
+    font-family: Grosteque;
+    font-size: 6.5vmin;
   }
 }
 
@@ -190,46 +150,28 @@ const groupedByYear = Object.entries(_groupedByYear).sort(compareValues);
   }
 }
 
-.section:nth-child(1) {
-  grid-area: essays;
+section {
+  padding-block-start: var(--space-s);
+  max-width: 1080px;
+  margin-inline: auto;
 }
 
-.lab {
-  display: flex;
-  flex-direction: column;
+.article-list {
+  width: 100%;
+  display: grid;
+  row-gap: var(--space-s);
+  grid-template-columns: 1fr;
 }
 
-.section:nth-child(2) {
-  grid-area: lab;
-}
-
-.section:nth-child(3) {
-  display: flex;
-}
-
-.article-main {
-  grid-area: essays;
-  > * + * {
-    margin-top: var(--space);
-  }
-
-  .year-segment {
-    display: flex;
+@media screen and (min-width: 600px) {
+  .article-list {
+    display: grid;
     gap: var(--space-s);
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  .article-listing {
-    > * + * {
-      margin-top: var(--space-s);
-    }
-  }
-
-  h2 {
-    grid-area: title;
-  }
-
-  ol {
-    grid-area: listing;
+  .title:has(.summary) {
+    grid-column: span 2;
   }
 }
 
@@ -239,29 +181,43 @@ const groupedByYear = Object.entries(_groupedByYear).sort(compareValues);
   position: relative;
   text-wrap: balance;
   font-family: "Blanco";
+  font-size: var(--idealArticleListingFontSize);
+  color: var(--foreground-100);
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+
+  .date {
+    display: flex;
+    gap: 2px;
+    font-family: "TWK Lausanne";
+    font-size: var(--step--2);
+    text-transform: uppercase;
+  }
 
   a {
+    font-size: var(--step-1);
+    padding-inline-start: var(--space-xs);
     text-decoration: underline;
     text-decoration-color: var(--border-color);
     text-underline-offset: 0.09em;
     text-decoration-thickness: 0.5px;
+    padding-block: 0.3em;
     transition:
       color 0.45s var(--easingOut),
       text-shadow 1s var(--easingOut);
-    color: var(--foreground-100);
     &:hover {
       color: var(--foreground-200);
     }
   }
 
   .summary {
-    font-style: italic;
     transition:
       color 0.45s var(--easingOut),
       text-shadow 1s var(--easingOut);
     font-weight: 400;
-    font-size: var(--idealArticleParagraphSize);
-    padding-top: 0.4em;
+    font-style: italic;
+    font-size: var(--step-0);
     line-height: 1.3em;
   }
 }
@@ -272,7 +228,7 @@ const groupedByYear = Object.entries(_groupedByYear).sort(compareValues);
   }
 
   .summary {
-    color: var(--foreground-200);
+    color: var(--foreground-100);
   }
 }
 [data-tag-show="false"] {

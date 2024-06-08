@@ -1,0 +1,129 @@
+@use "interpolate";
+
+$interpolate-min: 350px;
+$interpolate-max: 1445px;
+
+:root {
+  @include interpolate.map(
+    --space,
+    $interpolate-min,
+    $interpolate-max,
+    25px,
+    40px
+  );
+
+  @include interpolate.map(
+    --idealBaseFontSize,
+    $interpolate-min,
+    $interpolate-max,
+    12px,
+    16px
+  );
+
+  @include interpolate.map(
+    --idealSubFontSize,
+    $interpolate-min,
+    $interpolate-max,
+    12px,
+    14px
+  );
+
+  @include interpolate.map(
+    --idealListingFontSize,
+    $interpolate-min,
+    $interpolate-max,
+    16px,
+    20px
+  );
+
+  @include interpolate.map(
+    --idealArticleListingFontSize,
+    $interpolate-min,
+    $interpolate-max,
+    16px,
+    20px
+  );
+
+  @include interpolate.map(
+    --idealArticleParagraphSize,
+    $interpolate-min,
+    $interpolate-max,
+    16px,
+    18px
+  );
+
+  @include interpolate.map(
+    --idealHeadingOne,
+    $interpolate-min,
+    $interpolate-max,
+    32px,
+    35px
+  );
+
+  @include interpolate.map(
+    --idealHeadingTwo,
+    $interpolate-min,
+    $interpolate-max,
+    20px,
+    25px
+  );
+
+  @include interpolate.map(
+    --idealHeadingThree,
+    $interpolate-min,
+    $interpolate-max,
+    20px,
+    25px
+  );
+
+  @include interpolate.map(
+    --idealBioFontSize,
+    350px,
+    $interpolate-max,
+    16px,
+    30px
+  );
+
+  @include interpolate.map(
+    --idealPoetryTitleFontSize,
+    350px,
+    $interpolate-max,
+    25px,
+    35px
+  );
+
+  @include interpolate.map(
+    --idealStackedHeading,
+    $interpolate-min,
+    $interpolate-max,
+    40px,
+    128px
+  );
+
+  --space-s: calc(var(--space) / 2);
+  --space-xs: calc(var(--space-s) / 2);
+  --space-m: calc(var(--space) * 2);
+  --space-l: calc(var(--space-m) * 2);
+  --ideal-block-size: 150px;
+  --size-background-base: 20em;
+  --grostesque-weight: 550;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --font-weight-multiplier: 0.85;
+  }
+}
+
+:root {
+  --step--4: clamp(0.4823rem, 0.4738rem + 0.0423vi, 0.512rem);
+  --step--3: clamp(0.5787rem, 0.5613rem + 0.0872vi, 0.64rem);
+  --step--2: clamp(0.6944rem, 0.6644rem + 0.1501vi, 0.8rem);
+  --step--1: clamp(0.8333rem, 0.7859rem + 0.237vi, 1rem);
+  --step-0: clamp(1rem, 0.9289rem + 0.3556vi, 1.25rem);
+  --step-1: clamp(1.2rem, 1.0969rem + 0.5156vi, 1.5625rem);
+  --step-2: clamp(1.44rem, 1.294rem + 0.7298vi, 1.9531rem);
+  --step-3: clamp(1.728rem, 1.5251rem + 1.0146vi, 2.4414rem);
+  --step-4: clamp(2.0736rem, 1.7954rem + 1.3912vi, 3.0518rem);
+  --step-5: clamp(2.4883rem, 2.111rem + 1.8864vi, 3.8147rem);
+}

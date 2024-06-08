@@ -1,11 +1,6 @@
 @use "sass:math";
-@mixin interpolate(
-  $properties,
-  $min-screen,
-  $max-screen,
-  $min-value,
-  $max-value
-) {
+
+@mixin map($properties, $min-screen, $max-screen, $min-value, $max-value) {
   & {
     @each $property in $properties {
       #{$property}: $min-value;

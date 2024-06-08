@@ -46,8 +46,7 @@
 <style lang="scss" scoped>
 header {
   width: 100%;
-  padding-top: var(--space-xs);
-  padding-bottom: var(--space-xs);
+  padding-block: var(--space-xs);
   border-bottom: 1px solid var(--border-color);
 }
 .obdk {

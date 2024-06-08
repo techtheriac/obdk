@@ -1,20 +1,9 @@
-@import "./fonts/spacemono";
-@import "./fonts/danfo";
-@import "./fonts/galgo";
-@import "./fonts/blanco";
-@import "./fonts/leitura";
-@import "./fonts/grosteque";
-@import "./fonts/lausanne";
-@import "./utilities/resets";
-@import "./utilities/interpolate";
-@import "./utilities/colors";
-@import "./utilities/size-definitions";
-@import "./utilities/font-definitions";
-@import "./utilities/background-definitions";
-@import "./utilities/augmented-ui";
-@import "./utilities/layout";
-@import "./utilities/article";
-@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
+@use "resets";
+@use "theme";
+@use "typography";
+@use "size";
+@use "layout";
+@use "article";
 
 html,
 body {

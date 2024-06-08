@@ -53,10 +53,11 @@ const dateTime = computed(() => {
 .title {
   font-family: "Grosteque";
   font-size: var(--idealHeadingOne);
+  font-size: var(--step-4);
   z-index: 2;
   position: relative;
-  font-weight: var(--artilce-heading-weight);
+  font-weight: calc(700 * var(--font-weight-multiplier, 1));
   color: var(--foreground-100);
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 </style>

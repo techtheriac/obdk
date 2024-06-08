@@ -1,14 +1,20 @@
 <template>
-  <article id="content" class="article-block-flow">
-    <PublishedTitle
-      :title="postData.properties.name.title[0].plain_text"
-      :date="postData.created_time"
-      :genre="postData.properties.tags.multi_select[0]?.name"
+  <div>
+    <article id="content" class="article-block-flow">
+      <PublishedTitle
+        :title="postData.properties.name.title[0].plain_text"
+        :date="postData.created_time"
+        :genre="postData.properties.tags.multi_select[0]?.name"
+      />
+      <NotionRenderer data-content :postContent="postContent" />
+      <BackLink :backlinks="postData?.properties?.related?.relation" />
+    </article>
+    <ArticleFooter
+      :current-slug="slug"
+      :contents="contents"
+      content-type="notes"
     />
-    <NotionRenderer data-content :postContent="postContent" />
-    <BackLink :backlinks="postData?.properties?.related?.relation" />
-    <ArticleFooter :current-slug="slug" :contents="contents" />
-  </article>
+  </div>
 </template>
 
 <script setup lang="ts">
