@@ -121,9 +121,6 @@ watch(
 
 <style scoped lang="scss">
 form {
-  position: sticky;
-  padding-block: var(--space-xs);
-  z-index: 3;
   overflow-y: hidden;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
@@ -137,7 +134,7 @@ form {
   }
 
   .tag-list {
-    padding: 0;
+    // padding: 0;
     border: none;
     display: flex;
     flex-wrap: nowrap;
@@ -154,9 +151,9 @@ form {
 
       > label {
         padding: 0.2em 0.1em;
-        border: 1px solid var(--border-color);
         cursor: pointer;
         font-family: Galgo;
+        border: 1px solid var(--border-color);
         text-transform: uppercase;
         font-size: 4vw;
 
@@ -174,9 +171,9 @@ form {
       }
 
       > input {
+        display: none;
         appearance: none;
         background: none;
-        border: none;
         inline-size: 100%;
         block-size: 100%;
         outline: none;

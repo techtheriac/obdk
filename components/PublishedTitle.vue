@@ -44,7 +44,8 @@ const dateTime = computed(() => {
 }
 
 .published-date {
-  font-size: var(--idealSubFontSize);
+  font-family: "TWK Lausanne";
+  font-size: var(--step--1);
   font-weight: 200;
   line-height: normal;
   display: block;
@@ -53,7 +54,7 @@ const dateTime = computed(() => {
 .title {
   font-family: "Grosteque";
   font-size: var(--idealHeadingOne);
-  font-size: var(--step-4);
+  font-size: var(--step-2);
   z-index: 2;
   position: relative;
   font-weight: calc(700 * var(--font-weight-multiplier, 1));

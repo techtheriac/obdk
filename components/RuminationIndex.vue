@@ -1,31 +1,18 @@
 <template>
   <div class="flow-hr">
+    <h1 class="section-title">Submissions on</h1>
     <TagsFilter :tags="tags" />
 
-    <section>
-      <ol class="section article-list">
-        <li
-          class="title"
-          v-for="articleItem in yearSorting"
-          :data-tags="articleItem.tagsString"
-          data-tag-show="true"
-        >
-          <div class="date">
-            <span>{{ articleItem.day }}</span>
-            <span>
-              {{ articleItem.month }}
-            </span>
-            <span>
-              {{ articleItem.year }}
-            </span>
-          </div>
-          <NuxtLink :to="articleItem?.slug">{{ articleItem.title }}</NuxtLink>
-          <p class="summary" v-if="articleItem.summary">
-            {{ articleItem.summary }}
-          </p>
-        </li>
-      </ol>
-    </section>
+    <ol class="section article-list">
+      <li
+        class="title"
+        v-for="articleItem in yearSorting"
+        :data-tags="articleItem.tagsString"
+        data-tag-show="true"
+      >
+        <NuxtLink :to="articleItem?.slug">{{ articleItem.title }}</NuxtLink>
+      </li>
+    </ol>
   </div>
 </template>
 
@@ -114,31 +101,12 @@ let articles = [...essays, ...notes];
 const articlesTags = articles.flatMap((x) => x.tags);
 let tags = new Set(articlesTags);
 const yearSorting = sortByYear(articles);
-console.log("Year", yearSorting);
 </script>
 
 <style scoped lang="scss">
 .flow-hr {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-}
-
-.article-container {
-  padding-inline: 5vw;
-  width: 100%;
-  border-radius: 5px;
-  position: sticky;
-  top: var(--space-xs);
-  display: flex;
-  justify-content: space-between;
-}
-
-.article-description {
-  display: h1 {
-    font-family: Grosteque;
-    font-size: 6.5vmin;
-  }
 }
 
 .section {
@@ -150,64 +118,61 @@ console.log("Year", yearSorting);
   }
 }
 
-section {
-  padding-block-start: var(--space-s);
-  max-width: 1080px;
-  margin-inline: auto;
-}
-
 .article-list {
-  width: 100%;
-  display: grid;
-  row-gap: var(--space-s);
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: var(--space-xs);
 }
 
-@media screen and (min-width: 600px) {
-  .article-list {
-    display: grid;
-    gap: var(--space-s);
-    grid-template-columns: repeat(3, 1fr);
-  }
+// @media screen and (min-width: 600px) {
+//   .article-list {
+//     display: grid;
+//     gap: var(--space-s);
+//     grid-template-columns: repeat(3, 1fr);
+//   }
 
-  .title:has(.summary) {
-    grid-column: span 2;
-  }
+//   .title:has(.summary) {
+//     grid-column: span 2;
+//   }
+// }
+
+.section-title {
+  font-size: var(--step-0);
+  font-weight: 200;
+  align-self: center;
+  text-transform: uppercase;
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+  padding: var(--space-s) var(--space-s);
 }
 
 .title {
   font-weight: 400;
   z-index: 2;
-  position: relative;
   text-wrap: balance;
-  font-family: "Blanco";
-  font-size: var(--idealArticleListingFontSize);
+  font-family: "TWK Lausanne";
   color: var(--foreground-100);
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
-
-  .date {
-    display: flex;
-    gap: 2px;
-    font-family: "TWK Lausanne";
-    font-size: var(--step--2);
-    text-transform: uppercase;
-  }
+  padding-block: 0.25em;
 
   a {
-    font-size: var(--step-1);
-    padding-inline-start: var(--space-xs);
+    font-size: var(--step-2);
     text-decoration: underline;
     text-decoration-color: var(--border-color);
     text-underline-offset: 0.09em;
     text-decoration-thickness: 0.5px;
+    font-weight: 300;
     padding-block: 0.3em;
+    hyphens: auto;
     transition:
       color 0.45s var(--easingOut),
       text-shadow 1s var(--easingOut);
     &:hover {
       color: var(--foreground-200);
+    }
+    &::after {
+      content: "°";
+      padding-inline: 0.3em;
+      font-weight: inherit;
     }
   }
 
@@ -216,8 +181,8 @@ section {
       color 0.45s var(--easingOut),
       text-shadow 1s var(--easingOut);
     font-weight: 400;
-    font-style: italic;
-    font-size: var(--step-0);
+    // font-style: italic;
+    font-size: var(--step--1);
     line-height: 1.3em;
   }
 }
