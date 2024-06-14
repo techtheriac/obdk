@@ -8,8 +8,8 @@
         width="300"
         height="300"
       />
-      <h1 :style="style">{{ data?.artist }}</h1>
-      <h2 :style="style">{{ data?.songTitle }}</h2>
+      <h1 :style="elStyle">{{ data?.artist }}</h1>
+      <h2 :style="elStyle">{{ data?.songTitle }}</h2>
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@ const { data } = await useFetch("/api/get-recently-played");
 
 let ELSH = ref(0);
 
-let style = ref({
+let elStyle = ref({
   fontVariationSettings: `"ELSH" ${ELSH.value}`,
 });
 
@@ -154,15 +154,13 @@ function updateFontVariation(time) {
       const scale = 10; // scale the data a bit so the circle is bigger
       const size = dim * scale * signal;
 
-      // console.log("LOGGING SIGNAL", size);
-
       let smoothed = Math.ceil(map(size, 1, 1000, 1, 100));
-      console.log(smoothed);
 
-      style.value.fontVariationSettings = `"ELSH" ${smoothed}`;
+      // elStyle.value.fontVariationSettings = `"ELSH" ${smoothed}`;
 
-      // console.log(style.value);
+      ELSH.value = smoothed;
 
+      console.log(elStyle.value);
       // Draw the rectangle
       const margin = 0.2 * dim;
       const x =
@@ -175,9 +173,17 @@ function updateFontVariation(time) {
 
     curRaf = requestAnimationFrame(updateFontVariation);
   } else {
-    style.value.fontVariationSettings = `"ELSH" 0`;
+    elStyle.value = {
+      fontVariationSettings: `"ELSH" 0`,
+    };
   }
 }
+
+watch(ELSH, () => {
+  elStyle.value = {
+    fontVariationSettings: `"ELSH" ${ELSH.value}`,
+  };
+});
 
 onBeforeUnmount(() => {
   audioContext?.close();
