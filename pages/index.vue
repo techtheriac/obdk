@@ -2,6 +2,7 @@
   <main>
     <Intro />
     <RuminationIndex />
+    <ArtefactIndex />
   </main>
 </template>
 

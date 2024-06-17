@@ -9,7 +9,7 @@
         height="300"
       />
       <h1 :style="elStyle">{{ data?.artist }}</h1>
-      <h2 :style="elStyle">{{ data?.songTitle }}</h2>
+      <h2>{{ data?.songTitle }}</h2>
     </div>
   </div>
 </template>

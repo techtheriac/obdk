@@ -1,7 +1,9 @@
 <template>
-  <div class="intro">
-    <Techtheriac />
-    <Bio />
+  <div class="intro fill-height">
+    <div>
+      <Techtheriac />
+      <Bio />
+    </div>
     <NowSlider />
   </div>
 </template>
@@ -10,6 +12,8 @@
 
 <style scoped lang="scss">
 .intro {
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>

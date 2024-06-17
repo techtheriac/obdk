@@ -30,8 +30,10 @@ const props = defineProps<{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: var(--space-s);
+  gap: var(--space-xs);
   padding: var(--space-xs);
+  border: 1px dotted var(--border-color);
+  font-size: var(--step--2);
 }
 
 .title {
@@ -44,9 +46,7 @@ const props = defineProps<{
   flex-direction: column;
   font-weight: 400;
   gap: 0.3em;
-  font-size: var(--idealSubFontSize);
 }
-
 .summary {
   max-width: 120px;
   white-space: nowrap;

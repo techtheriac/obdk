@@ -48,6 +48,7 @@ header {
   width: 100%;
   padding-block: var(--space-xs);
   border-bottom: 1px solid var(--border-color);
+  grid-column: 1 / -1;
 }
 .obdk {
   width: inherit;

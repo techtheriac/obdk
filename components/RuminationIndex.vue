@@ -1,6 +1,6 @@
 <template>
   <div class="flow-hr">
-    <h1 class="section-title">Submissions on</h1>
+    <h1 class="section-title">artefacts</h1>
     <TagsFilter :tags="tags" />
 
     <ol class="section article-list">
@@ -121,46 +121,36 @@ const yearSorting = sortByYear(articles);
 .article-list {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
+  // align-items: center;
   padding-top: var(--space-xs);
 }
 
-// @media screen and (min-width: 600px) {
-//   .article-list {
-//     display: grid;
-//     gap: var(--space-s);
-//     grid-template-columns: repeat(3, 1fr);
-//   }
-
-//   .title:has(.summary) {
-//     grid-column: span 2;
-//   }
-// }
-
 .section-title {
-  font-size: var(--step-0);
-  font-weight: 200;
+  font-size: var(--step--1);
   align-self: center;
   text-transform: uppercase;
   border: 1px solid var(--border-color);
   border-bottom: none;
   padding: var(--space-s) var(--space-s);
+  font-variation-settings: "MONO" 1;
 }
 
 .title {
-  font-weight: 400;
+  --font-size: var(--step-0);
+  font-weight: var(--article-body-weight);
   z-index: 2;
   text-wrap: balance;
-  font-family: "TWK Lausanne";
   color: var(--foreground-100);
   padding-block: 0.25em;
+  font-size: var(--font-size);
 
   a {
-    font-size: var(--step-2);
+    font-size: inherit;
     text-decoration: underline;
     text-decoration-color: var(--border-color);
     text-underline-offset: 0.09em;
     text-decoration-thickness: 0.5px;
-    font-weight: 300;
     padding-block: 0.3em;
     hyphens: auto;
     transition:
@@ -169,21 +159,22 @@ const yearSorting = sortByYear(articles);
     &:hover {
       color: var(--foreground-200);
     }
-    &::after {
-      content: "°";
-      padding-inline: 0.3em;
-      font-weight: inherit;
-    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .article-list {
+    flex-direction: column;
+    // justify-content: center;
   }
 
-  .summary {
-    transition:
-      color 0.45s var(--easingOut),
-      text-shadow 1s var(--easingOut);
-    font-weight: 400;
-    // font-style: italic;
-    font-size: var(--step--1);
-    line-height: 1.3em;
+  .title {
+    --font-size: var(--step-0);
+  }
+  .title:not(:last-child) > a::after {
+    // content: "°";
+    // padding-inline: 0.3em;
+    // font-weight: inherit;
   }
 }
 

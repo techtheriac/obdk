@@ -151,3 +151,12 @@ export interface Essay {
   segment: Segment;
   summary?: string;
 }
+
+export interface Artefact {
+  type: "photo" | "text" | "lab";
+  preview: string | Url;
+  content: string | Url;
+  title?: string;
+  previewWidth?: number;
+  previewHeight?: number;
+}
