@@ -3,6 +3,7 @@
     <Garden />
     <Spotify />
     <Reading />
+    <Photography />
   </div>
 </template>
 

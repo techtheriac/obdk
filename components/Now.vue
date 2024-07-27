@@ -34,6 +34,7 @@ const props = defineProps<{
   padding: var(--space-xs);
   border: 1px dotted var(--border-color);
   font-size: var(--step--2);
+  max-height: 250px;
 }
 
 .title {
