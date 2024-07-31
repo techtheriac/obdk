@@ -1,5 +1,5 @@
 <template>
-  <Now title="shots" description="Recommended readings" summary="summary">
+  <Now title="shots" description="Photography" :summary="summary">
     <div class="reading-wrapper">
       <div class="marquee-wrapper">
         <div class="reading-image marquee-item" v-for="photo in photos">
@@ -9,6 +9,7 @@
             :intrinsicHeight="photo.previewHeight"
             :scaleSize="15"
             :alt="photo.title!"
+            mediaType="image"
           />
         </div>
       </div>
@@ -18,6 +19,8 @@
 
 <script setup lang="ts">
 const photos = await queryContent("artefacts").where({ type: "photo" }).find();
+
+const summary = computed(() => `${photos.length} photos`);
 </script>
 <style scoped lang="scss">
 .reading-wrapper {
@@ -28,10 +31,10 @@ const photos = await queryContent("artefacts").where({ type: "photo" }).find();
 .marquee-wrapper {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--space-xs);
 }
 .marquee-item {
-  width: 150px;
   height: 150px;
   width: fit-content;
   flex-shrink: 0;
@@ -40,8 +43,6 @@ const photos = await queryContent("artefacts").where({ type: "photo" }).find();
   animation: marqueeLine 8s alternate-reverse infinite;
 }
 .reading-image {
-  width: 100%;
-
   img {
     aspect-ratio: 1 / 1;
     max-inline-size: 100%;

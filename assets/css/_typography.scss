@@ -1,7 +1,8 @@
-$sans: "TWK Lausanne";
+$sans: "Diatype";
 $serif: "Blanco";
 $grosteque: "Grosteque";
 $condensed: "Galgo";
+$mono: "Rostin";
 
 // BLANCO
 @font-face {
@@ -90,6 +91,28 @@ $condensed: "Galgo";
   src: url("/static/fonts/TWKLausanne-750.woff2") format("woff2");
   font-style: normal;
   font-weight: 750;
+}
+
+// ROSTIN
+@font-face {
+  font-family: "Rostin";
+  src: url("/static/fonts/RF-Rostin-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Rostin";
+  src: url("/static/fonts/RF-Rostin-Italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Rostin";
+  src: url("/static/fonts/RF-Rostin-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
 }
 
 //GROSTESQUE

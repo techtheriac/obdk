@@ -9,6 +9,7 @@
         :intrinsicHeight="378"
         :scaleSize="20"
         alt="avatar"
+        mediaType="image"
       />
       <p>
         Techtheriac is Jezreel Franklin's web incarnation. A software engineer

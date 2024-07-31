@@ -1,18 +1,54 @@
 <template>
   <div class="flow-hr">
-    <h1 class="section-title">artefacts</h1>
+    <!-- <h1 class="section-title">artefacts</h1> -->
     <TagsFilter :tags="tags" />
 
-    <ol class="section article-list">
-      <li
-        class="title"
-        v-for="articleItem in yearSorting"
-        :data-tags="articleItem.tagsString"
-        data-tag-show="true"
-      >
-        <NuxtLink :to="articleItem?.slug">{{ articleItem.title }}</NuxtLink>
-      </li>
-    </ol>
+    <div class="section__wrapper">
+      <div class="section__container">
+        <section class="section">
+          <h2 class="section__title">Essays & ruminations</h2>
+          <ol class="article-list">
+            <li
+              class="title"
+              v-for="articleItem in yearSorting"
+              :data-tags="articleItem.tagsString"
+              data-tag-show="true"
+            >
+              <NuxtLink :to="articleItem?.slug">{{
+                articleItem.title
+              }}</NuxtLink>
+              <p class="summary" v-if="articleItem.summary">
+                {{ articleItem.summary }}
+              </p>
+            </li>
+          </ol>
+        </section>
+        <section class="section">
+          <h2 class="section__title">LAB</h2>
+          <ol class="article-list">
+            <li
+              class="title"
+              v-for="lab in labs"
+              :data-tags="lab.tags"
+              data-tag-show="true"
+            >
+              <NuxtLink :to="lab.content">{{ lab.title }}</NuxtLink>
+              <FluidImage
+                :src="lab.preview"
+                :intrinsicHeight="1080"
+                :intrinsicWidth="1396"
+                :scaleSize="60"
+                :alt="lab.summary"
+                mediaType="video"
+              />
+              <p class="summary" v-if="lab.summary">
+                {{ lab.summary }}
+              </p>
+            </li>
+          </ol>
+        </section>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -22,6 +58,8 @@ import { Essay } from "~/obdk";
 
 const musings = await queryContent("essays").find();
 const { data: notion } = await useFetch("/api/get-notion-posts");
+
+const labs = await queryContent("artefacts").where({ type: "lab" }).find();
 
 function getTagsArrayFromNotion(document: any) {
   if (!document) return;
@@ -107,14 +145,41 @@ const yearSorting = sortByYear(articles);
 .flow-hr {
   display: flex;
   flex-direction: column;
+  margin-top: var(--space-s);
+  form {
+    position: sticky;
+    top: var(--space-s);
+    z-index: 10;
+  }
 }
 
+.section__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.section__container {
+  display: flex;
+  flex-direction: column;
+  max-width: 760px;
+}
 .section {
+  display: flex;
+  gap: var(--space-s);
+  align-items: center;
   --h2: var(--idealListingFontSize);
   h2 {
-    font-family: "Grosteque";
+    font-family: "Rostin";
     font-weight: 400;
+    text-transform: uppercase;
     font-size: var(--h2);
+    transform: rotate(-180deg);
+    text-align: right;
+    text-orientation: sideways;
+    white-space: nowrap;
+    writing-mode: vertical-rl;
+    margin-inline-start: var(--space-s);
   }
 }
 
@@ -132,6 +197,7 @@ const yearSorting = sortByYear(articles);
   text-transform: uppercase;
   border: 1px solid var(--border-color);
   border-bottom: none;
+  border-top: none;
   padding: var(--space-s) var(--space-s);
   font-variation-settings: "MONO" 1;
 }

@@ -1,11 +1,22 @@
 <template>
   <div :style="style">
     <img
+      v-if="mediaType == 'image'"
       :src="src"
       :width="intrinsicWidth"
       :height="intrinsicHeight"
       :alt="alt"
     />
+    <video
+      v-else="mediaType == 'video'"
+      playsinline
+      autoplay
+      muted
+      loop
+      poster=""
+    >
+      <source :src="src" type="video/webm" />
+    </video>
   </div>
 </template>
 
@@ -16,6 +27,7 @@ const props = defineProps<{
   scaleSize: number;
   src: string;
   alt: string;
+  mediaType: "image" | "video";
 }>();
 
 const style = {
@@ -26,7 +38,8 @@ const style = {
 };
 </script>
 <style scoped lang="scss">
-img {
+img,
+video {
   width: 100%;
   height: 100%;
 }
