@@ -7,14 +7,7 @@
       :height="intrinsicHeight"
       :alt="alt"
     />
-    <video
-      v-else="mediaType == 'video'"
-      playsinline
-      autoplay
-      muted
-      loop
-      poster=""
-    >
+    <video v-else="mediaType == 'video'" playsinline autoplay muted loop>
       <source :src="src" type="video/webm" />
     </video>
   </div>

@@ -3,51 +3,47 @@
     <!-- <h1 class="section-title">artefacts</h1> -->
     <TagsFilter :tags="tags" />
 
-    <div class="section__wrapper">
-      <div class="section__container">
-        <section class="section">
-          <h2 class="section__title">Essays & ruminations</h2>
-          <ol class="article-list">
-            <li
-              class="title"
-              v-for="articleItem in yearSorting"
-              :data-tags="articleItem.tagsString"
-              data-tag-show="true"
-            >
-              <NuxtLink :to="articleItem?.slug">{{
-                articleItem.title
-              }}</NuxtLink>
-              <p class="summary" v-if="articleItem.summary">
-                {{ articleItem.summary }}
-              </p>
-            </li>
-          </ol>
-        </section>
-        <section class="section">
-          <h2 class="section__title">LAB</h2>
-          <ol class="article-list">
-            <li
-              class="title"
-              v-for="lab in labs"
-              :data-tags="lab.tags"
-              data-tag-show="true"
-            >
-              <NuxtLink :to="lab.content">{{ lab.title }}</NuxtLink>
-              <FluidImage
-                :src="lab.preview"
-                :intrinsicHeight="1080"
-                :intrinsicWidth="1396"
-                :scaleSize="60"
-                :alt="lab.summary"
-                mediaType="video"
-              />
-              <p class="summary" v-if="lab.summary">
-                {{ lab.summary }}
-              </p>
-            </li>
-          </ol>
-        </section>
-      </div>
+    <div class="section__container">
+      <section class="section">
+        <h2 class="section__title">Essays & ruminations</h2>
+        <ol class="article-list">
+          <li
+            class="title"
+            v-for="articleItem in yearSorting"
+            :data-tags="articleItem.tagsString"
+            data-tag-show="true"
+          >
+            <NuxtLink :to="articleItem?.slug">{{ articleItem.title }}</NuxtLink>
+            <p class="summary" v-if="articleItem.summary">
+              {{ articleItem.summary }}
+            </p>
+          </li>
+        </ol>
+      </section>
+      <section class="section">
+        <h2 class="section__title">LAB</h2>
+        <ol class="article-list">
+          <li
+            class="title"
+            v-for="lab in labs"
+            :data-tags="lab.tags"
+            data-tag-show="true"
+          >
+            <NuxtLink :to="lab.content">{{ lab.title }}</NuxtLink>
+            <FluidImage
+              :src="lab.preview"
+              :intrinsicHeight="1080"
+              :intrinsicWidth="1396"
+              :scaleSize="60"
+              :alt="lab.summary"
+              mediaType="video"
+            />
+            <p class="summary" v-if="lab.summary">
+              {{ lab.summary }}
+            </p>
+          </li>
+        </ol>
+      </section>
     </div>
   </div>
 </template>
@@ -153,16 +149,10 @@ const yearSorting = sortByYear(articles);
   }
 }
 
-.section__wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
 .section__container {
+  width: 100%;
+  justify-content: space-between;
   display: flex;
-  flex-direction: column;
-  max-width: 760px;
 }
 .section {
   display: flex;

@@ -3,81 +3,18 @@
     <fieldset v-on:change="handleTag" class="tag-list">
       <div class="tag-toggle" v-for="tag in tags">
         <input type="checkbox" name="article-filter" :value="tag" :id="tag" />
-        <label :style="galgoStyles" :for="tag">{{ tag }}</label>
+        <FluidGalgo as="label" :for="tag">{{ tag }}</FluidGalgo>
       </div>
     </fieldset>
   </form>
 </template>
 
 <script setup lang="ts">
-import { createStyleObject } from "@capsizecss/core";
-type CapSizeOption = Parameters<typeof createStyleObject>[0];
-type CapSizeStyle = ReturnType<typeof createStyleObject>;
-
 const props = defineProps<{
   tags: Set<string>;
 }>();
 
 let tagSelectForm: Ref<HTMLFormElement | undefined> = ref();
-
-let galgoBase = ref({
-  capHeight: 0,
-  lineGap: 24,
-  fontMetrics: {
-    familyName: "Galgo Light",
-    fullName: "Galgo Medium",
-    postscriptName: "Galgo-Medium",
-    capHeight: 613,
-    ascent: 750,
-    descent: -250,
-    lineGap: 0,
-    unitsPerEm: 1000,
-    xHeight: 495,
-    xWidthAvg: 178,
-    subsets: {
-      latin: {
-        xWidthAvg: 178,
-      },
-      thai: {
-        xWidthAvg: 120,
-      },
-    },
-  },
-});
-
-let galgoStyles: Ref<CapSizeStyle | undefined> = ref();
-
-function scale(
-  value: number,
-  min1: number,
-  max1: number,
-  min2: number,
-  max2: number,
-): number {
-  return min2 + ((value - min1) * (max2 - min2)) / (max1 - min1);
-}
-
-function setIdealSizing(): void {
-  if (!window) return;
-
-  const idealUpperLimit = 70;
-  const idealLowerLimit = 30;
-  const winMinSize = 350;
-  const winMaxSize = 1445;
-  let winAbsWidth = window.innerWidth;
-
-  let idealCapSize = Math.ceil(
-    scale(
-      winAbsWidth,
-      winMinSize,
-      winMaxSize,
-      idealLowerLimit,
-      idealUpperLimit,
-    ),
-  );
-
-  galgoBase.value.capHeight = idealCapSize;
-}
 
 function handleTag(e): void {
   if (!tagSelectForm) return;
@@ -104,19 +41,6 @@ function handleTag(e): void {
 function thereExistCommonItems(arr1, arr2) {
   return arr1.some((item) => arr2.includes(item));
 }
-
-onBeforeMount(() => {
-  setIdealSizing();
-  galgoStyles.value = createStyleObject(galgoBase.value);
-  window.addEventListener("resize", setIdealSizing);
-});
-
-watch(
-  () => galgoBase.value.capHeight,
-  () => {
-    galgoStyles.value = createStyleObject(galgoBase.value);
-  },
-);
 </script>
 
 <style scoped lang="scss">
