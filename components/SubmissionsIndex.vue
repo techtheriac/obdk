@@ -1,48 +1,40 @@
 <template>
-  <div class="flow-hr">
-    <!-- <h1 class="section-title">artefacts</h1> -->
+  <div class="rumination-index">
+    <h1 class="section-title">submissions on</h1>
     <TagsFilter :tags="tags" />
 
     <div class="section__container">
       <section class="section">
-        <h2 class="section__title">Essays & ruminations</h2>
-        <ol class="article-list">
-          <li
-            class="title"
-            v-for="articleItem in yearSorting"
-            :data-tags="articleItem.tagsString"
-            data-tag-show="true"
-          >
-            <NuxtLink :to="articleItem?.slug">{{ articleItem.title }}</NuxtLink>
-            <p class="summary" v-if="articleItem.summary">
-              {{ articleItem.summary }}
-            </p>
+        <ol>
+          <li class="year-segment" v-for="(item, index) in groupedByYearSorted">
+            <h3>{{ item[0] }}</h3>
+            <ol class="article-listing">
+              <li
+                class="article-item"
+                v-for="articleItem in item[1]"
+                :data-tags="articleItem.tagsString"
+                data-tag-show="true"
+              >
+                <div class="published-date">
+                  <span>{{ articleItem.day }}</span>
+                  <span>{{ articleItem.month }}</span>
+                </div>
+                <div class="title">
+                  <NuxtLink :to="articleItem?.slug">{{
+                    articleItem.title
+                  }}</NuxtLink>
+
+                  <p class="summary" v-if="articleItem.summary">
+                    {{ articleItem.summary }}
+                  </p>
+                </div>
+              </li>
+            </ol>
           </li>
         </ol>
       </section>
-      <section class="section">
-        <h2 class="section__title">LAB</h2>
-        <ol class="article-list">
-          <li
-            class="title"
-            v-for="lab in labs"
-            :data-tags="lab.tags"
-            data-tag-show="true"
-          >
-            <NuxtLink :to="lab.content">{{ lab.title }}</NuxtLink>
-            <FluidImage
-              :src="lab.preview"
-              :intrinsicHeight="1080"
-              :intrinsicWidth="1396"
-              :scaleSize="60"
-              :alt="lab.summary"
-              mediaType="video"
-            />
-            <p class="summary" v-if="lab.summary">
-              {{ lab.summary }}
-            </p>
-          </li>
-        </ol>
+      <section class="section lab">
+        <h1>Poetry</h1>
       </section>
     </div>
   </div>
@@ -132,16 +124,27 @@ const notes: Essay[] = notion.value!.results.map((post) => {
 });
 
 let articles = [...essays, ...notes];
+
+function yearSort(a, b) {
+  return b[0] - a[0];
+}
+const groupedByYear = groupListingByYear(articles);
+const groupedByYearSorted = Object.entries(groupedByYear).sort(yearSort);
+
+console.log("YEAR GROUPING SORTED", groupedByYearSorted);
+
 const articlesTags = articles.flatMap((x) => x.tags);
 let tags = new Set(articlesTags);
 const yearSorting = sortByYear(articles);
 </script>
 
 <style scoped lang="scss">
-.flow-hr {
+.rumination-index {
   display: flex;
   flex-direction: column;
   margin-top: var(--space-s);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: var(--space-s);
   form {
     position: sticky;
     top: var(--space-s);
@@ -151,34 +154,20 @@ const yearSorting = sortByYear(articles);
 
 .section__container {
   width: 100%;
-  justify-content: space-between;
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
 }
-.section {
-  display: flex;
-  gap: var(--space-s);
-  align-items: center;
-  --h2: var(--idealListingFontSize);
-  h2 {
-    font-family: "Rostin";
-    font-weight: 400;
-    text-transform: uppercase;
-    font-size: var(--h2);
-    transform: rotate(-180deg);
-    text-align: right;
-    text-orientation: sideways;
-    white-space: nowrap;
-    writing-mode: vertical-rl;
-    margin-inline-start: var(--space-s);
+
+@media screen and (min-width: 600px) {
+  .section__container {
+    --padding-inline: 15vmin;
   }
 }
 
-.article-list {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  // align-items: center;
-  padding-top: var(--space-xs);
+.article-listing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50ch, 1fr));
+  grid-column-gap: var(--space-s);
 }
 
 .section-title {
@@ -192,17 +181,32 @@ const yearSorting = sortByYear(articles);
   font-variation-settings: "MONO" 1;
 }
 
-.title {
-  --font-size: var(--step-0);
+.article-item {
+  --font-size: var(--step-3);
   font-weight: var(--article-body-weight);
   z-index: 2;
   text-wrap: balance;
   color: var(--foreground-100);
-  padding-block: 0.25em;
   font-size: var(--font-size);
+  display: flex;
+  column-gap: var(--space-xs);
+  align-items: center;
+  padding: var(--space-xs) 0;
+  border-bottom: 1px dashed var(--border-color);
+  .published-date {
+    font-size: var(--idealSubFontSize);
+    color: var(--foreground-200);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-200);
+    gap: min(var(--space-xs), 0.3em);
+    padding: var(--space-xs);
+    border-radius: 0.3em;
+  }
 
   a {
-    font-size: inherit;
+    font-size: var(--step-0);
+    font-weight: 400;
     text-decoration: underline;
     text-decoration-color: var(--border-color);
     text-underline-offset: 0.09em;
@@ -216,6 +220,11 @@ const yearSorting = sortByYear(articles);
       color: var(--foreground-200);
     }
   }
+
+  .summary {
+    font-size: var(--step--1);
+    padding-block-start: 0.3em;
+  }
 }
 
 @media screen and (min-width: 600px) {
@@ -224,9 +233,9 @@ const yearSorting = sortByYear(articles);
     // justify-content: center;
   }
 
-  .title {
-    --font-size: var(--step-0);
-  }
+  // .title {
+  //   --font-size: var(--step-0);
+  // }
   .title:not(:last-child) > a::after {
     // content: "°";
     // padding-inline: 0.3em;

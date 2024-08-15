@@ -1,7 +1,7 @@
 <template>
   <main>
     <Intro />
-    <RuminationIndex />
+    <SubmissionsIndex />
   </main>
 </template>
 

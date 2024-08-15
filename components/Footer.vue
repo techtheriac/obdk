@@ -1,8 +1,18 @@
 <template>
   <footer>
-    <h2>Get in touch</h2>
     <div class="outside">
-      <div class="feed">Subscribe to fucking rss</div>
+      <div class="elsewhere">
+        <NewsLetter />
+        <div class="misc">
+          <p>Misc.</p>
+          <p>
+            <NuxtLink v-for="other in others" :to="other.link">{{
+              other.name
+            }}</NuxtLink>
+          </p>
+        </div>
+      </div>
+
       <div class="links">
         <ul>
           <li v-for="link in links">
@@ -25,39 +35,59 @@ const links = [
     link: "https://www.linkedin.com/in/franklin-jezreel/",
   },
 ];
+
+const others = [
+  {
+    name: "The chemistry of reduce",
+    link: "https://dev.to/techtheriac/the-chemistry-of-reduce-54m6",
+  },
+  {
+    name: "Lambda (λ) Calculus For Javascript Developers",
+    link: "https://gist.github.com/techtheriac/d0daa646b45fed7fba7c061bfc3154ee",
+  },
+  {
+    name: "Notion as a content management system",
+    link: "https://www.youtube.com/live/piY-Jp1qFo4",
+  },
+  {
+    name: "Educative Answers - What are ASP Conditionals?",
+    link: "https://www.educative.io/answers/what-are-asp-conditionals",
+  },
+];
 </script>
 
 <style lang="scss" scoped>
 footer {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.elsewhere {
+  display: flex;
 
-  h2 {
-    align-self: center;
-    font-size: 10vmin;
-    font-weight: 700;
+  > div {
+    max-width: 400px;
+    padding: var(--space-s);
   }
 
-  .outside {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  a {
-    color: inherit;
-    &:hover {
-      text-decoration: underline;
-    }
+  > * + * {
+    border-left: 1px solid var(--border-color);
   }
 }
 
-.avatar {
-  svg {
-    stroke: var(--foreground-100);
-    stroke: transparent;
-    stroke-width: var(--stroke-width, 1);
+.misc {
+  &:nth-child(2) {
+    a {
+      color: var(--foreground-100);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 0.09em;
+      text-decoration-thickness: 0.5px;
+      &::after {
+        content: "·";
+      }
+    }
   }
 }
 

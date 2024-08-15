@@ -12,6 +12,7 @@
 <style scoped lang="scss">
 .now-slider {
   display: flex;
+  justify-content: center;
   gap: var(--space-xs);
   width: 100%;
   overflow-x: auto;
