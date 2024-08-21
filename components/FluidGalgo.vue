@@ -58,7 +58,7 @@ export default defineComponent({
       if (!window) return;
 
       const idealUpperLimit = 70;
-      const idealLowerLimit = 30;
+      const idealLowerLimit = 40;
       const winMinSize = 350;
       const winMaxSize = 1445;
       let winAbsWidth = window.innerWidth;

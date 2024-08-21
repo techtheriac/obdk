@@ -18,6 +18,14 @@
   --accent-orange: hsla(2, 49%, 69%, 1);
   --accent-blue: hsla(169, 28%, 68%, 1);
   --accent-purple: hsla(264, 22%, 66%, 1);
+  --yellow-10: hsl(45.09deg 86.67% 61.76%);
+  --yellow-20: hsl(37.3deg 78.72% 9.22%);
+  --orange-10: hsl(13.91deg 99.04% 59.02%);
+  --orange-20: hsl(7.74deg 50.82% 11.96%);
+  --purple-10: hsl(270deg 100% 87.06%);
+  --purple-20: hsl(315deg 28.57% 10.98%);
+  --forest-10: hsl(55.38deg 23.42% 56.47%);
+  --forest-20: hsl(80deg 16.98% 10.39%);
   --grey-80: hsla(0, 0%, 16%, 1);
   --grey-70: hsla(0, 0%, 20%, 1);
   --grey-60: hsla(0, 0%, 27%, 1);
@@ -53,6 +61,10 @@
     --paragraph-100: var(--white);
     --paragraph-100: #e2e3e2;
     --elevated: var(--elevated-dark);
+    --yellow: var(--yellow-20);
+    --orange: var(--orange-20);
+    --purple: var(--purple-20);
+    --forest: var(--forest-20);
   }
 }
 
@@ -69,6 +81,10 @@
     --article-body-weight: 400;
     --paragraph-100: var(--grey-80);
     --elevated: var(--elevated-light);
+    --yellow: var(--yellow-10);
+    --orange: var(--orange-10);
+    --purple: var(--purple-10);
+    --forest: var(--forest-10);
   }
 }
 

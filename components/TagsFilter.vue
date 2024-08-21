@@ -45,6 +45,9 @@ function thereExistCommonItems(arr1, arr2) {
 
 <style scoped lang="scss">
 form {
+  --select-foreground: var(--yellow-20);
+  --select-background: var(--forest-10);
+
   overflow-y: hidden;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
@@ -58,7 +61,6 @@ form {
   }
 
   .tag-list {
-    // padding: 0;
     border: none;
     display: flex;
     flex-wrap: nowrap;
@@ -81,6 +83,10 @@ form {
         border: 1px solid var(--border-color);
         text-transform: uppercase;
         font-size: 4vw;
+        color: var(--color, rgb(164, 173, 182));
+        transition:
+          color 0.3s var(--easingOut),
+          background-color 0.3s var(--easing);
 
         &::before {
           content: "";
@@ -104,7 +110,7 @@ form {
         outline: none;
 
         &:checked ~ label {
-          background-color: var(--accent-blue);
+          background-color: var(--select-background);
           color: var(--foreground-100);
         }
 
@@ -115,4 +121,11 @@ form {
     }
   }
 }
+
+// @media (prefers-color-scheme: dark) {
+//   form {
+//     --select-foreground: var(--yellow-10);
+//     --select-background: var(--yellow-20);
+//   }
+// }
 </style>

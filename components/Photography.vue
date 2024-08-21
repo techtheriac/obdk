@@ -7,7 +7,7 @@
             :src="photo.preview"
             :intrinsicWidth="photo.previewWidth"
             :intrinsicHeight="photo.previewHeight"
-            :scaleSize="15"
+            :scaleSize="30"
             :alt="photo.title!"
             mediaType="image"
           />

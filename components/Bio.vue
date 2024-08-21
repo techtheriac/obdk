@@ -45,11 +45,11 @@
   display: flex;
   font-weight: var(--font-weight, 300);
   gap: var(--space-xs);
-  color: var(--color, rgb(164, 173, 182));
+  // color: var(--color, rgb(164, 173, 182));
   p {
     max-width: 20ch;
     font-size: var(--step--1);
-    line-height: 1.1em;
+    line-height: 1.2em;
   }
 }
 </style>

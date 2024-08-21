@@ -1,13 +1,12 @@
 <template>
   <div class="rumination-index">
-    <h1 class="section-title">submissions on</h1>
     <TagsFilter :tags="tags" />
 
     <div class="section__container">
       <section class="section">
         <ol>
           <li class="year-segment" v-for="(item, index) in groupedByYearSorted">
-            <h3>{{ item[0] }}</h3>
+            <h2>{{ `'${item[0]}` }}</h2>
             <ol class="article-listing">
               <li
                 class="article-item"
@@ -33,8 +32,15 @@
           </li>
         </ol>
       </section>
-      <section class="section lab">
-        <h1>Poetry</h1>
+      <section class="section poetry">
+        <div class="section-aside">
+          <NuxtLink to="/essays"
+            >All essays & Ruminations <span>→</span>
+          </NuxtLink>
+          <NuxtLink to="/essays"
+            >Read my poetry collection<span>→</span>
+          </NuxtLink>
+        </div>
       </section>
     </div>
   </div>
@@ -131,8 +137,6 @@ function yearSort(a, b) {
 const groupedByYear = groupListingByYear(articles);
 const groupedByYearSorted = Object.entries(groupedByYear).sort(yearSort);
 
-console.log("YEAR GROUPING SORTED", groupedByYearSorted);
-
 const articlesTags = articles.flatMap((x) => x.tags);
 let tags = new Set(articlesTags);
 const yearSorting = sortByYear(articles);
@@ -152,33 +156,54 @@ const yearSorting = sortByYear(articles);
   }
 }
 
+.section-aside {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xs);
+  border: 0.5px solid var(--border-color);
+  border-radius: 0.5em;
+  gap: var(--space-xs);
+
+  > a {
+    color: var(--foreground-100);
+    padding: var(--space-xs);
+    background-color: var(--background-200);
+    border-radius: 0.4em;
+  }
+}
+.year-segment {
+  h2 {
+    font-variation-settings:
+      "slnt" 0,
+      "MONO" 0;
+    font-size: var(--step-1);
+    font-weight: 450;
+    padding-top: var(--space-xs);
+  }
+}
 .section__container {
   width: 100%;
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  gap: var(--space-xs);
+  grid-template-columns: 1fr;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 700px) {
   .section__container {
     --padding-inline: 15vmin;
+    grid-template-columns: 4fr 1fr;
+  }
+  .section-aside {
+    margin-top: 7vmin;
+    position: sticky;
+    top: 18vmin;
   }
 }
 
 .article-listing {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50ch, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 50ch), 1fr));
   grid-column-gap: var(--space-s);
-}
-
-.section-title {
-  font-size: var(--step--1);
-  align-self: center;
-  text-transform: uppercase;
-  border: 1px solid var(--border-color);
-  border-bottom: none;
-  border-top: none;
-  padding: var(--space-s) var(--space-s);
-  font-variation-settings: "MONO" 1;
 }
 
 .article-item {
@@ -224,22 +249,6 @@ const yearSorting = sortByYear(articles);
   .summary {
     font-size: var(--step--1);
     padding-block-start: 0.3em;
-  }
-}
-
-@media screen and (min-width: 600px) {
-  .article-list {
-    flex-direction: column;
-    // justify-content: center;
-  }
-
-  // .title {
-  //   --font-size: var(--step-0);
-  // }
-  .title:not(:last-child) > a::after {
-    // content: "°";
-    // padding-inline: 0.3em;
-    // font-weight: inherit;
   }
 }
 
