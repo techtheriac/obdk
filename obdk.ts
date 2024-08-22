@@ -153,10 +153,11 @@ export interface Essay {
 }
 
 export interface Artefact {
-  type: "photo" | "text" | "lab";
+  type: "photo" | "text" | "lab" | "project";
   preview: string | Url;
   content: string | Url;
   title?: string;
   previewWidth?: number;
   previewHeight?: number;
+  date?: string;
 }
