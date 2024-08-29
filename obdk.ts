@@ -140,6 +140,7 @@ export type Segment = "ESSAYS" | "NOTES";
 
 export interface Essay {
   day: string;
+  year: string;
   month: string;
   title: string;
   slug: string;
@@ -149,4 +150,14 @@ export interface Essay {
   tagsString: string;
   segment: Segment;
   summary?: string;
+}
+
+export interface Artefact {
+  type: "photo" | "text" | "lab" | "project";
+  preview: string | Url;
+  content: string | Url;
+  title?: string;
+  previewWidth?: number;
+  previewHeight?: number;
+  date?: string;
 }

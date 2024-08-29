@@ -1,0 +1,95 @@
+:root {
+  --background-dark: #101613;
+  --background-dark-07: hsla(150, 33%, 5%, 0.97);
+  --background-dark-08: hsla(150, 33%, 5%, 0.9);
+  --foreground-dark: hsla(0, 0%, 100%, 1);
+  --foreground-dark-dim: hsla(0, 0%, 100%, 0.68);
+  --foreground-dark-dim-01: hsla(0, 0%, 93%, 1);
+  --foreground-dark-forest: hsla(103, 100%, 92%, 0.49);
+  --foreground-08: rgba(255, 255, 255, 0.8);
+  --foreground-09: rgba(255, 255, 255, 0.63);
+}
+
+:root {
+  --easingOut: cubic-bezier(0.16, 1, 0.3, 1);
+  --easing: cubic-bezier(0.83, 0, 0.17, 1);
+  --black: hsla(0, 0%, 11%, 1);
+  --accent-yellow: hsla(53, 73%, 58%, 1);
+  --accent-orange: hsla(2, 49%, 69%, 1);
+  --accent-blue: hsla(169, 28%, 68%, 1);
+  --accent-purple: hsla(264, 22%, 66%, 1);
+  --yellow-10: hsl(45.09deg 86.67% 61.76%);
+  --yellow-20: hsl(37.3deg 78.72% 9.22%);
+  --orange-10: hsl(13.91deg 99.04% 59.02%);
+  --orange-20: hsl(7.74deg 50.82% 11.96%);
+  --purple-10: hsl(270deg 100% 87.06%);
+  --purple-20: hsl(315deg 28.57% 10.98%);
+  --forest-10: hsl(55.38deg 23.42% 56.47%);
+  --forest-20: hsl(80deg 16.98% 10.39%);
+  --grey-80: hsla(0, 0%, 16%, 1);
+  --grey-70: hsla(0, 0%, 20%, 1);
+  --grey-60: hsla(0, 0%, 27%, 1);
+  --grey-50: hsla(0, 0%, 42%, 1);
+  --grey-40: hsla(60, 0%, 60%, 1);
+  --grey-30: hsla(0, 0%, 77%, 1);
+  --grey-20: hsla(0, 0%, 82%, 1);
+  --grey-10: hsla(0, 0%, 92%, 1);
+  --grey-5: hsla(0, 0%, 97%, 1);
+  --white: hsla(0, 0%, 100%, 1);
+  --accent-dark: hsl(173.08deg 12.15% 58.04% / 50%);
+  --accent-light: hsl(173.08deg 12.15% 58.04% / 50%);
+  --bg-image-dark: url("/static/images/bg-grain-dark.png");
+  --bg-image-light: url("/static/images/bg-grain.png");
+  --inactive: hsla(0, 0%, 20%, 0.5);
+  --elevated-dark: var(--grey-80);
+  --elevated-light: var(--grey-5);
+}
+
+// the higher the number the lower the saturation
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent: var(--accent-dark);
+    --bg-noise: var(--bg-image-dark);
+    --border-color: var(--grey-70);
+    --background-100: var(--black);
+    --background-200: var(--grey-70);
+    --foreground-100: var(--white);
+    --foreground-200: var(--grey-30);
+    --foreground-300: var(--grey-50);
+    --article-inactive: var(--inactive);
+    --article-body-weight: 250;
+    --paragraph-100: var(--white);
+    --paragraph-100: #e2e3e2;
+    --elevated: var(--elevated-dark);
+    --yellow: var(--yellow-20);
+    --orange: var(--orange-20);
+    --purple: var(--purple-20);
+    --forest: var(--forest-20);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --accent: var(--accent-dark);
+    --bg-noise: var(--bg-image-light);
+    --border-color: var(--grey-10);
+    --background-100: var(--white);
+    --background-200: var(--grey-5);
+    --foreground-100: var(--grey-80);
+    --foreground-200: var(--grey-40);
+    --article-inactive: var(--inactive);
+    --article-body-weight: 400;
+    --paragraph-100: var(--grey-80);
+    --elevated: var(--elevated-light);
+    --yellow: var(--yellow-10);
+    --orange: var(--orange-10);
+    --purple: var(--purple-10);
+    --forest: var(--forest-10);
+  }
+}
+
+.obdk-bg {
+  background-color: var(--background-100);
+  background-repeat: repeat;
+  background-attachment: inherit;
+}

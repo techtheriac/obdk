@@ -1,17 +1,9 @@
-@import "./fonts/spacemono";
-@import "./fonts/galgo";
-@import "./fonts/leitura";
-@import "./fonts/lausanne";
-@import "./utilities/resets";
-@import "./utilities/interpolate";
-@import "./utilities/colors";
-@import "./utilities/size-definitions";
-@import "./utilities/font-definitions";
-@import "./utilities/background-definitions";
-@import "./utilities/augmented-ui";
-@import "./utilities/layout";
-@import "./utilities/article";
-@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
+@use "resets";
+@use "theme";
+@use "typography";
+@use "size";
+@use "layout";
+@use "article";
 
 html,
 body {
@@ -19,7 +11,7 @@ body {
     text-decoration: none;
   }
   -webkit-font-smoothing: antialiased;
-  font-family: "TWK Lausanne";
+  font-family: Diatype;
   text-rendering: optimizeLegibility;
   overscroll-behavior: none;
   scroll-behavior: smooth;

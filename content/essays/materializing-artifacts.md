@@ -4,7 +4,7 @@ slug: materializing-artifacts
 last_edited: 2023-12-16T15:37:00.000Z
 stage: seed
 genre: engineering
-tags: engineering
+tags: engineering,photography
 summary: observing the beauty of algorithms
 ---
 

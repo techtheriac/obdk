@@ -28,10 +28,12 @@ const backlinks = await Promise.all(
 
 <style scoped lang="scss">
 section {
+  font-family: Blanco;
   border-top: 1px dotted var(--border-color);
   padding-top: var(--space-s);
 }
 small {
+  font-family: Grosteque;
   font-weight: 400;
   margin-bottom: var(--space-xs);
   font-size: var(--idealArticleParagraphSize);

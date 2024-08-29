@@ -55,7 +55,6 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/css/utilities/font-definitions";
 .stacked_item {
   position: absolute;
   display: flex;
@@ -65,10 +64,6 @@ onUnmounted(() => {
   transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   width: 100%;
   background-color: var(--background-dark-07);
-
-  // background-image: radial-gradient(circle, rgb(203 213 225) 2px, #950d0d 2px);
-  // background-size: 2.5rem 2.5rem;
-  // background-position: center center;
   > div {
     padding: var(--space-xs);
   }

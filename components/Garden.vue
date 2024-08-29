@@ -27,6 +27,7 @@ var summary = computed(() => {
 <style scoped lang="scss">
 .writing-wrapper {
   width: 150px;
+  align-self: center;
 }
 svg {
   > :nth-child(1) {

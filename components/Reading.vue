@@ -25,6 +25,7 @@ const summary = computed(() => {
 .reading-wrapper {
   overflow: hidden;
   width: 150px;
+  align-self: center;
 }
 .marquee-wrapper {
   display: flex;

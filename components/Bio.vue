@@ -1,58 +1,55 @@
 <template>
-  <div class="bio hidden">
-    <div class="marquee-wrapper">
-      <p v-for="n in 3" class="marquee-line" :aria-hidden="n != 1">
-        Tectheriac is the pseudonym of Franklin Jezreel, a software engineer
-        with a keen interest on building for the internet. Consider this website
-        a haven for his musings, and ruminations.
+  <div class="bio">
+    <p>('tek-ˈthir-ē-ˌak)</p>
+
+    <div class="bio-meta">
+      <FluidImage
+        src="/avatar.webp"
+        :intrinsicWidth="455"
+        :intrinsicHeight="378"
+        :scaleSize="20"
+        alt="avatar"
+        mediaType="image"
+      />
+      <p>
+        Techtheriac is Jezreel Franklin's web incarnation. A software engineer
+        with a nack for building on the internet across stacks and disciplines
       </p>
     </div>
   </div>
 </template>
 
-<script lang="ts"></script>
+<script setup lang="ts"></script>
 
-<style lang="scss" scoped>
-@import "../assets/css/utilities/font-definitions";
+<style scoped lang="scss">
 .bio {
-  @include lausanneNormal(300, var(--idealBaseFontSize));
-  text-transform: uppercase;
-  color: var(--foreground-100);
-  letter-spacing: -0.005em;
-  overflow: hidden;
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    #000 15%,
-    #000 85%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    #000 15%,
-    #000 85%,
-    transparent 100%
-  );
-}
-
-.marquee-wrapper {
   display: flex;
-}
-.marquee-line {
-  flex-shrink: 0;
-  margin: 0;
-  white-space: nowrap;
-  animation: marqueeLine 30s linear infinite;
-}
+  flex-wrap: nowrap;
+  padding-block-start: var(--space-xs);
+  font-size: var(--step--1);
+  justify-content: space-between;
 
-@keyframes marqueeLine {
-  from {
-    transform: translateX(0);
+  p:nth-child(1) {
+    font-weight: 250;
   }
+}
 
-  to {
-    transform: translateX(-100%);
+@media (prefers-color-scheme: dark) {
+  .bio-meta {
+    --font-weight: 250;
+    --color: var(--white);
+  }
+}
+
+.bio-meta {
+  display: flex;
+  font-weight: var(--font-weight, 300);
+  gap: var(--space-xs);
+  // color: var(--color, rgb(164, 173, 182));
+  p {
+    max-width: 20ch;
+    font-size: var(--step--1);
+    line-height: 1.2em;
   }
 }
 </style>

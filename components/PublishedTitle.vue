@@ -1,5 +1,6 @@
 <template>
   <div class="page-info-wrapper">
+    <Navigation back="/" content="back to home" />
     <div class="page-info">
       <h1 class="title" :style="{ '--accent-color': getColorFromGenre(genre) }">
         {{ title }}
@@ -44,19 +45,21 @@ const dateTime = computed(() => {
 }
 
 .published-date {
-  font-size: var(--idealSubFontSize);
+  font-family: "TWK Lausanne";
+  font-size: var(--step--1);
   font-weight: 200;
   line-height: normal;
   display: block;
 }
 
 .title {
-  font-family: Galgo;
-  font-size: calc(var(--idealHeadingOne) + 2vw);
+  font-family: "Grotesque";
+  font-size: var(--idealHeadingOne);
+  font-size: var(--step-2);
   z-index: 2;
   position: relative;
-  font-weight: var(--artilce-heading-weight);
+  font-weight: calc(700 * var(--font-weight-multiplier, 1));
   color: var(--foreground-100);
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 </style>

@@ -1,22 +1,31 @@
 <template>
   <footer>
-    <div>
-      <small> © Franklin Jezreel </small>
+    <div class="outside">
+      <div class="elsewhere">
+        <NewsLetter />
+        <div class="misc">
+          <p>Misc.</p>
+          <p>
+            <NuxtLink v-for="other in others" :to="other.link">{{
+              other.name
+            }}</NuxtLink>
+          </p>
+        </div>
+      </div>
+
+      <div class="links">
+        <ul>
+          <li v-for="link in links">
+            <NuxtLink :to="link.link">{{ link.name }}</NuxtLink>
+          </li>
+        </ul>
+      </div>
     </div>
-    <ul>
-      <li v-for="link in links">
-        <NuxtLink :to="link.link">{{ link.name }}</NuxtLink>
-      </li>
-    </ul>
   </footer>
 </template>
 
 <script setup lang="ts">
 const links = [
-  {
-    name: "about",
-    link: "/about",
-  },
   {
     name: "tw",
     link: "https://twitter.com/techtheric",
@@ -26,29 +35,65 @@ const links = [
     link: "https://www.linkedin.com/in/franklin-jezreel/",
   },
 ];
+
+const others = [
+  {
+    name: "The chemistry of reduce",
+    link: "https://dev.to/techtheriac/the-chemistry-of-reduce-54m6",
+  },
+  {
+    name: "Lambda (λ) Calculus For Javascript Developers",
+    link: "https://gist.github.com/techtheriac/d0daa646b45fed7fba7c061bfc3154ee",
+  },
+  {
+    name: "Notion as a content management system",
+    link: "https://www.youtube.com/live/piY-Jp1qFo4",
+  },
+  {
+    name: "Educative Answers - What are ASP Conditionals?",
+    link: "https://www.educative.io/answers/what-are-asp-conditionals",
+  },
+];
 </script>
 
 <style lang="scss" scoped>
 footer {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  padding: 0 var(--space-xs) var(--space-xs);
-  color: var(--foreground-100);
-  font-family: "TWK Lausanne";
-  text-transform: uppercase;
-  font-weight: 200;
-  font-size: var(--idealSubFontSize);
-  z-index: 1;
+  justify-content: center;
+  align-items: center;
+}
+.elsewhere {
+  display: flex;
 
-  ul {
-    display: inherit;
+  > div {
+    max-width: 400px;
+    padding: var(--space-s);
   }
-  a {
-    &:hover {
-      color: inherit;
+
+  > * + * {
+    border-left: 1px solid var(--border-color);
+  }
+}
+
+.misc {
+  &:nth-child(2) {
+    a {
+      color: var(--foreground-100);
       text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 0.09em;
+      text-decoration-thickness: 0.5px;
+      &::after {
+        content: "·";
+      }
     }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .avatar {
+    --stroke-width: 0.4;
   }
 }
 </style>
