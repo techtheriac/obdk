@@ -201,7 +201,7 @@ onBeforeUnmount(() => {
 
   .meta {
     font-family: "Danfo";
-    font-size: calc(var(--idealHeadingOne) + 20vw);
+    font-size: calc(var(--idealHeadingOne) + 10vw);
     font-variation-settings: "ELSH" 50;
     text-align: center;
 

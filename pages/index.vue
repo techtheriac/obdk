@@ -2,6 +2,8 @@
   <main>
     <Intro />
     <SubmissionsIndex />
+    <LabFeatured />
+    <PreFooter />
   </main>
 </template>
 
