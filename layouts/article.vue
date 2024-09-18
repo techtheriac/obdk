@@ -1,5 +1,5 @@
 <template>
-  <div class="content-main obdk-bg" data-nav="article">
+  <div class="content-main" data-nav="article">
     <main>
       <slot />
     </main>
