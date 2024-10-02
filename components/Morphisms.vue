@@ -1,5 +1,5 @@
 <template>
-  <PreFooterItem title="Morphisms" meta="Monthly snapshots & ruminations">
+  <PreFooterItem title="Morphisms" meta="An ongoing index of curiosities">
     <ul>
       <li>MPH-001 Guardians</li>
       <li>MPH-002 Installments</li>

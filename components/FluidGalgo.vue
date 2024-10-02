@@ -8,6 +8,7 @@
 import { createStyleObject } from "@capsizecss/core";
 type CapSizeStyle = ReturnType<typeof createStyleObject>;
 
+// https://fontdrop.info/ - for font metrics
 export default defineComponent({
   name: "FluidGalgo",
   props: {
