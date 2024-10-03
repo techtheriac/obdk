@@ -1,6 +1,6 @@
 <template>
   <div>
-    <article id="content" class="article-block-flow">
+    <article id="article" class="article-block-flow">
       <PublishedTitle
         :title="postData.properties.name.title[0].plain_text"
         :date="postData.created_time"

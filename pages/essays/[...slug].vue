@@ -1,7 +1,7 @@
 <template>
   <div>
     <ContentDoc v-slot="{ doc }">
-      <article id="content" class="article-block-flow">
+      <article id="article" class="article-block-flow">
         <PublishedTitle
           :title="doc.title!"
           :date="doc.last_edited"

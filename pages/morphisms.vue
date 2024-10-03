@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout name="www">
+  <NuxtLayout name="morphisms">
     <NuxtPage />
   </NuxtLayout>
 </template>
