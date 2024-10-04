@@ -5,19 +5,19 @@
       <div class="morphism-side">
         <h1>Morphisms</h1>
         <h2>An ongoing index of curiousities</h2>
-        <p>
+        <!-- <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Non in id
           harum, nam possimus saepe ratione, molestiae blanditiis veniam
           quisquam natus? Excepturi maxime totam delectus aliquid velit quia
           facilis deserunt!
-        </p>
+        </p> -->
         <div>
           <form action="#">
             <input type="text" />
             <button disabled="true">subscribe</button>
           </form>
         </div>
-        <ul>
+        <ul class="morphism-list">
           <li v-for="letter in morphisms">
             <P>{{ letter?.issue }}</P>
             <NuxtLink :to="letter._path">
@@ -43,17 +43,20 @@ const morphisms = await queryContent("morphisms")
 .morphism-wrapper {
   display: grid;
   grid-template-columns: 2fr 3fr;
-  padding-top: var(--space-s);
+  padding-top: var(--space-m);
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .morphism-side {
   border-right: 1px solid var(--border-color);
+  padding-right: var(--space-s);
   h1 {
     font-family: "Rostin";
-    font-size: var(--step-3);
+    font-size: var(--step-4);
     text-transform: uppercase;
     font-weight: 700;
-    background-color: var(--forest);
+    background-color: var(--forest-10);
     display: inline-block;
   }
 
@@ -64,6 +67,38 @@ const morphisms = await queryContent("morphisms")
 
   h2 + p {
     font-size: var(--step-0);
+  }
+}
+
+.morphism-content {
+  padding-left: var(--space-s);
+}
+
+.morphism-list {
+  margin-top: var(--space-s);
+
+  li {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-xs) - 1ch);
+
+    p {
+      font-family: Rostin;
+      text-transform: uppercase;
+      font-size: var(--step-0);
+    }
+
+    a {
+      color: var(--foreground-100);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 0.09em;
+      text-decoration-thickness: 0.5px;
+    }
+  }
+
+  li + li {
+    margin-top: var(--space-xs);
   }
 }
 </style>
