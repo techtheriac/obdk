@@ -162,3 +162,12 @@ $mono: "Rostin";
     U+A726-A727, U+A740-A741, U+A789-A78D, U+A7A8-A7AA, U+A7AD-A7AE, U+A7B2-A7B9,
     U+AB53, U+FF0D;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
