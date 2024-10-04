@@ -4,15 +4,8 @@
       <small>© Jezreel Franklin</small>
     </div>
     <div class="links">
-      <ul>
-        <p>Social</p>
-        <li>ARE.NA</li>
-      </ul>
-      <ul>
-        <p>Personal Sphere</p>
-        <li>Links</li>
-        <li>Playlists</li>
-      </ul>
+      <p>Social</p>
+      <p>ARE.NA</p>
     </div>
   </footer>
 </template>
