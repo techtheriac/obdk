@@ -6,6 +6,10 @@
   font-family: t.$serif;
 }
 
+p::selection {
+  background-color: var(--forest-10);
+}
+
 .rostin-forest-title {
   font-family: "Rostin";
   font-size: var(--step-2);
