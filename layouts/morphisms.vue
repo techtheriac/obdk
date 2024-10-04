@@ -5,12 +5,6 @@
       <div class="morphism-side">
         <h1>Morphisms</h1>
         <h2>An ongoing index of curiousities</h2>
-        <!-- <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Non in id
-          harum, nam possimus saepe ratione, molestiae blanditiis veniam
-          quisquam natus? Excepturi maxime totam delectus aliquid velit quia
-          facilis deserunt!
-        </p> -->
         <div>
           <form action="#">
             <input type="text" />
@@ -53,7 +47,7 @@ const morphisms = await queryContent("morphisms")
   padding-right: var(--space-s);
   h1 {
     font-family: "Rostin";
-    font-size: var(--step-4);
+    font-size: var(--step-3);
     text-transform: uppercase;
     font-weight: 700;
     background-color: var(--forest-10);
