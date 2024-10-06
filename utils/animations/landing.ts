@@ -8,8 +8,9 @@ export interface LandingAnimatable {
   bio: HTMLElement;
   nowSlider: HTMLElement;
   flipContainer: HTMLElement;
-  preloader: HTMLElement;
+  navigation: HTMLElement;
 }
+
 export class LandingAnimation {
   landingAnimatables: LandingAnimatable;
   timeline: GSAPTimeline;
@@ -21,6 +22,16 @@ export class LandingAnimation {
       .timeline({ duration: 1.2 })
       .call(this.toggleVisibility, [this.landingAnimatables.bio])
       .call(this.unblink, [this.landingAnimatables.techtheriac])
+      .to(this.landingAnimatables.techtheriac, {
+        duration: 0.8,
+        height: "40px",
+        ease: "sine.inOut"
+      })
+      .call(this.toggleVisibility, [this.landingAnimatables.navigation])
+      .from(this.landingAnimatables.navigation, {
+        opacity: 0,
+        ease: "power3.in"
+      })
       .from(this.landingAnimatables.bio, {
         opacity: 0,
         ease: "power3.in",

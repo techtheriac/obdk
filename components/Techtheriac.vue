@@ -40,7 +40,7 @@
       />
     </svg>
 
-    <nav>
+    <nav class="navigation hidden">
       <ul>
         <li v-for="nav in navItems">
           <NuxtLink :to="nav.link">
@@ -85,7 +85,7 @@ header {
 .obdk {
   width: inherit;
   fill: var(--foreground-100);
-  height: 40px;
+  height: 100%;
 }
 
 @keyframes blinker {
