@@ -1,6 +1,5 @@
 <template>
   <header>
-    <ThemeToggle />
     <svg
       viewBox="0 0 10478 1117"
       class="obdk"
@@ -40,6 +39,17 @@
         d="M9779.83 139.625H9919.46V977.375H9779.83V139.625ZM9919.46 977.375H10338.4V1117H9919.46V977.375ZM10338.4 837.75H10478V977.375H10338.4V837.75ZM9919.46 0H10338.4V139.625H9919.46V0ZM10338.4 139.625H10478V279.25H10338.4V139.625Z"
       />
     </svg>
+
+    <nav>
+      <ul>
+        <li v-for="nav in navItems">
+          <NuxtLink :to="nav.link">
+            {{ nav.name }}
+          </NuxtLink>
+        </li>
+      </ul>
+      <ThemeToggle />
+    </nav>
   </header>
 </template>
 
@@ -47,6 +57,21 @@
 const props = defineProps<{
   shouldBlink: boolean;
 }>();
+
+const navItems = [
+  {
+    name: "Lab",
+    link: "/lab"
+  },
+  {
+    name: "Writing",
+    link: "/essays"
+  },
+  {
+    name: "Resume",
+    link: "#"
+  }
+]
 </script>
 
 <style lang="scss" scoped>
@@ -86,4 +111,21 @@ header {
     animation-delay: 500ms;
   }
 }
+
+
+@media screen and (min-width: 600px) {
+  nav {
+    display: flex;
+    position: absolute;
+    right: 0;
+    gap: var(--space-xs);
+    bottom: 0;
+    ul {
+      display: flex;
+      gap: inherit;
+    }
+  }
+}
+
+
 </style>

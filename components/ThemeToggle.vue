@@ -9,7 +9,7 @@
 
 <style scoped>
 .theme-toggle {
-  --size: 2ch;
+  --size: 1.5ch;
   --half: calc(var(--size) / 2);
   display: flex;
   gap: 2px;
