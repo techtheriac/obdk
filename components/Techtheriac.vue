@@ -1,5 +1,6 @@
 <template>
   <header>
+    <ThemeToggle />
     <svg
       viewBox="0 0 10478 1117"
       class="obdk"
@@ -54,10 +55,12 @@ header {
   padding-block: var(--space-xs);
   border-bottom: 1px solid var(--border-color);
   grid-column: 1 / -1;
+  position: relative;
 }
 .obdk {
   width: inherit;
   fill: var(--foreground-100);
+  height: 40px;
 }
 
 @keyframes blinker {
