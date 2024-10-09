@@ -1,5 +1,5 @@
 <template>
-  <div class="bio">
+  <div class="bio hidden">
     <p>('tek-ˈthir-ē-ˌak)</p>
 
     <div class="bio-meta">

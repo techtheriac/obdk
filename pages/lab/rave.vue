@@ -99,7 +99,6 @@ async function loadSound(): Promise<void> {
 }
 
 async function playSound() {
-  console.log("PLAYED?");
   if (!audioContext) {
     await loadSound();
   }
@@ -160,7 +159,6 @@ function updateFontVariation(time) {
 
       ELSH.value = smoothed;
 
-      console.log(elStyle.value);
       // Draw the rectangle
       const margin = 0.2 * dim;
       const x =
@@ -187,6 +185,7 @@ watch(ELSH, () => {
 
 onBeforeUnmount(() => {
   audioContext?.close();
+  cancelAnimationFrame(curRaf);
 });
 </script>
 
@@ -201,7 +200,7 @@ onBeforeUnmount(() => {
 
   .meta {
     font-family: "Danfo";
-    font-size: calc(var(--idealHeadingOne) + 20vw);
+    font-size: calc(var(--idealHeadingOne) + 10vw);
     font-variation-settings: "ELSH" 50;
     text-align: center;
 
