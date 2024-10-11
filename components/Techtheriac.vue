@@ -1,10 +1,9 @@
 <template>
-  <header>
+  <header class="header page-loading">
     <svg
       viewBox="0 0 10478 1117"
       class="obdk"
       :class="{ blinking: shouldBlink }"
-      id="obdk"
       preserveAspectRatio="xMinYMid"
     >
       <path d="M0 0H698.17V139.625H418.902V1117H279.268V139.625H0V0Z" />
@@ -40,7 +39,12 @@
       />
     </svg>
 
-    <nav class="navigation hidden">
+    <nav class="navigation">
+      <div class="toggle-menu" role="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
       <ul>
         <li v-for="nav in navItems">
           <NuxtLink :to="nav.link">
@@ -48,7 +52,6 @@
           </NuxtLink>
         </li>
       </ul>
-      <ThemeToggle />
     </nav>
   </header>
 </template>
@@ -61,31 +64,43 @@ const props = defineProps<{
 const navItems = [
   {
     name: "Lab",
-    link: "/lab"
+    link: "/lab",
   },
   {
     name: "Writing",
-    link: "/essays"
+    link: "/essays",
   },
   {
     name: "Resume",
-    link: "#"
-  }
-]
+    link: "#",
+  },
+];
 </script>
 
 <style lang="scss" scoped>
-header {
+.header {
   width: 100%;
   padding-block: var(--space-xs);
   border-bottom: 1px solid var(--border-color);
-  grid-column: 1 / -1;
   position: relative;
+  display: flex;
+  gap: var(--space-s);
+  justify-content: space-between;
 }
+
+.page-loading {
+  .navigation {
+    display: none;
+  }
+
+  .obdk {
+    height: 100%;
+    width: 100%;
+  }
+}
+
 .obdk {
-  width: inherit;
   fill: var(--foreground-100);
-  height: 100%;
 }
 
 @keyframes blinker {
@@ -112,11 +127,36 @@ header {
   }
 }
 
+.toggle-menu {
+  display: flex;
+  cursor: pointer;
+  gap: 5px;
+  flex-direction: column;
+  span {
+    width: 1ch;
+    height: 1ch;
+    background-color: var(--foreground-100);
+  }
+}
+
+.navigation {
+  ul {
+    display: none;
+  }
+}
 
 @media screen and (min-width: 600px) {
-  nav {
+  .toggle-menu {
+    display: none;
+  }
+  .obdk {
+    width: 50%;
+  }
+  .header {
+    align-items: baseline;
+  }
+  .navigation {
     display: flex;
-    position: absolute;
     right: 0;
     gap: var(--space-xs);
     bottom: 0;
@@ -126,6 +166,4 @@ header {
     }
   }
 }
-
-
 </style>
