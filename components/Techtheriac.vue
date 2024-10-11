@@ -101,6 +101,9 @@ const navItems = [
 
 .obdk {
   fill: var(--foreground-100);
+  transition:
+    height,
+    width 0.5 var(--easing);
 }
 
 @keyframes blinker {
