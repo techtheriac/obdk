@@ -46,8 +46,8 @@ const dateTime = computed(() => {
 
 .published-date {
   font-family: "TWK Lausanne";
-  font-size: var(--step--1);
-  font-weight: 200;
+  font-size: var(--step--2);
+  font-weight: 300;
   line-height: normal;
   display: block;
 }
