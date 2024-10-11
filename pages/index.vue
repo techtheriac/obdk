@@ -22,6 +22,7 @@ onMounted(() => {
     nowSlider: document.querySelector(".now-slider")!,
     flipContainer: document.querySelector(".flip-container")!,
     navigation: document.querySelector(".navigation")!,
+    header: document.querySelector(".header")!,
   };
 
   new Application(animatables);

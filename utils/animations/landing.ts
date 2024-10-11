@@ -9,6 +9,7 @@ export interface LandingAnimatable {
   nowSlider: HTMLElement;
   flipContainer: HTMLElement;
   navigation: HTMLElement;
+  header: HTMLElement;
 }
 
 export class LandingAnimation {
@@ -25,12 +26,12 @@ export class LandingAnimation {
       .to(this.landingAnimatables.techtheriac, {
         duration: 0.8,
         height: "40px",
-        ease: "sine.inOut"
+        ease: "sine.inOut",
       })
-      .call(this.toggleVisibility, [this.landingAnimatables.navigation])
+      .call(this.togglePageLoaded, [this.landingAnimatables.header])
       .from(this.landingAnimatables.navigation, {
         opacity: 0,
-        ease: "power3.in"
+        ease: "power3.in",
       })
       .from(this.landingAnimatables.bio, {
         opacity: 0,
@@ -77,6 +78,10 @@ export class LandingAnimation {
 
   private toggleVisibility(element: HTMLElement): void {
     element.classList.remove("hidden");
+  }
+
+  private togglePageLoaded(element: HTMLLIElement): void {
+    element.classList.remove("page-loading");
   }
 
   private unblink(element: HTMLElement): void {
