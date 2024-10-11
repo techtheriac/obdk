@@ -131,11 +131,38 @@ $mono: "Rostin";
 }
 
 @font-face {
+  font-family: Voilet;
+  font-style: normal;
+  font-weight: 200 1000;
+  src: url("/static/fonts/VioletSans-Regular.woff2") format("woff2");
+}
+
+@font-face {
   font-family: Trixie;
   font-style: normal;
   font-weight: 400;
   src: url("/static/fonts/Trixie-Text.woff2") format("woff2");
 }
+
+@font-face {
+  font-family: Resolve;
+  font-style: normal;
+  font-weight: 400;
+  src: url("/static/fonts/Resolve-Book.woff2") format("woff2");
+}
+@font-face {
+  font-family: Resolve;
+  font-style: bold;
+  font-weight: 700;
+  src: url("/static//fonts//Resolve-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: Resolve;
+  font-style: italic;
+  font-weight: 400;
+  src: url("/static/fonts/Resolve-Italic.woff2") format("woff2");
+}
+
 // DANFO
 @font-face {
   font-family: "Danfo";
@@ -168,6 +195,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+caption,
+figcaption {
   text-wrap: balance;
 }
