@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>LABS</h1>
+    <PageTitle title="Labs" />
   </div>
 </template>
 

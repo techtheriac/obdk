@@ -9,6 +9,7 @@ export interface LandingAnimatable {
   nowSlider: HTMLElement;
   flipContainer: HTMLElement;
   navigation: HTMLElement;
+  header: HTMLElement;
 }
 
 export class LandingAnimation {
@@ -18,19 +19,27 @@ export class LandingAnimation {
   constructor(landingAnimatables: LandingAnimatable) {
     this.landingAnimatables = landingAnimatables;
 
+    let animateHeight =
+      window.innerWidth > 600
+        ? "40px"
+        : `${landingAnimatables.techtheriac.getBoundingClientRect().height}px`;
+
+    console.log("Animate height", animateHeight);
+
     this.timeline = gsap
-      .timeline({ duration: 1.2 })
+      .timeline({ duration: 1.2, paused: true })
       .call(this.toggleVisibility, [this.landingAnimatables.bio])
       .call(this.unblink, [this.landingAnimatables.techtheriac])
       .to(this.landingAnimatables.techtheriac, {
         duration: 0.8,
-        height: "40px",
-        ease: "sine.inOut"
+        // height: "40px",
+        height: animateHeight,
+        ease: "sine.inOut",
       })
-      .call(this.toggleVisibility, [this.landingAnimatables.navigation])
+      .call(this.togglePageLoaded, [this.landingAnimatables.header])
       .from(this.landingAnimatables.navigation, {
         opacity: 0,
-        ease: "power3.in"
+        ease: "power3.in",
       })
       .from(this.landingAnimatables.bio, {
         opacity: 0,
@@ -47,12 +56,35 @@ export class LandingAnimation {
           ease: "power3.in",
         },
         "<",
-      )
-      .pause();
+      );
   }
 
   public animateLanding(): void {
     this.timeline.play();
+  }
+
+  private initTimeLine(): GSAPTimeline {
+    let init = gsap
+      .timeline()
+      .call(this.toggleVisibility, [this.landingAnimatables.bio])
+      .call(this.unblink, [this.landingAnimatables.techtheriac]);
+    return init;
+  }
+
+  private animateTechtheriacHeight(): GSAPTimeline {
+    let heading = gsap
+      .timeline()
+      .to(this.landingAnimatables.techtheriac, {
+        duration: 0.8,
+        height: "40px",
+        ease: "sine.inOut",
+      })
+      .call(this.togglePageLoaded, [this.landingAnimatables.header])
+      .from(this.landingAnimatables.navigation, {
+        opacity: 0,
+        ease: "power3.in",
+      });
+    return heading;
   }
 
   private destroyElement(preloader: HTMLElement) {
@@ -77,6 +109,10 @@ export class LandingAnimation {
 
   private toggleVisibility(element: HTMLElement): void {
     element.classList.remove("hidden");
+  }
+
+  private togglePageLoaded(element: HTMLLIElement): void {
+    element.classList.remove("page-loading");
   }
 
   private unblink(element: HTMLElement): void {
