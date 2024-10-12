@@ -1,5 +1,5 @@
 <template>
-  <header class="header page-loading">
+  <header class="header" :class="{ 'page-loading': shouldAnimate }">
     <svg
       viewBox="0 0 10478 1117"
       class="obdk"
@@ -59,6 +59,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   shouldBlink: boolean;
+  shouldAnimate: boolean;
 }>();
 
 const navItems = [
@@ -101,6 +102,7 @@ const navItems = [
 
 .obdk {
   fill: var(--foreground-100);
+  height: 40px;
   transition:
     height,
     width 0.5 var(--easing);

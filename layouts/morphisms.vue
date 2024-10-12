@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Techtheriac :should-blink="false" />
+    <Techtheriac :should-blink="false" :should-animate="false" />
     <div class="morphism-wrapper">
       <div class="morphism-side">
         <h1>Morphisms</h1>

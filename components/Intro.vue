@@ -1,7 +1,7 @@
 <template>
   <div class="intro fill-height">
     <div>
-      <Techtheriac :should-blink="true" />
+      <Techtheriac :should-blink="true" :should-animate="true" />
       <Bio />
     </div>
     <NowSlider />
