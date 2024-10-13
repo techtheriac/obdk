@@ -1,4 +1,5 @@
 import { LandingAnimation, type LandingAnimatable } from "./animations/landing";
+import FontFaceObserver from "fontfaceobserver";
 
 export let application: Application;
 
@@ -21,9 +22,25 @@ export class Application {
   }
 
   public init(): void {
-    this.onResize();
-    this.addEventListeners();
-    this.landingAnimation.animateLanding();
+    const observeGalgo = new Promise<void>((resolve) => {
+      new FontFaceObserver("Galgo").load().then(() => {
+        resolve();
+      });
+    });
+
+    const observeDiatype = new Promise<void>((resolve) => {
+      new FontFaceObserver("Diatype").load().then(() => {
+        resolve();
+      });
+    });
+
+    const typefacePromises = [observeDiatype, observeGalgo];
+
+    Promise.all(typefacePromises).then(() => {
+      this.onResize();
+      this.addEventListeners();
+      this.landingAnimation.animateLanding();
+    });
   }
 
   public setBackgroundBaseSize(): void {
@@ -48,7 +65,9 @@ export class Application {
   private onResize(): void {
     this.setViewportHeight();
     this.setBioWrapperHeight();
-    this.landingAnimation.setNavigationDimension(this.landingAnimatable.navigation);
+    this.landingAnimation.setNavigationDimension(
+      this.landingAnimatable.navigation,
+    );
     this.landingAnimation.setHeaderDimension(this.landingAnimatable.header);
   }
 
