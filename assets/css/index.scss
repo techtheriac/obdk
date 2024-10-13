@@ -18,6 +18,10 @@ body {
   color: var(--foreground-100);
 }
 
+body {
+  overflow-x: hidden;
+}
+
 html {
   background-color: var(--background-100);
 }

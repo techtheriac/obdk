@@ -37,6 +37,7 @@ export class LandingAnimation {
         ease: "sine.inOut",
       })
       .call(this.togglePageLoaded, [this.landingAnimatables.header])
+      .call(this.setNavigationWidth, [this.landingAnimatables.navigation])
       .from(this.landingAnimatables.navigation, {
         opacity: 0,
         ease: "power3.in",
@@ -63,6 +64,11 @@ export class LandingAnimation {
     this.timeline.play();
   }
 
+  public setNavigationWidth(navigation: HTMLElement): void {
+    let { width } = navigation.getBoundingClientRect();
+    console.log("SETTING NAV WIDTH", width);
+    document.documentElement.style.setProperty("--nav-width", `${width}px`);
+  }
   private initTimeLine(): GSAPTimeline {
     let init = gsap
       .timeline()

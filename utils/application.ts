@@ -4,12 +4,14 @@ export let application: Application;
 
 export class Application {
   private landingAnimation: LandingAnimation;
+  private landingAnimatable: LandingAnimatable;
 
   constructor(landingAnimatable: LandingAnimatable) {
     if (application) {
       application = this;
     }
-    this.landingAnimation = new LandingAnimation(landingAnimatable);
+    this.landingAnimatable = landingAnimatable;
+    this.landingAnimation = new LandingAnimation(this.landingAnimatable);
 
     this.init();
   }
@@ -46,6 +48,7 @@ export class Application {
   private onResize(): void {
     this.setViewportHeight();
     this.setBioWrapperHeight();
+    this.landingAnimation.setNavigationWidth(this.landingAnimatable.navigation);
   }
 
   private addEventListeners() {
