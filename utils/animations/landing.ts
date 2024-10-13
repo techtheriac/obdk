@@ -24,8 +24,6 @@ export class LandingAnimation {
         ? "40px"
         : `${landingAnimatables.techtheriac.getBoundingClientRect().height}px`;
 
-    console.log("Animate height", animateHeight);
-
     this.timeline = gsap
       .timeline({ duration: 1.2, paused: true })
       .call(this.toggleVisibility, [this.landingAnimatables.bio])
@@ -66,7 +64,6 @@ export class LandingAnimation {
 
   public setNavigationWidth(navigation: HTMLElement): void {
     let { width } = navigation.getBoundingClientRect();
-    console.log("SETTING NAV WIDTH", width);
     document.documentElement.style.setProperty("--nav-width", `${width}px`);
   }
   private initTimeLine(): GSAPTimeline {
