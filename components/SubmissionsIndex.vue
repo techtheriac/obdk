@@ -91,7 +91,7 @@ let tags = new Set(articlesTags);
   padding-bottom: var(--space-s);
   form {
     position: sticky;
-    top: var(--space-s);
+    top: var(--header-height);
     z-index: 10;
   }
 }
@@ -136,7 +136,7 @@ let tags = new Set(articlesTags);
   .section-aside {
     margin-top: 7vmin;
     position: sticky;
-    top: 18vmin;
+    top: 25vmin;
   }
 }
 

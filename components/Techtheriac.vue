@@ -82,11 +82,17 @@ const navItems = [
 .header {
   width: 100%;
   padding-block: var(--space-xs);
-  border-bottom: 1px solid var(--border-color);
-  position: relative;
   display: flex;
   gap: var(--space-s);
   justify-content: space-between;
+
+  &:not(.page-loading) {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
 }
 
 .page-loading {

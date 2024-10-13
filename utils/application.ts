@@ -48,7 +48,8 @@ export class Application {
   private onResize(): void {
     this.setViewportHeight();
     this.setBioWrapperHeight();
-    this.landingAnimation.setNavigationWidth(this.landingAnimatable.navigation);
+    this.landingAnimation.setNavigationDimension(this.landingAnimatable.navigation);
+    this.landingAnimation.setHeaderDimension(this.landingAnimatable.header);
   }
 
   private addEventListeners() {
