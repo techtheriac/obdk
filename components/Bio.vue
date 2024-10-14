@@ -13,7 +13,9 @@
       />
       <p>
         Techtheriac is Jezreel Franklin's web incarnation. A software engineer
-        with a nack for building on the internet across stacks and disciplines
+        with a nack for building on the internet across stacks and disciplines.
+        Consider this website an ever iterative attempt at presenting his work,
+        ruminations and interests.
       </p>
     </div>
   </div>
@@ -42,14 +44,21 @@
 }
 
 .bio-meta {
+  --bio-width: 20ch;
   display: flex;
   font-weight: var(--font-weight, 300);
   gap: var(--space-xs);
   // color: var(--color, rgb(164, 173, 182));
   p {
-    max-width: 20ch;
+    max-width: var(--bio-width);
     font-size: var(--step--1);
     line-height: 1.2em;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .bio-meta {
+    --bio-width: var(--nav-width);
   }
 }
 </style>

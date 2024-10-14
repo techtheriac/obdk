@@ -1,11 +1,6 @@
 <template>
-  <header class="header" :class="{ 'page-loading': shouldAnimate }">
-    <svg
-      viewBox="0 0 10478 1117"
-      class="obdk"
-      :class="{ blinking: shouldBlink }"
-      preserveAspectRatio="xMinYMid"
-    >
+  <header class="header">
+    <svg viewBox="0 0 10478 1117" class="obdk" preserveAspectRatio="xMinYMid">
       <path d="M0 0H698.17V139.625H418.902V1117H279.268V139.625H0V0Z" />
       <path
         d="M977.983 0H1676.15V139.625H1117.62V418.875H1536.52V558.5H1117.62V977.375H1676.15V1117H977.983V0Z"
@@ -57,11 +52,6 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-  shouldBlink: boolean;
-  shouldAnimate: boolean;
-}>();
-
 const navItems = [
   {
     name: "Lab",
@@ -77,98 +67,3 @@ const navItems = [
   },
 ];
 </script>
-
-<style lang="scss" scoped>
-.header {
-  width: 100%;
-  padding-block: var(--space-xs);
-  border-bottom: 1px solid var(--border-color);
-  position: relative;
-  display: flex;
-  gap: var(--space-s);
-  justify-content: space-between;
-}
-
-.page-loading {
-  .navigation {
-    display: none;
-  }
-
-  .obdk {
-    height: 100%;
-    width: 100%;
-  }
-}
-
-.obdk {
-  fill: var(--foreground-100);
-  height: 40px;
-  transition:
-    height,
-    width 0.5 var(--easing);
-}
-
-@keyframes blinker {
-  from {
-    fill: transparent;
-  }
-  to {
-    fill: var(--foreground-100);
-  }
-}
-
-.blinking {
-  > :nth-child(4) {
-    animation: blinker 1000ms;
-    animation-timing-function: var(--easingOut);
-    animation-iteration-count: infinite;
-  }
-
-  > :nth-child(6) {
-    animation: blinker 500ms;
-    animation-timing-function: var(--easing);
-    animation-iteration-count: infinite;
-    animation-delay: 500ms;
-  }
-}
-
-.toggle-menu {
-  display: flex;
-  cursor: pointer;
-  gap: 5px;
-  flex-direction: column;
-  span {
-    width: 1ch;
-    height: 1ch;
-    background-color: var(--foreground-100);
-  }
-}
-
-.navigation {
-  ul {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 600px) {
-  .toggle-menu {
-    display: none;
-  }
-  .obdk {
-    width: 50%;
-  }
-  .header {
-    align-items: baseline;
-  }
-  .navigation {
-    display: flex;
-    right: 0;
-    gap: var(--space-xs);
-    bottom: 0;
-    ul {
-      display: flex;
-      gap: inherit;
-    }
-  }
-}
-</style>

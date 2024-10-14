@@ -5,6 +5,8 @@
 @use "layout";
 @use "article";
 
+@use "pages/index";
+
 html,
 body {
   a {
@@ -16,6 +18,10 @@ body {
   overscroll-behavior: none;
   scroll-behavior: smooth;
   color: var(--foreground-100);
+}
+
+body {
+  overflow-x: hidden;
 }
 
 html {

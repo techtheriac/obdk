@@ -1,6 +1,5 @@
 <template>
   <div class="page-info-wrapper">
-    <Navigation back="/" content="back to home" />
     <div class="page-info">
       <h1 class="title" :style="{ '--accent-color': getColorFromGenre(genre) }">
         {{ title }}
