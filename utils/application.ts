@@ -1,5 +1,6 @@
 import { LandingAnimation, type LandingAnimatable } from "./animations/landing";
 import FontFaceObserver from "fontfaceobserver";
+import imagesLoaded from "imagesloaded";
 
 export let application: Application;
 
@@ -34,7 +35,15 @@ export class Application {
       });
     });
 
-    const typefacePromises = [observeDiatype, observeGalgo];
+    const observeImages = new Promise<void>((resolve) => {
+      imagesLoaded(
+        document.querySelectorAll("img"),
+        { background: true },
+        resolve,
+      );
+    });
+
+    const typefacePromises = [observeDiatype, observeGalgo, observeImages];
 
     Promise.all(typefacePromises).then(() => {
       this.onResize();

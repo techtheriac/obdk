@@ -8,12 +8,12 @@
       />
       <NotionRenderer data-content :postContent="postContent" />
       <BackLink :backlinks="postData?.properties?.related?.relation" />
+      <ArticleFooter
+        :current-slug="slug"
+        :contents="contents"
+        content-type="notes"
+      />
     </article>
-    <ArticleFooter
-      :current-slug="slug"
-      :contents="contents"
-      content-type="notes"
-    />
   </div>
 </template>
 

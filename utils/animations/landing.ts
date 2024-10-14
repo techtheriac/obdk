@@ -6,6 +6,7 @@ export interface LandingAnimatable {
   flipContainer: HTMLElement;
   navigation: HTMLElement;
   header: HTMLElement;
+  body: HTMLElement;
 }
 
 export class LandingAnimation {
@@ -21,15 +22,14 @@ export class LandingAnimation {
         : `${landingAnimatables.techtheriac.getBoundingClientRect().height}px`;
 
     this.timeline = gsap
-      .timeline({ duration: 1.2, paused: true })
+      .timeline({ duration: 1.5, paused: true })
+      .call(this.toggleLoading, [this.landingAnimatables.body])
       .call(this.toggleVisibility, [this.landingAnimatables.bio])
-      .call(this.unblink, [this.landingAnimatables.techtheriac])
       .to(this.landingAnimatables.techtheriac, {
         duration: 0.8,
-        height: animateHeight,
+        height: "40px",
         ease: "sine.inOut",
       })
-      .call(this.togglePageLoaded, [this.landingAnimatables.header])
       .call(this.setNavigationDimension, [this.landingAnimatables.navigation])
       .call(this.setHeaderDimension, [this.landingAnimatables.header])
       .from(this.landingAnimatables.navigation, {
@@ -71,23 +71,11 @@ export class LandingAnimation {
     );
   }
 
-  private initTimeLine(): GSAPTimeline {
-    let init = gsap
-      .timeline()
-      .call(this.toggleVisibility, [this.landingAnimatables.bio])
-      .call(this.unblink, [this.landingAnimatables.techtheriac]);
-    return init;
-  }
-
   private toggleVisibility(element: HTMLElement): void {
     element.classList.remove("hidden");
   }
 
-  private togglePageLoaded(element: HTMLLIElement): void {
-    element.classList.remove("page-loading");
-  }
-
-  private unblink(element: HTMLElement): void {
-    element.classList.remove("blinking");
+  private toggleLoading(body: HTMLElement): void {
+    body.classList.remove("loading");
   }
 }

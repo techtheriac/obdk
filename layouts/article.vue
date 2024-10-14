@@ -1,9 +1,7 @@
 <template>
-  <div class="content-main" data-nav="article">
-    <main>
+    <main class="content-main">
       <slot />
     </main>
-  </div>
 </template>
 
 <script setup></script>

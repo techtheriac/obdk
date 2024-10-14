@@ -1,29 +1,26 @@
 <template>
-  <div>
-    <Techtheriac :should-blink="false" :should-animate="false" />
-    <div class="morphism-wrapper">
-      <div class="morphism-side">
-        <h1>Morphisms</h1>
-        <h2>An ongoing index of curiousities</h2>
-        <div>
-          <form action="#">
-            <input type="text" />
-            <button disabled="true">subscribe</button>
-          </form>
-        </div>
-        <ul class="morphism-list">
-          <li v-for="letter in morphisms">
-            <P>{{ letter?.issue }}</P>
-            <NuxtLink :to="letter._path">
-              {{ letter?.title }}
-            </NuxtLink>
-          </li>
-        </ul>
+  <div class="morphism-wrapper">
+    <div class="morphism-side">
+      <h1>Morphisms</h1>
+      <h2>An ongoing index of curiousities</h2>
+      <div>
+        <form action="#">
+          <input type="text" />
+          <button disabled="true">subscribe</button>
+        </form>
       </div>
-      <main class="morphism-content">
-        <slot />
-      </main>
+      <ul class="morphism-list">
+        <li v-for="letter in morphisms">
+          <p>{{ letter?.issue }}</p>
+          <NuxtLink :to="letter._path">
+            {{ letter?.title }}
+          </NuxtLink>
+        </li>
+      </ul>
     </div>
+    <main class="morphism-content">
+      <slot />
+    </main>
   </div>
 </template>
 

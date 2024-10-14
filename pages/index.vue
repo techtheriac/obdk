@@ -1,21 +1,18 @@
 <template>
-  <main>
-    <Intro />
+  <Intro />
+  <div class="below-the-fold">
     <SubmissionsIndex />
     <LabFeatured />
     <PreFooter />
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { type LandingAnimatable } from "~/utils/animations/landing";
 import { Application } from "~/utils/application";
 
-definePageMeta({
-  layout: "main",
-});
-
-onMounted(() => {
+onBeforeMount(() => {
+  const body = document.querySelector("body")!;
   const animatables: LandingAnimatable = {
     techtheriac: document.querySelector(".obdk")!,
     bio: document.querySelector(".bio")!,
@@ -23,9 +20,9 @@ onMounted(() => {
     flipContainer: document.querySelector(".flip-container")!,
     navigation: document.querySelector(".navigation")!,
     header: document.querySelector(".header")!,
+    body: body,
   };
 
   new Application(animatables);
 });
 </script>
-<style></style>

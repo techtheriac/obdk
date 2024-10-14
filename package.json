@@ -50,6 +50,7 @@
     "fontfaceobserver": "^2.3.0",
     "gsap": "^3.12.1",
     "image-q": "^4.0.0",
+    "imagesloaded": "^5.0.0",
     "pinia": "^2.1.6",
     "query-string": "^8.1.0",
     "ramda": "^0.29.1",
