@@ -7,6 +7,9 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "en",
       },
+      bodyAttrs: {
+        class: "loading",
+      },
     },
   },
   typescript: {
