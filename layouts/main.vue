@@ -1,5 +1,9 @@
 <template>
-  <div class="layout-main">
+  <div
+    id="main-layout"
+    class="layout-main"
+    :class="{ loading: $route.fullPath == '/' }"
+  >
     <Techtheriac />
     <main class="main">
       <slot />
@@ -18,29 +22,29 @@
 </style>
 
 <script setup lang="ts">
-import { gsap } from "gsap";
-onBeforeMount(() => {
-  if (window.location.pathname !== "/") {
-    let body = document.querySelector("body");
+// import { gsap } from "gsap";
+// onBeforeMount(() => {
+//   if (window.location.pathname !== "/") {
+//     let body = document.querySelector("body");
 
-    if (body) {
-      body.classList.remove("loading");
-    }
+//     if (body) {
+//       body.classList.remove("loading");
+//     }
 
-    const techtheriac = document.querySelector(".obdk");
+//     const techtheriac = document.querySelector(".obdk");
 
-    if (!techtheriac) return;
+//     if (!techtheriac) return;
 
-    const timeline = gsap
-      .timeline()
-      .to(techtheriac, {
-        height: "40px",
-        duration: 0.5,
-      })
-      .from(".main", {
-        autoAlpha: 0,
-      })
-      .play();
-  }
-});
+//     const timeline = gsap
+//       .timeline()
+//       .to(techtheriac, {
+//         height: "40px",
+//         duration: 0.5,
+//       })
+//       .from(".main", {
+//         autoAlpha: 0,
+//       })
+//       .play();
+//   }
+// });
 </script>

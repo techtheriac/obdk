@@ -18,7 +18,7 @@ export class LandingAnimation {
 
     let animateHeight =
       window.innerWidth > 600
-        ? "40px"
+        ? "35px"
         : `${landingAnimatables.techtheriac.getBoundingClientRect().height}px`;
 
     this.timeline = gsap
