@@ -14,8 +14,6 @@ export class Application {
     }
     this.landingAnimatable = landingAnimatable;
     this.landingAnimation = new LandingAnimation(this.landingAnimatable);
-
-    this.init();
   }
 
   getInstance() {
@@ -23,6 +21,7 @@ export class Application {
   }
 
   public init(): void {
+    console.log("INITING APPLICATION");
     const observeGalgo = new Promise<void>((resolve) => {
       new FontFaceObserver("Galgo").load().then(() => {
         resolve();
@@ -50,13 +49,6 @@ export class Application {
       this.addEventListeners();
       this.landingAnimation.animateLanding();
     });
-  }
-
-  public setBackgroundBaseSize(): void {
-    document.documentElement.style.setProperty(
-      "--size-background-base",
-      `${window.innerWidth / 10}`,
-    );
   }
 
   public setViewportHeight(): void {

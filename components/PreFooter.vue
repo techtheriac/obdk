@@ -8,8 +8,8 @@
           </NuxtLink>
           <p>Meta</p>
           <ul>
-            <li v-for="letter in morphisms"> 
-              <p> {{ letter?.issue}}</p>
+            <li v-for="letter in morphisms">
+              <p>{{ letter?.issue }}</p>
               <NuxtLink :to="letter._path">
                 {{ letter?.title }}
               </NuxtLink>
@@ -19,7 +19,9 @@
         <div class="prefooter-item">
           <h2>Outside</h2>
           <p class="outside">
-            <NuxtLink v-for="out in outside" :to="out.link">{{ out.name }}</NuxtLink>
+            <NuxtLink v-for="out in outside" :to="out.link">{{
+              out.name
+            }}</NuxtLink>
           </p>
         </div>
       </div>
@@ -59,16 +61,19 @@ section {
   justify-content: center;
   align-items: center;
 }
-.elsewhere {
-  display: flex;
 
-  > div {
-    max-width: 400px;
-    padding: var(--space-s);
-  }
+@media screen and (min-width: 600px) {
+  .elsewhere {
+    display: flex;
 
-  > * + * {
-    border-left: 1px solid var(--border-color);
+    > div {
+      max-width: 400px;
+      padding: var(--space-s);
+    }
+
+    > * + * {
+      border-left: 1px solid var(--border-color);
+    }
   }
 }
 .outside {

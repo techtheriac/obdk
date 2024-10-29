@@ -1,3 +1,21 @@
+#main-layout {
+  &:not(.loading) {
+    .obdk {
+      height: 40px;
+      > * {
+        fill: transparent;
+      }
+
+      > :nth-child(1) {
+        fill: var(--foreground-100);
+      }
+
+      > :nth-child(4) {
+        fill: var(--foreground-100);
+      }
+    }
+  }
+}
 .header {
   width: 100%;
   padding-block: var(--space-xs);
@@ -5,13 +23,11 @@
   gap: var(--space-s);
   justify-content: space-between;
 
-  &:not(.page-loading) {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    position: sticky;
-    top: 0;
-    z-index: 20;
-  }
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
 
 .loading {
@@ -47,7 +63,7 @@
   fill: var(--foreground-100);
   transition:
     height,
-    width 0.5s var(--easing);
+    width 1s var(--easing);
 }
 
 @keyframes blinker {
