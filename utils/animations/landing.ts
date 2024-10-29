@@ -16,20 +16,15 @@ export class LandingAnimation {
   constructor(landingAnimatables: LandingAnimatable) {
     this.landingAnimatables = landingAnimatables;
 
-    let animateHeight =
-      window.innerWidth > 600
-        ? "35px"
-        : `${landingAnimatables.techtheriac.getBoundingClientRect().height}px`;
-
     this.timeline = gsap
       .timeline({ duration: 1.5, paused: true })
       .call(this.toggleLoading, [this.landingAnimatables.body])
       .call(this.toggleVisibility, [this.landingAnimatables.bio])
-      .to(this.landingAnimatables.techtheriac, {
-        duration: 0.8,
-        height: "40px",
-        ease: "sine.inOut",
-      })
+      // .to(this.landingAnimatables.techtheriac, {
+      //   duration: 0.8,
+      //   height: "40px",
+      //   ease: "sine.inOut",
+      // })
       .call(this.setNavigationDimension, [this.landingAnimatables.navigation])
       .call(this.setHeaderDimension, [this.landingAnimatables.header])
       .from(this.landingAnimatables.navigation, {

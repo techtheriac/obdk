@@ -21,30 +21,4 @@
 }
 </style>
 
-<script setup lang="ts">
-// import { gsap } from "gsap";
-// onBeforeMount(() => {
-//   if (window.location.pathname !== "/") {
-//     let body = document.querySelector("body");
-
-//     if (body) {
-//       body.classList.remove("loading");
-//     }
-
-//     const techtheriac = document.querySelector(".obdk");
-
-//     if (!techtheriac) return;
-
-//     const timeline = gsap
-//       .timeline()
-//       .to(techtheriac, {
-//         height: "40px",
-//         duration: 0.5,
-//       })
-//       .from(".main", {
-//         autoAlpha: 0,
-//       })
-//       .play();
-//   }
-// });
-</script>
+<script setup lang="ts"></script>

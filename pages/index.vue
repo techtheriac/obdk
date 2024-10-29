@@ -11,7 +11,9 @@
 import { type LandingAnimatable } from "~/utils/animations/landing";
 import { Application } from "~/utils/application";
 
-onBeforeMount(() => {
+onMounted(() => {
+  const body = document.querySelector("#main-layout")! as HTMLElement;
+
   const animatables: LandingAnimatable = {
     techtheriac: document.querySelector(".obdk")!,
     bio: document.querySelector(".bio")!,
@@ -19,9 +21,11 @@ onBeforeMount(() => {
     flipContainer: document.querySelector(".flip-container")!,
     navigation: document.querySelector(".navigation")!,
     header: document.querySelector(".header")!,
-    body: document.querySelector("#main-layout")!,
+    body,
   };
 
-  new Application(animatables);
+  const app = new Application(animatables);
+
+  app.init();
 });
 </script>
