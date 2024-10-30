@@ -91,6 +91,7 @@ let tags = new Set(articlesTags);
     position: sticky;
     top: var(--header-height);
     z-index: 10;
+    margin-bottom: var(--space-xs);
   }
 }
 
