@@ -34,9 +34,9 @@
 }
 
 section {
-  border: 1px dotted var(--border-color);
+  border-bottom: 1px dotted var(--border-color);
   width: 100%;
-  padding: var(--space-s);
+  padding: var(--space) var(--space-s);
   display: flex;
   flex-direction: column;
 

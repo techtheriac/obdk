@@ -59,22 +59,23 @@ section {
   align-items: center;
 }
 
+.elsewhere {
+  > div {
+    padding: var(--space-s) 0;
+  }
+}
 @media screen and (min-width: 600px) {
   .elsewhere {
     display: flex;
 
     > div {
       max-width: 400px;
+      padding: var(--space-s);
     }
 
     > * + * {
       border-left: 1px solid var(--border-color);
     }
-  }
-}
-.elsewhere {
-  > div {
-    padding: var(--space-s);
   }
 }
 
