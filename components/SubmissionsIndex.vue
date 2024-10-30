@@ -86,13 +86,12 @@ let tags = new Set(articlesTags);
 .rumination-index {
   display: flex;
   flex-direction: column;
-  margin-top: var(--space-s);
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: var(--space-s);
+  margin: var(--space) 0;
   form {
     position: sticky;
     top: var(--header-height);
     z-index: 10;
+    margin-bottom: var(--space-xs);
   }
 }
 

@@ -21,7 +21,6 @@ export class Application {
   }
 
   public init(): void {
-    console.log("INITING APPLICATION");
     const observeGalgo = new Promise<void>((resolve) => {
       new FontFaceObserver("Galgo").load().then(() => {
         resolve();

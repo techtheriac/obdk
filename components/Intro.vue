@@ -13,7 +13,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-top: 1px solid var(--border-color);
   min-height: calc(var(--base-height) - var(--header-height));
 }
 </style>

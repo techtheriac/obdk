@@ -27,7 +27,7 @@
 .bio {
   display: flex;
   flex-wrap: nowrap;
-  padding-block-start: var(--space-xs);
+  padding-block-start: var(--space-s);
   font-size: var(--step--1);
   justify-content: space-between;
 
@@ -48,7 +48,6 @@
   display: flex;
   font-weight: var(--font-weight, 300);
   gap: var(--space-xs);
-  // color: var(--color, rgb(164, 173, 182));
   p {
     max-width: var(--bio-width);
     font-size: var(--step--1);
