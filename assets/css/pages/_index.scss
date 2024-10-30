@@ -10,7 +10,7 @@
         fill: var(--foreground-100);
       }
 
-      > :nth-child(4) {
+      > :nth-child(3) {
         fill: var(--foreground-100);
       }
     }
@@ -22,6 +22,7 @@
   display: flex;
   gap: var(--space-s);
   justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
 
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);

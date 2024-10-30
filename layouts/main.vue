@@ -19,6 +19,9 @@
   color: var(--foreground-100);
   padding-inline: var(--space-xs);
 }
+.main {
+  min-height: 100vh;
+}
 </style>
 
 <script setup lang="ts"></script>

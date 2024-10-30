@@ -3,10 +3,7 @@
     <div class="outside">
       <div class="elsewhere">
         <div class="prefooter-item">
-          <NuxtLink to="/morphisms">
-            <h2>Morphisms</h2>
-          </NuxtLink>
-          <p>Meta</p>
+          <h2>Morphisms</h2>
           <ul>
             <li v-for="letter in morphisms">
               <p>{{ letter?.issue }}</p>
@@ -68,7 +65,6 @@ section {
 
     > div {
       max-width: 400px;
-      padding: var(--space-s);
     }
 
     > * + * {
@@ -76,6 +72,12 @@ section {
     }
   }
 }
+.elsewhere {
+  > div {
+    padding: var(--space-s);
+  }
+}
+
 .outside {
   a {
     color: var(--foreground-100);
@@ -83,8 +85,32 @@ section {
     text-decoration-color: var(--border-color);
     text-underline-offset: 0.09em;
     text-decoration-thickness: 0.5px;
-    &::after {
-      content: "·";
+  }
+}
+
+.prefooter-item {
+  h2 {
+    font-weight: 550;
+  }
+
+  ul {
+    > * + * {
+      margin-top: calc(var(--space-xs) - 0.3em);
+    }
+  }
+
+  > * + * {
+    margin-top: var(--space-xs);
+  }
+
+  &:nth-child(2) > p {
+    line-height: 1.3em;
+
+    a {
+      &::after {
+        content: "·";
+        padding: 0 0.3em 0 0.3em;
+      }
     }
   }
 }
