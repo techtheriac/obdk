@@ -1,10 +1,10 @@
 <template>
-  <div class="flow-hr">
+  <div>
     <form ref="tagSelect">
       <fieldset v-on:change="handleTag" class="tag-list">
         <div class="tag-toggle" v-for="tag in tags">
           <input type="checkbox" name="article-filter" :value="tag" :id="tag" />
-          <label :style="galgoStyles" :for="tag">{{ tag }}</label>
+          <label :for="tag">{{ tag }}</label>
         </div>
       </fieldset>
     </form>
@@ -33,25 +33,6 @@
             </ol>
           </li>
         </ol>
-
-        <div class="section">
-          <h2>Lab</h2>
-          <ol>
-            <li>One of the notes</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing</li>
-            <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
-            <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
-          </ol>
-        </div>
-      </div>
-      <div class="section">
-        <h2>gallery</h2>
-        <ol>
-          <li>One of the notes</li>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing</li>
-          <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
-          <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
-        </ol>
       </div>
     </section>
   </div>
@@ -59,91 +40,7 @@
 
 <script setup lang="ts">
 // @ts-nocheck
-definePageMeta({
-  layout: "article",
-});
-import { createStyleObject } from "@capsizecss/core";
 import { Essay } from "~/obdk";
-
-function scale(
-  value: number,
-  min1: number,
-  max1: number,
-  min2: number,
-  max2: number,
-) {
-  return min2 + ((value - min1) * (max2 - min2)) / (max1 - min1);
-}
-
-let galgoBase = ref({});
-let galgoStyles = ref({});
-
-function setIdealSizing(): number {
-  if (!window) return;
-
-  const idealUpperLimit = 100;
-  const idealLowerLimit = 43;
-  const winMinSize = 350;
-  const winMaxSize = 1445;
-
-  let winAbsWidth = window.innerWidth;
-
-  let idealCapSize = Math.ceil(
-    scale(
-      winAbsWidth,
-      winMinSize,
-      winMaxSize,
-      idealLowerLimit,
-      idealUpperLimit,
-    ),
-  );
-
-  galgoBase.value.capHeight = idealCapSize;
-
-  return idealCapSize;
-}
-
-onBeforeMount(() => {
-  let initialCapHeight = setIdealSizing();
-
-  galgoBase.value = {
-    capHeight: initialCapHeight,
-    lineGap: 24,
-    fontMetrics: {
-      familyName: "Galgo Light",
-      fullName: "Galgo Medium",
-      postscriptName: "Galgo-Medium",
-      capHeight: 613,
-      ascent: 750,
-      descent: -250,
-      lineGap: 0,
-      unitsPerEm: 1000,
-      xHeight: 495,
-      xWidthAvg: 178,
-      subsets: {
-        latin: {
-          xWidthAvg: 178,
-        },
-        thai: {
-          xWidthAvg: 120,
-        },
-      },
-    },
-  };
-
-  galgoStyles.value = createStyleObject(galgoBase.value);
-  window.addEventListener("resize", setIdealSizing);
-});
-
-// onMounted(() => {
-// });
-
-watch(
-  () => galgoBase.value.capHeight,
-  () => {
-    galgoStyles.value = createStyleObject(galgoBase.value);
-  },
-);
 
 const musings = await queryContent("essays").find();
 const { data: notion } = await useFetch("/api/get-notion-posts");

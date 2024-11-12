@@ -5,7 +5,7 @@
     <div class="section__container">
       <section class="section">
         <ol>
-          <li class="year-segment" v-for="(item, index) in groupedByYearSorted">
+          <li class="year-segment" v-for="(item, index) in articles">
             <h2>{{ `'${item[0]}` }}</h2>
             <ol class="article-listing">
               <li
@@ -44,42 +44,10 @@
   </div>
 </template>
 
-<script setup lang="ts">
-// @ts-nocheck
-import { Essay } from "~/obdk";
-
+<script setup>
 const local = await queryContent("essays").find();
 const { data: notion } = await useFetch("/api/get-notion-posts");
-
-let articles = useTextContent(local, notion);
-
-function getDistinctYear(essays: Essay[]): string[] {
-  const years = essays.map((essay) => {
-    return essay.year;
-  });
-  return years;
-}
-
-function groupListingByYear(essays: Essay[]): Record<string, Essay[]> {
-  const distinctYears = getDistinctYear(essays);
-
-  let yearMap: Record<Number, Essay[]> | {} = {};
-
-  distinctYears.forEach((year) => {
-    yearMap[parseInt(year)] = essays.filter((post) => post.year === year);
-  });
-
-  return yearMap;
-}
-
-function yearSort(a, b) {
-  return b[0] - a[0];
-}
-
-const groupedByYear = groupListingByYear(articles);
-const groupedByYearSorted = Object.entries(groupedByYear).sort(yearSort);
-const articlesTags = articles.flatMap((x) => x.tags);
-let tags = new Set(articlesTags);
+let { tags, articles } = useTextContent(local, notion);
 </script>
 
 <style scoped lang="scss">

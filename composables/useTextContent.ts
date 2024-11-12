@@ -15,7 +15,30 @@ function getTagsArrayFromMarkdown(document: string) {
   return { tagsArray, tagsString };
 }
 
-export default function useTextContent(local: any[], notion: any[]): Essay[] {
+function getDistinctYear(essays: Essay[]): string[] {
+  const years = essays.map((essay) => {
+    return essay.year;
+  });
+  return years;
+}
+
+function yearSort(a, b) {
+  return b[0] - a[0];
+}
+
+function groupListingByYear(essays: Essay[]): Record<string, Essay[]> {
+  const distinctYears = getDistinctYear(essays);
+
+  let yearMap: Record<Number, Essay[]> | {} = {};
+
+  distinctYears.forEach((year) => {
+    yearMap[parseInt(year)] = essays.filter((post) => post.year === year);
+  });
+
+  return yearMap;
+}
+
+export default function useTextContent(local: any[], notion: any[]) {
   const essays: Essay[] = local.map((post) => {
     let { day, month, year } = useDateTimeComponent(post.last_edited);
     const { tagsArray, tagsString } = getTagsArrayFromMarkdown(post.tags);
@@ -53,5 +76,13 @@ export default function useTextContent(local: any[], notion: any[]): Essay[] {
     };
   });
 
-  return [...notes, ...essays];
+  const articles = [...notes, ...essays];
+  const groupedByYear = groupListingByYear(articles);
+  const groupedByYearSorted = Object.entries(groupedByYear).sort(yearSort);
+  const tags = new Set(articles.flatMap((x) => x.tags));
+
+  return {
+    tags,
+    articles: groupedByYearSorted,
+  };
 }
