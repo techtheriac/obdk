@@ -121,11 +121,4 @@ form {
     }
   }
 }
-
-// @media (prefers-color-scheme: dark) {
-//   form {
-//     --select-foreground: var(--yellow-10);
-//     --select-background: var(--yellow-20);
-//   }
-// }
 </style>
