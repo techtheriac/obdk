@@ -27,7 +27,7 @@
 .bio {
   display: flex;
   flex-wrap: nowrap;
-  padding-block-start: var(--space-s);
+  padding-block-start: var(--space-xs);
   font-size: var(--step--1);
   justify-content: space-between;
 

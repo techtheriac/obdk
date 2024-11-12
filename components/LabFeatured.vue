@@ -4,7 +4,7 @@
     <div class="featured-container">
       <div class="featured-media">
         <video playsinline autoplay muted loop poster="">
-          <source src="/static/videos/rave.webm" type="video/webm" />
+          <source src="https://res.cloudinary.com/techtheriac/video/upload/q_30/v1731427390/techtheriac/lab/rave_evdcrw.webm" type="video/webm" />
         </video>
       </div>
       <div class="featured-media__details">
