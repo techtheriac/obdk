@@ -5,7 +5,7 @@
     :class="{ loading: $route.fullPath == '/' }"
   >
     <Techtheriac />
-    <main class="main">
+    <main class="main" role="main">
       <slot />
     </main>
     <Footer />

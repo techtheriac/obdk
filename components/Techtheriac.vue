@@ -34,7 +34,7 @@
       />
     </svg>
 
-    <nav class="navigation">
+    <nav class="navigation" role="navigation">
       <div class="toggle-menu" role="button">
         <span></span>
         <span></span>
