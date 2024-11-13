@@ -83,6 +83,13 @@ let labs = labQuery.body;
   }
 }
 
+@media (prefers-color-scheme: light) {
+  .lab__item {
+    --title-weight: 350;
+    --summary-weight: 300;
+  }
+}
+
 .lab__media {
   display: block;
   background-color: var(--elevated);

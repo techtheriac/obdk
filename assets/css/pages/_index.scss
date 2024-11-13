@@ -65,6 +65,7 @@
   transition:
     height,
     width 1s var(--easing);
+  cursor: pointer;
 }
 
 @keyframes blinker {
