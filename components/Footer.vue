@@ -3,14 +3,18 @@
     <div class="alias">
       <small>© Jezreel Franklin</small>
     </div>
-    <div class="links">
-      <p>Social</p>
-      <p>ARE.NA</p>
-    </div>
+    <ul class="links">
+      <li v-for="link in links">
+        <a :href="link.link" target="_blank">{{ link.name }}</a>
+      </li>
+    </ul>
   </footer>
 </template>
 
-<script setup></script>
+<script setup>
+const linksQuery = await queryContent("/footer").findOne();
+const links = linksQuery.body;
+</script>
 
 <style lang="scss" scoped>
 footer {
@@ -29,6 +33,7 @@ footer {
   }
   .links {
     display: flex;
+    gap: var(--space-xs);
   }
 }
 </style>
