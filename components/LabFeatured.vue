@@ -1,10 +1,13 @@
 <template>
   <section>
-    <h1 class="section-title">Laboratory</h1>
+    <h1 class="section-title">From the lab</h1>
     <div class="featured-container">
       <div class="featured-media">
         <video playsinline autoplay muted loop poster="">
-          <source src="https://res.cloudinary.com/techtheriac/video/upload/q_30/v1731427390/techtheriac/lab/rave_evdcrw.webm" type="video/webm" />
+          <source
+            src="https://res.cloudinary.com/techtheriac/video/upload/q_30/v1731427390/techtheriac/lab/rave_evdcrw.webm"
+            type="video/webm"
+          />
         </video>
       </div>
       <div class="featured-media__details">

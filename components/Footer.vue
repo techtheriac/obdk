@@ -23,14 +23,7 @@ footer {
   width: 100%;
   justify-content: space-between;
   padding: var(--space-xs) 0;
-
-  .alias {
-    p {
-      font-family: "Rostin";
-      font-weight: 700;
-      font-size: calc(var(--step-5) + 4vmin);
-    }
-  }
+  font-size: var(--step--1);
   .links {
     display: flex;
     gap: var(--space-xs);
