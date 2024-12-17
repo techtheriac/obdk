@@ -2,20 +2,20 @@
   <section>
     <div class="outside">
       <div class="elsewhere">
-        <div class="prefooter-item">
+        <div class="prefooter-item tangent">
           <h2>Tangents</h2>
           <ul>
             <li v-for="letter in morphisms">
-              <p>{{ letter?.issue }}</p>
+              <p class="tangent-issue">{{ letter?.issue }}</p>
               <NuxtLink :to="letter._path">
                 {{ letter?.title }}
               </NuxtLink>
             </li>
           </ul>
         </div>
-        <div class="prefooter-item">
+        <div class="prefooter-item outside">
           <h2>Outside</h2>
-          <p class="outside">
+          <p>
             <NuxtLink v-for="out in outside" :to="out.link">{{
               out.name
             }}</NuxtLink>
@@ -63,6 +63,12 @@ section {
   }
 }
 
+@media screen and (max-width: 600px) {
+  .outside {
+    border-top: 1px solid var(--border-color);
+  }
+}
+
 .outside {
   a {
     color: var(--foreground-100);
@@ -73,9 +79,13 @@ section {
   }
 }
 
+.tangent-issue {
+  font-variation-settings: "MONO" 1;
+}
 .prefooter-item {
   h2 {
     font-weight: 550;
+    font-size: var(--step-0);
   }
 
   ul {
