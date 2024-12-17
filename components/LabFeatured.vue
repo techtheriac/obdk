@@ -11,13 +11,8 @@
         </video>
       </div>
       <div class="featured-media__details">
-        <div>
-          <small>RECENT WORK+TYPOGRAPHY EXPERIMENT</small>
-          <small
-            >VISUALIZING AUDIO FREQUENCY BANDS WITH DANFO'S ELSH AXIS</small
-          >
-          <NuxtLink to="/lab/rave"> DANFO RAVE </NuxtLink>
-        </div>
+        <NuxtLink to="/lab/rave"> RAVE </NuxtLink>
+        <p>Visualizing audio frequency bands with Danfo's ELSH axis</p>
       </div>
     </div>
   </section>
@@ -45,7 +40,8 @@ section {
 
   .featured-container {
     display: grid;
-    grid-template-columns: max(25vmin, 40%) 1fr;
+    grid-template-columns: max(30vmin, 50%) 1fr;
+    gap: var(--space-s);
     background-color: var(--elevated);
     padding: inherit;
   }
@@ -54,6 +50,24 @@ section {
     video {
       aspect-ratio: 4 / 3;
       width: 100%;
+    }
+
+    &__details {
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3em;
+      a {
+        font-size: var(--step-2);
+        font-variation-settings: "MONO" 1;
+        text-decoration: underline;
+        text-underline-offset: 0.09em;
+        text-decoration-thickness: 0.65px;
+        text-decoration-color: var(--border-color);
+      }
+      p {
+        font-size: var(--step-0);
+      }
     }
   }
 }
