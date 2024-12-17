@@ -100,13 +100,15 @@ $interpolate-max: 1445px;
     128px
   );
 
-  --space-s: calc(var(--space) / 2);
-  --space-xs: calc(var(--space-s) / 2);
-  --space-m: calc(var(--space) * 2);
-  --space-l: calc(var(--space-m) * 2);
-  --ideal-block-size: 150px;
-  --size-background-base: 20em;
-  --grostesque-weight: 550;
+  & {
+    --space-s: calc(var(--space) / 2);
+    --space-xs: calc(var(--space-s) / 2);
+    --space-m: calc(var(--space) * 2);
+    --space-l: calc(var(--space-m) * 2);
+    --ideal-block-size: 150px;
+    --size-background-base: 20em;
+    --grostesque-weight: 550;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
