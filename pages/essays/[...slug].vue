@@ -8,13 +8,13 @@
           :genre="doc.genre"
         />
         <ContentRenderer data-content :value="doc" />
+        <ArticleFooter
+          :current-slug="slug"
+          :contents="contents"
+          content-type="essays"
+        />
       </article>
     </ContentDoc>
-    <ArticleFooter
-      :current-slug="slug"
-      :contents="contents"
-      content-type="essays"
-    />
   </div>
 </template>
 
