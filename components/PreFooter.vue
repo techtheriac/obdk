@@ -2,20 +2,20 @@
   <section>
     <div class="outside">
       <div class="elsewhere">
-        <div class="prefooter-item">
-          <h2>Morphisms</h2>
+        <div class="prefooter-item tangent">
+          <h2>Tangents</h2>
           <ul>
             <li v-for="letter in morphisms">
-              <p>{{ letter?.issue }}</p>
+              <p class="tangent-issue">{{ letter?.issue }}</p>
               <NuxtLink :to="letter._path">
                 {{ letter?.title }}
               </NuxtLink>
             </li>
           </ul>
         </div>
-        <div class="prefooter-item">
+        <div class="prefooter-item outside">
           <h2>Outside</h2>
-          <p class="outside">
+          <p>
             <NuxtLink v-for="out in outside" :to="out.link">{{
               out.name
             }}</NuxtLink>
@@ -26,29 +26,13 @@
   </section>
 </template>
 
-<script setup lang="ts">
-const morphisms = await queryContent("morphisms")
+<script setup>
+const morphisms = await queryContent("tangents")
   .where({ published: true })
   .find();
 
-const outside = [
-  {
-    name: "The chemistry of reduce",
-    link: "https://dev.to/techtheriac/the-chemistry-of-reduce-54m6",
-  },
-  {
-    name: "Lambda (λ) Calculus For Javascript Developers",
-    link: "https://gist.github.com/techtheriac/d0daa646b45fed7fba7c061bfc3154ee",
-  },
-  {
-    name: "Notion as a content management system",
-    link: "https://www.youtube.com/live/piY-Jp1qFo4",
-  },
-  {
-    name: "Educative Answers - What are ASP Conditionals?",
-    link: "https://www.educative.io/answers/what-are-asp-conditionals",
-  },
-];
+const outsideQuery = await queryContent("outside").findOne();
+const outside = outsideQuery.body;
 </script>
 
 <style lang="scss" scoped>
@@ -79,6 +63,12 @@ section {
   }
 }
 
+@media screen and (max-width: 600px) {
+  .outside {
+    border-top: 1px solid var(--border-color);
+  }
+}
+
 .outside {
   a {
     color: var(--foreground-100);
@@ -89,9 +79,13 @@ section {
   }
 }
 
+.tangent-issue {
+  font-variation-settings: "MONO" 1;
+}
 .prefooter-item {
   h2 {
     font-weight: 550;
+    font-size: var(--step-0);
   }
 
   ul {

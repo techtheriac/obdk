@@ -1,6 +1,11 @@
 <template>
   <header class="header">
-    <svg viewBox="0 0 10478 1117" class="obdk" preserveAspectRatio="xMinYMid">
+    <svg
+      viewBox="0 0 10478 1117"
+      class="obdk"
+      preserveAspectRatio="xMinYMid"
+      @click="$router.push({ path: '/' })"
+    >
       <path d="M0 0H698.17V139.625H418.902V1117H279.268V139.625H0V0Z" />
       <path
         d="M977.983 0H1676.15V139.625H1117.62V418.875H1536.52V558.5H1117.62V977.375H1676.15V1117H977.983V0Z"
@@ -34,7 +39,7 @@
       />
     </svg>
 
-    <nav class="navigation">
+    <nav class="navigation" role="navigation">
       <div class="toggle-menu" role="button">
         <span></span>
         <span></span>

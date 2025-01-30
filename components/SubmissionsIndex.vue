@@ -8,7 +8,9 @@
       </section>
       <section class="section poetry">
         <div class="section-aside">
-          <NuxtLink to="/www">Essays & Catalog Index <span>→</span> </NuxtLink>
+          <NuxtLink to="/essays"
+            >Essays & Catalog Index <span>→</span>
+          </NuxtLink>
           <NuxtLink to="/essays"
             >Read my poetry collection <span>→</span>
           </NuxtLink>

@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-const morphisms = await queryContent("morphisms")
+const morphisms = await queryContent("tangents")
   .where({ published: true })
   .find();
 </script>

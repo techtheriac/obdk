@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout name="morphisms">
+  <NuxtLayout name="tangents">
     <NuxtPage />
   </NuxtLayout>
 </template>
