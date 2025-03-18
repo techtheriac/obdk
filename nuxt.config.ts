@@ -33,6 +33,15 @@ export default defineNuxtConfig({
     },
     "/notes/**": { swr: 3600, prerender: true },
   },
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          sanitizeFileName: true,
+        },
+      },
+    },
+  },
 
   compatibilityDate: "2025-03-18",
 });
