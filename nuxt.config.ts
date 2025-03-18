@@ -9,16 +9,21 @@ export default defineNuxtConfig({
       },
     },
   },
+
   typescript: {
     typeCheck: true,
   },
+
   modules: ["@nuxt/content", "@pinia/nuxt"],
   css: ["@/assets/css/index.scss"],
+
   // Nuxt content: https://content.nuxtjs.org
   content: {},
+
   imports: {
     dirs: ["stores", "server"],
   },
+
   routeRules: {
     "/": { isr: 60 },
     "/essays": { swr: true },
@@ -28,4 +33,6 @@ export default defineNuxtConfig({
     },
     "/notes/**": { swr: 3600, prerender: true },
   },
+
+  compatibilityDate: "2025-03-18",
 });
