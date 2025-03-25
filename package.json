@@ -16,11 +16,10 @@
     "jest": "^29.6.2",
     "nuxt": "^3.16.0",
     "prettier": "3.0.3",
-    "purs-loader": "^4.0.0",
     "sass": "^1.60.0",
     "sass-loader": "^13.2.2",
     "ts-jest": "^29.1.1",
-    "typescript": "5.1.3",
+    "typescript": "^5.8.2",
     "vue-tsc": "^1.8.1"
   },
   "overrides": {
@@ -31,15 +30,9 @@
     "@capsizecss/unpack": "^2.2.0",
     "@notionhq/client": "^0.4.13",
     "@nuxt/image": "^1.1.0",
-    "@nuxtjs/dotenv": "^1.4.1",
-    "@oakstudios/mechanical-ragger": "^0.5.0",
-    "@phosphor-icons/vue": "^2.1.4",
     "@pinia/nuxt": "^0.4.11",
-    "@studio-freight/lenis": "^1.0.19",
-    "@xstate/vue": "^2.0.0",
     "are.na": "^0.1.5",
     "arena-typed": "^1.0.4",
-    "augmented-ui": "^2.0.0",
     "axios": "^1.4.0",
     "buffer": "^6.0.3",
     "chromotome": "^1.20.0",
@@ -54,7 +47,6 @@
     "pinia": "^2.1.6",
     "query-string": "^8.1.0",
     "ramda": "^0.29.1",
-    "spectral.js": "^2.0.2",
-    "xstate": "^4.38.0"
+    "spectral.js": "^2.0.2"
   }
 }
