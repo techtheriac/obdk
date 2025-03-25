@@ -131,6 +131,13 @@ $mono: "Rostin";
 }
 
 @font-face {
+  font-family: Plein;
+  font-style: normal;
+  font-weight: 300 900;
+  src: url("/static/fonts/Plein-Variable.woff2") format("woff2");
+}
+
+@font-face {
   font-family: Trixie;
   font-style: normal;
   font-weight: 400;
