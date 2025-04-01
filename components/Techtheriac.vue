@@ -45,8 +45,8 @@
         <span></span>
         <span></span>
       </div>
-      <ul>
-        <li v-for="nav in navItems">
+      <ul class="menu">
+        <li v-for="nav in navItems" class="menu-item">
           <NuxtLink :to="nav.link">
             {{ nav.name }}
           </NuxtLink>

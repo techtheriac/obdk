@@ -89,10 +89,15 @@
   }
 }
 
-.navigation {
-  ul {
-    display: none;
-  }
+.menu {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: absolute;
+  top: var(--header-height);
+  padding-block: var(--step--1);
+  left: 0;
+  z-index: 2;
 }
 
 @media screen and (min-width: 600px) {
@@ -102,14 +107,16 @@
   .header {
     align-items: baseline;
   }
+
   .navigation {
-    display: flex;
-    right: 0;
+    // right: 0;
+    position: relative;
     gap: var(--space-xs);
-    bottom: 0;
-    ul {
-      display: flex;
-      gap: inherit;
-    }
+    // bottom: 0;
+  }
+
+  .menu {
+    position: static;
+    gap: inherit;
   }
 }
