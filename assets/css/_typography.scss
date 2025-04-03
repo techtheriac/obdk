@@ -190,6 +190,37 @@ $mono: "Rostin";
     U+AB53, U+FF0D;
 }
 
+// TWK Everett
+@font-face {
+  font-family: "Everett-Ultralight";
+  font-style: normal;
+  src: url("/static/fonts/TWKEverett-Ultralight") format("woff");
+}
+
+@font-face {
+  font-family: "Everett-Light";
+  font-style: normal;
+  src: url("/static/fonts/TWKEverett-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Everett-Regular";
+  font-style: normal;
+  src: url("/static/fonts/TWKEverett-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Everett-Book";
+  font-style: normal;
+  src: url("/static/fonts/TWKEverett-Book.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Everett-Bold";
+  font-style: normal;
+  src: url("/static/fonts/TWKEverett-Bold.woff") format("woff");
+}
+
 h1,
 h2,
 h3,

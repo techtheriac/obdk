@@ -3,9 +3,7 @@
 
 #article {
   @extend %content-align;
-  font-family: t.$serif;
-  font-family: Resolve;
-  font-family: Plein;
+  font-family: "Everett-Regular";
 }
 
 p::selection {
@@ -77,6 +75,7 @@ p::selection {
   p {
     line-height: var(--line-height);
     font-size: var(--step--1);
+    font-size: var(--idealBaseFontSize);
     font-weight: calc(400 * var(--font-weight-multiplier, 1));
     // font-weight: 400;
     text-wrap: pretty;
